@@ -4,7 +4,7 @@
     "readme": "README_kr.md",
   	"summary": "docs_kr/README.md"
 	},
-  "language": "kr",
+  "language": "ko",
   "plugins": ["edit-link", "prism"],
   "pluginsConfig": {
     "edit-link": {
