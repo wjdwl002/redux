@@ -16,7 +16,7 @@
   * [예시: Todo List](/docs_kr/basics/ExampleTodoList.md)
 * [심화](/docs_kr/advanced/README.md)
   * [미들웨어](/docs_kr/advanced/Middleware.md)
-  * [비동기 액션(미번역)](/docs_kr/advanced/AsyncActions.md)
+  * [비동기 액션](/docs_kr/advanced/AsyncActions.md)
   * [비동기 흐름(미번역)](/docs_kr/advanced/AsyncFlow.md)
   * React Router와 함께 사용하기
   * [예시: Reddit API(미번역)](/docs_kr/advanced/ExampleRedditAPI.md)
