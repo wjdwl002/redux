@@ -206,7 +206,7 @@ function logger(store) {
 
 첫 번째 미들웨어 처리가 끝나고 바로 `applyMiddlewareByMonkeypatching`를 `store.dispatch`에 할당하지 않는다면, `store.dispatch`는 여전히 원래의 `dispatch`함수를 가리키고 있을겁니다. 그러면 두번째 미들웨어 또한 원래의 `dispatch` 함수에 바인딩될 수 있겠죠.
 
-하지만 체이닝을 가능하게 하는 다른 방법이 있습니다. 미들웨어가 `next()` 디스패치 함수를 `store` 인스턴스에서 읽어오는 대신 인자로 받을 수 있습니다.
+하지만 체이닝을 가능하게 하는 다른 방법이 있습니다. 미들웨어가 `next()` 디스패치 함수를 `store` 인스턴스에서 읽어오는 대신 매개변수로 받을 수 있습니다.
 
 ```js
 function logger(store) {
