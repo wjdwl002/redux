@@ -4,7 +4,7 @@
 
 [기초 가이드](../basics/README.md)에서 우리는 간단한 할일 애플리케이션을 만들었습니다. 이 앱은 완전히 동기적이었죠. 매번 액션이 보내질때마다, 상태가 바로 변경되었습니다.
 
-이 가이드에서 우리는 비동기 애플리케이션을 만들겠습니다. Reddit API를 써서 선택한 subreddit의 현재 헤드라인을 보여줄겁니다. 비동기가 어떻게 Redux의 흐름에 들어가게 될까요?
+이 가이드에서 우리는 비동기 애플리케이션을 만들겠습니다. Reddit API를 써서 선택한 subreddit의 현재 헤드라인을 보여줄겁니다. 비동기가 어떻게 Redux의 흐름에 적용되게 될까요?
 
 ## 액션
 
@@ -22,7 +22,7 @@
 
   리듀서는 `isFetching`을 되돌려서 이 액션을 처리합니다. 리듀서는 에러 메시지를 UI에 표시하기 위해 상태에 저장할수도 있습니다.
   
-여러분은 액션에 따로 `status` 필드를 두고 사용할겁니다:
+여러분은 액션에 따로 `status` 필드를 두고 사용할 수 있습니다:
 
 ```js
 { type: 'FETCH_POSTS' }
@@ -30,7 +30,7 @@
 { type: 'FETCH_POSTS', status: 'success', response: { ... } }
 ```
 
-아니면 이들의 타입을 따로 정의할수도 있습니다:
+아니면 이들의 타입을 따로 정의할 수도 있습니다:
 
 ```js
 { type: 'FETCH_POSTS_REQUEST' }
@@ -348,21 +348,21 @@ fetch(`http://www.reddit.com/r/${reddit}.json`)
 ```js
 const thunkMiddleware = store => next => action => {
   if (typeof action !== 'function') {
-    // Normal action, pass it on
+    // 일반 액션은 통과시킴
     return next(action);
   }
 
-  // Woah, somebody tried to dispatch a function!
-  // We will invoke it immediately and give `store.dispatch`
-  // to it. This will invert control and let it dispatch
-  // many times. We will also pass `getState` to it so it
-  // can peek into the current state and make decisions based on it.
+  // 우왓, 누군가가 함수를 보내려고 합니다!
+  // 이걸 즉시 불러내서 `store.dispatch`를 넣겠습니다.
+  // 제어는 역전되고 이를 여러번 보낼 수 있습니다.
+  // 또한 `getState`를 넘겨서 현재 상태를 가져오고
+  // 이를 기반으로 결정할 수 있게 하겠습니다.
 
   const result = action(store.dispatch, store.getState);
 
-  // Whatever the user returned from that function, we'll return too,
-  // so it becomes `dispatch()` returns value. This is convenient
-  // in case user wants to return a Promise to wait for.
+  // 사용자가 이 함수에서 무엇을 반환하건 우리도 같이 반환해서
+  // `dispatch()`가 값을 반환하게 합니다. 이렇게 하면
+  // 사용자가 기다릴 약속을 반환하기를 원할때 편리합니다.
 
   return result;
 };
@@ -394,12 +394,12 @@ function receivePosts(reddit, json) {
 }
 
 export function fetchPosts(reddit) {
-  // thunk middleware knows how to handle functions
+  // 썽크 미들웨어는 함수를 어떻게 다룰지 알고 있습니다
   return function (dispatch) {
     dispatch(requestPosts(reddit));
 
-    // Return a promise to wait for
-    // (this is not required by thunk middleware, but it is convenient for us)
+    // 기다릴 약속을 반환합니다
+    // (썽크 미들웨어에서 필수적인건 아니지만, 우리가 사용할때 편리합니다)
     return fetch(`http://www.reddit.com/r/${reddit}.json`)
       .then(response => response.json())
       .then(json =>
@@ -420,8 +420,8 @@ import { selectReddit, fetchPosts } from './actions';
 import rootReducer from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware, // lets us dispatch() functions
-  loggerMiddleware // neat middleware that logs actions
+  thunkMiddleware, // 함수를 dispatch() 하게 해줍니다
+  loggerMiddleware // 액션을 로깅하는 깔끔한 미들웨어입니다
 )(createStore);
 
 const store = createStoreWithMiddleware(rootReducer);
@@ -480,10 +480,10 @@ function shouldFetchPosts(state, reddit) {
 export function fetchPostsIfNeeded(reddit) {
   return (dispatch, getState) => {
     if (shouldFetchPosts(getState(), reddit)) {
-      // Dispatch a thunk from thunk!
+      // 썽크에서 썽크를 보냅니다!
       return dispatch(fetchPosts(reddit));
     } else {
-      // Let the calling code know there's nothing to wait for.
+      // 호출하는 코드에게 아무것도 기다리지 않아도 된다는걸 알려줍니다.
       return Promise.resolve();
     }
   };
