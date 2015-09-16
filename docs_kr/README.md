@@ -36,4 +36,5 @@
   * [applyMiddleware(미번역)](/docs_kr/api/applyMiddleware.md)
   * [bindActionCreators(미번역)](/docs_kr/api/bindActionCreators.md)
   * [compose(미번역)](/docs_kr/api/compose.md)
-* [후원자(미번역)](/PATRONS_kr.md)
+* [변경 기록](/CHANGELOG_kr.md)
+* [후원자](/PATRONS_kr.md)

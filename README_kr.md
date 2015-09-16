@@ -148,6 +148,11 @@ store.dispatch({ type: 'DECREMENT' });
 
 NPM 패키지명인 `redux`를 넘겨주신 [Jamie Paton](http://jdpaton.github.io)에게 특별한 감사의 말을 전합니다.
 
+### 변경 기록
+
+이 프로젝트는 [유의적 버전](http://semver.org/lang/ko/)을 따릅니다.
+매 릴리즈는 마이그레이션 설명과 함께 깃헙 [릴리즈](https://github.com/rackt/redux/releases) 페이지에 문서화됩니다.
+
 ### 후원자
 
 Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patreon.com/reactdx).  
