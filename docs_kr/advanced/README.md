@@ -4,7 +4,7 @@
 
 * [미들웨어](Middleware.md)
 * [비동기 액션](AsyncActions.md)
-* [비동기 흐름(미번역)](AsyncFlow.md)
+* [비동기 흐름](AsyncFlow.md)
 * [React Router와 함께 사용하기](UsageWithReactRouter.md)
-* [예시: Reddit API(미번역)](ExampleRedditAPI.md)
+* [예시: Reddit API](ExampleRedditAPI.md)
 * [다음 단계](NextSteps.md)
