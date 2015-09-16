@@ -1,7 +1,7 @@
-# Patrons
+# 후원자
 
-The work on Redux was [funded by the community](https://www.patreon.com/reactdx).  
-Meet some of the outstanding companies and individuals that made it possible:
+Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patreon.com/reactdx).
+이를 가능하게 했던 주요한 회사들과 사람들을 소개합니다:
 
 * [Webflow](https://webflow.com/)
 * [Chess iX](http://www.chess-ix.com/)

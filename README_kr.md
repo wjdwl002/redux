@@ -156,7 +156,7 @@ Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patre
 * [Webflow](http://webflow.com/)
 * [Chess iX](http://www.chess-ix.com/)
 
-[전체 후원자 명단 보기.](PATRONS.md)
+[전체 후원자 명단 보기.](PATRONS_kr.md)
 
 ### 라이선스
 
