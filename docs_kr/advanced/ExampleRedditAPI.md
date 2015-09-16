@@ -1,6 +1,6 @@
-# Example: Reddit API
+# 예시: Reddit API
 
-This is the complete source code of the Reddit headline fetching example we built during the [advanced tutorial](README.md).
+[심화 튜토리얼](README.md)에서 만들었던 Reddit 헤드라인 가져오기 예시의 전체 소스코드입니다.
 
 ## Entry Point
 
