@@ -1,14 +1,14 @@
 # 비동기 액션
 
-[이전 세션](Middleware.md)에서 우리는 Redux 미들웨어가 어떻게 액션이 리듀서에 도달하기 전에 가로채고, 지연시키고, 변환하는지 알아보았습니다. 미들웨어를 사용하는 경우는 다양합니다: 로깅과 충돌 보고가 좋은 예시입니다. 하지만, 미들웨어를 사용하는 가장 흔한 경우는 비동기 API 호출입니다.
-
 [기초 가이드](../basics/README.md)에서 우리는 간단한 할일 애플리케이션을 만들었습니다. 이 앱은 완전히 동기적이었죠. 매번 액션이 보내질때마다, 상태가 바로 변경되었습니다.
 
 이 가이드에서 우리는 비동기 애플리케이션을 만들겠습니다. Reddit API를 써서 선택한 subreddit의 현재 헤드라인을 보여줄겁니다. 비동기가 어떻게 Redux의 흐름에 적용되게 될까요?
 
 ## 액션
 
-여러분이 비동기 API를 호출하더라도, 저장된 데이터를 바꾸기 위해서는 액션이 보내져야 하고 이들이 리듀서에 의해 동기적으로 처리되어야 합니다. 보통 어떤 API 요청이건간에 여러분은 최소한 3가지 다른 액션을 보내게 됩니다:
+여러분이 비동기 API를 호출할 때 매우 중요한 순간이 두 번 있습니다: 호출을 시작할 때와, 응답을 받았을 때(아니면 타임아웃)입니다.
+
+두 순간 모두 애플리케이션에서 상태 변화를 요구합니다; 이를 위해서는 리듀서가 동기적으로 처리할 수 있는 일반 액션을 보내야 하죠. 보통 어떤 API 요청이건간에 여러분은 최소 3가지 다른 액션을 보내야 할겁니다:
 
 * **리듀서에게 요청이 시작되었음을 알리는 액션.**
 
@@ -45,7 +45,7 @@
 
 ## 동기 액션 생산자
 
-몇가지 동기 액션 타입과 이들을 위한 액션 생산자를 정의하면서 시작해봅시다. 우리의 앱에서 사용자는 표시할 reddit을 선택할 수 있습니다:
+우리의 앱에서 필요한 몇가지 동기 액션 타입과 액션 생산자를 정의하면서 시작해봅시다. 사용자는 표시할 reddit을 선택할 수 있습니다:
 
 ```js
 export const SELECT_REDDIT = 'SELECT_REDDIT';
@@ -104,7 +104,6 @@ export function receivePosts(reddit, json) {
 ```
 
 당장 알아야 할 것들은 이게 다입니다. 이들 액션을 네트워크 요청에 따라 보내는 작동방식은 나중에 논의하도록 하겠습니다.
-
 
 >##### 에러 핸들링에 대해
 
@@ -251,7 +250,7 @@ function posts(state = {
   }
 }
 
-function postsByReddit(state = { }, action) {
+function postsByReddit(state = {}, action) {
   switch (action.type) {
   case INVALIDATE_REDDIT:
   case RECEIVE_POSTS:
@@ -288,87 +287,17 @@ export default rootReducer;
     nextState[action.reddit] = posts(state[action.reddit], action);
     return Object.assign({}, state, nextState);
   ```
-
 * 우리는 상태에서 특정 포스트 목록을 관리하는 `posts(state, action)`를 분리했습니다. 이건 그냥 [리듀서 결합](../basics/Reducers.md#리듀서-쪼개기)입니다! 리듀서를 어떻게 쪼갤지는 우리가 정하기 나름이고, 이 경우엔 객체 안의 항목들을 수정하는 일을 `posts` 리듀서에 맡겼습니다. [real world example](../introduction/Examples.html#real-world)에서는 더 나아가서 매개변수화된 페이지 리듀서를 위한 리듀서 팩토리를 어떻게 만드는지 보여줍니다.
 
 리듀서는 단지 함수일 뿐이라는걸 기억하세요. 여러분은 함수형 결합이나 고차함수등을 편하신대로 사용할 수 있습니다.
 
 ## 비동기 액션 생산자
 
-마지막으로, 우리가 [앞에서 선언한](#동기-액션-생산자) 동기화된 액션을 어떻게 네트워크 요청과 함께 사용할 수 있을까요? 물론 직접 하면 됩니다:
+마지막으로, 우리가 [앞에서 선언한](#동기-액션-생산자) 동기화된 액션을 어떻게 네트워크 요청과 함께 사용할 수 있을까요? Redux에서 가장 보편적인 방법은 [Redux 썽크 미들웨어](https://github.com/gaearon/redux-thunk)를 쓰는 것입니다. 별도의 패키지인 `redux-thunk`에 들어있습니다. 일반적으로 미들웨어가 어떻게 작동하는지는 [나중에](Middleware.md) 설명하겠습니다; 지금은 한 가지만 알면 됩니다: 이 미들웨어를 사용함으로써, 액션 생산자는 액션 객체 대신 함수를 반환할 수 있습니다. 이를 통해 액션 생산자는 [썽크](https://en.wikipedia.org/wiki/Thunk)가 됩니다.
 
-```js
-import fetch from 'isomorphic-fetch';
-import { createStore } from 'redux';
-import { selectReddit, requestPosts, receivePosts } from './actions';
-import rootReducer from './reducers';
+액션 생산자가 함수를 반환하면, Redux 썽크 미들웨어에 의해 실행됩니다. 이 함수가 순수할 필요는 없습니다; 비동기 API 호출과 같은 사이드 이펙트가 허용됩니다. 이 함수는 또한 우리가 앞에서 정의했던것과 같은 동기 액션을 보냅니다.
 
-const reddit = 'reactjs';
-const store = createStore(rootReducer);
-
-store.dispatch(selectReddit(reddit));
-
-store.dispatch(requestPosts('reactjs'));
-fetch(`http://www.reddit.com/r/${reddit}.json`)
-  .then(response => response.json())
-  .then(json =>
-    store.dispatch(receivePosts(reddit, json))
-  )
-  .then(() => {
-    console.log(store.getState());
-  });
-```
-
->##### `fetch`에 대하여
-
->이 예시에서는 [`fetch` API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)를 사용했습니다. 일반적인 경우에 `XMLHttpRequest`를 대신해서 네트워크 요청을 만들어주는 새로운 API입니다. 대부분의 브라우저는 아직 이를 지원하지 않기 때문에 [`isomorphic-fetch`](https://github.com/matthew-andrews/isomorphic-fetch)를 사용하는 것을 권장합니다:
-
->```js
-// `fetch`를 사용하는 모든 파일마다 
->import fetch from 'isomorphic-fetch';
->```
-
->내부적으로 이 라이브러리는 클라이언트에서 [`whatwg-fetch` polyfill](https://github.com/github/fetch)을, 서버에서 [`node-fetch`](https://github.com/bitinn/node-fetch)를 사용하므로 여러분이 앱을 [유니버셜](https://medium.com/@mjackson/universal-javascript-4761051b7ae9)로 바꾸더라도 API 호출을 바꿀 필요가 없습니다.
-
->`fetch` 폴리필들은 [약속](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 폴리필이 이미 적용되어 있다고 가정한다는 점을 명심하세요. 약속 폴리필이 적용되어 있도록 하는 가장 확실한 방법은 Babel의 ES6 폴리필을 모든 엔트리 포인트에서 사용하는겁니다:
-
->```js
->// 앱의 다른 코드들 앞에 한번 넣어줍니다
->import 'babel-core/polyfill';
->```
-
-우리는 API를 호출하고 컴포넌트에서 적절한 액션을 보낼수도 있습니다. 하지만 이건 금방 지루해지죠. 보통은 요청을 수행하기 전에 상태를 확인하고, 데이터가 캐시되어 있으면 가져오지 않기로 결정하는 일반적인 로직을 원할겁니다. 
-
-액션은 흐름 제어를 표현하지 않습니다. 흐름 제어를 위한 최고의 도구는 함수죠. 함수는 `if`문을 가질 수도 있고 일찍 `return` 할 수도 있습니다. 함수가 `dispatch` 메서드에 접근할 수 있다면 몇번이든 호출할 수 있고, 어쩌면 비동기적으로도 가능할겁니다. 감이 오시나요?
-
-[이전 섹션](Middleware.md)에서 우리는 Redux의 가장 일반적인 확장 방법인 미들웨어를 알아봤습니다. 미들웨어는 여러분이 최초의 `dispatch()` 호출에서부터 액션이 리듀서에 이르는 순간까지 임의의 로직을 끼워넣을 수 있게 해주죠.
-
-우리가 **액션 생산자로부터 함수를 반환하는** 미들웨어를 짠다면 어떨까요? 함수를 반환하는 함수는 예전부터 "썽크"라고 불렸으니, 이를 "썽크 미들웨어"라고 부르겠습니다. 아마 이렇게 생겼을겁니다:
-
-```js
-const thunkMiddleware = store => next => action => {
-  if (typeof action !== 'function') {
-    // 일반 액션은 통과시킴
-    return next(action);
-  }
-
-  // 우왓, 누군가가 함수를 보내려고 합니다!
-  // 이걸 즉시 불러내서 `store.dispatch`를 넣겠습니다.
-  // 제어는 역전되고 이를 여러번 보낼 수 있습니다.
-  // 또한 `getState`를 넘겨서 현재 상태를 가져오고
-  // 이를 기반으로 결정할 수 있게 하겠습니다.
-
-  const result = action(store.dispatch, store.getState);
-
-  // 사용자가 이 함수에서 무엇을 반환하건 우리도 같이 반환해서
-  // `dispatch()`가 값을 반환하게 합니다. 이렇게 하면
-  // 사용자가 기다릴 약속을 반환하기를 원할때 편리합니다.
-
-  return result;
-};
-```
-
-이게 이해가 안 되신다면, [미들웨어 소개](Middleware.md)로 돌아가세요. 이를 통해 우리는 예시를 재작성해서 액션 생산자일 뿐인 `fetchPosts()`가 함수를 반환하게 해줄 수 있습니다:
+우리는 이들 썽크 액션 생산자 또한 `actions.js` 파일 안에 정의할 수 있습니다:
 
 #### `actions.js`
 
@@ -393,31 +322,75 @@ function receivePosts(reddit, json) {
   };
 }
 
+// 우리의 첫 번째 썽크 액션 생산자입니다!
+// 안쪽은 다르지만 다른 액션 생산자처럼 사용하면 됩니다:
+// store.dispatch(fetchPosts('reactjs'));
+
 export function fetchPosts(reddit) {
-  // 썽크 미들웨어는 함수를 어떻게 다룰지 알고 있습니다
+
+  // 썽크 미들웨어는 함수를 어떻게 다룰지 알고 있습니다.
+  // 미들웨어는 디스패치 메서드를 함수에 인수로 보내서,
+  // 함수가 직접 액션을 보낼 수 있도록 합니다.
+
   return function (dispatch) {
+
+    // 첫번째 디스패치: 앱 상태를 갱신해서 
+    // API 호출이 시작됨을 알립니다.
+
     dispatch(requestPosts(reddit));
 
-    // 기다릴 약속을 반환합니다
-    // (썽크 미들웨어에서 필수적인건 아니지만, 우리가 사용할때 편리합니다)
+    // 썽크 미들웨어가 호출하는 함수는 값을 반환할 수 있고,
+    // 이 값이 디스패치 메서드의 반환값이 됩니다.
+
+    // 이 경우엔 기다릴 수 있는 약속을 반환합니다.
+    // 썽크 미들웨어에서 필수적인건 아니지만, 우리의 편의를 위함입니다.
+
     return fetch(`http://www.reddit.com/r/${reddit}.json`)
       .then(response => response.json())
       .then(json =>
-        // We can dispatch many times!
+
+        // 디스패치는 여러번 가능합니다!
+        // 여기서는 API 호출의 결과로 앱 상태를 갱신합니다.
+
         dispatch(receivePosts(reddit, json))
       );
+
+      // 실제 앱에서는 네트워크 호출에서
+      // 에러도 잡고 싶을겁니다.
   };
 }
 ```
+
+>##### Note on `fetch`
+
+>이 예시에서는 [`fetch` API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)를 사용했습니다. 일반적인 경우에 `XMLHttpRequest`를 대신해서 네트워크 요청을 만들어주는 새로운 API입니다. 대부분의 브라우저는 아직 이를 지원하지 않기 때문에 [`isomorphic-fetch`](https://github.com/matthew-andrews/isomorphic-fetch)를 사용하는 것을 권장합니다:
+
+>```js
+// `fetch`를 사용하는 모든 파일마다 넣어줍니다
+>import fetch from 'isomorphic-fetch';
+>```
+
+>내부적으로 이 라이브러리는 클라이언트에서 [`whatwg-fetch` polyfill](https://github.com/github/fetch)을, 서버에서 [`node-fetch`](https://github.com/bitinn/node-fetch)를 사용하므로 여러분이 앱을 [유니버셜](https://medium.com/@mjackson/universal-javascript-4761051b7ae9)로 바꾸더라도 API 호출을 바꿀 필요가 없습니다.
+
+>`fetch` 폴리필들은 [약속](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 폴리필이 이미 적용되어 있다고 가정한다는 점을 명심하세요. 약속 폴리필이 적용되어 있도록 하는 가장 확실한 방법은 Babel의 ES6 폴리필을 모든 엔트리 포인트에서 사용하는겁니다:
+
+>```js
+>// 앱의 다른 코드들 앞에 한번 넣어줍니다
+>import 'babel-core/polyfill';
+>```
+
+Redux 썽크 미들웨어를 디스패치 작동방식 안에 어떻게 포함시킬까요? 아래와 같이 Redux의 [`applyMiddleware()`](../api/applyMiddleware.md) 메서드를 사용합니다:
 
 #### `index.js`
 
 ```js
 import thunkMiddleware from 'redux-thunk';
-import loggerMiddleware from 'redux-logger';
+import createLogger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { selectReddit, fetchPosts } from './actions';
 import rootReducer from './reducers';
+
+const loggerMiddleware = createLogger();
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware, // 함수를 dispatch() 하게 해줍니다
@@ -428,11 +401,11 @@ const store = createStoreWithMiddleware(rootReducer);
 
 store.dispatch(selectReddit('reactjs'));
 store.dispatch(fetchPosts('reactjs')).then(() =>
-  console.log(store.getState());
+  console.log(store.getState())
 );
 ```
 
-썽크의 좋은 점은 각각의 결과를 보내준다는 겁니다:
+썽크의 좋은 점은 서로의 결과를 보낼 수 있다는겁니다:
 
 #### `actions.js`
 
@@ -478,6 +451,13 @@ function shouldFetchPosts(state, reddit) {
 }
 
 export function fetchPostsIfNeeded(reddit) {
+
+  // 함수가 getState()도 받는 것을 눈여겨보세요
+  // 이를 통해 무엇을 보낼지 선택할 수 있습니다.
+
+  // 이는 혹시 이미 캐시된 값이 있을 경우
+  // 네트워크 호출을 하지 않을 때 유용합니다.
+
   return (dispatch, getState) => {
     if (shouldFetchPosts(getState(), reddit)) {
       // 썽크에서 썽크를 보냅니다!

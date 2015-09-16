@@ -15,9 +15,9 @@
   * [React와 함께 사용하기](/docs_kr/basics/UsageWithReact.md)
   * [예시: Todo List](/docs_kr/basics/ExampleTodoList.md)
 * [심화](/docs_kr/advanced/README.md)
-  * [미들웨어](/docs_kr/advanced/Middleware.md)
   * [비동기 액션](/docs_kr/advanced/AsyncActions.md)
   * [비동기 흐름](/docs_kr/advanced/AsyncFlow.md)
+  * [미들웨어](/docs_kr/advanced/Middleware.md)
   * React Router와 함께 사용하기
   * [예시: Reddit API](/docs_kr/advanced/ExampleRedditAPI.md)
   * 다음 단계
