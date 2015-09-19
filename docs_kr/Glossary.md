@@ -1,96 +1,96 @@
-# Glossary
+# 용어사전
 
-This is a glossary of the core terms in Redux, along with their type signatures. The types are documented using [Flow notation](http://flowtype.org/docs/quick-reference.html).
+이 문서는 Redux의 핵심 용어들을 그 타입 시그니처와 함께 모아둔 용어사전입니다. 타입은 [Flow notation](http://flowtype.org/docs/quick-reference.html)에 따라 문서화되어 있습니다.
 
-## State
+## 상태
 
 ```js
 type State = any;
 ```
 
-*State* (also called the *state tree*) is a broad term, but in the Redux API it usually refers to the single state value that is managed by the store and returned by [`getState()`](api/Store.md#getState). It represents the entire state of a Redux application, which is often a deeply nested object.
+**상태**(**상태 트리**라고도 합니다)는 넓은 의미의 단어이지만, Redux API에서는 보통 스토어에 의해 관리되고 [`getState()`](api/Store.md#getState)에 의해 반환되는 하나의 상태값을 지칭합니다. 상태는 Redux 애플리케이션의 전체 상태를 나타내며, 보통 깊게 중첩되어 있는 객체입니다.
 
-By convention, the top-level state is an object or some other key-value collection like a Map, but technically it can be any type. Still, you should do your best to keep the state serializable. Don’t put anything inside it that you can’t easily turn into JSON.
+편의상 최상위 상태는 객체나 Map과 같은 키-값 컬렉션이지만, 어떤 타입이든 가능합니다. 다만 상태를 항상 직렬화 가능하게 두는 것이 좋습니다. JSON으로 쉽게 변환될 수 없는 것들을 안에 넣지 마세요.
 
-## Action
+## 액션
 
 ```js
 type Action = Object;
 ```
 
-An *action* is a plain object that represents an intention to change the state. Actions are the only way to get data into the store. Any data, whether from UI events, network callbacks, or other sources such as WebSockets needs to eventually be dispatched as actions.
+**액션**은 상태를 변화시키려는 의도를 표현하는 평범한 객체입니다. 액션은 스토어에 데이터를 넣는 유일한 방법입니다. 어떤 데이터가 UI 이벤트에서 왔건, 네트워크 콜백에서 왔건, 웹소캣과 같은 다른 소스에서 왔건간에 결국은 액션으로써 보내집니다.
 
-By convention, actions should have a `type` field that indicates the type of action being performed. Types can be defined as constants and imported from another module. It’s better to use strings for `type` than [Symbols](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol) because strings are serializable.
+편의상 액션은 어떤 형태의 액션이 행해질지 가리키는 `type` 필드를 가져야 합니다. 타입은 상수로 정의되고 다른 모듈에서 불러와질수 있습니다. 문자열은 직렬화될 수 있기 때문에 타입으로 [Symbols](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol) 보다는 문자열을 쓰는 것이 좋습니다.
 
-Other than `type`, the structure of an action object is really up to you. If you’re interested, check out [Flux Standard Action](https://github.com/acdlite/flux-standard-action) for recommendations on how actions should be constructed.
+액션 객체에서 `type`외의 다른 부분은 여러분 마음대로입니다. 관심이 있다면 [Flux Standard Action](https://github.com/acdlite/flux-standard-action)에서 액션이 어떻게 구성되어야 하는지 권장사항을 알아보세요.
 
-See also [async action](#async-action) below.
+아래의 [비동기 액션](#비동기-액션)도 보시기 바랍니다.
 
-## Reducer
+## 리듀서
 
 ```js
 type Reducer<S, A> = (state: S, action: A) => S;
 ```
 
-A *reducer* (also called a *reducing function*) is a function that accepts an accumulation and a value and returns a new accumulation. They are used to reduce a collection of values down to a single value.
+**리듀서**(**리듀싱 함수**라고 부르기도 합니다)는 누적값과 값을 받아서 새로운 누적값을 반환하는 함수입니다. 이들은 값들의 컬렉션을 받아서 하나의 값으로 줄이는데 사용됩니다.
 
-Reducers are not unique to Redux—they are a fundamental concept in functional programming.  Even most non-functional languages, like JavaScript, have a built-in API for reducing. In JavaScript, it's [`Array.prototype.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
+리듀서는 Redux만의 개념은 아닙니다 - 이들의 기초 컨셉은 함수형 프로그래밍에서 왔습니다. 자바스크립트와 같은 비-함수형 프로그래밍 언어들에도 대부분 리듀싱을 위한 내장 API가 있습니다. 자바스크립트에서는 [`Array.prototype.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)입니다.
 
-In Redux, the accumulated value is the state object, and the values being accumulated are actions. Reducers calculate a new state given the previous state and an action. They must be *pure functions*—functions that return the exact same output for given inputs. They should also be free of side-effects. This is what enables exciting features like hot reloading and time travel.
+Redux에서 누적값은 상태 객체이고, 누적될 값은 액션입니다. 리듀서는 주어진 이전 상태와 액션에서 새로운 상태를 계산합니다. 이들은 반드시 같은 입력이 있으면 같은 출력을 반환하는 **순수 함수**여야만 합니다. 이들은 사이드이펙트를 가져서는 안됩니다. 이를 통해 핫 리로딩과 시간여행과 같은 멋진 기능들이 가능해집니다.
 
-Reducers are the most important concept in Redux.
+리듀서는 Redux에서 가장 중요한 개념입니다.
 
-*Do not put API calls into reducers.*
+*API 호출을 리듀서 안에 넣지 마세요.*
 
-## Dispatching Function
+## 디스패치 함수
 
 ```js
 type BaseDispatch = (a: Action) => Action;
 type Dispatch = (a: Action | AsyncAction) => any;
 ```
 
-A *dispatching function* (or simply *dispatch function*) is a function that accepts an action or an [async action](#async-action); it then may or may not dispatch one or more actions to the store.
+**디스패치 함수**는 액션이나 [비동기 액션](#비동기-액션)을 받는 함수입니다; 그런 다음 하나나 여러개의 액션을 스토어에 보냅니다.
 
-We must distinguish between dispatching functions in general and the base [`dispatch`](api/Store.md#dispatch) function provided by the store instance without any middleware.
+우리는 보통의 디스패치 함수와 스토어 인스턴스가 미들웨어를 거치지 않고 제공하는 기본 [`dispatch`](api/Store.md#dispatch) 함수를 구분해야 합니다.
 
-The base dispatch function *always* synchronously sends an action to the store’s reducer, along with the previous state returned by the store, to calculate a new state. It expects actions to be plain objects ready to be consumed by the reducer.
+기본 디스패치 함수는 **반드시** 동기적으로 스토어의 리듀서에 액션을 보내야 합니다. 그러면 리듀서는 스토어가 반환한 이전 상태와 함께 새 상태를 계산합니다. 리듀서가 사용하기 위해서 액션은 평범한 객체여야 합니다.
 
-[Middleware](#middleware) wraps the base dispatch function. It allows the dispatch function to handle [async actions](#async-action) in addition to actions. Middleware may transform, delay, ignore, or otherwise interpret actions or async actions before passing them to the next middleware. See below for more information.
+[미들웨어](#미들웨어)는 기본 디스패치 함수를 감쌉니다. 미들웨어를 통해 디스패치 함수는 액션 뿐 아니라 [비동기 액션](#비동기-액션)를 처리할 수 있습니다. 미들웨어는 액션이나 비동기 액션을 다음 미들웨어에 넘기기 전에 변환하거나, 지연시키거나, 무시하거나, 해석할 수 있습니다. 더 알아보려면 아래를 보세요.
 
-## Action Creator
+## 액션 생산자
 
 ```js
 type ActionCreator = (...args: any) => Action | AsyncAction;
 ```
 
-An *action creator* is, quite simply, a function that creates an action. Do not confuse the two terms—again, an action is a payload of information, and an action creator is a factory that creates an action.
+**액션 생산자**는 단지 액션을 만드는 함수입니다. 액션은 정보의 묶음이고, 액션 생산자는 액션을 만드는 곳이니 두 용어를 혼동하지 마세요.
 
-Calling an action creator only produces an action, but does not dispatch it. You need to call the store’s [`dispatch`](api/Store.md#dispatch) function to actually cause the mutation. Sometimes we say *bound action creators* to mean functions that call an action creator and immediately dispatch its result to a specific store instance.
+액션 생산자를 호출하면 액션을 만들어낼 뿐 보내지는 않습니다. 여러분은 스토어를 변경하기 위해 [`dispatch`](api/Store.md#dispatch) 함수를 호출해야 합니다. 우리는 스토어 인스턴스로 바로 결과를 보내는 액션 생산자를 **바인드된 액션 생산자**라고 부르기도 합니다.
 
-If an action creator needs to read the current state, perform an API call, or cause a side effect, like a routing transition, it should return an [async action](#async-action) instead of an action.
+액션 생산자가 현재 상태를 읽어야 하거나, API 호출을 실행해야 하거나, 라우트 전환같은 사이드 이펙트를 일으켜야 한다면, 액션 대신 [비동기 액션](#비동기-액션)을 반환해야 합니다.
 
-## Async Action
+## 비동기 액션
 
 ```js
 type AsyncAction = any;
 ```
 
-An *async action* is a value that is sent to a dispatching function, but is not yet ready for consumption by the reducer. It will be transformed by [middleware](#middleware) into an action (or a series of actions) before being sent to the base [`dispatch()`](api/Store.md#dispatch) function. Async actions may have different types, depending on the middleware you use. They are often asynchronous primitives, like a Promise or a thunk, which are not passed to the reducer immediately, but trigger action dispatches once an operation has completed.
+**비동기 액션**은 디스패치 함수로 보내지는 값이지만, 아직 리듀서에게 받아들여질 준비가 되어 있지는 않습니다. 비동기 액션은 기본 [`dispatch()`](api/Store.md#dispatch) 함수로 전달되기 전에 [미들웨어](#미들웨어)를 통해 액션(이나 일련의 액션들)으로 바뀌어야 합니다. 비동기 액션은 여러분이 사용하는 미들웨어에 따라 서로 다른 타입이 될 수 있습니다. 이들은 종종 약속이나 썽크와 같은 비동기 기본형으로, 리듀서에게 직접 전달되지는 않지만, 작업이 완료되면 액션을 보냅니다. 
 
-## Middleware
+## 미들웨어
 
 ```js
 type MiddlewareAPI = { dispatch: Dispatch, getState: () => State };
 type Middleware = (api: MiddlewareAPI) => (next: Dispatch) => Dispatch;
 ```
 
-A middleware is a higher-order function that composes a [dispatch function](#dispatching-function) to return a new dispatch function. It often turns [async actions](#async-action) into actions.
+미들웨어는 [디스패치 함수](#디스패치-함수)를 결합해서 새 디스패치 함수를 반환하는 고차함수입니다. 이들은 종종 [비동기 액션](#비동기-액션)을 액션으로 전환합니다.
 
-Middleware is composable using function composition. It is useful for logging actions, performing side effects like routing, or turning an asynchronous API call into a series of synchronous actions.
+미들웨어는 함수 결합을 통해 서로 결합할 수 있습니다. 이는 액션을 로깅하거나, 라우팅과 같은 사이드 이펙트를 일으키거나, 비동기 API 호출을 일련의 동기 액션으로 바꾸는데 유용합니다.
 
-See [`applyMiddleware(...middlewares)`](./api/applyMiddleware.md) for a detailed look at middleware.
+미들웨어에 대해 자세히 알아보려면 [`applyMiddleware(...middlewares)`](./api/applyMiddleware.md)를 보세요.
 
-## Store
+## 스토어
 
 ```js
 type Store = {
@@ -101,34 +101,34 @@ type Store = {
 };
 ```
 
-A store is an object that holds the application’s state tree.  
-There should only be a single store in a Redux app, as the composition happens on the reducer level.
+스토어는 애플리케이션의 상태 트리를 가지고 있는 객체입니다. 
+Redux 앱에는 단 하나의 스토어만 있어야 하고, 결합은 리듀서 단계에서 일어납니다.
 
-- [`dispatch(action)`](api/Store.md#dispatch) is the base dispatch function described above.
-- [`getState()`](api/Store.md#getState) returns the current state of the store.
-- [`subscribe(listener)`](api/Store.md#subscribe) registers a function to be called on state changes.
-- [`replaceReducer(nextReducer)`](api/Store.md#replaceReducer) can be used to implement hot reloading and code splitting. Most likely you won’t use it.
+- [`dispatch(action)`](api/Store.md#dispatch)는 위에서 설명한 기본 디스패치 함수입니다.
+- [`getState()`](api/Store.md#getState)는 스토어의 현재 상태를 반환합니다.
+- [`subscribe(listener)`](api/Store.md#subscribe)는 상태가 바뀔 때 호출될 함수를 등록합니다.
+- [`replaceReducer(nextReducer)`](api/Store.md#replaceReducer)는 핫 리로딩과 코드 분할을 구현할때 사용됩니다. 여러분은 보통 사용하지 않을겁니다.
 
-See the complete [store API reference](api/Store.md#dispatch) for more details.
+자세한 사항은 [스토어 API 레퍼런스](api/Store.md#dispatch)를 보세요.
 
-## Store creator
+## 스토어 생산자
 
 ```js
 type StoreCreator = (reducer: Reducer, initialState: ?State) => Store;
 ```
 
-A store creator is a function that creates a Redux store. Like with dispatching function, we must distinguish the base store creator, [`createStore(reducer, initialState)`](api/createStore.md) exported from the Redux package, from store creators that are returned from the store enhancers.
+스토어 생산자는 Redux 스토어를 만드는 함수입니다. 디스패치 함수와 마찬가지로, Redux 패키지에 들어있는 기본 스토어 생산자인 [`createStore(reducer, initialState)`](api/createStore.md)와 스토어 인핸서에서 반환되는 스토어 생산자는 구분해야 합니다.
 
-## Store enhancer
+## 스토어 인핸서
 
 ```js
 type StoreEnhancer = (next: StoreCreator) => StoreCreator;
 ```
 
-A store enhancer is a higher-order function that composes a store creator to return a new, enhanced store creator. This is similar to middleware in that it allows you to alter the store interface in a composable way.
+스토어 인핸서는 스토어 생산자를 결합하여 강화된 새 스토어 생산자를 반환하는 고차함수입니다. 이는 미들웨어와 비슷하게 조합가능한 방식으로 스토어 인터페이스를 바꿀 수 있게 해줍니다.
 
-Store enhancers are much the same concept as higher-order components in React, which are also occasionally called “component enhancers”.
+스토어 인핸서는 React에서 "component enhancers"라 불리는 고차 컴포넌트와 같은 개념입니다.
 
-Because a store is not an instance, but rather a plain-object collection of functions, copies can be easily created and modified without mutating the original store. There is an example in [`compose`](api/compose.md) documentation demonstrating that.
+스토어는 인스턴스라기보다는 함수들이 모인 보통의 객체이기 때문에, 기존의 스토어를 변경하지 않고도 복제본을 만들고 수정할 수 있습니다. [`compose`](api/compose.md) 문서에 자세한 예시가 있습니다.
 
-Most likely you’ll never write a store enhancer, but you may use the one provided by the [developer tools](https://github.com/gaearon/redux-devtools). It is what makes time travel possible without the app being aware it is happening. Amusingly, the [Redux middleware implementation](api/applyMiddleware.md) is itself a store enhancer.
+여러분이 스토어 인핸서를 작성할 일은 거의 없지만, [개발자 도구](https://github.com/gaearon/redux-devtools)가 제공하는 인핸서를 사용할수는 있습니다. 이 인핸서는 앱에 다른 일이 일어날 걱정 없이도 시간여행을 가능하게 해줍니다. 재미있게도, [Redux의 미들웨어 구현](api/applyMiddleware.md)도 스토어 인핸서입니다.

@@ -28,7 +28,7 @@
   * [파생된 데이터 다루기(미번역)](/docs_kr/recipes/ComputingDerivedData.md)
   * [테스트 작성(미번역)](/docs_kr/recipes/WritingTests.md)
 * [문제해결(미번역)](/docs_kr/Troubleshooting.md)
-* [용어사전(미번역)](/docs_kr/Glossary.md)
+* [용어사전](/docs_kr/Glossary.md)
 * [API 레퍼런스](/docs_kr/api/README.md)
   * [createStore(미번역)](/docs_kr/api/createStore.md)
   * [Store(미번역)](/docs_kr/api/Store.md)
