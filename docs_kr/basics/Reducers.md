@@ -101,7 +101,7 @@ function todoApp(state = initialState, action) {
 
 >##### `Object.assign`에 관하여
 
->[`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)은 ES6의 일부이지만, 대부분의 브라우저에서 구현되지 않았습니다. 폴리필을 사용하거나 [Babel 플러그인](https://github.com/babel-plugins/babel-plugin-object-assign)이나 [`_.assign()`](https://lodash.com/docs#assign)같이 다른 라이브러리의 헬퍼를 사용해야 합니다.
+>[`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)은 ES6의 일부이지만, 대부분의 브라우저에서 구현되지 않았습니다. 폴리필을 사용하거나 [Babel 플러그인](https://www.npmjs.com/package/babel-plugin-object-assign)이나 [`_.assign()`](https://lodash.com/docs#assign)같이 다른 라이브러리의 헬퍼를 사용해야 합니다.
 
 >##### `switch`와 보일러플레이트에 관하여
 
