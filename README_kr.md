@@ -120,6 +120,8 @@ store.dispatch({ type: 'DECREMENT' });
 * [용어사전](http://dobbit.github.io/redux/docs_kr/Glossary.html)
 * [API 레퍼런스](http://dobbit.github.io/redux/docs_kr/api/index.html)
 
+오프라인에서 읽기 위한 PDF, ePub, MOBI 버전을 받거나 어떻게 만드는지 알고 싶다면, [paulkogel/redux-offline-docs](https://github.com/paulkogel/redux-offline-docs)을 보세요.
+
 ### 예시
 
 * [Counter](http://dobbit.github.io/redux/docs_kr/introduction/Examples.html#counter) ([source](https://github.com/rackt/redux/tree/master/examples/counter))
