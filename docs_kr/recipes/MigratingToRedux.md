@@ -1,31 +1,31 @@
-# Migrating to Redux
+# Redux로 마이그레이션
 
-Redux is not a monolithic framework, but a set of contracts and a [few functions that make them work together](../api/README.md). The majority of your “Redux code” will not even use Redux APIs, as most of the time you’ll be writing functions. 
+Redux는 하나의 거대한 프레임워크가 아닌, 계약들과 [그들을 함께 작동하도록 묶는 함수들](../api/README.md)로 이루어져 있습니다. 여러분의 "Redux 코드"의 주요 부분은 Redux API를 사용하지도 않으며, 여러분은 대부분의 시간을 함수를 작성하는데 보낼겁니다. 
 
-This makes it easy to migrate both to and from Redux.  
-We don’t want to lock you in!
+이는 Redux에서 옮기는 것과 Redux로 옮기는 것 양쪽 모두를 쉽게 만들어줍니다.
+우리는 여러분이 묶여있는걸 원하지 않습니다!
 
-## From Flux
+## Flux로부터
 
-[Reducers](../Glossary.md#reducer) capture “the essence” of Flux Stores, so it’s possible to gradually migrate an existing Flux project towards Redux, whether you are using [Flummox](http://github.com/acdlite/flummox), [Alt](http://github.com/goatslacker/alt), [traditional Flux](https://github.com/facebook/flux), or any other Flux library.
+[리듀서](../Glossary.md#리듀서)는 Flux 스토어의 "핵심"을 지니고 있기 때문에, [Flummox](http://github.com/acdlite/flummox), [Alt](http://github.com/goatslacker/alt), [traditional Flux](https://github.com/facebook/flux), 기타 Flux 라이브러리 중 무엇을 쓰고 있었다고 해도 기존의 Flux 프로젝트에서 Redux로 옮기는 것은 어렵지 않습니다. 
 
-It is also possible to do the reverse and migrate from Redux to any of these libraries following the same steps.
+Redux에서 저들 라이브러리로 옮기는 것도 아래의 순서를 반대로 행하면 가능합니다.
 
-Your process will look like this:
+여러분이 해야 할 순서는 다음과 같습니다:
 
-* Create a function called `createFluxStore(reducer)` that creates a Flux store compatible with your existing app from a reducer function. Internally it might look similar to [`createStore`](../api/createStore.md) implementation from Redux. Its dispatch handler should just call the `reducer` for any action, store the next state, and emit change.
+* 기존 앱이 리듀서와 호환되게 하는 Flux 스토어를 만드는 `createFluxStore(reducer)`라는 이름의 함수를 만듭니다. 내부적으로는 Redux의 [`createStore`](../api/createStore.md) 구현과 비슷합니다. 이 스토어의 디스패치 핸들러는 액션을 받아서 `reducer`를 호출하고, 다음 상태를 저장하고, 변경사항을 알립니다. 
 
-* This allows you to gradually rewrite every Flux Store in your app as a reducer, but still export `createFluxStore(reducer)` so the rest of your app is not aware that this is happening and sees the Flux stores.
+* 이를 통해 앱의 모든 Flux 스토어들을 리듀서로 재작성하면서도 `createFluxStore(reducer)`를 익스포트해서 앱의 나머지 부분이 변화를 신경쓰지 않고 Flux 스토어를 바라보게끔 합니다.
 
-* As you rewrite your Stores, you will find that you need to avoid certain Flux anti-patterns such as fetching API inside the Store, or triggering actions inside the Stores. Your Flux code will be easier to follow once you port it to be based on reducers!
+* 스토어를 재작성하면서 스토어 안에서 API를 받아오거나 액션을 일으키는 것 같은 Flux 안티패턴들을 피해야 합니다. 리듀서 기반으로 옮기면서 여러분의 Flux 코드는 더 읽기 쉬워질겁니다!
 
-* When you have ported all of your Flux Stores to be implemented on top of reducers, you can replace the Flux library with a single Redux store, and combine those reducers you already have into one using [`combineReducers(reducers)`](../api/combineReducers.md).
+* Flux 스토어를 모두 리듀서 기반으로 옮기고 나면 Flux 라이브러리를 Redux 스토어로 교체하고 작성한 리듀서들을 [`combineReducers(reducers)`](../api/combineReducers.md)을 통해 합칩니다.
 
-* Now all that’s left to do is to port the UI to [use react-redux](../basics/UsageWithReact.md) or equivalent.
+* 이제 남은것은 [react-redux](../basics/UsageWithReact.md)나 다른 것들을 사용해 UI를 옮기는 작업입니다.
 
-* Finally, you might want to begin using some Redux idioms like middleware to further simplify your asynchronous code.
+* 마지막으로 비동기 코드를 더 단순화하기 위해 미들웨어같은 Redux 문법을 사용하기를 원할겁니다.
 
-## From Backbone
+## Backbone으로부터
 
-Sorry, you’ll need to rewrite your model layer.  
-It’s way too different!
+미안하지만, 여러분은 모델 계층을 재작성해야 합니다.
+매우 어려운 일이죠!
