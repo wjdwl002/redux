@@ -8,6 +8,4 @@
 
 이러한 복잡함은 변화(mutation)나 비동기(asyncronicity)와 같이 사람이 추론해내기 어려운 **두 가지 개념을 섞어서 사용한다는 데**서 옵니다. 저는 이 두 가지를 [멘토스와 콜라](https://en.wikipedia.org/wiki/Diet_Coke_and_Mentos_eruption)라고 부릅니다. 이 둘은 나눠서 보면 훌륭하지만 함께 두면 엉망이 됩니다. [React](http://facebook.github.io/react)와 같은 라이브러리들에서는 이 문제를 해결하기 위해 뷰 레이어에서 비동기와 DOM 조작들을 없애버렸습니다. 하지만 React는  데이터를 관리하는 일에는 관여하지 않습니다.
 
-Following the steps of [Flux](http://facebook.github.io/flux), [CQRS](http://martinfowler.com/bliki/CQRS.html), and [Event Sourcing](http://martinfowler.com/eaaDev/EventSourcing.html), **Redux attempts to make state mutations predictable** by imposing certain restrictions on how and when updates can happen. These restrictions are reflected in the [three principles](ThreePrinciples.md) of Redux.
-
 [Flux](http://facebook.github.io/flux), [CQRS](http://martinfowler.com/bliki/CQRS.html), [Event Sourcing](http://martinfowler.com/eaaDev/EventSourcing.html)을 따라, Redux는 상태 변화가 일어나는 시점에 제약을 두어 상태 변화를 예측 가능하게 만들고자 시도합니다. 이러한 제약은 [세가지 원칙](ThreePrinciples.md)에 반영되어 있습니다.

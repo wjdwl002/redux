@@ -4,8 +4,6 @@ Redux는 작은 라이브러리입니다. 하지만 Redux의 규약과 API는 �
 
 Redux와 관련 있는 모든 목록을 보고싶다면 [Awesome Redux](https://github.com/xgrommx/awesome-redux)를 추천합니다. 여기에는 예제, 발판코드(boilerplate), 미들웨어, 유틸리티 라이브러리를 비롯한 다양한 것들이 열거되어있습니다.
 
-On this page we will only feature a few of them that the Redux maintainers have vetted personally. Don’t let this discourage you from trying the rest of them! The ecosystem is growing too fast, and we have a limited time to look at everything. Consider these the “staff picks”, and don’t hesitate to submit a PR if you’ve built something wonderful with Redux.
-
 이 페이지에서는 Redux 메인터이터가 개인적으로 선택한 몇 가지만 소개합니다. 이 목록을 보더라도 다른 라이브러를 시도해보는 걸 주저하지 않기 바랍니다. Redux 생태계는 아주 빠르게 성장하고 있으며, 이들 전부를 검토하기에는 시간이 부족합니다. 아래 목록은 '개발팀이 추천한' 목록 정도로만 받아들여주세요. Redux와 함께 사용할 수 있는 멋진 도구가 있다면 망설이지 말고 풀리퀘스트를 보내주세요.
 
 ## 바인딩

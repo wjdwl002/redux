@@ -171,5 +171,5 @@ MIT
 
 ### 번역
 
-유상엽([@Dev_Bono](https://twitter.com/Dev_Bono))
-김대권([@nacyo_t](https://twitter.com/nacyo_t))
+* 유상엽([@Dev_Bono](https://twitter.com/Dev_Bono))
+* 김대권([@nacyo_t](https://twitter.com/nacyo_t))
