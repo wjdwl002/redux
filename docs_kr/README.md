@@ -23,7 +23,7 @@
   * 다음 단계
 * [레시피](/docs_kr/recipes/README.md)
   * [Redux로 마이그레이션](/docs_kr/recipes/MigratingToRedux.md)
-  * [보일러플레이트 줄이기(미번역)](/docs_kr/recipes/ReducingBoilerplate.md)
+  * [보일러플레이트 줄이기](/docs_kr/recipes/ReducingBoilerplate.md)
   * [서버 렌더링(미번역)](/docs_kr/recipes/ServerRendering.md)
   * [파생된 데이터 다루기(미번역)](/docs_kr/recipes/ComputingDerivedData.md)
   * [테스트 작성(미번역)](/docs_kr/recipes/WritingTests.md)

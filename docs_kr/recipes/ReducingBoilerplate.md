@@ -1,14 +1,14 @@
-# Reducing Boilerplate
+# 보일러플레이트 줄이기
 
+Redux는 [Flux에서 영감을 받았고](../introduction/PriorArt.md), Flux에서 가장 일반적인 불만은 보일러플레이트를 많이 쓰게 된다는 점이었습니다. 이 레시피에서 우리는 어떻게 개인적 스타일이나, 팀 세팅이나, 장기 유지보수성 등에 따라 코드를 어떻게 짜야 할지를  Redux가 다양하게 선택 가능하게 하는지 고려할 것입니다.
 Redux is in part [inspired by Flux](../introduction/PriorArt.md), and the most common complaint about Flux is how it makes you write a lot of boilerplate. In this recipe, we will consider how Redux lets us choose how verbose we’d like our code to be, depending on personal style, team preferences, longer term maintainability, and so on.
 
-## Actions
+## 액션
 
-Actions are plain objects describing what happened in the app, and serve as the sole way to describe an intention to mutate the data. It’s important that **actions being objects you have to dispatch is not boilerplate, but one of the [fundamental design choices](../introduction/ThreePrinciples.md) of Redux**.
+액션은 앱에서 무엇이 일어날지 기술하는 평범한 객체이며, 데이터를 어떻게 변경하려는건지 기술할 유일한 방법입니다. **디스패치할 객체로서의 액션은 보일러플레이트가 아니라 Redux의 [기반이 되는 설계적 선택](../introduction/ThreePrinciples.md) 중 하나**라는 점이 중요합니다.
+Flux와 비슷한 프레임워크들이 있지만, 액션 객체의 개념은 없습니다. 예측가능성의 측면에서 보자면 Flux나 Redux보다 퇴보한겁니다. 직렬화가능한 평범한 객체인 액션이 없다면, 사용자 세션을 기록하고 재생하거나 [시간여행형 디버거와 결합된 실시간 코드 수정](https://www.youtube.com/watch?v=xsSnOQynTHs)을 구현할 수 없습니다. 여러분이 데이터를 직접 수정하길 원한다면 Redux가 필요 없을겁니다.
 
-There are frameworks claiming to be similar to Flux, but without a concept of action objects. In terms of being predictable, this is a step backwards from Flux or Redux. If there are no serializable plain object actions, it is impossible to record and replay user sessions, or to implement [hot reloading with time travel](https://www.youtube.com/watch?v=xsSnOQynTHs). If you’d rather modify data directly, you don’t need Redux.
-
-Actions look like this:
+액션은 이렇게 생겼습니다:
 
 ```js
 { type: 'ADD_TODO', text: 'Use Redux' }
@@ -16,9 +16,9 @@ Actions look like this:
 { type: 'LOAD_ARTICLE', response: { ... } }
 ```
 
-It is a common convention that actions have a constant type that helps reducers (or Stores in Flux) identify them. We recommend that you use strings and not [Symbols](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol) for action types, because strings are serializable, and by using Symbols you make recording and replaying harder than it needs to be.
+액션이 리듀서(나 Flux의 스토어)가 액션을 구분하게 돕는 상수 타입을 갖는것이 일반적인 규칙입니다. 우리는 기록하고 재생하기 어려운 [심볼](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol)이 아니라 직렬화가 가능한 문자열을 타입으로 쓰는 것을 권합니다.
 
-In Flux, it is traditionally thought that you would define every action type as a string constant:
+Flux에서는 전통적으로 모든 액션 타입을 문자열 상수로 정의합니다:
 
 ```js
 const ADD_TODO = 'ADD_TODO';
@@ -26,20 +26,20 @@ const REMOVE_TODO = 'REMOVE_TODO';
 const LOAD_ARTICLE = 'LOAD_ARTICLE';
 ```
 
-Why is this beneficial? **It is often claimed that constants are unnecessary, and for small projects, this might be correct.** For larger projects, there are some benefits to defining action types as constants:
+이게 어떤 잇점이 있을까요? **작은 프로젝트에서 상수는 불필요하다는 지적이 종종 있었고 옳은 말입니다.** 큰 프로젝트에서는 액션 타입을 상수로 정의하는 잇점들이 있습니다:
 
-* It helps keep the naming consistent because all action types are gathered in a single place.
-* Sometimes you want to see all existing actions before working on a new feature. It may be that the action you need was already added by somebody on the team, but you didn’t know.
-* The list of action types that were added, removed, and changed in a Pull Request helps everyone on the team keep track of scope and implementation of new features.
-* If you make a typo when importing an action constant, you will get `undefined`. This is much easier to notice than a typo when you wonder why nothing happens when the action is dispatched.
+* 모든 액션 타입이 한 곳에 모이기 때문에 이름짓기의 일관성을 유지하는데 도움이 됩니다.
+* 새 기능을 만들기 전에 기존의 모든 액션을 한눈에 보고 싶을 때가 잇을겁니다. 여러분이 필요로 하는 액션이 팀의 다른 사람에 의해 이미 추가되었지만 여러분이 모르고 있을 수도 있으니까요.
+* 추가되고, 제거되고, 변경된 액션 타입의 목록은 풀 리퀘스트에서 팀원 모두가 새 기능의 범위와 구현을 따라가는걸 도와줄겁니다.
+* 만약 여러분이 액션 상수를 불러오다가 오타를 내면 `undefined`가 나올겁니다. 액션을 보냈는데 아무 일도 일어나지 않는 것보다는 훨씬 알아차리기 쉽습니다.
 
-It is up to you to choose the conventions for your project. You may start by using inline strings, and later transition to constants, and maybe later group them into a single file. Redux does not have any opinion here, so use your best judgment.
+프로젝트에서 어떤 규칙을 택하는지는 여러분에게 달렸습니다. 인라인 문자열로 시작해서 상수로 옮기고, 별도의 파일로 묶을수도 있을겁니다. Redux는 여기에 대해 별다른 의견이 없으니 여러분의 판단에 따르세요.
 
-## Action Creators
+## 액션 생산자
 
-It is another common convention that, instead of creating action objects inline in the places where you dispatch the actions, you would create functions generating them.
+액션 객체를 액션을 보내는 곳에서 만드는 대신 이를 만들어주는 함수를 만드는것이 또 다른 일반적인 규칙입니다.
 
-For example, instead of calling `dispatch` with an object literal:
+예를 들어 `dispatch`를 오브젝트 리터럴로 호출하는 대신:
 
 ```js
 // somewhere in an event handler
@@ -49,7 +49,7 @@ dispatch({
 });
 ```
 
-you might write an action creator in a separate file, and import it from your component:
+별도의 파일에 액션 생산자를 작성해서 컴포넌트로 불러올 수 있습니다:
 
 #### `actionCreators.js`
 
@@ -71,9 +71,9 @@ import { addTodo } from './actionCreators';
 dispatch(addTodo('Use Redux'))
 ```
 
-Action creators have often been criticized as boilerplate. Well, you don’t have to write them! **You can use object literals if you feel this better suits your project.** There are, however, some benefits for writing action creators you should know about.
+액션 생산자는 보일러플레이트라고 비판받기도 합니다. 이들을 반드시 작성할 필요는 없습니다! **프로젝트에서 그게 더 적당하다고 생각하는 부분에는 객체 리터럴을 사용할 수 있습니다.** 하지만 액션 생산자를 작성하는 잇점을 알아둘 필요는 있습니다.
 
-Let’s say a designer comes back to us after reviewing our prototype, and tells that we need to allow three todos maximum. We can enforce this by rewriting our action creator to a callback form with [redux-thunk](https://github.com/gaearon/redux-thunk) middleware and adding an early exit:
+디자이너가 우리 프로토타입을 리뷰하고 왔다고 해봅시다. 디자이너는 우리가 할일을 최대 3개까지만 허용해야 한다고 말했습니다. 우리는 액션 생산자를 재작성해서 [redux-thunk](https://github.com/gaearon/redux-thunk) 미들웨어와 이른 종료를 추가할 수 있습니다:
 
 ```js
 function addTodoWithoutCheck(text) {
@@ -97,13 +97,13 @@ export function addTodo(text) {
 }
 ```
 
-We just modified how `addTodo` action creator behaves, completely invisible to the calling code. **We don’t have to worry about looking at each place where todos are being added, to make sure they have this check.** Action creators let you decouple additional logic around dispatching an action, from the actual components emitting those actions. It’s very handy when the application is under heavy development, and the requirements change often.
+우리는 `addTodo` 액션 생산자가 작동하는 방식을 호출하는 코드는 전혀 모르고 있는 상태에서 바꾸어 놓았습니다. **우리는 할일이 추가되는 모든 곳을 보면서 위의 체크 코드가 있는지 확인할 팔요가 없습니다.** 액션 생산자는 여러분이 액션을 보내는 부근의 추가적인 로직을 이 액션이 나오는 실제 컴포넌트에서 분리할 수 있도록 해줍니다. 애플리케이션이 개발중이고 요구사항이 자주 바뀔때 매우 유용합니다.
 
-### Generating Action Creators
+### 액션 생산자 만들기
 
-Some frameworks like [Flummox](https://github.com/acdlite/flummox) generate action type constants automatically from the action creator function definitions. The idea is that you don’t need to both define `ADD_TODO` constant and `addTodo()` action creator. Under the hood, such solutions still generate action type constants, but they’re created implicitly so it’s a level of indirection.
+[Flummox](https://github.com/acdlite/flummox) 같은 몇가지 프레임워크들은 액션 타입 상수를 액션 생산자 함수의 정의에서 자동으로 만들어줍니다. 여러분이 `ADD_TODO` 상수와 `addTodo()` 액션 생산자를 동시에 정의할 필요가 없다는 겁니다. 내부적으로는 이들 방법도 여전히 액션 타입 상수를 만들지만 우회적인 수준입니다.
 
-We don’t recommend this approach. If you’re tired of writing simple action creators like:
+우리는 이런 접근을 권장하지 않습니다. 여러분이 이와 같은 단순한 액션 생산자를 작성하는데 지쳤다면:
 
 ```js
 export function addTodo(text) {
@@ -121,7 +121,7 @@ export function removeTodo(id) {
 }
 ```
 
-you can always write a function that generates an action creator:
+액션 생산자를 만들어주는 함수를 작성할 수 있습니다:
 
 ```js
 function makeActionCreator(type, ...argNames) {
@@ -138,16 +138,16 @@ export const addTodo = makeActionCreator('ADD_TODO', 'todo');
 export const removeTodo = makeActionCreator('REMOVE_TODO', 'id');
 ```
 
-See [redux-action-utils](https://github.com/insin/redux-action-utils) and [redux-actions](https://github.com/acdlite/redux-actions) for examples of such utilities.
+이런 유틸리티의 예시로는 [redux-action-utils](https://github.com/insin/redux-action-utils)와 [redux-actions](https://github.com/acdlite/redux-actions)를 보세요.
 
-Note that such utilities add magic to your code.  
-Are magic and indirection really worth it to avoid a few extra few lines of code?
+이들 유틸리티는 여러분의 코드에 마법적인 부분을 추가한다는 점을 염두해두세요.
+몇 줄의 코드를 피하려고 마법과 우회법을 쓸 가치가 있을까요?
 
-## Async Action Creators
+## 비동기 액션 생산자
 
-[Middleware](../Glossary.html#middleware) lets you inject custom logic that interprets every action object before it is dispatched. Async actions are the most common use case for middleware.
+[미들웨어](../Glossary.html#미들웨어)는 여러분이 모든 액션을 보내기 전에 번역해주는 임의의 로직을 삽입할 수 있게 해줍니다. 비동기 액션은 미들웨어의 가장 일반적인 용례입니다.
 
-Without any middleware, [`dispatch`](../api/Store.md#dispatch) only accepts a plain object, so we have to perform AJAX calls inside our components:
+미들웨어 없이는 [`dispatch`](../api/Store.md#dispatch)가 평범한 객체만을 받아들일 수 있어서, AJAX 호출을 컴포넌트 안에서 해야만 합니다:
 
 #### `actionCreators.js`
 
@@ -232,17 +232,17 @@ export default connect(state => ({
 }))(Posts);
 ```
 
-However, this quickly gets repetitive because different components request data from the same API endpoints. Moreover, we want to reuse some of this logic (e.g., early exit when there is cached data available) from many components.
+하지만 서로 다른 컴포넌트들이 같은 API 엔드포인트에서 데이터를 요청하기 때문에 이 부분을 금방 반복하게 됩니다. 더구나 우리는 이 로직의 일부(예를 들어 캐시된 데이터가 있으면 일찍 종료하기 등)를 여러 컴포넌트에서 재사용하기를 원합니다.
 
-**Middleware lets us write more expressive, potentially async action creators.** It lets us dispatch something other than plain objects, and interprets the values. For example, middleware can “catch” dispatched Promises and turn them into a pair of request and success/failure actions.
+**미들웨어는 우리가 좀 더 표현력 있는 비동기 액션 생산자를 작성하게 해줍니다.** 미들웨어는 우리가 평범한 객체 외의 다른 것을 보낼 수 있게 해주고, 그 값을 변환해줍니다. 예를 들어 미들웨어는 약속이 보내지면 "잡아서" 요청과 성공/실패 액션으로 바꿔줄 수 있습니다.
 
-The simplest example of middleware is [redux-thunk](https://github.com/gaearon/redux-thunk). **“Thunk” middleware lets you write action creators as “thunks”, that is, functions returning functions.** This inverts the control: you will get `dispatch` as an argument, so you can write an action creator that dispatches many times.
+미들웨어의 가장 간단한 예는 [redux-thunk](https://github.com/gaearon/redux-thunk)입니다. **"썽크" 미들웨어는 여러분이 액션 생산자를 함수를 반환하는 함수인 "썽크"로 작성할 수 있게 해줍니다.** 이는 제어를 역전합니다: 여러분은 `dispatch`를 인자로 받기 떄문에 액션을 여러번 보내는 액션 생산자를 작성할 수 있습니다.
 
->##### Note
+>##### 한마디
 
->Thunk middleware is just one example of middleware. Middleware is not about “letting you dispatch functions”: it’s about letting you dispatch anything that the particular middleware you use knows how to handle. Thunk middleware adds a specific behavior when you dispatch functions, but it really depends on the middleware you use.
+>썽크 미들웨어는 한가지 예일 뿐입니다. 미들웨어는 "함수를 보낼 수 있게 해주는 것"이 아닙니다: 이는 특정한 미들웨어가 다룰 줄 아는 무엇인가를 보내게 해줍니다. 썽크 미들웨어는 여러분이 함수를 보냈을 때 특정한 행동을 추가하지만, 이는 여러분이 사용하는 미들웨어에 달렸습니다.
 
-Consider the code above rewritten with [redux-thunk](https://github.com/gaearon/redux-thunk):
+위의 코드를 [redux-thunk](https://github.com/gaearon/redux-thunk)를 이용해 재작성해봅시다:
 
 #### `actionCreators.js`
 
@@ -314,9 +314,9 @@ export default connect(state => ({
 }))(Posts);
 ```
 
-This is much less typing! If you’d like, you can still have “vanilla” action creators like `loadPostsSuccess` which you’d use from a “smart” `loadPosts` action creator.
+입력할 것이 훨씬 출었습니다! 원하신다면 "똑똑한" `loadPosts` 액션 생산자 대신 `loadPostsSuccess`와 같은 "평범한" 액션 생산자를 쓸 수도 있습니다.
 
-**Finally, you can write your own middleware.** Let’s say you want to generalize the pattern above and describe your async action creators like this instead:
+**마지막으로, 여러분은 미들웨어를 직접 작성할 수 있습니다.** 여러분이 위의 패턴을 일반화해서, 비동기 액션 생산자를 아래처럼 하는 대신에:
 
 ```js
 export function loadPosts(userId) {
@@ -333,7 +333,7 @@ export function loadPosts(userId) {
 }
 ```
 
-The middleware that interprets such actions could look like this:
+이런 액션들을 아래처럼 변환해주는 미들웨어를 만들 수 있습니다:
 
 ```js
 function callAPIMiddleware({ dispatch, getState }) {
@@ -388,7 +388,7 @@ function callAPIMiddleware({ dispatch, getState }) {
 }
 ```
 
-After passing it once to [`applyMiddleware(...middlewares)`](../api/applyMiddleware.md), you can write all your API-calling action creators the same way:
+이 미들웨어를 [`applyMiddleware(...middlewares)`](../api/applyMiddleware.md)에 넘기고 나면 여러분의 모든 API 호출 액션 생산자들을 같은 방식으로 작성할 수 있습니다:
 
 ```js
 export function loadPosts(userId) {
@@ -425,11 +425,11 @@ export function addComment(postId, message) {
 }
 ```
 
-## Reducers
+## 리듀서
 
-Redux reduces the boilerplate of Flux stores considerably by describing the update logic as a function. A function is simpler than an object, and much simpler than a class.
+Redux는 업데이트 로직을 함수로 기술함으로써 Flux 스토어의 보일러플레이트를 상당히 줄였습니다. 함수는 객체보다 단순하고, 클래스보다는 더욱 단순합니다.
 
-Consider this Flux store:
+이 Flux 스토어를 봅시다:
 
 ```js
 let _todos = [];
@@ -450,7 +450,7 @@ AppDispatcher.register(function (action) {
 });
 ```
 
-With Redux, the same update logic can be described as a reducing function:
+Redux에서 같은 업데이트 로직을 리듀싱 함수로 표현할 수 있습니다:
 
 ```js
 export function todos(state = [], action) {
@@ -464,13 +464,13 @@ export function todos(state = [], action) {
 }
 ```
 
-The `switch` statement is *not* the real boilerplate. The real boilerplate of Flux is conceptual: the need to emit an update, the need to register the Store with a Dispatcher, the need for the Store to be an object (and the complications that arise when you want a universal app).
+`switch`문은 진짜 보일러플레이트가 **아닙니다**. Flux의 진짜 보일러플레이트는 개념적인 부분입니다: 변경사항을 보내야 하고, 디스패쳐에 스토어를 등록해야 하고, 스토어가 객체가 되어야 합니다(그리고 유니버셜 앱을 만들때 그 복잡성이 드러나죠).
 
-It’s unfortunate that many still choose Flux framework based on whether it uses `switch` statements in the documentation. If you don’t like `switch`, you can solve this with a single function, as we show below.
+많은 이들이 아직도 문서에 `switch`문을 사용하는가를 보고 프레임워크를 선택한다는건 불행한 일입니다. 여러분이 `switch`를 싫어한다면, 아래에 나온 것처럼 함수 하나로 해결할 수 있습니다.
 
-### Generating Reducers
+### 리듀서 만들기
 
-Let’s write a function that lets us express reducers as an object mapping from action types to handlers. For example, if we want our `todos` reducers to be defined like this:
+리듀서가 액션 타입에서 핸들러로 객체를 매핑하도록 만들어주는 함수를 짜봅시다. 예를 들어 `todos` 리듀서는 이와 같이 정의됩니다:
 
 ```js
 export const todos = createReducer([], {
@@ -481,7 +481,7 @@ export const todos = createReducer([], {
 }
 ```
 
-We can write the following helper to accomplish this:
+이를 완성하기 위해 아래의 헬퍼를 작성합니다:
 
 ```js
 function createReducer(initialState, handlers) {
@@ -495,6 +495,6 @@ function createReducer(initialState, handlers) {
 }
 ```
 
-This wasn’t difficult, was it? Redux doesn’t provide such a helper function by default because there are many ways to write it. Maybe you want it to automatically convert plain JS objects to Immutable objects to hydrate the server state. Maybe you want to merge the returned state with the current state. There may be different approaches to a “catch all” handler. All of this depends on the conventions you choose for your team on a specific project.
+어렵지 않지요? 이렇게 작성하는 방법엔 여러 가지가 있기 때문에 Redux는 이런 헬퍼를 기본적으로 지원하지는 않습니다. 여러분은 서버 상태를 채워넣기 위해 평범한 JS 객체를 Immutable 객체로 자동으로 변환하고 싶을 수도 있습니다. 반환된 상태를 현재 상태와 병합하고 싶을 수도 있지요. "모두 다 잡아내는" 핸들러에는 여러 접근이 있을 수 있습니다. 이들 모두는 여러분의 팀이 특정 프로젝트를 위해 정할 규칙에 달렸습니다.
 
-The Redux reducer API is `(state, action) => state`, but how you create those reducers is up to you.
+Redux의 리듀서 API는 `(state, action) => state`이지만, 이들 리듀서를 어떻게 만들지는 여러분에게 달렸습니다.
