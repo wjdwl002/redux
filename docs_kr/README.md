@@ -23,10 +23,12 @@
   * 다음 단계
 * [레시피](/docs_kr/recipes/README.md)
   * [Redux로 마이그레이션](/docs_kr/recipes/MigratingToRedux.md)
+  * [스프레드 연산자 사용하기(미번역)](/docs_kr/recipes/UsingObjectSpreadOperator.md)
   * [보일러플레이트 줄이기](/docs_kr/recipes/ReducingBoilerplate.md)
   * [서버 렌더링(미번역)](/docs_kr/recipes/ServerRendering.md)
-  * [파생된 데이터 다루기(미번역)](/docs_kr/recipes/ComputingDerivedData.md)
   * [테스트 작성(미번역)](/docs_kr/recipes/WritingTests.md)
+  * [파생된 데이터 다루기(미번역)](/docs_kr/recipes/ComputingDerivedData.md)
+  * [실행취소 구현하기(미번)](/docs_kr/recipes/ImplementingUndoHistory.md)
 * [문제해결(미번역)](/docs_kr/Troubleshooting.md)
 * [용어사전](/docs_kr/Glossary.md)
 * [API 레퍼런스](/docs_kr/api/README.md)
@@ -38,3 +40,4 @@
   * [compose(미번역)](/docs_kr/api/compose.md)
 * [변경 기록](/CHANGELOG_kr.md)
 * [후원자](/PATRONS_kr.md)
+* [Feedback](/docs_kr/Feedback.md)
