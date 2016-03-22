@@ -1,28 +1,15 @@
-import 'babel-core/polyfill';
-import React from 'react';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
-import configureStore from './store/configureStore';
-import App from './containers/App';
-import UserPage from './containers/UserPage';
-import RepoPage from './containers/RepoPage';
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import Root from './containers/Root'
+import configureStore from './store/configureStore'
 
-const history = createBrowserHistory();
-const store = configureStore();
+const store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
 
-React.render(
-  <Provider store={store}>
-    {() =>
-      <Router history={history}>
-        <Route path="/" component={App}>
-          <Route path="/:login/:name"
-                 component={RepoPage} />
-          <Route path="/:login"
-                 component={UserPage} />
-        </Route>
-      </Router>
-    }
-  </Provider>,
+render(
+  <Root store={store} history={history} />,
   document.getElementById('root')
-);
+)

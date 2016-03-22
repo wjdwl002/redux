@@ -23,10 +23,12 @@
   * Next Steps
 * [Recipes](/docs/recipes/README.md)
   * [Migrating to Redux](/docs/recipes/MigratingToRedux.md)
+  * [Using Object Spread Operator](/docs/recipes/UsingObjectSpreadOperator.md)
   * [Reducing Boilerplate](/docs/recipes/ReducingBoilerplate.md)
   * [Server Rendering](/docs/recipes/ServerRendering.md)
-  * [Computing Derived Data](/docs/recipes/ComputingDerivedData.md)
   * [Writing Tests](/docs/recipes/WritingTests.md)
+  * [Computing Derived Data](/docs/recipes/ComputingDerivedData.md)
+  * [Implementing Undo History](/docs/recipes/ImplementingUndoHistory.md)
 * [Troubleshooting](/docs/Troubleshooting.md)
 * [Glossary](/docs/Glossary.md)
 * [API Reference](/docs/api/README.md)
@@ -38,3 +40,4 @@
   * [compose](/docs/api/compose.md)
 * [Change Log](/CHANGELOG.md)
 * [Patrons](/PATRONS.md)
+* [Feedback](/docs/Feedback.md)

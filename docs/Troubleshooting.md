@@ -20,18 +20,20 @@ For example, a reducer like this is wrong because it mutates the state:
 ```js
 function todos(state = [], action) {
   switch (action.type) {
-  case 'ADD_TODO':
-    // Wrong! This mutates state.actions.
-    state.actions.push({
-      text: action.text,
-      completed: false
-    });
-  case 'COMPLETE_TODO':
-    // Wrong! This mutates state.actions[action.index].
-    state.actions[action.index].completed = true;
+    case 'ADD_TODO':
+      // Wrong! This mutates state
+      state.push({
+        text: action.text,
+        completed: false
+      })
+      return state
+    case 'COMPLETE_TODO':
+      // Wrong! This mutates state[action.index].
+      state[action.index].completed = true
+      return state
+    default:
+      return state
   }
-
-  return state
 }
 ```
 
@@ -40,24 +42,28 @@ It needs to be rewritten like this:
 ```js
 function todos(state = [], action) {
   switch (action.type) {
-  case 'ADD_TODO':
-    // Return a new array
-    return [...state, {
-      text: action.text,
-      completed: false
-    }];
-  case 'COMPLETE_TODO':
-    // Return a new array
-    return [
-      ...state.slice(0, action.index),
-      // Copy the object before mutating
-      Object.assign({}, state[action.index], {
-        completed: true
-      }),
-      ...state.slice(action.index + 1)
-    ];
-  default:
-    return state;
+    case 'ADD_TODO':
+      // Return a new array
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case 'COMPLETE_TODO':
+      // Return a new array
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          // Copy the object before mutating
+          return Object.assign({}, todo, {
+            completed: true
+          })
+        }
+        return todo
+      })
+    default:
+      return state
   }
 }
 ```
@@ -66,13 +72,14 @@ It’s more code, but it’s exactly what makes Redux predictable and efficient.
 
 ```js
 // Before:
-return [
-  ...state.slice(0, action.index),
-  Object.assign({}, state[action.index], {
-    completed: true
-  }),
-  ...state.slice(action.index + 1)
-]
+return state.map((todo, index) => {
+  if (index === action.index) {
+    return Object.assign({}, todo, {
+      completed: true
+    })
+  }
+  return todo
+})
 
 // After
 return update(state, {
@@ -81,34 +88,36 @@ return update(state, {
       $set: true
     }
   }
-});
+})
 ```
 
 Finally, to update objects, you’ll need something like `_.extend` from Underscore, or better, an [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) polyfill.
 
 Make sure that you use `Object.assign` correctly. For example, instead of returning something like `Object.assign(state, newData)` from your reducers, return `Object.assign({}, state, newData)`. This way you don’t override the previous `state`.
 
-You can also enable [ES7 object spread proposal](https://github.com/sebmarkbage/ecmascript-rest-spread) with [Babel stage 1](http://babeljs.io/docs/usage/experimental/):
+You can also enable the [object spread operator proposal](recipes/UsingObjectSpreadOperator.md) for a more succinct syntax:
 
 ```js
 // Before:
-return [
-  ...state.slice(0, action.index),
-  Object.assign({}, state[action.index], {
-    completed: true
-  }),
-  ...state.slice(action.index + 1)
-]
+return state.map((todo, index) => {
+  if (index === action.index) {
+    return Object.assign({}, todo, {
+      completed: true
+    })
+  }
+  return todo
+})
 
 // After:
-return [
-  ...state.slice(0, action.index),
-  { ...state[action.index], completed: true },
-  ...state.slice(action.index + 1)
-]
+return state.map((todo, index) => {
+  if (index === action.index) {
+    return { ...todo, completed: true }
+  }
+  return todo
+})
 ```
 
-Note that experimental language features are subject to change, and it’s unwise to rely on them in large codebases.
+Note that experimental language features are subject to change.
 
 #### Don’t forget to call [`dispatch(action)`](api/Store.md#dispatch)
 
@@ -119,20 +128,20 @@ If you define an action creator, calling it will *not* automatically dispatch th
 
 ```js
 export function addTodo(text) {
-  return { type: 'ADD_TODO', text };
+  return { type: 'ADD_TODO', text }
 }
 ```
 
 #### `AddTodo.js`
 
 ```js
-import React, { Component } from 'react';
-import { addTodo } from './TodoActions';
+import React, { Component } from 'react'
+import { addTodo } from './TodoActions'
 
 class AddTodo extends Component {
   handleClick() {
     // Won't work!
-    addTodo('Fix the issue');
+    addTodo('Fix the issue')
   }
 
   render() {
@@ -140,7 +149,7 @@ class AddTodo extends Component {
       <button onClick={() => this.handleClick()}>
         Add
       </button>
-    );
+    )
   }
 }
 ```
@@ -152,7 +161,7 @@ The fix is to call [`dispatch()`](api/Store.md#dispatch) method on the [store](a
 ```js
 handleClick() {
   // Works! (but you need to grab store somehow)
-  store.dispatch(addTodo('Fix the issue'));
+  store.dispatch(addTodo('Fix the issue'))
 }
 ```
 
@@ -161,14 +170,14 @@ If you’re somewhere deep in the component hierarchy, it is cumbersome to pass 
 The fixed code looks like this:
 #### `AddTodo.js`
 ```js
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addTodo } from './TodoActions';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTodo } from './TodoActions'
 
 class AddTodo extends Component {
   handleClick() {
     // Works!
-    this.props.dispatch(addTodo('Fix the issue'));
+    this.props.dispatch(addTodo('Fix the issue'))
   }
 
   render() {
@@ -176,17 +185,21 @@ class AddTodo extends Component {
       <button onClick={() => this.handleClick()}>
         Add
       </button>
-    );
+    )
   }
 }
 
 // In addition to the state, `connect` puts `dispatch` in our props.
-export default connect()(AddTodo);
+export default connect()(AddTodo)
 ```
 
 You can then pass `dispatch` down to other components manually, if you want to.
 
+#### Make sure mapStateToProps is correct
+
+It's possible you're correctly dispatching an action and applying your reducer but the corresponding state is not being correctly translated into props.
+
 ## Something else doesn’t work
 
-Ask around on the **#redux** [Reactiflux](http://reactiflux.com/) Slack channel, or [create an issue](https://github.com/rackt/redux/issues).  
-If you figure it out, [edit this document](https://github.com/rackt/redux/edit/master/docs/Troubleshooting.md) as a courtesy to the next person having the same problem.
+Ask around on the **#redux** [Reactiflux](http://reactiflux.com/) Discord channel, or [create an issue](https://github.com/reactjs/redux/issues).  
+If you figure it out, [edit this document](https://github.com/reactjs/redux/edit/master/docs/Troubleshooting.md) as a courtesy to the next person having the same problem.
