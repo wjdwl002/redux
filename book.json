@@ -1,11 +1,12 @@
 {
   "gitbook": "2.4.3",
-	"structure": {
+  "title": "Redux",
+  "structure": {
     "readme": "README_kr.md",
-  	"summary": "docs_kr/README.md"
-	},
+    "summary": "docs_kr/README.md"
+  },
+  "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable"],
   "language": "ko",
-  "plugins": ["edit-link", "prism", "-highlight", "github"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/dobbit/redux/tree/master",

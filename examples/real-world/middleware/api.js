@@ -48,14 +48,19 @@ function callApi(endpoint, schema) {
 // consumption by reducers, because we can easily build a normalized tree
 // and keep it updated as we fetch more data.
 
-// Read more about Normalizr: https://github.com/gaearon/normalizr
+// Read more about Normalizr: https://github.com/paularmstrong/normalizr
+
+// GitHub's API may return results with uppercase letters while the query
+// doesn't contain any. For example, "someuser" could result in "SomeUser"
+// leading to a frozen UI as it wouldn't find "someuser" in the entities.
+// That's why we're forcing lower cases down there.
 
 const userSchema = new Schema('users', {
-  idAttribute: 'login'
+  idAttribute: user => user.login.toLowerCase()
 })
 
 const repoSchema = new Schema('repos', {
-  idAttribute: 'fullName'
+  idAttribute: repo => repo.fullName.toLowerCase()
 })
 
 repoSchema.define({

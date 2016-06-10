@@ -6,7 +6,7 @@ This section documents the complete Redux API. Keep in mind that Redux is only c
 
 ### Top-Level Exports
 
-* [createStore(reducer, [initialState])](createStore.md)
+* [createStore(reducer, [preloadedState])](createStore.md)
 * [combineReducers(reducers)](combineReducers.md)
 * [applyMiddleware(...middlewares)](applyMiddleware.md)
 * [bindActionCreators(actionCreators, dispatch)](bindActionCreators.md)
@@ -27,17 +27,17 @@ Every function described above is a top-level export. You can import any of them
 #### ES6
 
 ```js
-import { createStore } from 'redux';
+import { createStore } from 'redux'
 ```
 
 #### ES5 (CommonJS)
 
 ```js
-var createStore = require('redux').createStore;
+var createStore = require('redux').createStore
 ```
 
 #### ES5 (UMD build)
 
 ```js
-var createStore = Redux.createStore;
+var createStore = Redux.createStore
 ```

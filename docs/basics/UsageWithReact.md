@@ -8,7 +8,7 @@ We will use React to build our simple todo app.
 
 ## Installing React Redux
 
-[React bindings](https://github.com/gaearon/react-redux) are not included in Redux by default. You need to install them explicitly:
+[React bindings](https://github.com/reactjs/react-redux) are not included in Redux by default. You need to install them explicitly:
 
 ```
 npm install --save react-redux
@@ -245,7 +245,7 @@ export default App
 
 ### Container Components
 
-Now it’s time to hook up those presentational components to Redux by creating some containers. Technically, a container component is just a React component that uses [`store.subscribe()`](../api/Store.md#subscribe) to read a part of the Redux state tree and supply props to a presentational component it renders. You could write a container component by hand but React Redux includes many useful optimizations so we suggest to generate container components with [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function from the React Redux library.
+Now it’s time to hook up those presentational components to Redux by creating some containers. Technically, a container component is just a React component that uses [`store.subscribe()`](../api/Store.md#subscribe) to read a part of the Redux state tree and supply props to a presentational component it renders. You could write a container component by hand, but we suggest instead generating container components with the React Redux library’s [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function, which provides many useful optimizations to prevent unnecessary re-renders. (One result of this is that you shouldn’t have to worry about the [React performance suggestion](https://facebook.github.io/react/docs/advanced-performance.html) of implementing `shouldComponentUpdate` yourself.)
 
 To use `connect()`, you need to define a special function called `mapStateToProps` that tells how to transform the current Redux store state into the props you want to pass to a presentational component you are wrapping. For example, `VisibleTodoList` needs to calculate `todos` to pass to the `TodoList`, so we define a function that filters the `state.todos` according to the `state.visibilityFilter`, and use it in its `mapStateToProps`:
 
@@ -293,7 +293,7 @@ const VisibleTodoList = connect(
 export default VisibleTodoList
 ```
 
-These are the basics of the React Redux API, but there are a few shortcuts and power options so we encourage you to check out [its documentation](https://github.com/reactjs/react-redux) in detail. In case you are worried about `mapStateToProps` creating new objects too often, you might want to learn about [computing derived data](../recipes/ComputingDerivedData.md) with [reselect](https://github.com/rackt/reselect).
+These are the basics of the React Redux API, but there are a few shortcuts and power options so we encourage you to check out [its documentation](https://github.com/reactjs/react-redux) in detail. In case you are worried about `mapStateToProps` creating new objects too often, you might want to learn about [computing derived data](../recipes/ComputingDerivedData.md) with [reselect](https://github.com/reactjs/reselect).
 
 Find the rest of the container components defined below:
 
@@ -380,15 +380,21 @@ let AddTodo = ({ dispatch }) => {
 
   return (
     <div>
-      <input ref={node => {
-        input = node
-      }} />
-      <button onClick={() => {
+      <form onSubmit={e => {
+        e.preventDefault()
+        if (!input.value.trim()) {
+          return
+        }
         dispatch(addTodo(input.value))
         input.value = ''
       }}>
-        Add Todo
-      </button>
+        <input ref={node => {
+          input = node
+        }} />
+        <button type="submit">
+          Add Todo
+        </button>
+      </form>
     </div>
   )
 }

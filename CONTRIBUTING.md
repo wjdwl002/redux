@@ -66,7 +66,7 @@ The result will be in the `dist` folder.
 To run both linting and testing at once, run the following:
 
 ```
-npm run check
+npm run check:src
 ```
 
 To only run linting:
@@ -137,8 +137,6 @@ Redux comes with [official examples](http://redux.js.org/docs/introduction/Examp
 
 When adding a new example, please adhere to the style and format of the existing examples, and try to reuse as much code as possible.  For example, `index.html`, `server.js`, and `webpack.config.js` can typically be reused.
 
-For development convenience, the Webpack configs for the examples are set up so that the `redux` module is aliased to the project `src` folder when inside of the Redux folder. If an example is moved out of the Redux folder, it will instead use the version of Redux from `node_modules`.
-
 #### Building and Testing the Examples
 
 To build and test the official Redux examples, run the following:
@@ -151,10 +149,6 @@ npm run test:examples
 Not all examples have tests. If you see an example project without tests, you are very welcome to add them in a way consistent with the examples that have tests.
 
 Please visit the [Examples page](http://redux.js.org/docs/introduction/Examples.html) for information on running individual examples.
-
-### Style
-
-The [reactjs](https://github.com/reactjs) GitHub org is trying to keep a standard style across its various projects, which can be found over in [eslint-config-reactjs](https://github.com/reactjs/eslint-config-reactjs). If you have a style change proposal, it should first be proposed there. If accepted, we will be happy to accept a PR to implement it here.
 
 ### Sending a Pull Request
 
