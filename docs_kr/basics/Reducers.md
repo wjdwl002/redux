@@ -11,7 +11,7 @@ Redux에서 애플리케이션의 모든 상태는 하나의 객체에 저장됩
 * 현재 선택된 필터;
 * 할일의 실제 목록.
 
-여러분은 종종 데이터 뿐만 아니라 UI 상태도 상태 트리에 저장해야 한다는걸 발견하실겁니다. 그래도 좋지만, 데이터를 UI 상태와 분리하도록 하세요.
+여러분은 종종 데이터 뿐만 아니라 UI 상태도 상태 트리에 저장해야 한다는걸 발견하실겁니다. 그래도 좋지만, 데이터는 UI 상태와 분리하도록 하세요.
 
 ```js
 {
@@ -40,7 +40,7 @@ Redux에서 애플리케이션의 모든 상태는 하나의 객체에 저장됩
 
 여러분이 이 형태의 함수를 [`Array.prototype.reduce(reducer, ?initialValue)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)로 넘길 것이기 때문에 리듀서라고 부릅니다. 리듀서를 순수하게 유지하는것은 매우 중요합니다. 여러분이 **절대로** 리듀서 내에서 하지 말아야 할 것들은:
 
-* 인수들을 변경하기;
+* 인수들을 변경(mutate)하기;
 * API 호출이나 라우팅 전환같은 사이드이펙트를 일으키기;
 * `Date.now()`나 `Math.random()` 같이 순수하지 않은 함수를 호출하기.
 
@@ -51,31 +51,31 @@ Redux에서 애플리케이션의 모든 상태는 하나의 객체에 저장됩
 초기 상태를 정하는데서 시작하겠습니다. Redux는 처음에 리듀서를 `undefined` 상태로 호출합니다. 그때가 초기 상태를 반환할 기회입니다:
 
 ```js
-import { VisibilityFilters } from './actions';
+import { VisibilityFilters } from './actions'
 
 const initialState = {
   visibilityFilter: VisibilityFilters.SHOW_ALL,
   todos: []
-};
+}
 
 function todoApp(state, action) {
   if (typeof state === 'undefined') {
-    return initialState;
+    return initialState
   }
 
   // 지금은 아무 액션도 다루지 않고
   // 주어진 상태를 그대로 반환합니다.
-  return state;
+  return state
 }
 ```
 
-더 간단하게 작성하는 방법은 [ES6 default arguments syntax](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/default_parameters)를 사용하는 것입니다:
+더 간단하게 작성하는 방법은 [ES6 default arguments 문법](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/default_parameters)을 사용하는 것입니다:
 
 ```js
 function todoApp(state = initialState, action) {
   // 지금은 아무 액션도 다루지 않고
   // 주어진 상태를 그대로 반환합니다.
-  return state;
+  return state
 }
 ```
 
@@ -89,7 +89,7 @@ function todoApp(state = initialState, action) {
       visibilityFilter: action.filter
     });
   default:
-    return state;
+    return state
   }
 }
 ```

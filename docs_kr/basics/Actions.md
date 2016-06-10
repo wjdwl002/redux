@@ -7,16 +7,20 @@
 이것이 새 할일의 추가를 나타내는 액션의 예시입니다.
 
 ```js
+const ADD_TODO = 'ADD_TODO'
+```
+
+```js
 {
-  type: 'ADD_TODO',
+  type: ADD_TODO,
   text: 'Build my first Redux app'
 }
 ```
 
-액션은 평범한 자바스크립트 객체입니다. 액션은 반드시 어떤 형태의 액션이 실행될지 나타내는 문자열형의 `type` 필드를 가져야 합니다. 타입은 일반적으로 문자열 상수로 정의됩니다. 여러분의 앱이 충분히 커지면 타입들을 별도의 모듈로 분리할수도 있습니다.
+액션은 평범한 자바스크립트 객체입니다. 액션은 반드시 어떤 형태의 액션이 실행될지 나타내는 `type` 속성을 가져야 합니다. 타입은 일반적으로 문자열 상수로 정의됩니다. 여러분의 앱이 충분히 커지면 타입들을 별도의 모듈로 분리할수도 있습니다.
 
 ```js
-import { ADD_TODO, REMOVE_TODO } from '../actionTypes';
+import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
 ```
 
 >##### 보일러플레이트에 대한 설명
@@ -56,41 +60,41 @@ function addTodoWithDispatch(text) {
   const action = {
     type: ADD_TODO,
     text
-  };
-  dispatch(action);
+  }
+  dispatch(action)
 }
 ```
 
-이와는 대비되게 Redux의 액션 생산자는 사이드 이펙트가 전혀 없는 순수 함수입니다. 이들은 단지 액션을 반환합니다:
+이와는 대비되게 Redux의 액션 생산자는 단지 액션을 반환합니다:
 
 ```js
 function addTodo(text) {
   return {
     type: ADD_TODO,
     text
-  };
+  }
 }
 ```
 
 이는 액션 생산자를 더 이식하기 좋고 테스트하기 쉽게 합니다. 실제로 액션을 보내려면 결과값을 `dispatch()` 함수에 넘깁니다:
 
 ```js
-dispatch(addTodo(text));
-dispatch(completeTodo(index));
+dispatch(addTodo(text))
+dispatch(completeTodo(index))
 ```
 
 아니면 자동으로 액션을 보내주는 **바인드된 액션 생산자**를 만듭니다:
 
 ```js
-const boundAddTodo = (text) => dispatch(addTodo(text));
-const boundCompleteTodo = (index) => dispatch(completeTodo(index));
+const boundAddTodo = (text) => dispatch(addTodo(text))
+const boundCompleteTodo = (index) => dispatch(completeTodo(index))
 ```
 
 이들은 바로 호출할 수 있습니다:
 
 ```
-boundAddTodo(text);
-boundCompleteTodo(index);
+boundAddTodo(text)
+boundCompleteTodo(index)
 ```
 
 `dispatch()` 함수를 스토어에서 [`store.dispatch()`](../api/Store.md#dispatch)로 바로 접근할 수 있지만, 여러분은 보통 [react-redux](http://github.com/gaearon/react-redux)의 `connect()`와 같은 헬퍼를 통해 접근할 것입니다. 여러 액션 생산자를 `dispatch()`에 바인드하기 위해 [`bindActionCreators()`](../api/bindActionCreators.md)를 사용할수도 있습니다.
@@ -104,34 +108,34 @@ boundCompleteTodo(index);
  * 액션 타입
  */
 
-export const ADD_TODO = 'ADD_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+export const ADD_TODO = 'ADD_TODO'
+export const COMPLETE_TODO = 'COMPLETE_TODO'
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
 /*
- * 다른 상수들
+ * 다른 상수
  */
 
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ACTIVE'
-};
+}
 
 /*
  * 액션 생산자
  */
 
 export function addTodo(text) {
-  return { type: ADD_TODO, text };
+  return { type: ADD_TODO, text }
 }
 
 export function completeTodo(index) {
-  return { type: COMPLETE_TODO, index };
+  return { type: COMPLETE_TODO, index }
 }
 
 export function setVisibilityFilter(filter) {
-  return { type: SET_VISIBILITY_FILTER, filter };
+  return { type: SET_VISIBILITY_FILTER, filter }
 }
 ```
 
@@ -140,4 +144,4 @@ export function setVisibilityFilter(filter) {
 이제 이 액션들을 보냈을 때 상태가 어떻게 변하는지 명시하기 위해 [리듀서를 정의](Reducers.md) 해봅시다! 
 
 >##### 숙련된 사용자들을 위한 한마디
->여러분이 기본적인 컨셉에 익숙하고 이 튜토리얼을 이미 마치셨다면, [심화 튜토리얼](../advanced/README.md)의 [비동기 액션](../advanced/AsyncActions.md)에서 어떻게 AJAX 응답을 다루고 비동기 흐름에 액션 생산자를 통합하는지 알아보세요.
+>여러분이 기본적인 컨셉에 익숙하고 이 튜토리얼을 이미 마치셨다면, [심화 튜토리얼](../advanced/README.md)의 [비동기 액션](../advanced/AsyncActions.md)에서 어떻게 AJAX 응답을 다루고 비동기 흐름에 액션 생산자를 결합하는지 알아보세요.
