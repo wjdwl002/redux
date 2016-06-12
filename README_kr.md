@@ -1,6 +1,7 @@
-# [Redux](http://dobbit.github.io/redux)
+# <a href='http://dobbit.github.io/redux'><img src='https://camo.githubusercontent.com/f28b5bc7822f1b7bb28a96d8d09e7d79169248fc/687474703a2f2f692e696d6775722e636f6d2f4a65567164514d2e706e67' height='60'></a>
 
 Redux는 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너입니다.
+(혹시 워드프레스 프레임워크를 찾아오셨다면, [Redux Framework](https://reduxframework.com/)를 확인해보세요.)
 
 Redux는 여러분이 일관적으로 동작하고, 서로 다른 환경(서버, 클라이언트, 네이티브)에서 작동하고, 테스트하기 쉬운 앱을 작성하도록 도와줍니다. 여기에 더해서 [시간여행형 디버거와 결합된 실시간 코드 수정](https://github.com/gaearon/redux-devtools)과 같은 훌륭한 개발자 경험을 제공합니다.
 
@@ -45,6 +46,16 @@ Redux는 [Flux](https://facebook.github.io/flux)의 아이디어를 발전시키
 npm install --save redux
 ```
 
+이는 여러분이 [npm](https://www.npmjs.com/)을 패키지 매니저로 사용하고 있다고 가정합니다. 만약 아니라면 [이들 파일을 npmcdn에서 접근](https://npmcdn.com/redux/)할 수 있습니다. 이것들을 다운로드받거나 여러분의 패키지 매니저에 지정해주세요.
+
+대부분의 사람들은 Redux를 [CommonJS](http://webpack.github.io/docs/commonjs.html) 모듈로 사용합니다. 이 모듈은 [Webpack](http://webpack.github.io)이나 [Browserify](http://browserify.org/), 네이티브 환경에서 `redux`를 임포트할때 불러와집니다. 여러분이 최첨단을 걷고 있으며 [Rollup](http://rollupjs.org)을 사용한다면 이 역시 지원합니다.
+
+만약 여러분이 모듈 번들러를 사용하고 있지 않더라도 괜찮습니다. `redux` npm 패키지는 미리 컴파일된 프로덕션과 개발용 [UMD](https://github.com/umdjs/umd) 빌드를 [`dist` 폴더](https://npmcdn.com/redux/dist/)에 포함하고 있습니다. 이들은 번들러 없이 바로 사용 가능하고 대부분의 자바스크립트 모듈 로더나 환경과 호환됩니다. 예를 들어 UMD 빌드를 페이지 상의 [`<script>` 태그](https://npmcdn.com/redux/dist/redux.js)로 사용하거나 [Bower가 설치하게 할 수 있습니다](https://github.com/reactjs/redux/pull/1181#issuecomment-167361975). UMD 빌드는 Redux를 `window.Redux` 전역변수로 사용하게 해줍니다.
+
+Redux 소스코드는 ES2015로 작성되었지만 CommonJS와 UMD 빌드 모두를 ES5로 미리 컴파일해두었기 때문에 [모든 모던 브라우저](http://caniuse.com/#feat=es5)에서 작동합니다. [Redux를 시작하기](https://github.com/reactjs/redux/blob/master/examples/counter-vanilla/index.html)위해 Babel이나 모듈 번들러를 사용할 필요는 없습니다.
+
+#### 보조 패키지
+
 아마 여러분은 [React 바인딩](http://github.com/gaearon/react-redux)과 [개발자 도구](http://github.com/gaearon/redux-devtools)도 필요하실겁니다.
 
 ```
@@ -52,9 +63,8 @@ npm install --save react-redux
 npm install --save-dev redux-devtools
 ```
 
-이는 여러분이 [CommonJS 모듈](http://webpack.github.io/docs/commonjs.html)을 다루기 위해 [Webpack](http://webpack.github.io)이나 [Browserify](http://browserify.org/)와 같은 모듈 번들러를 와 함께 사용하고 있다고 가정합니다.
+Redux 자체와는 달리 Redux 생태계의 많은 패키지들은 UMD 빌드를 제공하지 않으므로, 편안한 개발 경험을 위해 [Webpack](http://webpack.github.io)이나 [Browserify](http://browserify.org/) 같은 CommonJS 모듈 번들러를 사용하기를 권합니다.
 
-만약 여러분이 아직 [npm](http://npmjs.com/)이나 최신 모듈 번들러를 사용하고 있지 않다면, 하나의 파일로 된 [UMD](https://github.com/umdjs/umd) 빌드를 통해 `Redux` 를 글로벌 객체로 사용하는 것을 선호하실수도 있습니다. 이 때는 [cdnjs](https://cdnjs.com/libraries/redux)에서 이미 빌드된 버전을 가져오시면 됩니다. Redux를 보완하는 라이브러리 대부분은 [npm](http://npmjs.com/)에서만 사용 가능하기 때문에, 우리는 제대로 만드는 애플리케이션에 대해서 이러한 접근을 **권장하지 않습니다**.
 
 ### The Gist
 
@@ -75,31 +85,35 @@ import { createStore } from 'redux'
  * 심지어 Immutable.js 자료구조일수도 있습니다. 오직 중요한 점은 상태 객체를 변경해서는 안되며,
  * 상태가 바뀐다면 새로운 객체를 반환해야 한다는 것입니다.
  *
- * 이 예시에서 우리는 `switch` 구문과 문자열을 썼지만, 여러분의 프로젝트에 맞게 
- * 다른 컨벤션을 따르셔도 좋습니다.
+ * 이 예시에서 우리는 `switch` 구문과 문자열을 썼지만, 
+ * 여러분의 프로젝트에 맞게 
+ * (함수 맵 같은) 다른 컨벤션을 따르셔도 좋습니다.
  */
 function counter(state = 0, action) {
   switch (action.type) {
   case 'INCREMENT':
-    return state + 1;
+    return state + 1
   case 'DECREMENT':
-    return state - 1;
+    return state - 1
   default:
-    return state;
+    return state
   }
 }
 
 // 앱의 상태를 보관하는 Redux 스토어를 만듭니다.
 // API로는 { subscribe, dispatch, getState }가 있습니다.
-let store = createStore(counter);
+let store = createStore(counter)
 
 // 업데이트를 직접 구독하거나 뷰 레이어에 바인딩할수 있습니다.
+// 보통은 subscribe()를 직접 사용하기보다는 뷰 바인딩 라이브러리(예를 들어 React Redux)를 사용합니다.
+// 하지만 현재 상태를 localStorage에 영속적으로 저장할 때도 편리합니다.
+
 store.subscribe(() =>
   console.log(store.getState())
 )
 
 // 내부 상태를 변경하는 유일한 방법은 액션을 보내는 것뿐입니다.
-// 액션은 직렬화될수도, 로깅할수도, 저장할수도 있으며 나중에 재생할수도 있습니다.
+// 액션은 직렬화될수도, 로깅할수도, 저장할수도 있으며 나중에 재실행할수도 있습니다.
 store.dispatch({ type: 'INCREMENT' })
 // 1
 store.dispatch({ type: 'INCREMENT' })
@@ -184,6 +198,10 @@ If you enjoyed my course, consider supporting Egghead by [buying a subscription]
 * [React](https://github.com/facebook/react) for the pragmatic innovation.
 
 NPM 패키지명인 `redux`를 넘겨주신 [Jamie Paton](http://jdpaton.github.io)에게 특별한 감사의 말을 전합니다.
+
+### 로고
+
+공식 로고를 [GitHub](https://github.com/reactjs/redux/tree/master/logo)에서 찾아보실 수 있습니다.
 
 ### 변경 기록
 
