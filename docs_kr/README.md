@@ -1,6 +1,5 @@
 ## Table of Contents
 
-* [Read Me](/README.md)
 * [소개](/docs_kr/introduction/README.md)
   * [동기](/docs_kr/introduction/Motivation.md)
   * [3가지 원칙](/docs_kr/introduction/ThreePrinciples.md)
