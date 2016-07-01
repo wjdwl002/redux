@@ -62,4 +62,4 @@ function toObservable(store) {
 
 그럼 이렇게 질문할 수도 있습니다. 이미 Rx를 잘 사용하는 데 Redux가 필요할까요? 꼭 그렇지는 않습니다. [Rx 안에서 Redux를 재구현](https://github.com/jas-chen/rx-redux)하는 것은 그리 어렵지 않습니다. Rx의 `.scan()` 메서드를 활용해 두 줄이면 충분하다고도 합니다. 정말로 그렇습니다.
 
-의심스럽다면 더 멀리 갈 필요도 없이 Redux 소스코드와 생태계(예를 들어, [개발자 도구](https://github.com/gaearon/redux-devtools))를 살펴보기 바랍니다. 이에 대해 크기 신경쓰지 않지만 리엑티브 데이터 흐름을 사용하고 싶다면 [Cycle](http://cycle.js.org)을 검토하거나 Redux와 함께 사용해보기 바랍니다. 어떤 지 알려주세요!
+의심스럽다면 더 멀리 갈 필요도 없이 Redux 소스코드와 생태계(예를 들어, [개발자 도구](https://github.com/gaearon/redux-devtools))를 살펴보기 바랍니다. 이에 대해 크게 신경쓰지 않지만 리엑티브 데이터 흐름을 사용하고 싶다면 [Cycle](http://cycle.js.org)을 검토하거나 Redux와 함께 사용해보기 바랍니다. 어떤 지 알려주세요!
