@@ -29,6 +29,7 @@
   * [테스트 작성(미번역)](/recipes/WritingTests.md)
   * [파생된 데이터 다루기(미번역)](/recipes/ComputingDerivedData.md)
   * [실행취소 구현하기(미번역)](/recipes/ImplementingUndoHistory.md)
+  * [서브앱 분리하기(미번역)](/docs/recipes/IsolatingSubapps.md)
 * [FAQ(미번역)](/FAQ.md)
 * [문제해결(미번역)](/Troubleshooting.md)
 * [용어사전](/Glossary.md)
