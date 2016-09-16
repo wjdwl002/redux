@@ -155,13 +155,13 @@ If you enjoyed my course, consider supporting Egghead by [buying a subscription]
 
 ### 문서
 
-* [소개](http://dobbit.github.io/redux/docs_kr/introduction/index.html)
-* [기초](http://dobbit.github.io/redux/docs_kr/basics/index.html)
-* [심화](http://dobbit.github.io/redux/docs_kr/advanced/index.html)
-* [레시피](http://dobbit.github.io/redux/docs_kr/recipes/index.html)
-* [문제해결](http://dobbit.github.io/redux/docs_kr/Troubleshooting.html)
-* [용어사전](http://dobbit.github.io/redux/docs_kr/Glossary.html)
-* [API 레퍼런스](http://dobbit.github.io/redux/docs_kr/api/index.html)
+* [소개](http://dobbit.github.io/redux/introduction/index.html)
+* [기초](http://dobbit.github.io/redux/basics/index.html)
+* [심화](http://dobbit.github.io/redux/advanced/index.html)
+* [레시피](http://dobbit.github.io/redux/recipes/index.html)
+* [문제해결](http://dobbit.github.io/redux/Troubleshooting.html)
+* [용어사전](http://dobbit.github.io/redux/Glossary.html)
+* [API 레퍼런스](http://dobbit.github.io/redux/api/index.html)
 
 오프라인에서 읽기 위한 PDF, ePub, MOBI 버전을 받거나 어떻게 만드는지 알고 싶다면, [paulkogel/redux-offline-docs](https://github.com/paulkogel/redux-offline-docs)을 보세요.
 
