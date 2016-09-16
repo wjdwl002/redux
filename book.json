@@ -1,10 +1,7 @@
 {
   "gitbook": "3.x.x",
   "title": "Redux",
-  "structure": {
-    "readme": "README_kr.md",
-    "summary": "docs_kr/README.md"
-  },
+  "root": "./docs_kr",
   "plugins": ["edit-link", "prism", "-highlight", "github", "anchorjs"],
   "language": "ko",
   "pluginsConfig": {
