@@ -224,5 +224,4 @@ MIT
 
 ### 번역
 
-* 유상엽([@Dev_Bono](https://twitter.com/Dev_Bono))
-* 김대권([@nacyo_t](https://twitter.com/nacyo_t))
+한국어 번역 기여는 [Github 저장소](https://github.com/dobbit/redux)로 풀 리퀘스트를 보내주시기 바랍니다.
