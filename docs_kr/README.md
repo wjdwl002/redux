@@ -20,13 +20,13 @@ Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
 
 ### 추천사
 
->[“Love what you’re doing with Redux”](https://twitter.com/jingc/status/616608251463909376)  
+>["Love what you’re doing with Redux"](https://twitter.com/jingc/status/616608251463909376)  
 >Jing Chen, creator of Flux
 
->[“I asked for comments on Redux in FB's internal JS discussion group, and it was universally praised. Really awesome work.”](https://twitter.com/fisherwebdev/status/616286955693682688)  
+>["I asked for comments on Redux in FB's internal JS discussion group, and it was universally praised. Really awesome work."](https://twitter.com/fisherwebdev/status/616286955693682688)  
 >Bill Fisher, creator of Flux
 
->[“It's cool that you are inventing a better Flux by not doing Flux at all.”](https://twitter.com/andrestaltz/status/616271392930201604)  
+>["It's cool that you are inventing a better Flux by not doing Flux at all."](https://twitter.com/andrestaltz/status/616271392930201604)  
 >André Staltz, creator of Cycle
 
 ### 개발자 경험
@@ -46,11 +46,11 @@ Redux는 [Flux](https://facebook.github.io/flux)의 아이디어를 발전시키
 npm install --save redux
 ```
 
-이는 여러분이 [npm](https://www.npmjs.com/)을 패키지 매니저로 사용하고 있다고 가정합니다. 만약 아니라면 [이들 파일을 npmcdn에서 접근](https://npmcdn.com/redux/)할 수 있습니다. 이것들을 다운로드받거나 여러분의 패키지 매니저에 지정해주세요.
+이는 여러분이 [npm](https://www.npmjs.com/)을 패키지 매니저로 사용하고 있다고 가정합니다. 만약 아니라면 [이들 파일을 unpkg에서 접근](https://unpkg.com/redux/)할 수 있습니다. 이것들을 다운로드받거나 여러분의 패키지 매니저에 지정해주세요.
 
 대부분의 사람들은 Redux를 [CommonJS](http://webpack.github.io/docs/commonjs.html) 모듈로 사용합니다. 이 모듈은 [Webpack](http://webpack.github.io)이나 [Browserify](http://browserify.org/), 네이티브 환경에서 `redux`를 임포트할때 불러와집니다. 여러분이 최첨단을 걷고 있으며 [Rollup](http://rollupjs.org)을 사용한다면 이 역시 지원합니다.
 
-만약 여러분이 모듈 번들러를 사용하고 있지 않더라도 괜찮습니다. `redux` npm 패키지는 미리 컴파일된 프로덕션과 개발용 [UMD](https://github.com/umdjs/umd) 빌드를 [`dist` 폴더](https://npmcdn.com/redux/dist/)에 포함하고 있습니다. 이들은 번들러 없이 바로 사용 가능하고 대부분의 자바스크립트 모듈 로더나 환경과 호환됩니다. 예를 들어 UMD 빌드를 페이지 상의 [`<script>` 태그](https://npmcdn.com/redux/dist/redux.js)로 사용하거나 [Bower가 설치하게 할 수 있습니다](https://github.com/reactjs/redux/pull/1181#issuecomment-167361975). UMD 빌드는 Redux를 `window.Redux` 전역변수로 사용하게 해줍니다.
+만약 여러분이 모듈 번들러를 사용하고 있지 않더라도 괜찮습니다. `redux` npm 패키지는 미리 컴파일된 프로덕션과 개발용 [UMD](https://github.com/umdjs/umd) 빌드를 [`dist` 폴더](https://unpkg.com/redux/dist/)에 포함하고 있습니다. 이들은 번들러 없이 바로 사용 가능하고 대부분의 자바스크립트 모듈 로더나 환경과 호환됩니다. 예를 들어 UMD 빌드를 페이지 상의 [`<script>` 태그](https://npmcdn.com/redux/dist/redux.js)로 사용하거나 [Bower가 설치하게 할 수 있습니다](https://github.com/reactjs/redux/pull/1181#issuecomment-167361975). UMD 빌드는 Redux를 `window.Redux` 전역변수로 사용하게 해줍니다.
 
 Redux 소스코드는 ES2015로 작성되었지만 CommonJS와 UMD 빌드 모두를 ES5로 미리 컴파일해두었기 때문에 [모든 모던 브라우저](http://caniuse.com/#feat=es5)에서 작동합니다. [Redux를 시작하기](https://github.com/reactjs/redux/blob/master/examples/counter-vanilla/index.html)위해 Babel이나 모듈 번들러를 사용할 필요는 없습니다.
 
@@ -130,21 +130,21 @@ store.dispatch({ type: 'DECREMENT' })
 
 ### 제작자로부터 Redux 배우기
 
-[Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) is a video course consisting of 30 videos narrated by Dan Abramov, author of Redux. It is designed to complement the “Basics” part of the docs while bringing additional insights about immutability, testing, Redux best practices, and using Redux with React. **This course is free and will always be.**
+[Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) is a video course consisting of 30 videos narrated by Dan Abramov, author of Redux. It is designed to complement the "Basics" part of the docs while bringing additional insights about immutability, testing, Redux best practices, and using Redux with React. **This course is free and will always be.**
 
->[“Great course on egghead.io by @dan_abramov - instead of just showing you how to use #redux, it also shows how and why redux was built!”](https://twitter.com/sandrinodm/status/670548531422326785)  
+>["Great course on egghead.io by @dan_abramov - instead of just showing you how to use #redux, it also shows how and why redux was built!"](https://twitter.com/sandrinodm/status/670548531422326785)  
 >Sandrino Di Mattia
 
->[“Plowing through @dan_abramov 'Getting Started with Redux' - its amazing how much simpler concepts get with video.”](https://twitter.com/chrisdhanaraj/status/670328025553219584)  
+>["Plowing through @dan_abramov 'Getting Started with Redux' - its amazing how much simpler concepts get with video."](https://twitter.com/chrisdhanaraj/status/670328025553219584)  
 >Chris Dhanaraj
 
->[“This video series on Redux by @dan_abramov on @eggheadio is spectacular!”](https://twitter.com/eddiezane/status/670333133242408960)  
+>["This video series on Redux by @dan_abramov on @eggheadio is spectacular!"](https://twitter.com/eddiezane/status/670333133242408960)  
 >Eddie Zaneski
 
->[“Come for the name hype. Stay for the rock solid fundamentals. (Thanks, and great job @dan_abramov and @eggheadio!)”](https://twitter.com/danott/status/669909126554607617)  
+>["Come for the name hype. Stay for the rock solid fundamentals. (Thanks, and great job @dan_abramov and @eggheadio!)"](https://twitter.com/danott/status/669909126554607617)  
 >Dan
 
->[“This series of videos on Redux by @dan_abramov is repeatedly blowing my mind - gunna do some serious refactoring”](https://twitter.com/gelatindesign/status/669658358643892224)  
+>["This series of videos on Redux by @dan_abramov is repeatedly blowing my mind - gunna do some serious refactoring"](https://twitter.com/gelatindesign/status/669658358643892224)  
 >Laurence Roberts
 
 So, what are you waiting for?
@@ -188,7 +188,7 @@ If you enjoyed my course, consider supporting Egghead by [buying a subscription]
 
 * [The Elm Architecture](https://github.com/evancz/elm-architecture-tutorial) for a great intro to modeling state updates with reducers;
 * [Turning the database inside-out](http://blog.confluent.io/2015/03/04/turning-the-database-inside-out-with-apache-samza/) for blowing my mind;
-* [Developing ClojureScript with Figwheel](http://www.youtube.com/watch?v=j-kj2qwJa_E) for convincing me that re-evaluation should “just work”;
+* [Developing ClojureScript with Figwheel](http://www.youtube.com/watch?v=j-kj2qwJa_E) for convincing me that re-evaluation should "just work";
 * [Webpack](https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack) for Hot Module Replacement;
 * [Flummox](https://github.com/acdlite/flummox) for teaching me to approach Flux without boilerplate or singletons;
 * [disto](https://github.com/threepointone/disto) for a proof of concept of hot reloadable Stores;
