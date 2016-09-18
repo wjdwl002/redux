@@ -18,7 +18,7 @@
   * [비동기 액션](/advanced/AsyncActions.md)
   * [비동기 흐름](/advanced/AsyncFlow.md)
   * [미들웨어](/advanced/Middleware.md)
-  * React Router와 함께 사용하기
+  * [React Router와 함께 사용하기](/advanced/UsageWithReactRouter.md)
   * [예시: Reddit API](/advanced/ExampleRedditAPI.md)
   * 다음 단계
 * [레시피](/recipes/README.md)
