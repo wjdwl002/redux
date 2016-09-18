@@ -42,4 +42,4 @@
   * [compose(미번역)](/api/compose.md)
 * [변경 기록](/CHANGELOG.md)
 * [후원자](/PATRONS.md)
-* [Feedback](/Feedback.md)
+* [피드백](/Feedback.md)
