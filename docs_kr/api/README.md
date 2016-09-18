@@ -1,18 +1,18 @@
 # API 레퍼런스
 
-Redux API에서 드러난 부분은 매우 작습니다. Redux는 여러분이 구현해야 하는 몇 가지 규약([리듀서](../Glossary.md#reducer)와 같은)을 정의해두고 규약들을 서로 연결하기 위한 몇 가지 헬퍼 함수들을 제공합니다.
+Redux API의 드러난 부분은 매우 작습니다. Redux는 ([reducers](../Glossary.md#reducer)와 같은)구현을 위한 규약 모음을 정의하고, 이들 규약을 한데 묶기 위한 몇 가지 헬퍼 함수들을 제공합니다.
 
-이 섹션은 전체 Redux API 문서입니다. Redux는 상태를 관리하는데에만 관여한다는 사실을 기억해두세요. 실제 앱에서는 [react-redux](https://github.com/gaearon/react-redux)와 같은 UI 바인딩이 필요할겁니다.
+이 절은 Redux의 전체 API 문서입니다. Redux는 상태를 관리하는데에만 집중한다는 점을 기억해두세요. 실제 앱에서는 [react-redux](https://github.com/gaearon/react-redux)와 같은 UI 바인딩 또한 필요할겁니다.
 
 ### 최상위 익스포트
 
-* [createStore(reducer, [initialState])](createStore.md)
+* [createStore(reducer, [preloadedState])](createStore.md)
 * [combineReducers(reducers)](combineReducers.md)
 * [applyMiddleware(...middlewares)](applyMiddleware.md)
 * [bindActionCreators(actionCreators, dispatch)](bindActionCreators.md)
 * [compose(...functions)](compose.md)
 
-### 스토어 API
+### Store API
 
 * [Store](Store.md)
   * [getState()](Store.md#getState)
@@ -20,24 +20,24 @@ Redux API에서 드러난 부분은 매우 작습니다. Redux는 여러분이 �
   * [subscribe(listener)](Store.md#subscribe)
   * [replaceReducer(nextReducer)](Store.md#replaceReducer)
 
-### 임포트
+### 임포트하기
 
-위에 기술된 모든 함수들은 최상위 익스포트에 해당합니다. 임포트하려면:
+위의 함수들은 모두 최상위 익스포트입니다. 아래와 같이 임포트할 수 있습니다:
 
 #### ES6
 
 ```js
-import { createStore } from 'redux';
+import { createStore } from 'redux'
 ```
 
 #### ES5 (CommonJS)
 
 ```js
-var createStore = require('redux').createStore;
+var createStore = require('redux').createStore
 ```
 
 #### ES5 (UMD build)
 
 ```js
-var createStore = Redux.createStore;
+var createStore = Redux.createStore
 ```
