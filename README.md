@@ -15,7 +15,7 @@ It is tiny (2kB, including dependencies).
 [![#rackt on freenode](https://img.shields.io/badge/irc-%23rackt%20%40%20freenode-61DAFB.svg?style=flat-square)](https://webchat.freenode.net/)
 [![Changelog #187](https://img.shields.io/badge/changelog-%23187-lightgrey.svg?style=flat-square)](https://changelog.com/187)
 
->**New! Learn Redux from its creator:  
+>**Learn Redux from its creator:  
 >[Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) (30 free videos)**
 
 ### Testimonials
@@ -28,6 +28,11 @@ It is tiny (2kB, including dependencies).
 
 >[“It's cool that you are inventing a better Flux by not doing Flux at all.”](https://twitter.com/andrestaltz/status/616271392930201604)  
 >André Staltz, creator of Cycle
+
+### Before Proceeding Further
+
+>**Also read why you might not be needing Redux:  
+>[“You Might Not Need Redux”](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)**
 
 ### Developer Experience
 
@@ -47,7 +52,8 @@ npm install --save redux
 ```
 
 This assumes you are using [npm](https://www.npmjs.com/) as your package manager.  
-If you don't, you can [access these files on unpkg](https://unpkg.com/redux/), download them, or point your package manager to them.
+
+If you're not, you can [access these files on unpkg](https://unpkg.com/redux/), download them, or point your package manager to them.
 
 Most commonly people consume Redux as a collection of [CommonJS](http://webpack.github.io/docs/commonjs.html) modules. These modules are what you get when you import `redux` in a [Webpack](http://webpack.github.io), [Browserify](http://browserify.org/), or a Node environment. If you like to live on the edge and use [Rollup](http://rollupjs.org), we support that as well.
 
@@ -124,7 +130,7 @@ store.dispatch({ type: 'DECREMENT' })
 
 Instead of mutating the state directly, you specify the mutations you want to happen with plain objects called *actions*. Then you write a special function called a *reducer* to decide how every action transforms the entire application's state.
 
-If you're coming from Flux, there is a single important difference you need to understand. Redux doesn't have a Dispatcher or support many stores. Instead, there is just a single store with a single root reducing function. As your app grows, instead of adding stores, you split the root reducer into smaller reducers independently operating on the different parts of the state tree. This is exactly like there is just one root component in a React app, but it is composed out of many small components.
+If you're coming from Flux, there is a single important difference you need to understand. Redux doesn't have a Dispatcher or support many stores. Instead, there is just a single store with a single root reducing function. As your app grows, instead of adding stores, you split the root reducer into smaller reducers independently operating on the different parts of the state tree. This is exactly like how there is just one root component in a React app, but it is composed out of many small components.
 
 This architecture might seem like an overkill for a counter app, but the beauty of this pattern is how well it scales to large and complex apps. It also enables very powerful developer tools, because it is possible to trace every mutation to the action that caused it. You can record user sessions and reproduce them just by replaying every action.
 

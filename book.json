@@ -1,8 +1,8 @@
 {
-  "gitbook": "3.x.x",
+  "gitbook": ">=3.2.1",
   "title": "Redux",
   "root": "./docs_kr",
-  "plugins": ["edit-link", "prism", "-highlight", "github", "anchorjs"],
+  "plugins": ["edit-link", "prism", "-highlight", "github", "anchorjs", "algolia"],
   "language": "ko",
   "pluginsConfig": {
     "edit-link": {
@@ -12,8 +12,13 @@
     "github": {
       "url": "https://github.com/reactjs/redux/"
     },
+    "algolia": {
+      "index": "redux-docs",
+      "applicationID": "BC2QB3G2G4",
+      "publicKey": "75eb88bb56d8cf8d17b6366a2c8e5fcd",
+      "freeAccount": "false"
+    },
     "theme-default": {
-      "showLevel": true,
       "styles": {
         "website": "build/gitbook.css"
       }
