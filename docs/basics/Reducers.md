@@ -1,10 +1,10 @@
 # Reducers
 
-[Actions](./Actions.md) describe the fact that *something happened*, but don't specify how the application's state changes in response. This is the job of a reducer.
+[Actions](./Actions.md) describe the fact that *something happened*, but don't specify how the application's state changes in response. This is the job of reducers.
 
 ## Designing the State Shape
 
-In Redux, all application state is stored as a single object. It's a good idea to think of its shape before writing any code. What's the minimal representation of your app's state as an object?
+In Redux, all the application state is stored as a single object. It's a good idea to think of its shape before writing any code. What's the minimal representation of your app's state as an object?
 
 For our todo app, we want to store two different things:
 
@@ -115,7 +115,7 @@ Note that:
 
 ## Handling More Actions
 
-We have two more actions to handle! Let's extend our reducer to handle `ADD_TODO`.
+We have two more actions to handle! Just like we did with `SET_VISIBILITY_FILTER`, we'll import the `ADD_TODO` and `TOGGLE_TODO` actions and then extend our reducer to handle `ADD_TODO`.
 
 ```js
 function todoApp(state = initialState, action) {
@@ -158,7 +158,7 @@ case TOGGLE_TODO:
   })
 ```
 
-Because we want to update a specific item in the array without resorting to mutations, we have to create a new array with the same items except the item at the index. If you find yourself often writing such operations, it's a good idea to use a helper like [react-addons-update](https://facebook.github.io/react/docs/update.html), [updeep](https://github.com/substantial/updeep), or even a library like [Immutable](http://facebook.github.io/immutable-js/) that has native support for deep updates. Just remember to never assign to anything inside the `state` unless you clone it first.
+Because we want to update a specific item in the array without resorting to mutations, we have to create a new array with the same items except the item at the index. If you find yourself often writing such operations, it's a good idea to use a helper like [immutability-helper](https://github.com/kolodny/immutability-helper), [updeep](https://github.com/substantial/updeep), or even a library like [Immutable](http://facebook.github.io/immutable-js/) that has native support for deep updates. Just remember to never assign to anything inside the `state` unless you clone it first.
 
 ## Splitting Reducers
 
@@ -244,8 +244,14 @@ function todoApp(state = initialState, action) {
 
 Note that `todos` also accepts `state`—but it's an array! Now `todoApp` just gives it the slice of the state to manage, and `todos` knows how to update just that slice. **This is called *reducer composition*, and it's the fundamental pattern of building Redux apps.**
 
-Let's explore reducer composition more. Can we also extract a reducer managing just `visibilityFilter`? We can:
+Let's explore reducer composition more. Can we also extract a reducer managing just `visibilityFilter`? We can.
 
+Below our imports, let's use [ES6 Object Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to declare `SHOW_ALL`:
+```js
+const { SHOW_ALL } = VisibilityFilters;
+```
+
+Then:
 ```js
 function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
@@ -318,7 +324,7 @@ const todoApp = combineReducers({
 export default todoApp
 ```
 
-Note that this is completely equivalent to:
+Note that this is equivalent to:
 
 ```js
 export default function todoApp(state = {}, action) {
@@ -329,7 +335,7 @@ export default function todoApp(state = {}, action) {
 }
 ```
 
-You could also give them different keys, or call functions differently. These two ways to write a combined reducer are completely equivalent:
+You could also give them different keys, or call functions differently. These two ways to write a combined reducer are equivalent:
 
 ```js
 const reducer = combineReducers({
@@ -349,7 +355,7 @@ function reducer(state = {}, action) {
 }
 ```
 
-All [`combineReducers()`](../api/combineReducers.md) does is generate a function that calls your reducers **with the slices of state selected according to their keys**, and combining their results into a single object again. [It's not magic.](https://github.com/reactjs/redux/issues/428#issuecomment-129223274)
+All [`combineReducers()`](../api/combineReducers.md) does is generate a function that calls your reducers **with the slices of state selected according to their keys**, and combining their results into a single object again. [It's not magic.](https://github.com/reactjs/redux/issues/428#issuecomment-129223274) And like other reducers, `combineReducers()` does not create a new object if all of the reducers provided to it do not change state.
 
 >##### Note for ES6 Savvy Users
 

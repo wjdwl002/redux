@@ -1,6 +1,6 @@
 # Usage with React Router
 
-So you want to do routing with your Redux app. You can use it with [React Router](https://github.com/reactjs/react-router). Redux will be the source of truth for your data and React Router will be the source of truth for your URL. In most of the cases, **it is fine** to have them separate unless if you need to time travel and rewind actions that triggers the change URL.
+So you want to do routing with your Redux app. You can use it with [React Router](https://github.com/reactjs/react-router). Redux will be the source of truth for your data and React Router will be the source of truth for your URL. In most of the cases, **it is fine** to have them separate unless you need to time travel and rewind actions that triggers the change URL.
 
 ## Installing React Router
 `react-router` is available on npm . This guides assumes you are using `react-router@^2.7.0`.
@@ -72,13 +72,13 @@ const Root = ({ store }) => (
 );
 ```
 
-Now `<App />` component will be rendered if the URL match '/'. Additionally, we will add the optional `(:filter)` parameter to `/`, we will need it further below when we will try to read the parameter `(:filter)` from the URL.
+Now the `<App />` component will be rendered if the URL matches '/'. Additionally, we will add the optional `(:filter)` parameter to `/`, because we will need it further on when we try to read the parameter `(:filter)` from the URL.
 
 ```js
 <Route path="/(:filter)" component={App} />
 ```
 
-You will probably want to remove the hash from URL (e.g: `http://localhost:3000/#/?_k=4sbb0i`). For doing this, you will need to also import `browserHistory` from React Router:
+You will probably want to remove the hash from the URL (e.g: `http://localhost:3000/#/?_k=4sbb0i`). For doing this, you will need to also import `browserHistory` from React Router:
 
 ```js
 import { Router, Route, browserHistory } from 'react-router';
@@ -118,7 +118,7 @@ export default Root;
 
 ## Navigating with React Router
 
-React Router comes with a [`<Link />`](https://github.com/reactjs/react-router/blob/master/docs/API.md#link) component that let you navigate around your application. We can use it in our example and change our container `<FilterLink />` component so we can change the URL using `<FilterLink />`. The `activeStyle={}` property lets you apply a style on the active state.
+React Router comes with a [`<Link />`](https://github.com/reactjs/react-router/blob/master/docs/API.md#link) component that lets you navigate around your application. In our example, we can wrap `<Link />` with a new container component `<FilterLink />` so as to dynamically change the URL. The `activeStyle={}` property lets us apply a style on the active state.
 
 
 #### `containers/FilterLink.js`
@@ -141,7 +141,7 @@ const FilterLink = ({ filter, children }) => (
 export default FilterLink;
 ```
 
-#### `containers/Footer.js`
+#### `components/Footer.js`
 ```js
 import React from 'react'
 import FilterLink from '../containers/FilterLink'

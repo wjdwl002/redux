@@ -80,7 +80,7 @@ When it's time to fetch the posts for some subreddit, we will dispatch a `REQUES
 ```js
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 
-export function requestPosts(subreddit) {
+function requestPosts(subreddit) {
   return {
     type: REQUEST_POSTS,
     subreddit
@@ -95,7 +95,7 @@ Finally, when the network request comes through, we will dispatch `RECEIVE_POSTS
 ```js
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 
-export function receivePosts(subreddit, json) {
+function receivePosts(subreddit, json) {
   return {
     type: RECEIVE_POSTS,
     subreddit,
@@ -331,7 +331,7 @@ function receivePosts(subreddit, json) {
 // Though its insides are different, you would use it just like any other action creator:
 // store.dispatch(fetchPosts('reactjs'))
 
-export function fetchPosts(subreddit) {
+function fetchPosts(subreddit) {
 
   // Thunk middleware knows how to handle functions.
   // It passes the dispatch method as an argument to the function,
@@ -350,7 +350,7 @@ export function fetchPosts(subreddit) {
     // In this case, we return a promise to wait for.
     // This is not required by thunk middleware, but it is convenient for us.
 
-    return fetch(`http://www.reddit.com/r/${subreddit}.json`)
+    return fetch(`https://www.reddit.com/r/${subreddit}.json`)
       .then(response => response.json())
       .then(json =>
 
@@ -439,7 +439,7 @@ function receivePosts(subreddit, json) {
 function fetchPosts(subreddit) {
   return dispatch => {
     dispatch(requestPosts(subreddit))
-    return fetch(`http://www.reddit.com/r/${subreddit}.json`)
+    return fetch(`https://www.reddit.com/r/${subreddit}.json`)
       .then(response => response.json())
       .then(json => dispatch(receivePosts(subreddit, json)))
   }
