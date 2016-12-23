@@ -23,7 +23,7 @@
   * 다음 단계
 * [레시피](/recipes/README.md)
   * [Redux로 마이그레이션](/recipes/MigratingToRedux.md)
-  * [스프레드 연산자 사용하기(미번역)](/recipes/UsingObjectSpreadOperator.md)
+  * [객체 확산 연산자 사용하기](/recipes/UsingObjectSpreadOperator.md)
   * [보일러플레이트 줄이기](/recipes/ReducingBoilerplate.md)
   * [서버 렌더링(미번역)](/recipes/ServerRendering.md)
   * [테스트 작성(미번역)](/recipes/WritingTests.md)
