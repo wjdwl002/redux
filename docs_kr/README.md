@@ -1,4 +1,4 @@
-# <a href='http://dobbit.github.io/redux'><img src='https://camo.githubusercontent.com/f28b5bc7822f1b7bb28a96d8d09e7d79169248fc/687474703a2f2f692e696d6775722e636f6d2f4a65567164514d2e706e67' height='60'></a>
+# <a href='https://deminoth.github.io/redux'><img src='https://camo.githubusercontent.com/f28b5bc7822f1b7bb28a96d8d09e7d79169248fc/687474703a2f2f692e696d6775722e636f6d2f4a65567164514d2e706e67' height='60'></a>
 
 Redux는 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너입니다.
 (혹시 워드프레스 프레임워크를 찾아오셨다면, [Redux Framework](https://reduxframework.com/)를 확인해보세요.)
@@ -15,18 +15,18 @@ Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
 [![#rackt on freenode](https://img.shields.io/badge/irc-%23rackt%20%40%20freenode-61DAFB.svg?style=flat-square)](https://webchat.freenode.net/)
 [![Changelog #187](https://img.shields.io/badge/changelog-%23187-lightgrey.svg?style=flat-square)](https://changelog.com/187)
 
->**New! Learn Redux from its creator:  
+>**New! Learn Redux from its creator:
 >[Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) (30 free videos)**
 
 ### 추천사
 
->["Love what you’re doing with Redux"](https://twitter.com/jingc/status/616608251463909376)  
+>["Love what you’re doing with Redux"](https://twitter.com/jingc/status/616608251463909376)
 >Jing Chen, creator of Flux
 
->["I asked for comments on Redux in FB's internal JS discussion group, and it was universally praised. Really awesome work."](https://twitter.com/fisherwebdev/status/616286955693682688)  
+>["I asked for comments on Redux in FB's internal JS discussion group, and it was universally praised. Really awesome work."](https://twitter.com/fisherwebdev/status/616286955693682688)
 >Bill Fisher, creator of Flux
 
->["It's cool that you are inventing a better Flux by not doing Flux at all."](https://twitter.com/andrestaltz/status/616271392930201604)  
+>["It's cool that you are inventing a better Flux by not doing Flux at all."](https://twitter.com/andrestaltz/status/616271392930201604)
 >André Staltz, creator of Cycle
 
 ### 개발자 경험
@@ -68,8 +68,8 @@ Redux 자체와는 달리 Redux 생태계의 많은 패키지들은 UMD 빌드�
 
 ### The Gist
 
-여러분의 앱의 상태 전부는 하나의 스토어(**store**)안에 있는 객체 트리에 저장됩니다. 
-상태 트리를 변경하는 유일한 방법은 무엇이 일어날지 서술하는 객체인 액션(**action**)을 보내는 것 뿐입니다. 
+여러분의 앱의 상태 전부는 하나의 스토어(**store**)안에 있는 객체 트리에 저장됩니다.
+상태 트리를 변경하는 유일한 방법은 무엇이 일어날지 서술하는 객체인 액션(**action**)을 보내는 것 뿐입니다.
 액션이 상태 트리를 어떻게 변경할지 명시하기 위해 여러분은 리듀서(**reducers**)를 작성해야 합니다.
 
 이게 다입니다!
@@ -81,12 +81,12 @@ import { createStore } from 'redux'
  * 이것이 (state, action) => state 형태의 순수 함수인 리듀서입니다.
  * 리듀서는 액션이 어떻게 상태를 다음 상태로 변경하는지 서술합니다.
  *
- * 상태의 모양은 당신 마음대로입니다: 기본형(primitive)일수도, 배열일수도, 객체일수도, 
+ * 상태의 모양은 당신 마음대로입니다: 기본형(primitive)일수도, 배열일수도, 객체일수도,
  * 심지어 Immutable.js 자료구조일수도 있습니다. 오직 중요한 점은 상태 객체를 변경해서는 안되며,
  * 상태가 바뀐다면 새로운 객체를 반환해야 한다는 것입니다.
  *
- * 이 예시에서 우리는 `switch` 구문과 문자열을 썼지만, 
- * 여러분의 프로젝트에 맞게 
+ * 이 예시에서 우리는 `switch` 구문과 문자열을 썼지만,
+ * 여러분의 프로젝트에 맞게
  * (함수 맵 같은) 다른 컨벤션을 따르셔도 좋습니다.
  */
 function counter(state = 0, action) {
@@ -124,7 +124,7 @@ store.dispatch({ type: 'DECREMENT' })
 
 상태를 바로 변경하는 대신, **액션**이라 불리는 평범한 객체를 통해 일어날 변경을 명시합니다. 그리고 각각의 액션이 전체 애플리케이션의 상태를 어떻게 변경할지 결정하는 특별한 함수인 **리듀서**를 작성합니다.
 
-만약 여러분이 Flux를 개발하다가 왔다면, 알아둬야 할 중요한 차이점이 있습니다. Redux는 Dispatcher가 없고 스토어 여러개를 지원하지도 않습니다. 대신 루트 리듀싱 함수 하나를 가지는 단 하나의 스토어가 있습니다. 당신의 앱이 커지면 스토어를 추가하는 대신 루트 리듀서를 쪼개서 상태 트리의 각기 다른 부분을 독립적으로 다루는 리듀서들을 만들면 됩니다. 마치 React 앱에는 하나의 루트 컴포넌트가 있고 이 루트 컴포넌트가 여러개의 작은 컴포넌트로 이루어진 것처럼요. 
+만약 여러분이 Flux를 개발하다가 왔다면, 알아둬야 할 중요한 차이점이 있습니다. Redux는 Dispatcher가 없고 스토어 여러개를 지원하지도 않습니다. 대신 루트 리듀싱 함수 하나를 가지는 단 하나의 스토어가 있습니다. 당신의 앱이 커지면 스토어를 추가하는 대신 루트 리듀서를 쪼개서 상태 트리의 각기 다른 부분을 독립적으로 다루는 리듀서들을 만들면 됩니다. 마치 React 앱에는 하나의 루트 컴포넌트가 있고 이 루트 컴포넌트가 여러개의 작은 컴포넌트로 이루어진 것처럼요.
 
 이 아키텍쳐는 숫자 세는 앱 하나 만드는데에는 과도해 보일 수 있지만 이 패턴의 아름다움은 크고 복잡한 앱으로 확장하기 좋다는 점입니다. 이는 또한 액션이 일으키는 모든 변경을 추적함으로써 강력한 개발자 도구를 가능하게 합니다. 여러분은 액션을 재생하는 것만으로 사용자 세션을 기록하고 재생산할 수 있습니다.
 
@@ -132,19 +132,19 @@ store.dispatch({ type: 'DECREMENT' })
 
 [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) is a video course consisting of 30 videos narrated by Dan Abramov, author of Redux. It is designed to complement the "Basics" part of the docs while bringing additional insights about immutability, testing, Redux best practices, and using Redux with React. **This course is free and will always be.**
 
->["Great course on egghead.io by @dan_abramov - instead of just showing you how to use #redux, it also shows how and why redux was built!"](https://twitter.com/sandrinodm/status/670548531422326785)  
+>["Great course on egghead.io by @dan_abramov - instead of just showing you how to use #redux, it also shows how and why redux was built!"](https://twitter.com/sandrinodm/status/670548531422326785)
 >Sandrino Di Mattia
 
->["Plowing through @dan_abramov 'Getting Started with Redux' - its amazing how much simpler concepts get with video."](https://twitter.com/chrisdhanaraj/status/670328025553219584)  
+>["Plowing through @dan_abramov 'Getting Started with Redux' - its amazing how much simpler concepts get with video."](https://twitter.com/chrisdhanaraj/status/670328025553219584)
 >Chris Dhanaraj
 
->["This video series on Redux by @dan_abramov on @eggheadio is spectacular!"](https://twitter.com/eddiezane/status/670333133242408960)  
+>["This video series on Redux by @dan_abramov on @eggheadio is spectacular!"](https://twitter.com/eddiezane/status/670333133242408960)
 >Eddie Zaneski
 
->["Come for the name hype. Stay for the rock solid fundamentals. (Thanks, and great job @dan_abramov and @eggheadio!)"](https://twitter.com/danott/status/669909126554607617)  
+>["Come for the name hype. Stay for the rock solid fundamentals. (Thanks, and great job @dan_abramov and @eggheadio!)"](https://twitter.com/danott/status/669909126554607617)
 >Dan
 
->["This series of videos on Redux by @dan_abramov is repeatedly blowing my mind - gunna do some serious refactoring"](https://twitter.com/gelatindesign/status/669658358643892224)  
+>["This series of videos on Redux by @dan_abramov is repeatedly blowing my mind - gunna do some serious refactoring"](https://twitter.com/gelatindesign/status/669658358643892224)
 >Laurence Roberts
 
 So, what are you waiting for?
@@ -155,13 +155,13 @@ If you enjoyed my course, consider supporting Egghead by [buying a subscription]
 
 ### 문서
 
-* [소개](http://dobbit.github.io/redux/introduction/index.html)
-* [기초](http://dobbit.github.io/redux/basics/index.html)
-* [심화](http://dobbit.github.io/redux/advanced/index.html)
-* [레시피](http://dobbit.github.io/redux/recipes/index.html)
-* [문제해결](http://dobbit.github.io/redux/Troubleshooting.html)
-* [용어사전](http://dobbit.github.io/redux/Glossary.html)
-* [API 레퍼런스](http://dobbit.github.io/redux/api/index.html)
+* [소개](https://deminoth.github.io/redux/introduction/index.html)
+* [기초](https://deminoth.github.io/redux/basics/index.html)
+* [심화](https://deminoth.github.io/redux/advanced/index.html)
+* [레시피](https://deminoth.github.io/redux/recipes/index.html)
+* [문제해결](https://deminoth.github.io/redux/Troubleshooting.html)
+* [용어사전](https://deminoth.github.io/redux/Glossary.html)
+* [API 레퍼런스](https://deminoth.github.io/redux/api/index.html)
 
 오프라인에서 읽기 위한 PDF, ePub, MOBI 버전을 받거나 어떻게 만드는지 알고 싶다면, [paulkogel/redux-offline-docs](https://github.com/paulkogel/redux-offline-docs)을 보세요.
 
@@ -210,7 +210,7 @@ NPM 패키지명인 `redux`를 넘겨주신 [Jamie Paton](http://jdpaton.github.
 
 ### 후원자
 
-Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patreon.com/reactdx).  
+Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patreon.com/reactdx).
 이를 가능하게 했던 주요한 회사들을 소개합니다
 
 * [Webflow](https://github.com/webflow)
@@ -224,4 +224,4 @@ MIT
 
 ### 번역
 
-한국어 번역 기여는 [Github 저장소](https://github.com/dobbit/redux)로 풀 리퀘스트를 보내주시기 바랍니다.
+한국어 번역 기여는 [Github 저장소](https://github.com/deminoth/redux)로 풀 리퀘스트를 보내주시기 바랍니다.
