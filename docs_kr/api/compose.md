@@ -1,21 +1,21 @@
 # `compose(...functions)`
 
-Composes functions from right to left.
+함수를 오른쪽에서 왼쪽으로 조합합니다.
 
-This is a functional programming utility, and is included in Redux as a convenience.  
-You might want to use it to apply several [store enhancers](../Glossary.md#store-enhancer) in a row.
+이것은 함수형 프로그래밍 유틸리티로, Redux에는 편리함을 위해 포함되었습니다.
+여러 [스토어 인핸서](../Glossary.md#store-enhancer)들을 순차적으로 적용하기 위해 사용할 수 있습니다.
 
-#### Arguments
+#### 인수
 
-1. (*arguments*): The functions to compose. Each function is expected to accept a single parameter. Its return value will be provided as an argument to the function standing to the left, and so on. The exception is the right-most argument which can accept multiple parameters, as it will provide the signature for the resulting composed function.
+1. (*arguments*): 조합할 함수들입니다. 각각의 함수는 하나의 인자를 받아야 합니다. 함수의 반환값은 왼쪽에 있는 함수의 인수로 제공되는 식으로 연속됩니다. 예외는 가장 오른쪽에 있는 인수로, 여러 개의 인자를 받을 수 있으며 조합된 함수의 시그니처는 이를 따릅니다.
 
-#### Returns
+#### 반환
 
-(*Function*): The final function obtained by composing the given functions from right to left.
+(*Function*): 오른쪽에서 왼쪽으로 조합된 최종 함수입니다.
 
-#### Example
+#### 예시
 
-This example demonstrates how to use `compose` to enhance a [store](Store.md) with [`applyMiddleware`](applyMiddleware.md) and a few developer tools from the [redux-devtools](https://github.com/gaearon/redux-devtools) package.
+이 예시는 `compose`를 사용해 [스토어](Store.md)를 [`applyMiddleware`](applyMiddleware.md)와 [redux-devtools](https://github.com/gaearon/redux-devtools) 패키지의 몇몇 개발툴로 강화하는 방법을 보여줍니다.
 
 ```js
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
@@ -32,6 +32,6 @@ const store = createStore(
 )
 ```
 
-#### Tips
+#### 팁
 
-* All `compose` does is let you write deeply nested function transformations without the rightward drift of the code. Don't give it too much credit!
+* `compose`가 하는 일은 깊이 중첩된 함수 변환을 길게 늘어진 코드 없이 작성하게 해주는 것 뿐입니다. 너무 대단하게 여기지 마세요!
