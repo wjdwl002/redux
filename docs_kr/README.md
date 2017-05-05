@@ -15,8 +15,9 @@ Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
 [![#rackt on freenode](https://img.shields.io/badge/irc-%23rackt%20%40%20freenode-61DAFB.svg?style=flat-square)](https://webchat.freenode.net/)
 [![Changelog #187](https://img.shields.io/badge/changelog-%23187-lightgrey.svg?style=flat-square)](https://changelog.com/187)
 
->**New! Learn Redux from its creator:
->[Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) (30 free videos)**
+>**Learn Redux from its creator:**
+>**[Part 1: Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) (30 free videos)**<br>
+>**[Part 2: Building React Applications with Idiomatic Redux](https://egghead.io/courses/building-react-applications-with-idiomatic-redux) (27 free videos)**
 
 ### 추천사
 
@@ -28,6 +29,11 @@ Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
 
 >["It's cool that you are inventing a better Flux by not doing Flux at all."](https://twitter.com/andrestaltz/status/616271392930201604)
 >André Staltz, creator of Cycle
+
+### 더 나아가기 전에
+
+>**이것도 읽어보세요:**
+>**[당신에게 Redux는 필요 없을지도 모릅니다.](https://medium.com/@Dev_Bono/당신에게-redux는-필요-없을지도-모릅니다-b88dcd175754)**
 
 ### 개발자 경험
 
@@ -46,7 +52,9 @@ Redux는 [Flux](https://facebook.github.io/flux)의 아이디어를 발전시키
 npm install --save redux
 ```
 
-이는 여러분이 [npm](https://www.npmjs.com/)을 패키지 매니저로 사용하고 있다고 가정합니다. 만약 아니라면 [이들 파일을 unpkg에서 접근](https://unpkg.com/redux/)할 수 있습니다. 이것들을 다운로드받거나 여러분의 패키지 매니저에 지정해주세요.
+이는 여러분이 [npm](https://www.npmjs.com/)을 패키지 매니저로 사용하고 있다고 가정합니다.
+
+만약 아니라면 [이들 파일을 unpkg에서 접근](https://unpkg.com/redux/)해서 다운로드받거나 여러분의 패키지 매니저에 지정해주세요.
 
 대부분의 사람들은 Redux를 [CommonJS](http://webpack.github.io/docs/commonjs.html) 모듈로 사용합니다. 이 모듈은 [Webpack](http://webpack.github.io)이나 [Browserify](http://browserify.org/), 네이티브 환경에서 `redux`를 임포트할때 불러와집니다. 여러분이 최첨단을 걷고 있으며 [Rollup](http://rollupjs.org)을 사용한다면 이 역시 지원합니다.
 
@@ -130,28 +138,28 @@ store.dispatch({ type: 'DECREMENT' })
 
 ### 제작자로부터 Redux 배우기
 
-[Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) is a video course consisting of 30 videos narrated by Dan Abramov, author of Redux. It is designed to complement the "Basics" part of the docs while bringing additional insights about immutability, testing, Redux best practices, and using Redux with React. **This course is free and will always be.**
+[Getting Started with Redux](https://egghead.io/series/getting-started-with-redux) is a video course consisting of 30 videos narrated by Dan Abramov, author of Redux. It is designed to complement the “Basics” part of the docs while bringing additional insights about immutability, testing, Redux best practices, and using Redux with React. **This course is free and will always be.**
 
->["Great course on egghead.io by @dan_abramov - instead of just showing you how to use #redux, it also shows how and why redux was built!"](https://twitter.com/sandrinodm/status/670548531422326785)
+>[“Great course on egghead.io by @dan_abramov - instead of just showing you how to use #redux, it also shows how and why redux was built!”](https://twitter.com/sandrinodm/status/670548531422326785)
 >Sandrino Di Mattia
 
->["Plowing through @dan_abramov 'Getting Started with Redux' - its amazing how much simpler concepts get with video."](https://twitter.com/chrisdhanaraj/status/670328025553219584)
+>[“Plowing through @dan_abramov 'Getting Started with Redux' - its amazing how much simpler concepts get with video.”](https://twitter.com/chrisdhanaraj/status/670328025553219584)
 >Chris Dhanaraj
 
->["This video series on Redux by @dan_abramov on @eggheadio is spectacular!"](https://twitter.com/eddiezane/status/670333133242408960)
+>[“This video series on Redux by @dan_abramov on @eggheadio is spectacular!”](https://twitter.com/eddiezane/status/670333133242408960)
 >Eddie Zaneski
 
->["Come for the name hype. Stay for the rock solid fundamentals. (Thanks, and great job @dan_abramov and @eggheadio!)"](https://twitter.com/danott/status/669909126554607617)
+>[“Come for the name hype. Stay for the rock solid fundamentals. (Thanks, and great job @dan_abramov and @eggheadio!)”](https://twitter.com/danott/status/669909126554607617)
 >Dan
 
->["This series of videos on Redux by @dan_abramov is repeatedly blowing my mind - gunna do some serious refactoring"](https://twitter.com/gelatindesign/status/669658358643892224)
+>[“This series of videos on Redux by @dan_abramov is repeatedly blowing my mind - gunna do some serious refactoring”](https://twitter.com/gelatindesign/status/669658358643892224)
 >Laurence Roberts
 
 So, what are you waiting for?
 
 #### [Watch the 30 Free Videos!](https://egghead.io/series/getting-started-with-redux)
 
-If you enjoyed my course, consider supporting Egghead by [buying a subscription](https://egghead.io/pricing). Subscribers have access to the source code for the example in every one of my videos, as well as to tons of advanced lessons on other topics, including JavaScript in depth, React, Angular, and more. Many [Egghead instructors](https://egghead.io/instructors) are also open source library authors, so buying a subscription is a nice way to thank them for the work that they’ve done.
+If you enjoyed my course, consider supporting Egghead by [buying a subscription](https://egghead.io/pricing). Subscribers have access to the source code for the example in every one of my videos, as well as to tons of advanced lessons on other topics, including JavaScript in depth, React, Angular, and more. Many [Egghead instructors](https://egghead.io/instructors) are also open source library authors, so buying a subscription is a nice way to thank them for the work that they've done.
 
 ### 문서
 
@@ -164,6 +172,8 @@ If you enjoyed my course, consider supporting Egghead by [buying a subscription]
 * [API 레퍼런스](https://deminoth.github.io/redux/api/index.html)
 
 오프라인에서 읽기 위한 PDF, ePub, MOBI 버전을 받거나 어떻게 만드는지 알고 싶다면, [paulkogel/redux-offline-docs](https://github.com/paulkogel/redux-offline-docs)을 보세요.
+
+Offline 문서는 [devdocs](http://devdocs.io/redux/)을 보세요.
 
 ### 예시
 
@@ -211,12 +221,12 @@ NPM 패키지명인 `redux`를 넘겨주신 [Jamie Paton](http://jdpaton.github.
 ### 후원자
 
 Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patreon.com/reactdx).
-이를 가능하게 했던 주요한 회사들을 소개합니다
+이를 가능하게 했던 주요한 회사들을 소개합니다.
 
 * [Webflow](https://github.com/webflow)
 * [Ximedes](https://www.ximedes.com/)
 
-[전체 후원자 명단 보기.](PATRONS_kr.md)
+[전체 후원자 명단](PATRONS_kr.md)과 지속적으로 늘어나고 있는 [Redux를 사용하는 사람과 회사들](https://github.com/reactjs/redux/issues/310) 목록을 볼 수 있습니다.
 
 ### 라이선스
 
