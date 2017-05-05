@@ -1,24 +1,24 @@
 # `bindActionCreators(actionCreators, dispatch)`
 
-Turns an object whose values are [action creators](../Glossary.md#action-creator), into an object with the same keys, but with every action creator wrapped into a [`dispatch`](Store.md#dispatch) call so they may be invoked directly.
+값이 [액션 생산자](../Glossary.md#action-creator)인 객체를 받아서, 같은 키를 가지지만 각각의 생산자들을 [`dispatch`](Store.md#dispatch)로 감싸서 바로 호출 가능하게 만든 객체로 바꿉니다.
 
-Normally you should just call [`dispatch`](Store.md#dispatch) directly on your [`Store`](Store.md) instance. If you use Redux with React, [react-redux](https://github.com/gaearon/react-redux) will provide you with the [`dispatch`](Store.md#dispatch) function so you can call it directly, too.
+보통은 [`Store`](Store.md) 인스턴스에서 바로 [`dispatch`](Store.md#dispatch)를 호출하면 됩니다. Redux를 React와 함께 사용한다면, [react-redux](https://github.com/gaearon/react-redux)가 [`dispatch`](Store.md#dispatch) 함수를 함께 제공하므로 바로 호출할 수 있습니다.
 
-The only use case for `bindActionCreators` is when you want to pass some action creators down to a component that isn't aware of Redux, and you don't want to pass [`dispatch`](Store.md#dispatch) or the Redux store to it.
+`bindActionCreators`의 유일한 사용처는, Redux를 상관하지 않는 컴포넌트로 액션 생산자를 넘기지만 [`dispatch`](Store.md#dispatch)나 Redux 스토어는 넘기고 싶지 않을 때입니다.
 
-For convenience, you can also pass a single function as the first argument, and get a function in return.
+편의상 첫 번째 인수로 함수를 넘겼다가 함수를 반환 받을 수도 있습니다.
 
-#### Parameters
+#### 인자
 
-1. `actionCreators` (*Function* or *Object*): An [action creator](../Glossary.md#action-creator), or an object whose values are action creators.
+1. `actionCreators` (*Function* or *Object*): [액션 생산자](../Glossary.md#action-creator) 또는 값으로 액션 생산자들을 가지는 객체.
 
-2. `dispatch` (*Function*): A [`dispatch`](Store.md#dispatch) function available on the [`Store`](Store.md) instance.
+2. `dispatch` (*Function*): [`Store`](Store.md) 인스턴스에서 가져온 [`dispatch`](Store.md#dispatch) 함수.
 
-#### Returns
+#### 반환
 
-(*Function* or *Object*): An object mimicking the original object, but with each function immediately dispatching the action returned by the corresponding action creator. If you passed a function as `actionCreators`, the return value will also be a single function.
+(*Function* or *Object*): 원래의 객체를 모사하지만 각각의 함수가 원래의 액션 생산자가 반환하는 액션을 바로 디스패치하는 객체. 만약 `actionCreators`로 함수를 넘겼다면, 반환값 역시 함수가 됩니다.
 
-#### Example
+#### 예시
 
 #### `TodoActionCreators.js`
 
@@ -100,8 +100,8 @@ export default connect(
 )(TodoListContainer)
 ```
 
-#### Tips
+#### 팁
 
-* You might ask: why don't we bind the action creators to the store instance right away, like in classical Flux? The problem is that this won't work well with universal apps that need to render on the server. Most likely you want to have a separate store instance per request so you can prepare them with different data, but binding action creators during their definition means you're stuck with a single store instance for all requests.
+* 왜 전통적인 Flux처럼 액션 생산자를 스토어 인스턴스에 바로 바인드하지 않는지 물을 수도 있습니다. 문제는 그 방법이 서버에서 랜더해야 하는 유니버설 앱에서는 잘 작동하지 않는다는겁니다. 보통은 매 요청마다 서로 다른 데이터로 스토어 인스턴스를 준비해야 하지만, 액션 생산자를 선언 중에 바인드하면 모든 요청에 대해 하나의 스토어 인스턴스 밖에 쓸 수 없습니다.
 
-* If you use ES5, instead of `import * as` syntax you can just pass `require('./TodoActionCreators')` to `bindActionCreators` as the first argument. The only thing it cares about is that the values of the `actionCreators` arguments are functions. The module system doesn't matter.
+* ES5를 사용한다면 `import * as` 대신 `require('./TodoActionCreators')`를 `bindActionCreators`의 첫번째 인수로 넘기면 됩니다. 모듈 시스템과는 상관 없이 `actionCreators`의 인수 값이 함수이기만 하면 됩니다.
