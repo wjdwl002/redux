@@ -1,12 +1,12 @@
 # `combineReducers(reducers)`
 
-As your app grows more complex, you'll want to split your [reducing function](../Glossary.md#reducer) into separate functions, each managing independent parts of the [state](../Glossary.md#state).
+앱이 점점 복잡해지면 [리듀싱 함수](../Glossary.md#reducer)를 [상태](../Glossary.md#state)의 독립된 부분들을 관리하는 함수들로 분리하고 싶어질겁니다.
 
-The `combineReducers` helper function turns an object whose values are different reducing functions into a single reducing function you can pass to [`createStore`](createStore.md).
+`combineReducers` 헬퍼 함수는 서로 다른 리듀싱 함수들을 값으로 가지는 객체를 받아서 [`createStore`](createStore.md)에 넘길 수 있는 하나의 리듀싱 함수로 바꿔줍니다.
 
-The resulting reducer calls every child reducer, and gathers their results into a single state object. **The shape of the state object matches the keys of the passed `reducers`**.
+생성된 리듀서는 내부의 모든 리듀서들을 호출하고 결과를 모아서 하나의 상태 객체로 바꿔줍니다. **상태 객체의 형태는 `reducers`로 전달된 키들을 따릅니다**.
 
-Consequently, the state object will look like this: 
+결과적으로 상태 객체는 이런 형태가 됩니다:
 
 ```
 {
@@ -15,39 +15,39 @@ Consequently, the state object will look like this:
 }
 ```
 
-You can control state key names by using different keys for the reducers in the passed object. For example, you may call `combineReducers({ todos: myTodosReducer, counter: myCounterReducer })` for the state shape to be `{ todos, counter }`.
+상태의 키 이름은 전달되는 객체의 키 이름을 다르게 함으로써 제어할 수 있습니다. 예를 들어, 상태의 모양이 `{ todos, counter }`가 되게하기 위해서는 `combineReducers({ todos: myTodosReducer, counter: myCounterReducer })`이라고 호출하면 됩니다.
 
-A popular convention is to name reducers after the state slices they manage, so you can use ES6 property shorthand notation: `combineReducers({ counter, todos })`. This is equivalent to writing `combineReducers({ counter: counter, todos: todos })`.
+관행적으로는 관리하는 상태 조각의 이름을 따라 리듀서를 명명하는 것입니다. 이렇게 하면 ES6의 속성 단축 표기를 사용할 수 있습니다: `combineReducers({ counter, todos })`. 이는 `combineReducers({ counter: counter, todos: todos })`라고 쓰는 것과 동일합니다.
 
-> ##### A Note for Flux Users
+> ##### Flux 사용자를 위한 한마디
 
-> This function helps you organize your reducers to manage their own slices of state, similar to how you would have different Flux Stores to manage different state. With Redux, there is just one store, but `combineReducers` helps you keep the same logical division between reducers.
+> 이 함수는 Flux가 서로 다른 상태를 관리하기 위해 서로 다른 스토어를 두는 것 처럼 리듀서가 각자의 상태 조각들을 관리하게 도와줍니다. Redux에는 하나의 스토어 뿐이지만, `combineReducers`를 통해 리듀서들을 동일하게 논리적으로 분리할 수 있습니다.
 
-#### Arguments
+#### 인수
 
-1. `reducers` (*Object*): An object whose values correspond to different reducing functions that need to be combined into one. See the notes below for some rules every passed reducer must follow.
+1. `reducers` (*Object*): 하나로 합쳐질 각각의 리듀싱 함수들을 값으로 가지는 객체입니다. 각 함수들이 따라야 하는 규칙은 아래의 주석을 참고하세요.
 
-> Earlier documentation suggested the use of the ES6 `import * as reducers` syntax to obtain the reducers object. This was the source of a lot of confusion, which is why we now recommend exporting a single reducer obtained using `combineReducers()` from `reducers/index.js` instead. An example is included below.
+> 예전의 문서는 리듀서 객체를 얻어오기 위해 ES6의 `import * as reducers` 문법을 쓰도록 제안했습니다. 이 방식이 많은 혼란을 가져왔기 때문에 이제는 `reducers/index.js`에서 `combineReducers()`를 통해 하나의 리듀서를 익스포트할 것을 권장합니다. 예시가 아래에 있습니다.
 
-#### Returns
+#### 반환
 
-(*Function*): A reducer that invokes every reducer inside the `reducers` object, and constructs a state object with the same shape.
+(*Function*): `reducers` 객체 안의 모든 리듀서들을 실행해서 하나의 상태 객체를 만드는 리듀서입니다.
 
-#### Notes
+#### 주석
 
-This function is mildly opinionated and is skewed towards helping beginners avoid common pitfalls. This is why it attempts to enforce some rules that you don't have to follow if you write the root reducer manually.
+이 함수는 초보자들이 쉽게 빠지는 실수를 방지하기 위해 약간은 완고하고 편향되어 있습니다. 여러분이 직접 루트 리듀서를 작성할 때는 따를 필요가 없었던 규칙들을 강요하는 것은 이 때문입니다.
 
-Any reducer passed to `combineReducers` must satisfy these rules:
+`combineReducers`로 전달되는 모든 리듀서는 아래의 규칙을 따라야만 합니다:
 
-* For any action that is not recognized, it must return the `state` given to it as the first argument.
+* 식별되지 않은 모든 상태에 대해서는 첫 인수로 주어진 `state`를 그대로 반환해야 합니다.
 
-* It must never return `undefined`. It is too easy to do this by mistake via an early `return` statement, so `combineReducers` throws if you do that instead of letting the error manifest itself somewhere else.
+* `undefined`를 반환해서는 안 됩니다. 이른 `return`문에서 쉽게 할 수 있는 실수로, 다른 곳에서 에러가 나기 전에 `combineReducers`에서 에러를 발생(throw)시킵니다.
 
-* If the `state` given to it is `undefined`, it must return the initial state for this specific reducer. According to the previous rule, the initial state must not be `undefined` either. It is handy to specify it with ES6 optional arguments syntax, but you can also explicitly check the first argument for being `undefined`.
+* `state`가 `undefined`로 주어지면 반드시 해당 리듀서의 초기 상태를 반환해야 합니다. 예전 룰을 따르면 초기 상태 또한 `undefined`가 될 수 없습니다. ES6의 선택적 인수(optional arguments) 문법을 사용하면 간편하지만, 직접 첫 인수가 `undefined`가 아닌지 확인할 수도 있습니다.
 
-While `combineReducers` attempts to check that your reducers conform to some of these rules, you should remember them, and do your best to follow them. `combineReducers` will check your reducers by passing `undefined` to them; this is done even if you specify initial state to `Redux.createStore(combinedReducers(...), initialState)`. Therefore, you **must** ensure your reducers work properly when receiving `undefined` as state, even if you never intend for them to actually receive `undefined` in your own code.
+`combineReducers`가 이들 규칙을 지키는지 확인하지만, 여러분이 기억하고 지키는 것도 중요합니다. `combineReducers`는 여러분이 `Redux.createStore(combineReducers(...), initialState)`를 사용해서 초기 상태를 명시하더라도, 리듀서에 `undefined`를 전달해서 직접 확인합니다. 그러므로 여러분이 `undefined`를 받을 의도 없이 코드를 작성했더라도, **반드시** 리듀서가 `undefined`를 상태로 받더라도 제대로 작동하는지 확인하세요.
 
-#### Example
+#### 예시
 
 #### `reducers/todos.js`
 
@@ -114,8 +114,8 @@ console.log(store.getState())
 // }
 ```
 
-#### Tips
+#### 팁
 
-* This helper is just a convenience! You can write your own `combineReducers` that [works differently](https://github.com/acdlite/reduce-reducers), or even assemble the state object from the child reducers manually and write a root reducing function explicitly, like you would write any other function.
+* 이 헬퍼는 편의를 위한 것일 뿐입니다! [다르게 작동하는](https://github.com/acdlite/reduce-reducers) 여러분만의 `combineReducers`를 직접 작성할 수도 있고, 자식 리듀서들에서 상태 객체를 조합하는 루트 리듀싱 함수를 명시적으로 만들 수도 있습니다.
 
-* You may call `combineReducers` at any level of the reducer hierarchy. It doesn't have to happen at the top. In fact you may use it again to split the child reducers that get too complicated into independent grandchildren, and so on.
+* `combineReducers`는 리듀서 계층의 최상위 뿐 아니라 어느 단계에서도 호출할 수 있습니다. 자식 리듀서가 너무 복잡해지면 다시 사용해서 손자 리듀서를 만들고 이런 식으로 반복할 수도 있습니다.
