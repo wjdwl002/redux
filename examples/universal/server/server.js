@@ -25,10 +25,7 @@ const compiler = webpack(webpackConfig)
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
 app.use(webpackHotMiddleware(compiler))
 
-// This is fired every time the server side receives a request
-app.use(handleRender)
-
-function handleRender(req, res) {
+const handleRender = (req, res) => {
   // Query our mock API asynchronously
   fetchCounter(apiResult => {
     // Read the counter from the request, if provided
@@ -56,7 +53,10 @@ function handleRender(req, res) {
   })
 }
 
-function renderFullPage(html, preloadedState) {
+// This is fired every time the server side receives a request
+app.use(handleRender)
+
+const renderFullPage = (html, preloadedState) => {
   return `
     <!doctype html>
     <html>
