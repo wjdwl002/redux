@@ -33,13 +33,11 @@ function todoApp(state = initialState, action) {
 객체 확산 문법의 장점은 복잡한 객체를 구성할 때 명확해 집니다.아래에서 `getAddedIds`가 `id`값의 배열을 `getProduct`와 `getQuantity`에서 리턴된 값을 가진 객체의 배열에 맵핑합니다.
 
 ```js
-return getAddedIds(state.cart).map(id => Object.assign(
-  {},
-  getProduct(state.products, id),
-  {
+return getAddedIds(state.cart).map(id =>
+  Object.assign({}, getProduct(state.products, id), {
     quantity: getQuantity(state.cart, id)
-  }
-))
+  })
+)
 ```
 
 객체 확산은 위의 `map` 호출을 다음과 같이 단순화 시켜줍니다:
@@ -51,14 +49,14 @@ return getAddedIds(state.cart).map(id => ({
 }))
 ```
 
-객체 확산 문법은 여전히 ECMAScript의 2단계 제안이므로 그것을 이용하려면 [Babel](http://babeljs.io/) 같은 트렌스파일러를 사용하셔야 됩니다. 기존의 `es2015` 프리셋을 이용 하실 수 있습니다. [`babel-plugin-transform-object-rest-spread`](http://babeljs.io/docs/plugins/transform-object-rest-spread/)를 설치하고 당신의 `.babelrc` 안 `plugins` 배열에 개별적으로 추가하면 됩니다. 
+객체 확산 문법은 여전히 ECMAScript의 2단계 제안이므로 그것을 이용하려면 [Babel](http://babeljs.io/) 같은 트렌스파일러를 사용하셔야 됩니다. 기존의 `es2015` 프리셋을 이용 하실 수 있습니다. [`babel-plugin-transform-object-rest-spread`](http://babeljs.io/docs/plugins/transform-object-rest-spread/)를 설치하고 당신의 `.babelrc` 안 `plugins` 배열에 개별적으로 추가하면 됩니다.
 
-```js
+```json
 {
   "presets": ["es2015"],
   "plugins": ["transform-object-rest-spread"]
 }
 ```
 
-아직 실험적인 언어 기능 제안이라기 때문에 미래에 바뀔 수 있다는 것을 알아두세요. 그럼에도 불구하고 [React Native](https://github.com/facebook/react-native)와 같은 일부 대규모 프로젝트에서는 이미 이 객체 확산 문법을 광범위하게 사용하기 때문에 혹시 변경 되더라도 좋은 자동 마이그레이션(migration) 경로가 있을 것 이라 말할 수 있습니다. 
+아직 실험적인 언어 기능 제안이기 때문에 미래에 바뀔 수 있다는 것을 알아두세요. 그럼에도 불구하고 [React Native](https://github.com/facebook/react-native)와 같은 일부 대규모 프로젝트에서는 이미 이 객체 확산 문법을 광범위하게 사용하기 때문에 혹시 변경 되더라도 좋은 자동 마이그레이션(migration) 경로가 있을 것 이라 말할 수 있습니다.
 
