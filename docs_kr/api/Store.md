@@ -1,14 +1,14 @@
 # Store
 
-앱의 전체 [상태 트리](../Glossary.md#state)를 가지고 있는 스토어입니다.
-이 안의 상태를 바꾸는 유일한 방법은 여기에 [액션](../Glossary.md#action)을 보내는 것 뿐입니다.
+앱의 전체 [상태 트리](../Glossary.md#상태)를 가지고 있는 스토어입니다.
+이 안의 상태를 바꾸는 유일한 방법은 여기에 [액션](../Glossary.md#액션)을 보내는 것 뿐입니다.
 
 스토어는 클래스가 아닙니다. 단지 안에 몇가지 메서드가 들어있는 객체일 뿐입니다. 
-생성하기 위해서는 루트 [리듀싱 함수](../Glossary.md#reducer)를 [`createStore`](createStore.md)에 전달하면 됩니다.
+생성하기 위해서는 루트 [리듀싱 함수](../Glossary.md#리듀서)를 [`createStore`](createStore.md)에 전달하면 됩니다.
 
 >##### Flux 사용자를 위한 한마디
 
->Flux를 쓰다가 오셨다면, 이해해야 하는 한 가지 중요한 차이점이 있습니다. Redux는 디스패쳐를 가지지도 않고, 여러개의 스토어를 지원하지도 않습니다. **대신, 하나의 루트 [리듀싱 함수](../Glossary.md#reducer)를 가지는 하나의 스토어만 있습니다.** 앱이 커짐에 따라 스토어를 추가하는 대신 루트 리듀서를 여러개의 작은 리듀서로 나누면 됩니다. 각 리듀서는 상태 트리의 서로 다른 부분들에서 독립적으로 작동합니다. 이들을 합치기 위해 [`combineReducers`](combineReducers.md) 같은 헬퍼를 사용할 수 있습니다. 이는 마치 React 앱에 하나의 루트 컴포넌트만 존재하지만, 그 안에 여러 작은 컴포넌트들이 조합되어 있는 것과 마찬가지입니다.
+>Flux를 쓰다가 오셨다면, 이해해야 하는 한 가지 중요한 차이점이 있습니다. Redux는 디스패쳐를 가지지도 않고, 여러개의 스토어를 지원하지도 않습니다. **대신, 하나의 루트 [리듀싱 함수](../Glossary.md#리듀서)를 가지는 하나의 스토어만 있습니다.** 앱이 커짐에 따라 스토어를 추가하는 대신 루트 리듀서를 여러개의 작은 리듀서로 나누면 됩니다. 각 리듀서는 상태 트리의 서로 다른 부분들에서 독립적으로 작동합니다. 이들을 합치기 위해 [`combineReducers`](combineReducers.md) 같은 헬퍼를 사용할 수 있습니다. 이는 마치 React 앱에 하나의 루트 컴포넌트만 존재하지만, 그 안에 여러 작은 컴포넌트들이 조합되어 있는 것과 마찬가지입니다.
 
 ### Store 메서드
 
@@ -37,9 +37,9 @@
 스토어의 리듀싱 함수는 [`getState()`](#getState)의 현재 결과와 주어진 `액션`과 함께 동기적으로 호출됩니다. 반환된 값이 다음 상태가 되어 이제부터 [`getState()`](#getState)에서 반환될 것이고, 상태 변경 리스너들은 즉시 알림을 받을 것입니다.
 
 >##### Flux 사용자들을 위한 한마디
->만약 `dispatch`를 [리듀서](../Glossary.md#reducer)안에서 호출하려고 하면 “Reducers may not dispatch actions.” 이라는 에러를 일으킬 것입니다. 이는 Flux의 “Cannot dispatch in a middle of dispatch” 에러와 비슷하지만, 이와 관련된 문제를 발생시키지는 않습니다. Flux에서는 Store가 액션을 다루고 업데이트를 처리하는 동안 액션을 보내는 것이 금지되어 있습니다. 이는 컴포넌트 생명주기 훅이나 다른 곳에서 액션을 보낼 수 없게 하기 때문에 좋지 않습니다.
+>만약 `dispatch`를 [리듀서](../Glossary.md#리듀서)안에서 호출하려고 하면 “Reducers may not dispatch actions.” 이라는 에러를 일으킬 것입니다. 이는 Flux의 “Cannot dispatch in a middle of dispatch” 에러와 비슷하지만, 이와 관련된 문제를 발생시키지는 않습니다. Flux에서는 Store가 액션을 다루고 업데이트를 처리하는 동안 액션을 보내는 것이 금지되어 있습니다. 이는 컴포넌트 생명주기 훅이나 다른 곳에서 액션을 보낼 수 없게 하기 때문에 좋지 않습니다.
 
->Redux에서는 루트 리듀서가 새 상태를 반환한 다음에 구독자들이 호출되기 때문에, 리스너 안에서도 액션을 *보낼 수* 있습니다. 액션을 보낼 수 없는 곳은 리듀서 안쪽 뿐이며, 리듀서에서는 사이드이펙트가 허용되지 않기 때문입니다. 액션에 대한 응답으로 사이드이펙트를 일으키고 싶다면 [액션 생산자](../Glossary.md#action-creator) 안에서 하는게 적절합니다.
+>Redux에서는 루트 리듀서가 새 상태를 반환한 다음에 구독자들이 호출되기 때문에, 리스너 안에서도 액션을 *보낼 수* 있습니다. 액션을 보낼 수 없는 곳은 리듀서 안쪽 뿐이며, 리듀서에서는 사이드이펙트가 허용되지 않기 때문입니다. 액션에 대한 응답으로 사이드이펙트를 일으키고 싶다면 [액션 생산자](../Glossary.md#액션-생산자) 안에서 하는게 적절합니다.
 
 #### 전달인자
 
@@ -53,7 +53,7 @@
 
 <sup>†</sup> [`createStore`](createStore.md) 호출에서 얻을 수 있는 평범한(vanilla) 스토어는 평범한 오브젝트만을 액션으로 받을 수 있으며 받은 액션은 바로 리듀서에 넘깁니다. 
 
-하지만 [`createStore`](createStore.md)를 [`applyMiddleware`](applyMiddleware.md)로 감싸면 미들웨어가 액션을 중간에 다르게 처리해서 [비동기 액션](../Glossary.md#async-action)을 보낼 수 있게 해줍니다. 비동기 액션은 보통 Promise, Observable, thunk와 같은 비동기 원시 타입입니다.
+하지만 [`createStore`](createStore.md)를 [`applyMiddleware`](applyMiddleware.md)로 감싸면 미들웨어가 액션을 중간에 다르게 처리해서 [비동기 액션](../Glossary.md#비동기-액션)을 보낼 수 있게 해줍니다. 비동기 액션은 보통 Promise, Observable, thunk와 같은 비동기 원시 타입입니다.
 
 미들웨어는 커뮤니티에서 만들어지고 Redux에 기본적으로 포함되어 나오지는 않습니다. 사용하기 위해서는 [redux-thunk](https://github.com/gaearon/redux-thunk)나 [redux-promise](https://github.com/acdlite/redux-promise) 같은 패키지를 직접 설치해줘야 합니다. 여러분이 직접 미들웨어를 만들 수도 있습니다.
 

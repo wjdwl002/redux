@@ -107,7 +107,7 @@ export function receivePosts(reddit, json) {
 
 >##### 에러 핸들링에 대해
 
->실제 앱에서 여러분은 요청 실패에 대해서도 액션을 보내기를 원할겁니다. 이 튜토리얼에서는 에러 핸들링을 구현하지 않았지만, [real world example](../introduction/Examples.html#real-world)에서 가능한 접근법 중 하나를 볼 수 있습니다.
+>실제 앱에서 여러분은 요청 실패에 대해서도 액션을 보내기를 원할겁니다. 이 튜토리얼에서는 에러 핸들링을 구현하지 않았지만, [real world example](../introduction/Examples.md#리얼-월드real-world)에서 가능한 접근법 중 하나를 볼 수 있습니다.
 
 ## 상태의 모양을 설계하기
 
@@ -154,7 +154,7 @@ export function receivePosts(reddit, json) {
 
 >이 예시에서 우리는 받은 항목들을 페이지 정보와 함께 저장합니다. 하지만 이런 접근방식은 여러분이 서로를 참고하는 중첩된 개체를 가질 때나 사용자가 항목들을 편집하게 하려고 할 때엔 맞지 않을겁니다. 사용자가 받아온 포스트를 수정하려고 하는데 이 포스트가 상태 트리의 여러 군데에 중복되어있다고 생각해보세요. 구현하기 정말 고통스러울겁니다.
 
->여러분이 중첩된 개체를 가지고 있거나 사용자들이 개체를 편집할 수 있게 하고 싶다면 이들을 데이터베이스에 넣듯이 상태에 분리해서 보관해야 합니다. 페이지 정보에는 이들의 ID만을 참조하게 하면 됩니다. 이를 통해 개체들을 항상 최신으로 유지할 수 있습니다. [real world example](../introduction/Examples.html#real-world)에서는 [normalizr](https://github.com/gaearon/normalizr)를 통해 중첩된 API 응답을 정규화하는 방법을 포함하여 이런 접근법을 보여줍니다. 이 접근에 따르면 여러분의 상태는 이렇게 생겼을겁니다:
+>여러분이 중첩된 개체를 가지고 있거나 사용자들이 개체를 편집할 수 있게 하고 싶다면 이들을 데이터베이스에 넣듯이 상태에 분리해서 보관해야 합니다. 페이지 정보에는 이들의 ID만을 참조하게 하면 됩니다. 이를 통해 개체들을 항상 최신으로 유지할 수 있습니다. [real world example](../introduction/Examples.md#리얼-월드real-world)에서는 [normalizr](https://github.com/gaearon/normalizr)를 통해 중첩된 API 응답을 정규화하는 방법을 포함하여 이런 접근법을 보여줍니다. 이 접근에 따르면 여러분의 상태는 이렇게 생겼을겁니다:
 
 >```js
 > {
@@ -287,7 +287,7 @@ export default rootReducer;
     nextState[action.reddit] = posts(state[action.reddit], action);
     return Object.assign({}, state, nextState);
   ```
-* 우리는 상태에서 특정 포스트 목록을 관리하는 `posts(state, action)`를 분리했습니다. 이건 그냥 [리듀서 결합](../basics/Reducers.md#리듀서-쪼개기)입니다! 리듀서를 어떻게 쪼갤지는 우리가 정하기 나름이고, 이 경우엔 객체 안의 항목들을 수정하는 일을 `posts` 리듀서에 맡겼습니다. [real world example](../introduction/Examples.html#real-world)에서는 더 나아가서 매개변수화된 페이지 리듀서를 위한 리듀서 팩토리를 어떻게 만드는지 보여줍니다.
+* 우리는 상태에서 특정 포스트 목록을 관리하는 `posts(state, action)`를 분리했습니다. 이건 그냥 [리듀서 결합](../basics/Reducers.md#리듀서-쪼개기)입니다! 리듀서를 어떻게 쪼갤지는 우리가 정하기 나름이고, 이 경우엔 객체 안의 항목들을 수정하는 일을 `posts` 리듀서에 맡겼습니다. [real world example](../introduction/Examples.md#리얼-월드real-world)에서는 더 나아가서 매개변수화된 페이지 리듀서를 위한 리듀서 팩토리를 어떻게 만드는지 보여줍니다.
 
 리듀서는 단지 함수일 뿐이라는걸 기억하세요. 여러분은 함수형 결합이나 고차함수등을 편하신대로 사용할 수 있습니다.
 
@@ -484,7 +484,7 @@ store.dispatch(fetchPostsIfNeeded('reactjs')).then(() =>
 
 >비동기 액션 생산자는 서버 랜더링에서 특히 편리합니다. 여러분은 스토어를 만들고, 다른 비동기 액션 생성자들을 보내주는 비동기 액션 생성자 하나를 보내고, 여기서 반환되는 약속이 완료되었을 때에만 그려주면 됩니다. 그러면 여러분의 스토어는 랜더링에 필요한 상태로 이미 채워져있을겁니다.
 
-[썽크 미들웨어](https://github.com/gaearon/redux-thunk)만이 Redux에서 비동기 액션을 통제하는 방법은 아닙니다. 함수 대신 약속을 보내기 위해 [redux-promise](https://github.com/acdlite/redux-promise)나 [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)를 사용할 수도 있습니다. [redux-rx](https://github.com/acdlite/redux-rx)를 통해 옵서버(Observables)를 보낼 수도 있습니다. 아니면 [real world example](../introduction/Examples.html#real-world)에서처럼 API 호출을 위한 미들웨어를 직접 작성할수도 있습니다. 미들웨어를 쓰건 쓰지 않건, 몇가지 선택지들을 시도해보고 마음에 드는 규칙을 골라서 사용하는것은 여러분에게 달렸습니다.
+[썽크 미들웨어](https://github.com/gaearon/redux-thunk)만이 Redux에서 비동기 액션을 통제하는 방법은 아닙니다. 함수 대신 약속을 보내기 위해 [redux-promise](https://github.com/acdlite/redux-promise)나 [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)를 사용할 수도 있습니다. [redux-rx](https://github.com/acdlite/redux-rx)를 통해 옵서버(Observables)를 보낼 수도 있습니다. 아니면 [real world example](../introduction/Examples.md#리얼-월드real-world)에서처럼 API 호출을 위한 미들웨어를 직접 작성할수도 있습니다. 미들웨어를 쓰건 쓰지 않건, 몇가지 선택지들을 시도해보고 마음에 드는 규칙을 골라서 사용하는것은 여러분에게 달렸습니다.
 
 ## UI에 연결하기
 

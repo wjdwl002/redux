@@ -5,7 +5,7 @@
 
 #### 인수
 
-1. `reducer` *(Function)*: 주어진 현재 상태 트리와 [액션](../Glossary.md#action)에서 다음 [상태 트리](../Glossary.md#state)를 반환하는 [리듀싱 함수](../Glossary.md#reducer)입니다.
+1. `reducer` *(Function)*: 주어진 현재 상태 트리와 [액션](../Glossary.md#액션)에서 다음 [상태 트리](../Glossary.md#상태)를 반환하는 [리듀싱 함수](../Glossary.md#리듀서)입니다.
 
 2. [`preloadedState`] *(any)*: 초기 상태입니다. 유니버설 앱의 서버나 이전의 직렬화된 사용자 세션에서 상태를 채우기 위해 선택적으로 지정할 수 있습니다. 만약 [`combineReducers`](combineReducers.md)로 리듀서를 만들었다면, 이 인수는 전달했던 것과 같은 키 구조를 가지는 평범한 객체여야 합니다. 그렇지 않다면 리듀서가 이해할 수 있는 어떤 것도 사용할 수 있습니다.
 
