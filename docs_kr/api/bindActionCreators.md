@@ -1,6 +1,6 @@
 # `bindActionCreators(actionCreators, dispatch)`
 
-값이 [액션 생산자](../Glossary.md#action-creator)인 객체를 받아서, 같은 키를 가지지만 각각의 생산자들을 [`dispatch`](Store.md#dispatch)로 감싸서 바로 호출 가능하게 만든 객체로 바꿉니다.
+값이 [액션 생산자](../Glossary.md#액션-생산자)인 객체를 받아서, 같은 키를 가지지만 각각의 생산자들을 [`dispatch`](Store.md#dispatch)로 감싸서 바로 호출 가능하게 만든 객체로 바꿉니다.
 
 보통은 [`Store`](Store.md) 인스턴스에서 바로 [`dispatch`](Store.md#dispatch)를 호출하면 됩니다. Redux를 React와 함께 사용한다면, [react-redux](https://github.com/gaearon/react-redux)가 [`dispatch`](Store.md#dispatch) 함수를 함께 제공하므로 바로 호출할 수 있습니다.
 
@@ -10,7 +10,7 @@
 
 #### 인자
 
-1. `actionCreators` (*Function* or *Object*): [액션 생산자](../Glossary.md#action-creator) 또는 값으로 액션 생산자들을 가지는 객체.
+1. `actionCreators` (*Function* or *Object*): [액션 생산자](../Glossary.md#액션-생산자) 또는 값으로 액션 생산자들을 가지는 객체.
 
 2. `dispatch` (*Function*): [`Store`](Store.md) 인스턴스에서 가져온 [`dispatch`](Store.md#dispatch) 함수.
 
