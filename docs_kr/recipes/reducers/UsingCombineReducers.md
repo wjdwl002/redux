@@ -1,28 +1,24 @@
-# Using `combineReducers`
+# `combineReducers`사용하기
 
-## Core Concepts
+## 핵심 개념
 
+리덕스 앱에서 상태의 가장 일반적인 형태는 각 최상위 키마다 도메인별 데이터조각을 포함한 일반적인 자바스크립트 객체입니다. 이처럼, 일반적으로 상태의 형태에 대한 리듀서 로직을 작성하는 방법은 "슬라이스 리듀서"기능을 가지고, 각각은 동일한 `(state, action)`의 형태를 가지며, 특정 상태의 부분을 업데이트 하는 겁니다. 여러 슬라이스 리듀서가 하나의 액션에 응답할 수 있고 독립적으로 필요에 따라 자체적으로 업데이트할 수도 있습니다. 또한 업데이트된 슬라이스는 새로운 객체로 합쳐집니다.
 
-The most common state shape for a Redux app is a plain Javascript object containing "slices" of domain-specific data at each top-level key.  Similarly, the most common approach to writing reducer logic for that state shape is to have "slice reducer" functions, each with the same `(state, action)` signature, and each responsible for managing all updates to that specific slice of state.  Multiple slice reducers can respond to the same action, independently update their own slice as needed, and the updated slices are combined into the new state object.
+이런 패턴이 매우 흔하기 때문에 리덕스는 이를 구현한 유틸리티인 `combineReducers`를 제공합니다. 이는 슬라이스 리듀서들로 이루어진 객체를 취하는 _고차 리듀서_의 예입니다.
 
-Because this pattern is so common, Redux provides the `combineReducers` utility to implement that behavior.  It is an example of a _higher-order reducer_, which takes an object full of slice reducer functions, and returns a new reducer function.
+`combineReducers`를 사용할 때 알아야 할 몇 가지가 있습니다.
 
-There are several important ideas to be aware of when using `combineReducers`:
+- 우선 `combineReducers`는 **리덕스 리듀서를 작성할 때 가장 일반적인 용례를 단순화 하는 유틸리티 함수입니다.** 모든 애플리케이션에서 사용할 필요는 *없으며* 모든 가능한 시나리오를 처리하지 *않습니다.* 이 함수를 사용하지 않고도 리듀서로직을 작성할 수 있으며, `combineReducers`를 사용하지 않는 경우는 보통 커스텀 리듀서를 직접 만들어줘야 합니다. ([Beyond `combineReducers`](./BeyondCombineReducers.md) for examples and suggestions.)  
+- 리덕스는 상태의 구성에 대해 관여하지 않지만 `combineReducers`는 일반적으로 발생하는 에러를 피하기 위해 몇 가지 규칙을 강제합니다. (자세한건 [`combineReducers`](../../api/combineReducers.md)를 참고하세요)
+- 자주 하는 질문 중 하나는 리덕스가 액션을 디스패치 했을 때 "모든 리듀서를 호출"하는가? 입니다. 루트 리듀서 함수는 오직 하나만 존재하기 때문에 이에 대한 대답은 "아니오"입니다. 하지만 `combineReducers`에는 이러한 방식으로 _작동하는_ 특정 동작이 있습니다. `combineReducers`는 새로운 상태 트리를 조립하기 위해 상태의 부분과 현재 액션을 처리하는 각 슬라이스 리듀서를 호출하고, 필요하다면 슬라이스 리듀서에게 상태를 업데이트할 수 있게 할겁니다. 그래서 `combineReducers`는 "모든 리듀서를 호출"하거나 래핑 된 모든 슬라이스 리듀서를 호출합니다.
 
+## 상태의 형태를 정의하기
 
-- First and foremost, `combineReducers` is simply **a utility function to simplify the most common use case when writing Redux reducers**.  You are *not* required to use it in your own application, and it does *not* handle every possible scenario.  It is entirely possible to write reducer logic without using it, and it is quite common to need to write custom reducer logic for cases that `combineReducer` does not handle.  (See [Beyond `combineReducers`](./BeyondCombineReducers.md) for examples and suggestions.)  
-- While Redux itself is not opinionated about how your state is organized, `combineReducers` enforces several rules to help users avoid common errors.  (See [`combineReducers`](../../api/combineReducers.md) for details.)
-- One frequently asked question is whether Redux "calls all reducers" when dispatching an action.  Since there really is only one root reducer function, the default answer is "no, it does not".  However, `combineReducers` has specific behavior that _does_ work that way.  In order to assemble the new state tree, `combineReducers` will call each slice reducer with its current slice of state and the current action, giving the slice reducer a chance to respond and update its slice of state if needed.  So, in that sense, using `combineReducers` _does_ "call all reducers", or at least all of the slice reducers it is wrapping.
-- You can use it at all levels of your reducer structure, not just to create the root reducer.  It's very common to have multiple combined reducers in various places, which are composed together to create the root reducer.
+초기의 형태와 스토어 상태의 형태의 개념을 정의하는 것은 두 가지 방법이 있습니다. 첫 번째는 `createStore`가 두번째 매개변수로 취하는 `preloadedState`입니다. 이는 주로 브라우저의 localStorage처럼 이전의 상태로 스토어를 초기화하기 위한 것입니다. 또 다른 벙법은 루트 리듀서의 상태 매개변수가 `undefined` 일때 초기 상태를 반환하는 것입니다. 이 두 가지 접근방식은 [상태 초기화](./InitializingState.md)에서 더 자세히 설명합니다. 여기선 `combineReducers`를 사용할 때 주의해야할 몇가지 사항이 있습니다.
 
+`combineReducers`는 슬라이스 리듀서 함수들로 이루어진 객체를 취하며, 동일한 키를 가진 상태 객체를 출력하는 함수를 만듭니다. 이는 `createStore`에 사전 로드된 상태가 제공되지 않는다면, 인풋 슬라이스 리듀서 객체의 키의 이름에 따라 아웃풋 상태객체의 키의 이름이 결정됨을 의미합니다. 이 이름 간의 관계는 항상 명확하진 않으며, default module exports나 객체리터럴과 같은 ES6의 기능을 사용할 때 특히 그렇습니다.
 
-## Defining State Shape
-
-There are two ways to define the initial shape and contents of your store's state.  First, the `createStore` function can take `preloadedState` as its second argument.  This is primarily intended for initializing the store with state that was previously persisted elsewhere, such as the browser's localStorage.  The other way is for the root reducer to return the initial state value when the state argument is `undefined`.  These two approaches are described in more detail in [Initializing State](./InitializingState.md), but there are some additional concerns to be aware of when using `combineReducers`.
-
-`combineReducers` takes an object full of slice reducer functions, and creates a function that outputs a corresponding state object with the same keys.  This means that if no preloaded state is provided to `createStore`, the naming of the keys in the input slice reducer object will define the naming of the keys in the output state object.  The correlation between these names is not always apparent, especially when using ES6 features such as default module exports and object literal shorthands.
-
-Here's an example of how use of ES6 object literal shorthand with `combineReducers` can define the state shape:
+아래는 `combineReducers`에서 ES6의 객체리터럴로 상태의 형태를 정의한 예제입니다.
 
 ```js
 // reducers.js
@@ -38,7 +34,7 @@ import {combineReducers, createStore} from "redux";
 
 import theDefaultReducer, {firstNamedReducer, secondNamedReducer} from "./reducers";
 
-// Use ES6 object literal shorthand syntax to define the object shape
+// 객체의 형태를 정의하기 위해 ES6의 객체리터럴 단축문법을 사용
 const rootReducer = combineReducers({
     theDefaultReducer,
     firstNamedReducer,
@@ -50,22 +46,22 @@ console.log(store.getState());
 // {theDefaultReducer : 0, firstNamedReducer : 1, secondNamedReducer : 2}
 ```
 
-Notice that because we used the ES6 shorthand for defining an object literal, the key names in the resulting state are the same as the variable names from the imports.  This may not always be the desired behavior, and is often a cause of confusion for those who aren't as familiar with ES6 syntax.
+객체리터럴을 정의하기 위해 ES6의 단축 문법을 사용했기 때문에, 생성된 상태의 키의 이름이 imports 한 변수 이름이라는 것에 주의하세요. 이는 항상 원하는 동작이 아닐 수도 있으며, ES6 구문에 익숙하지 않으 사람에게 종종 혼란을 일으키기도 합니다.
 
-Also, the resulting names are a bit odd.  It's generally not a good practice to actually include words like "reducer" in your state key names - the keys should simply reflect the domain or type of data they hold.  This means we should either explicitly specify the names of the keys in the slice reducer object to define the keys in the output state object, or carefully rename the variables for the imported slice reducers to set up the keys when using the shorthand object literal syntax.
+또한 이름이 약간 이상합니다. 일반적으로 이름에 "reducer"와 같은 단어를 포함하는 것은 좋은 습관이 아닙니다. - 키에는 보유한 데이터의 도메인이나 유형을 단순하게 반영해야 합니다. 이는 상태 아웃풋의 키를 정의하기 위해서 슬라이스 리듀서 객체의 키의 이름을 반드시 명시적으로 지정해야 함을 의미합니다. 아니면 단축 객체리터럴 문법을 사용할 때 불러온 슬라이스 리듀서에 대한 변수의 이름을 신중하게 재지정해주어야 합니다.
 
-A better usage might look like:
+개선된 방법을 사용하면 다음과 같습니다:
 
 ```js
 import {combineReducers, createStore} from "redux";
 
-// Rename the default import to whatever name we want. We can also rename a named import.
+// default import의 이름을 원하는 대로 바꿀 수 있습니다. 이는 import에도 사용될 수 있습니다.
 import defaultState, {firstNamedReducer, secondNamedReducer as secondState} from "./reducers";
 
 const rootReducer = combineReducers({
-    defaultState,                   // key name same as the carefully renamed default export
-    firstState : firstNamedReducer, // specific key name instead of the variable name
-    secondState,                    // key name same as the carefully renamed named export
+    defaultState,                   // default import에서 신중하게 다시 명명된 것과 동일한 키 이름
+    firstState : firstNamedReducer, // 변수이름 대신 키 지정
+    secondState,                    // default import에서 신중하게 다시 명명된 것과 동일한 키 이름
 });
 
 const reducerInitializedStore = createStore(rootReducer);
@@ -73,4 +69,4 @@ console.log(reducerInitializedStore.getState());
 // {defaultState : 0, firstState : 1, secondState : 2}
 ```
 
-This state shape better reflects the data involved, because we took care to set up the keys we passed to `combineReducers`.
+이런 상태의 형태는 `combineReducers`에게 키를 신중하게 전달했기 때문에 관련된 데이터를 더욱 잘 반영합니다.

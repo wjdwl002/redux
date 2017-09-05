@@ -1,33 +1,31 @@
-# Structuring Reducers
+# 리듀서 구조화하기
 
-At its core, Redux is really a fairly simple design pattern: all your "write" logic goes into a single function, and the only way to run that logic is to give Redux a plain object that describes something that has happened.  The Redux store calls that write logic function and passes in the current state tree and the descriptive object, the write logic function returns some new state tree, and the Redux store notifies any subscribers that the state tree has changed.  
+핵심적으로 리덕스는 매우 간단한 디자인 패턴입니다. 당신의 모든 "작성" 로직은 하나의 함수로 들어갑니다. 그리고 그 로직을 실행할 수 있는 유일한 방법은 리덕스에게 어떤 일이 일어난다는 것을 표현하는 일반 객체를 넘겨주는 것입니다. 리덕스 스토어는 작성로직을 호출, 현재의 상태트리와 설명객체를 전달하고 작성 로직 함수는 새로운 상태 트리를 반환합니다. 그리고 리덕스 스토어는 구독자(subscribers)에게 상태가 바뀌었음을 알립니다.
 
-Redux puts some basic constraints on how that write logic function should work.  As described in [Reducers](../basics/Reducers.md), it has to have a signature of `(previousState, action) => newState`, is known as a ***reducer function***, and must be *pure* and predictable.
+리덕스는 작성 로직 함수의 동작에 대해 몇 가지 제약을 둡니다. [리듀서](../basics/Reducers.md)에서 설명한 것처럼 리듀서 함수는 `(previousState, action) => newState`의 형태를 가지고, 순수함수이며 예측 가능해야 합니다.
 
-Beyond that, Redux does not really care how you actually structure your logic inside that reducer function, as long as it obeys those basic rules.  This is both a source of freedom and a source of confusion.  However, there are a number of common patterns that are widely used when writing reducers, as well as a number of related topics and concepts to be aware of.  As an application grows, these patterns play a crucial role in managing reducer code complexity, handling real-world data, and optimizing UI performance.  
+더욱이 기본적인 형태만 맞춘다면 리덕스는 리듀서 함수가 어떤 로직을 구성하는지는 신경을 쓰지 않습니다. 이건 자유와 혼란의 근원이 됩니다. 하지만 리듀서를 작성하는데 널리 사용되는 패턴이 있고 관련된 많은 것들을 알고 있어야 합니다. 애플리케이션의 크기가 커지면서 이 패턴은 리듀서 코드의 복잡성과 실제 데이터, UI 성능 최적화에 결정적인 역할을 합니다.
 
 
-### Prerequisite Concepts for Writing Reducers
+### 리듀서 작성을 위해 알아야 할 개념
 
-Some of these concepts are already described elsewhere in the Redux documentation.  Others are generic and applicable outside of Redux itself, and there are numerous existing articles that cover these concepts in detail.  These concepts and techniques form the foundation of writing solid Redux reducer logic.
+개념 일부는 이미 이 리덕스 도큐먼트 어딘가에서 이미 설명했습니다. 다른 것들은 리덕스외에도 일반적으로 사용되고 응용될 수 있으며 이를 자세히 다루고 있는 수많은 글들이 있습니다.
 
-It is vital that these Prerequisite Concepts are **thoroughly understood** before moving on to more advanced and Redux-specific techniques. A recommended reading list is available at:
+리덕스의 더 깊은 부분과 특유의 테크닉을 보기전에 이런 개념들을 철저히 익히는 것은 필수적입니다. 읽기보기를 추천하는 목록:
 
-#### [Prerequisite Concepts](./reducers/PrerequisiteConcepts.md)  
+#### [사전에 요구되는 개념들](./reducers/PrerequisiteConcepts.md)
   
-It's also important to note that some of these suggestions may or may not be directly applicable based on architectural decisions in a specific application.  For example, an application using Immutable.js Maps to store data would likely have its reducer logic structured at least somewhat differently than an application using plain Javascript objects.  This documentation primarily assumes use of plain Javascript objects, but many of the principles would still apply if using other tools.
+이것들이 애플리케이션의 아키텍처 결정에 직접 사용될 수도 있고 그렇지 않을 수도 있다는 것에 주의해야 합니다. 예를 들어 데이터를 저장하는데 Immutable.js Maps를 사용하는 것은 일반적인 자바스크립트 객체를 사용하는 것과는 다를 겁니다. 여기서 설명하는 이론들은 일반적인 자바스크립트 객체를 사용한다고 가정하지만, 다른 것들을 사용하더라도 적용됩니다.
   
-  
-  
-### Reducer Concepts and Techniques
+### 리듀서 개념과 테크닉
 
-- [Basic Reducer Structure](./reducers/BasicReducerStructure.md)
-- [Splitting Reducer Logic](./reducers/SplittingReducerLogic.md)
-- [Refactoring Reducers Example](./reducers/RefactoringReducersExample.md)
-- [Using `combineReducers`](./reducers/UsingCombineReducers.md)
-- [Beyond `combineReducers`](./reducers/BeyondCombineReducers.md)
-- [Normalizing State Shape](./reducers/NormalizingStateShape.md)
-- [Updating Normalized Data](./reducers/UpdatingNormalizedData.md)
-- [Reusing Reducer Logic](./reducers/ReusingReducerLogic.md)
-- [Immutable Update Patterns](./reducers/ImmutableUpdatePatterns.md)
-- [Initializing State](./reducers/InitializingState.md)
+- [기본 리듀서 구조](./reducers/BasicReducerStructure.md)
+- [리듀서 로직 분리하기](./reducers/SplittingReducerLogic.md)
+- [리듀서 로직 리팩토링하기](./reducers/RefactoringReducersExample.md)
+- [`combineReducers`사용하기](./reducers/UsingCombineReducers.md)
+- [`combineReducers`더 알아보기](./reducers/BeyondCombineReducers.md)
+- [상태 정규화하기](./reducers/NormalizingStateShape.md)
+- [정규화된 데이터 업데이트하기](./reducers/UpdatingNormalizedData.md)
+- [리듀서 로직 재사용하기](./reducers/ReusingReducerLogic.md)
+- [뷸변 업데이트 패턴](./reducers/ImmutableUpdatePatterns.md)
+- [상태 초기화하기](./reducers/InitializingState.md)

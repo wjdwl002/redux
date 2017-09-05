@@ -1,97 +1,90 @@
-# Prerequisite Reducer Concepts
+# 사전에 요구되는 개념들
 
+[리듀서](../../basics/Reducers.md)에서 설명한 것처럼 리덕스의 리듀서는 함수입니다:
 
-As described in [Reducers](../../basics/Reducers.md), a Redux reducer function:
+- `(previousState, action) => newState`의 꼴로 작성되어야 합니다. [`Array.prototype.reduce(reducer, ?initialValue)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)에 전달되는 함수 타입과 비슷합니다.
+- "순수"해야 합니다. 리듀서에서 이것의 의미는:
+  - _사이드이펙트_(API를 호출하거나 지역객체, 지역변수가 아닌 것을 수정하는 등)가 생기면 안됩니다.
+  - _순수하지 않은 함수(Date.now 혹은 Math.random)를 호출_하면 안됩니다.
+  - 인수를 _변경_하면 안 됩니다. 만약 리듀서가 상태를 변화시킬 때 **이미 존재하는** 상태 객체를 _수정_하면 안됩니다. 대신 변화에 필요한 **새로운** 객체를 만들어야 합니다. 리듀서가 업데이트하는 상태 내의 모든 객체에 동일한 접근이 필요합니다.
 
-- Should have a signature of `(previousState, action) => newState`, similar to the type of function you would pass to [`Array.prototype.reduce(reducer, ?initialValue)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-- Should be "pure", which means the reducer:
-  - Does not _perform side effects_ (such as calling API's or modifying non-local objects or variables).
-  - Does not _call non-pure functions_ (like `Date.now` or `Math.random`).
-  - Does not _mutate_ its arguments. If the reducer updates state, it should not _modify_ the **existing** state object in-place.  Instead, it should generate a **new** object containing the necessary changes. The same approach should be used for any sub-objects within state that the reducer updates.
-
->##### Note on immutability, side effects, and mutation
-> Mutation is discouraged because it generally breaks time-travel debugging, and React Redux's `connect` function:
-> - For time traveling, the Redux DevTools expect that replaying recorded actions would output a state value, but not change anything else. **Side effects like mutation or asynchronous behavior will cause time travel to alter behavior between steps, breaking the application**.
-> - For React Redux, `connect` checks to see if the props returned from a `mapStateToProps` function have changed in order to determine if a component needs to update.  To improve performance, `connect` takes some shortcuts that rely on the state being immutable, and uses shallow reference equality checks to detect changes. This means that **changes made to objects and arrays by direct mutation will not be detected, and components will not re-render**.
+>#### 불변성, 사이드이펙트, 변화에 대한 주의
+> 변화는 시간 단위 디버깅과 리덕스의 `connect`함수를 방해하기 때문에 권장되지 않습니다:
+> - 시간 단위로 디버깅할때 리덕스 DevTools는 기록 된 액션들에게 상태 값만 만드는 것을 기대합니다. **변화나 비동기액션같은 사이드이펙트는 시간단위 디버깅에서 각 단계 간의 동작을 변화시켜 애플리케이션을 중단됩니다.**
+> - 리액트 리덕스를 위해서 `connect`는 컴포넌트가 업데이트되어야 하는지 확인하기 위해 `mapStateToProps`함수로 부터 반환된 props를 확인합니다. 성능의 향상을 위해서 `connect`는 불변성에 기인한 더 쉬운 방법을 취하며 객체가 동일한지 확인하기 위해 얕은 참조 검사를 사용합니다. **즉, 직접 객체를 변화시킨 것은 감지하지 못하며, 다시 렌더링 되지 않습니다.**
 >
-> Other side effects like generating unique IDs or timestamps in a reducer also make the code unpredictable and harder to debug and test.
+> 그 외 리듀서에서 유니크한 ID나 타임스탬프와 같은 것들을 생성하는 것은 코드를 예측할 수 없게 하고 디버그, 테스트를 어렵게 합니다.
 
+이런 규칙들 때문에 리덕스 리듀서의 다른 개념들을 익히기 전에 아래의 중요한 개념들을 익히는 것이 중요합니다.
 
-Because of these rules, it's important that the following core concepts are fully understood before moving on to other specific techniques for organizing Redux reducers:
+### 리덕스 리듀서 기초
 
-#### Redux Reducer Basics
+**핵심 개념**:
 
-**Key concepts**:
+- 상태와 상태의 형태 관점으로 생각하기
+- 상태 조각에 의한 업데이트 책임 위임(*리듀서 구성*)
+- 고차 리듀서
+- 초기 상태 리듀서 정의
 
-- Thinking in terms of state and state shape
-- Delegating update responsibility by slice of state (*reducer composition*)
-- Higher order reducers
-- Defining reducer initial state
+**읽어볼 것들**
 
-**Reading list**:
+- [리덕스 도큐먼트: 리듀서](../../basics/Reducers.md)
+- [리덕스 도큐먼트: 보일러플레이트 줄이기](../ReducingBoilerplate.md)
+- [리덕스 도큐먼트: 실행취소 구현하기](../ImplementingUndoHistory.md)
+- [리덕스 도큐먼트: `combineReducers`](../../api/combineReducers.md)
+- [고차 리듀서의 힘](http://slides.com/omnidan/hor#/)
+- [스택 오버플로우: 초기 상태 저장과 `combineReducers`](http://stackoverflow.com/questions/33749759/read-stores-initial-state-in-redux-reducer)
+- [스택 오버플로우: 상태 키 이름과 `combineReducers`](http://stackoverflow.com/questions/35667775/state-in-redux-react-app-has-a-property-with-the-name-of-the-reducer)
 
-- [Redux Docs: Reducers](../../basics/Reducers.md)
-- [Redux Docs: Reducing Boilerplate](../ReducingBoilerplate.md)
-- [Redux Docs: Implementing Undo History](../ImplementingUndoHistory.md)
-- [Redux Docs: `combineReducers`](../../api/combineReducers.md)
-- [The Power of Higher-Order Reducers](http://slides.com/omnidan/hor#/)
-- [Stack Overflow: Store initial state and `combineReducers`](http://stackoverflow.com/questions/33749759/read-stores-initial-state-in-redux-reducer)
-- [Stack Overflow: State key names and `combineReducers`](http://stackoverflow.com/questions/35667775/state-in-redux-react-app-has-a-property-with-the-name-of-the-reducer)
+#### 순수함수와 사이드이펙트
 
+**핵심 개념**:
 
-#### Pure Functions and Side Effects
+- 사이드이펙트
+- 순수함수
+- 함수 결합의 관점으로 생각하기
 
-**Key Concepts**:
+**읽어볼 것들**:
 
-- Side effects
-- Pure functions
-- How to think in terms of combining functions
+- [함수형프로그래밍에 대한 작은 아이디어](http://jaysoo.ca/2016/01/13/functional-programming-little-ideas/)
+- [프로그래밍에서의 사이드이펙트](http://c2fo.io/c2fo/programming/2016/05/11/understanding-programmatic-side-effects/)
+- [자바스크립트에서의 함수형프로그래밍](https://youtu.be/e-5obm1G_FY)
+- [합리적으로 순수한 함수형프로그래밍 소개](https://www.sitepoint.com/an-introduction-to-reasonably-pure-functional-programming/)
 
-**Reading List**:
+#### 불변데이터 관리
 
-- [The Little Idea of Functional Programming](http://jaysoo.ca/2016/01/13/functional-programming-little-ideas/)
-- [Understanding Programmatic Side-Effects](http://c2fo.io/c2fo/programming/2016/05/11/understanding-programmatic-side-effects/)
-- [Learning Functional Programming in Javascript](https://youtu.be/e-5obm1G_FY)
-- [An Introduction to Reasonably Pure Functional Programming](https://www.sitepoint.com/an-introduction-to-reasonably-pure-functional-programming/)
+**핵심 개념**:
 
+- 가변성 vs 불변성
+- 객체와 배열을 쉽고 안전하게 업데이트하기
+- 가변적인 함수와 명령 피하기
 
+**읽어볼 것들**:
 
-#### Immutable Data Management
+- [리액트에서 불변성을 사용할 떄의 장단점](http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/)
+- [자바스크립트와 불변성](http://t4d.io/javascript-and-immutability/)
+- [ES6이상에서의 불변데이터](http://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/)
+- [스크래치의 불변데이터](https://ryanfunduk.com/articles/immutable-data-from-scratch/)
+- [리덕스 도큐먼트: 객체전개연산자 사용](../UsingObjectSpreadOperator.md)
 
-**Key Concepts**:
+#### 데이터 정규화
 
-- Mutability vs immutability
-- Immutably updating objects and arrays safely
-- Avoiding functions and statements that mutate state
+**핵심 개념**:
 
-**Reading List**:
+- 데이터베이스 구조와 구성
+- 관계/중첩 데이터를 분리 된 테이블로 쪼개기
+- 특정 항목에 대한 한가지 정의 저장하기
+- 아이디로 항목 호출하기
+- 조회 ID로 항목 ID가 입력된 개체를 사용하고 아이디의 배열로 순서 추적하기
+- 관계있는 항목 연결
 
-- [Pros and Cons of Using Immutability With React](http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/)
-- [Javascript and Immutability](http://t4d.io/javascript-and-immutability/)
-- [Immutable Data using ES6 and Beyond](http://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/)
-- [Immutable Data from Scratch](https://ryanfunduk.com/articles/immutable-data-from-scratch/)
-- [Redux Docs: Using the Object Spread Operator](../UsingObjectSpreadOperator.md)
+**읽어볼 것들**:
 
-
-#### Normalizing Data
-
-**Key Concepts**:
-
-- Database structure and organization
-- Splitting relational/nested data up into separate tables
-- Storing a single definition for a given item
-- Referring to items by IDs
-- Using objects keyed by item IDs as lookup tables, and arrays of IDs to track ordering
-- Associating items in relationships
-
-
-**Reading List**:
-
-- [Database Normalization in Simple English](http://www.essentialsql.com/get-ready-to-learn-sql-database-normalization-explained-in-simple-english/)
-- [Idiomatic Redux: Normalizing the State Shape](https://egghead.io/lessons/javascript-redux-normalizing-the-state-shape)
-- [Normalizr Documentation](https://github.com/paularmstrong/normalizr)
-- [Redux Without Profanity: Normalizr](https://tonyhb.gitbooks.io/redux-without-profanity/content/normalizer.html)
-- [Querying a Redux Store](https://medium.com/@adamrackis/querying-a-redux-store-37db8c7f3b0f)
-- [Wikipedia: Associative Entity](https://en.wikipedia.org/wiki/Associative_entity)
-- [Database Design: Many-to-Many](http://www.tomjewett.com/dbdesign/dbdesign.php?page=manymany.php)
-- [Avoiding Accidental Complexity When Structuring Your App State](https://medium.com/@talkol/avoiding-accidental-complexity-when-structuring-your-app-state-6e6d22ad5e2a)
+- [쉬운 데이터베이스 정규화](http://www.essentialsql.com/get-ready-to-learn-sql-database-normalization-explained-in-simple-english/)
+- [관용적인 리덕스: 상태모양 정규화](https://egghead.io/lessons/javascript-redux-normalizing-the-state-shape)
+- [Normalizr 도큐먼트](https://github.com/paularmstrong/normalizr)
+- [깔끔한 리덕스: Normalizr](https://tonyhb.gitbooks.io/redux-without-profanity/content/normalizer.html)
+- [리덕스 스토어 쿼리](https://medium.com/@adamrackis/querying-a-redux-store-37db8c7f3b0f)
+- [위키피디아: 연관 개체](https://en.wikipedia.org/wiki/Associative_entity)
+- [데이터베이스 설계: Many-to-Many](http://www.tomjewett.com/dbdesign/dbdesign.php?page=manymany.php)
+- [애플리케이션 상태의 우발적 복잡성 피하기](https://medium.com/@talkol/avoiding-accidental-complexity-when-structuring-your-app-state-6e6d22ad5e2a)
