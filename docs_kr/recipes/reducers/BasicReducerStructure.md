@@ -30,8 +30,6 @@ function counter(state, action) {
 
 이 간단한 함수가 모든 필요사항을 충족함에 주목하세요. (액션이) 존재하지 않으면 기본값을 반환하고, 스토어를 초기화합니다; 액션의 종류에 따라 어떤 업데이트가 필요한지를 결정하고 새로운 값을 반환합니다; 또한 아무 일도 안 해도 된다면 이전의 상태를 반환합니다.
 
-There are some simple tweaks that can be made to this reducer.  First, repeated `if`/`else` statements quickly grow tiresome, so it's very common to use `switch` statements instead.  Second, we can use ES6's default parameter values to handle the initial "no existing data" case.  With those changes, the reducer would look like:
-
 이 리듀서를 만들수 있는 간단한 방법이 있습니다. 첫째,`if`/`else` 는 빠르게 무거워지기 때문에 대신 `switch`문을 사용합니다. 둘째, "기존 데이터가 없는" 경우를 위해 ES6의 default parameter 문법을 사용합니다.
 
 ```js
@@ -81,23 +79,19 @@ function counter(state = 0, action) {
 
 스토어는 애플리케이션의 핵심을 나타내기 때문에 반드시 **상태는 UI 컴포넌트가 아닌 도메인데이터와 앱의 상태에 따라** 구성해야 합니다. 예를 들어 `state.leftPane.todoList.todos`의 형태는 좋지 못합니다. "todos"는 그저 UI의 한 부분이 아니라 전체 애플리케이션의 중심이기 때문입니다.
 
-There will *rarely* be a 1-to-1 correspondence between your UI tree and your state shape.  The exception to that might be if you are explicitly tracking various aspects of UI data in your Redux store as well, but even then the shape of the UI data and the shape of the domain data would likely be different.
-
-A typical app's state shape might look roughly like:
-
 **드물게** UI트리와 상태 트리가 일대일대응인 경우가 있을 수 있습니다. 이건 UI 데이터의 다양한 양상을 리덕스 스토어에서 추적하는 경우 일겁니다. 하지만 그때 또한 UI데이터와 도메인데이터의 모양은 다를겁니다.
 
 앱의 전형적인 상태의 형태는 대충 다음과 같을겁니다.
 
 ```js
 {
-    domainData1 : {},
-    domainData2 : {},
-    appState1 : {},
-    appState2 : {},
-    ui : {
-        uiState1 : {},
-        uiState2 : {},
-    }
+  domainData1 : {},
+  domainData2 : {},
+  appState1 : {},
+  appState2 : {},
+  ui : {
+    uiState1 : {},
+    uiState2 : {},
+  }
 }
 ```
