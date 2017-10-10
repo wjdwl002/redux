@@ -1,8 +1,8 @@
-# Reusing Reducer Logic
+# 리듀서 로직 재사용하기
 
-As an application grows, common patterns in reducer logic will start to emerge.  You may find several parts of your reducer logic doing the same kinds of work for different types of data, and want to reduce duplication by reusing the same common logic for each data type.  Or, you may want to have multiple "instances" of a certain type of data being handled in the store.  However, the global structure of a Redux store comes with some trade-offs: it makes it easy to track the overall state of an application, but can also make it harder to "target" actions that need to update a specific piece of state, particularly if you are using `combineReducers`.
+애플리케이션의 크기가 커지면 리듀서 로직의 공통된 패턴이 나타날 겁니다. 어쩌면 당신의 리듀서로직이 다른 종류만 다른 데이터에 대해 같은 일을 함을 발견하고 중복을 줄이고자 각 데이터 타입에 대해 같은 로직을 재사용하고 싶을 수 있습니다. 또는 특정 데이터에 대해 여러 "인스턴스"를 스토어에서 처리하고 싶을 수도 있습니다. 하지만 전역 리덕스 구조는 몇 가지 트레이드오프가 있습니다: 이는 애플리케이션의 전체적인 상태를 쉽게 추적할 수 있게 해줍니다. 하지만 특히 `combineReducers`를 사용하는 경우, 업데이트가 필요한 상태 조각을 "지정하는 작업"을 어렵게 합니다.
 
-As an example, let's say that we want to track multiple counters in our application, named A, B, and C.  We define our initial `counter` reducer, and we use `combineReducers` to set up our state:
+예제에서, 우리는 애플리케이션에서 A,B,C라는 여러 카운터를 추적하고 싶어합니다. 우리는 초기 `counter`를 정의하고 상태를 설정하기 위해 `combineReducers`를 사용합니다.
 
 ```js
 function counter(state = 0, action) {
@@ -23,14 +23,11 @@ const rootReducer = combineReducers({
 });
 ```
 
-Unfortunately, this setup has a problem.  Because `combineReducers` will call each slice reducer with the same action, dispatching `{type : 'INCREMENT'}` will actually cause _all three_ counter values to be incremented, not just one of them.  We need some way to wrap the `counter` logic so that we can ensure that only the counter we care about is updated.
+불행하게도, 이 설정은 문제가 있습니다.`combineReducers`는 같은 액션에 대해 각 슬라이스 리듀서를 호출합니다. `{type : 'INCREMENT'}`가 디스패치되면 하나가 아닌, 세 카운터 값을 증가시킬 겁니다. 우리가 원하는 카운터값만 증가시키기 위해 `counter`로직을 래핑하는 방법이 필요합니다.
 
+## 고차 리듀서로 동작 커스터마이징하기
 
-## Customizing Behavior with Higher-Order Reducers
-
-As defined in [Splitting Reducer Logic](SplittingReducerLogic.md), a _higher-order reducer_ is a function that takes a reducer function as an argument, and/or returns a new reducer function as a result.  It can also be viewed as a "reducer factory".  `combineReducers` is one example of a higher-order reducer.  We can use this pattern to create specialized versions of our own reducer functions, with each version only responding to specific actions.
-
-The two most common ways to specialize a reducer are to generate new action constants with a given prefix or suffix, or to attach additional info inside the action object.  Here's what those might look like:
+[리듀서 로직 분리하기](SplittingReducerLogic.md)에서 정의된 것처럼, 고차 리듀서는 리듀서 함수를 인자로 가지는 함수이며 결과로 새로운 리듀서함수를 리턴합니다. 이는 "리듀서 공장"으로 볼 수 있습니다. `combineReducers`는 고차 리듀서의 한 예제입니다. 이 패턴을 사용해서 특정 액션에 반응하는 자신만의 리듀서 함수의 특수 버전을 정의할 수 있습니다.
 
 ```js
 function createCounterWithNamedType(counterName = '') {
@@ -63,7 +60,7 @@ function createCounterWithNameData(counterName = '') {
 }
 ```
 
-We should now be able to use either of these to generate our specialized counter reducers, and then dispatch actions that will affect the portion of the state that we care about:
+우리는 이제 특수한 카운터 리듀서를 생성하기 위해 이 중 하나를 사용할 수 있어야 하며 우리가 필요한 상태의 부분에만 영향을 줄 수 있는 액션을 디스패치 할 수 있어야 합니다.
 
 ```js
 const rootReducer = combineReducers({
@@ -77,8 +74,7 @@ console.log(store.getState());
 // {counterA : 0, counterB : 1, counterC : 0}
 ```
 
-
-We could also vary the approach somewhat, and create a more generic higher-order reducer that accepts both a given reducer function and a name or identifier:
+또한 접근법을 약간 바꿔서 주어진 리듀서 혹은 이름 또는 구분자를 모두 받아들이는 고차 리듀서함수를 만듭니다.
 
 ```js
 function counter(state = 0, action) {
@@ -109,7 +105,7 @@ const rootReducer = combineReducers({
 });
 ```
 
-You could even go as far as to make a generic filtering higher-order reducer:
+일반 필터링이 적용된 고차 리듀서를 만들 수도 있습니다.
 
 ```js
 function createFilteredReducer(reducerFunction, reducerPredicate) {
@@ -121,14 +117,13 @@ function createFilteredReducer(reducerFunction, reducerPredicate) {
 }
 
 const rootReducer = combineReducers({
-    // check for suffixed strings
+    // 접미사 체크
     counterA : createFilteredReducer(counter, action => action.type.endsWith('_A')),
-    // check for extra data in the action
+    // 액션의 추가데이터 체크
     counterB : createFilteredReducer(counter, action => action.name === 'B'),
-    // respond to all 'INCREMENT' actions, but never 'DECREMENT'
+    // 모든 'INCREMENT'액션에 반응하지만 'DECREMENT'는 아닙니다.
     counterC : createFilteredReducer(counter, action => action.type === 'INCREMENT')
 };
 ```
 
-
-These basic patterns allow you to do things like having multiple instances of a smart connected component within the UI, or reuse common logic for generic capabilities such as pagination or sorting.
+이 기본패턴은 UI에서 스마트하게 연결된 인스턴스를 여러 개 만들거나, 페이지네이션이나 정렬 같은 기능에 일반적인 로직을 재사용할 수 있습니다.

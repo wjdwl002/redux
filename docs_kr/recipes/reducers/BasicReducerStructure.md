@@ -1,19 +1,19 @@
-# Basic Reducer Structure and State Shape
+# 기본 리듀서 구조와 상태의 형태
 
-## Basic Reducer Structure
-First and foremost, it's important to understand that your entire application really only has **one single reducer function**: the function that you've passed into `createStore` as the first argument.  That one single reducer function ultimately needs to do several things:
+## 기본 리듀서 구조
+우선 우리의 애플리케이션의 리듀서는 사실 **하나의 함수**라는 것을 이해하는 것이 중요합니다. `createStore`로 전달한 첫 번째 매개변수입니다. 이 하나의 리듀서는 궁극적으로 몇 가지 일을 합니다.
 
-- The first time the reducer is called, the `state` value will be `undefined`.  The reducer needs to handle this case by supplying a default state value before handling the incoming action.
-- It needs to look at the previous state and the dispatched action, and determine what kind of work needs to be done
-- Assuming actual changes need to occur, it needs to create new objects and arrays with the updated data and return those
-- If no changes are needed, it should return the existing state as-is. 
+- 리듀서가 처음 호출될 때, `state`값은 `undefined`가 됩니다. 초깃값을 지정해서 액션이 발생하기 전에 이 케이스에 대해 처리해줘야 합니다.
+- 이전의 상태와 전달된 액션을 보고 어떤 일을 해야 하는지를 결정해야 합니다.
+- 실제로 변경이 일어나면 업데이트된 데이터를 통해 만들어져야 할 새로운 객체와 배열을 만들어 반환합니다.
+- 변경이 필요하지 않다면 기존 상태를 그대로 반환합니다.
 
-The simplest possible approach to writing reducer logic is to put everything into a single function declaration, like this:
+가장 쉬운 접근은 아래와 같이 모든 리듀서 로직을 한가지 함수에 전부 넣는 것입니다.
 
 ```js
 function counter(state, action) {
   if (typeof state === 'undefined') {
-    state = 0; // If state is undefined, initialize it with a default value
+    state = 0; // 상태가 undefined이면 기본값으로 초기화합니다.
   }
 
   if (action.type === 'INCREMENT') {
@@ -23,14 +23,14 @@ function counter(state, action) {
     return state - 1;
   } 
   else {
-    return state; // In case an action is passed in we don't understand
+    return state; // 정해놓지 않은 액션인 경우
   }
 }
 ```
 
-Notice that this simple function fulfills all the basic requirements.  It returns a default value if none exists, initializing the store; it determines what sort of update needs to be done based on the type of the action, and returns new values; and it returns the previous state if no work needs to be done.  
+이 간단한 함수가 모든 필요사항을 충족함에 주목하세요. (액션이) 존재하지 않으면 기본값을 반환하고, 스토어를 초기화합니다; 액션의 종류에 따라 어떤 업데이트가 필요한지를 결정하고 새로운 값을 반환합니다; 또한 아무 일도 안 해도 된다면 이전의 상태를 반환합니다.
 
-There are some simple tweaks that can be made to this reducer.  First, repeated `if`/`else` statements quickly grow tiresome, so it's very common to use `switch` statements instead.  Second, we can use ES6's default parameter values to handle the initial "no existing data" case.  With those changes, the reducer would look like:
+이 리듀서를 만들수 있는 간단한 방법이 있습니다. 첫째,`if`/`else` 는 빠르게 무거워지기 때문에 대신 `switch`문을 사용합니다. 둘째, "기존 데이터가 없는" 경우를 위해 ES6의 default parameter 문법을 사용합니다.
 
 ```js
 function counter(state = 0, action) {
@@ -45,13 +45,13 @@ function counter(state = 0, action) {
 }
 ```
 
-This is the basic structure that a typical Redux reducer function uses.
+이것이 리덕스 리듀서함수의 전형적인 기본 구조입니다.
 
-## Basic State Shape
+## 기본적인 상태의 형태
 
-Redux encourages you to think about your application in terms of the data you need to manage.  The data at any given point in time is the "*state*" of your application, and the structure and organization of that state is typically referred to as its "*shape*".  The shape of your state plays a major role in how you structure your reducer logic.
+리덕스는 관리해야 할 데이터라는 측면에서 애플리케이션을 생각할 것을 권장합니다. 특정 시점의 데이터는 애플리케이션의 "*상태*"라고 하고 이 상태의 구조와 구성은 보통 "*형태*" 라고 합니다. 상태의 형태는 리듀서의 로직을 구성하는 데 중요한 역할을 합니다.
 
-A Redux state usually has a plain Javascript object as the top of the state tree. (It is certainly possible to have another type of data instead, such as a single number, an array, or a specialized data structure, but most libraries assume that the top-level value is a plain object.)  The most common way to organize data within that top-level object is to further divide data into sub-trees, where each top-level key represents some "domain" or "slice" of related data.  For example, a basic Todo app's state might look like: 
+리덕스 상태는 보통 상태 트리의 제일 꼭대기에 일반적인 자바스크립트 객체를 가지고 있습니다. (숫자나 배열 혹은 다른 데이터구조를 가지는 것도 분명 가능하지만 라이브러리 대부분은 맨 꼭대기의 값이 객체라고 가정합니다) 꼭대기 객체의 데이터를 구성하는 일반적인 방법은 최상위의 키를 연관된 "도메인"이나 "조각"을 나타내는 서브 트리로 나누는 것입니다. 예를 들어 기본 Todo 앱의 상태는 다음과 같을 것입니다:
 
 ```js
 {
@@ -69,30 +69,29 @@ A Redux state usually has a plain Javascript object as the top of the state tree
 }
 ```
 
-In this example, `todos` and `visibilityFilter` are both top-level keys in the state, and each represents a "slice" of data for some particular concept.
+이 예제에서 `todos`와 `visibilityFilter`는 모두 상태의 최상위 키이며 각각 특정 개념에 대한 상태의 조각입니다.
 
-Most applications deal with multiple types of data, which can be broadly divided into three categories:
+보통 애플리케이션에서는 여러 데이터종류를 가지며, 크게 세가지 범주로 나뉩니다.
 
-- _Domain data_: data that the application needs to show, use, or modify (such as "all of the Todos retrieved from the server")
-- _App state_: data that is specific to the application's behavior (such as "Todo #5 is currently selected", or "there is a request in progress to fetch Todos")
-- _UI state_: data that represents how the UI is currently displayed (such as "The EditTodo modal dialog is currently open")
+- _Domain data_: 애플리케이션이 보여주거나 사용, 수정할 데이터 (서버에서 가져온 모든 Todos와 같은 것들)
+- _App state_: 애플리케이션의 동작을 위한 특정 데이터 ("현재 Todo #5가 선택됨." 혹은 "Todos를 가져오는 요청이 있습니다."와 같은 것들)
+- _UI_state_: 현재 UI가 어떻게 보일 것인가에 대한 데이터 ("EditTodo Modal 상자가 현재 열려있음"과 같은 것들)
 
+스토어는 애플리케이션의 핵심을 나타내기 때문에 반드시 **상태는 UI 컴포넌트가 아닌 도메인데이터와 앱의 상태에 따라** 구성해야 합니다. 예를 들어 `state.leftPane.todoList.todos`의 형태는 좋지 못합니다. "todos"는 그저 UI의 한 부분이 아니라 전체 애플리케이션의 중심이기 때문입니다.
 
-Because the store represents the core of your application, you should **define your state shape in terms of your domain data and app state, not your UI component tree**.  As an example, a shape of `state.leftPane.todoList.todos` would be a bad idea, because the idea of "todos" is central to the whole application, not just a single part of the UI.  The `todos` slice should be at the top of the state tree instead.
+**드물게** UI트리와 상태 트리가 일대일대응인 경우가 있을 수 있습니다. 이건 UI 데이터의 다양한 양상을 리덕스 스토어에서 추적하는 경우 일겁니다. 하지만 그때 또한 UI데이터와 도메인데이터의 모양은 다를겁니다.
 
-There will *rarely* be a 1-to-1 correspondence between your UI tree and your state shape.  The exception to that might be if you are explicitly tracking various aspects of UI data in your Redux store as well, but even then the shape of the UI data and the shape of the domain data would likely be different.
-
-A typical app's state shape might look roughly like:
+앱의 전형적인 상태의 형태는 대충 다음과 같을겁니다.
 
 ```js
 {
-    domainData1 : {},
-    domainData2 : {},
-    appState1 : {},
-    appState2 : {},
-    ui : {
-        uiState1 : {},
-        uiState2 : {},
-    }
+  domainData1 : {},
+  domainData2 : {},
+  appState1 : {},
+  appState2 : {},
+  ui : {
+    uiState1 : {},
+    uiState2 : {},
+  }
 }
 ```

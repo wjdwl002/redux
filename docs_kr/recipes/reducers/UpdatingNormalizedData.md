@@ -1,12 +1,12 @@
-# Managing Normalized Data
+# 정규화된 데이터 업데이트하기
 
-As mentioned in [Normalizing State Shape](./NormalizingStateShape.md), the Normalizr library is frequently used to transform nested response data into a normalized shape suitable for integration into the store.  However, that doesn't address the issue of executing further updates to that normalized data as it's being used elsewhere in the application.  There are a variety of different approaches that you can use, based on your own preference.  We'll use the example of adding a new Comment to a Post.
+[상태 정규화하기](./NormalizingStateShape.md)에서 업급한 것처럼 Normalizr 라이브러리는 중첩된 데이터를 스토어에 통합하기에 적합한 형태로 변환하는데 자주 사용됩니다. 그러나 애플리케이션 다른 곳에서 사용되고 있는 정규화 된 데이터에 대한 업데이트를 실행하는것에 대한 문제는 해결되지 않습니다. 이때 선호에 따라 다양한 접근이 가능합니다. 우리는 포스트에 새 댓글을 추가하는 예를 사용합니다.
 
-## Standard Approaches
+## 일반적인 접근
 
-### Simple Merging
+### 간단한 병합
 
-One approach is to merge the contents of the action in to the existing state.  In this case, we need to do a deep recursive merge, not just a shallow copy.  The Lodash `merge` function can handle this for us:
+한 가지 방법은 기존 상태의 액션의 컨텐츠에 병합하는 겁니다. 이 경우에 우리는 얕은 복사가 아니라 깊은 재귀병합을 해야 합니다. Lodash의 `merge`함수는 이를 처리할 수 있습니다:
 
 ```js
 import merge from "lodash/merge";
@@ -23,17 +23,17 @@ function commentsById(state = {}, action) {
 }
 ```
 
-This requires the least amount of work on the reducer side, but does require that the action creator potentially do a fair amount of work to organize the data into the correct shape before the action is dispatched.  It also doesn't handle trying to delete an item.
+이는 리듀서의 측면에서 최소의 작업량을 필요로합니다. 하지만 액션생성자는 액션을 디스패치하기 전에 적당한 형태로 구성하기 위해 두배의 작업을 필요로 합니다. 또한, 항목삭제에 대해서도 처리하지 않습니다.
 
+### 슬라이스 리듀서 구성
 
-### Slice Reducer Composition
-
-If we have a nested tree of slice reducers, each slice reducer will need to know how to respond to this action appropriately.  We will need to include all the relevant data in the action.  We need to update the correct Post object with the comment's ID, create a new Comment object using that ID as a key, and include the Comment's ID in the list of all Comment IDs.  Here's how the pieces for this might fit together:
+만약 우리에게 슬라이스 리듀서가 중첩된 트리가 있다면 각 슬라이스 리듀서는 액션에 적절히 응답하는 법을 알고 있어야 합니다. 댓글 ID와 적절한 포스트 객체를 업데이트하고 해당 키를 ID로 하는 새로운 댓글 객체를 만들어야합니다. 또한 전체 댓글 ID 리스트에 댓글의 ID를 포함시켜야 합니다.
+여기선 이 조각들이 어떻게 맞을지를 보여줍니다.
 
 ```js
 // actions.js
 function addComment(postId, commentText) {
-    // Generate a unique ID for this comment
+    // 유니크한 댓글 ID를 생성합니다.
     const commentId = generateId("comment");
     
     return {
@@ -52,12 +52,12 @@ function addComment(state, action) {
     const {payload} = action;
     const {postId, commentId} = payload;
     
-    // Look up the correct post, to simplify the rest of the code
+    // 남은 코드를 단순화하기 위해 적절한 포스트를 찾습니다.
     const post = state[postId];
     
     return {
         ...state,
-        // Update our Post object with a new "comments" array
+        // 포스트 객체를 새로운 "댓글" 배열로 업데이트합니다.
         [postId] : {
              ...post,
              comments : post.comments.concat(commentId)             
@@ -73,7 +73,7 @@ function postsById(state = {}, action) {
 }
 
 function allPosts(state = [], action) {
-    // omitted - no work to be done for this example
+    // 생략 - 이 예제에서 아무런 일도 하지않습니다.
 }
 
 const postsReducer = combineReducers({
@@ -87,10 +87,10 @@ function addCommentEntry(state, action) {
     const {payload} = action;
     const {commentId, commentText} = payload;
     
-    // Create our new Comment object
+    // 새 댓글 객체 생성
     const comment = {id : commentId, text : commentText};
     
-    // Insert the new Comment object into the updated lookup table
+    // 새 댓글 객체를 업데이트된 룩업테이블에 삽입
     return {
         ...state,
         [commentId] : comment
@@ -108,7 +108,7 @@ function commentsById(state = {}, action) {
 function addCommentId(state, action) {
     const {payload} = action;
     const {commentId} = payload;
-    // Just append the new Comment's ID to the list of all IDs
+    // 새 댓글 ID를 전체 ID 리스트에 추가
     return state.concat(commentId);
 }
 
@@ -125,13 +125,14 @@ const commentsReducer = combineReducers({
 });
 ```
 
-The example is a bit long, because it's showing how all the different slice reducers and case reducers fit together.  Note  the delegation involved here.  The `postsById` slice reducer delegates the work for this case to `addComment`, which inserts the new Comment's ID into the correct Post item.  Meanwhile, both the `commentsById` and `allComments` slice reducers have their own case reducers, which update the Comments lookup table and list of all Comment IDs appropriately.
+이 예제는 모든 슬라이스 리듀서와 케이스 리듀서를 어떻게 맞추고 있는지 보여주고 있기 때문에 꽤 깁니다. 여기에서 위임에 유의하세요. `postsById` 슬라이스 리듀서는 새로운 댓글 ID를 적절한 포스트에 삽입하는 작업을 `addComment`에 위임합니다. 반면 `commentsById`와 `allComments` 슬라이스 리듀서는 댓글 룩업테이블과 전체 댓글 ID를 적절히 업데이트하는 자신의 케이스 리듀서를 가지고 있습니다.
 
+## 다른 접근
 
-## Other Approaches
+### 작업 기반의 업데이트
 
-### Task-Based Updates
-Since reducers are just functions, there's an infinite number of ways to split up this logic.  While using slice reducers is obviously the most common, it's also possible to organize behavior in a more task-oriented structure.  Because this will often involve more nested updates, you may want to use an immutable update utility library like [dot-prop-immutable](https://github.com/debitoor/dot-prop-immutable) or [object-path-immutable](https://github.com/mariocasciaro/object-path-immutable) to simplify the update statements.  Here's an example of what that might look like:
+리듀서는 단순한 함수이기 때문에 로직을 나누는 수많은 방법이 있습니다. 슬라이스 리듀서의 사용은 분명 일반적이긴 하지만 보다 작업 지향적인 구조로 구성할 수 있습니다. 종종 많은 중첩된 업데이트를 포함할 수 있기 때문에 업데이트 구문을 단순화하기 위해 [dot-prop-immutable](https://github.com/debitoor/dot-prop-immutable) 나 [object-path-immutable](https://github.com/mariocasciaro/object-path-immutable)와 같은 불변 업데이트 유틸리티를 사용하길 원할 겁니다. 아마 다음과 같습니다.
+
 
 ```js
 import posts from "./postsReducer";
@@ -150,7 +151,7 @@ function addComment(state, action) {
     const {payload} = action;
     const {postId, commentId, commentText} = payload;
     
-    // State here is the entire combined state
+    // 이곳의 상태는 전체가 결합된 상태입니다.
     const updatedWithPostState = dotProp.set(
         state, 
         `posts.byId.${postId}.comments`, 
@@ -182,13 +183,13 @@ const rootReducer = reduceReducers(
 );
 ```
 
-This approach makes it very clear what's happening for the `"ADD_COMMENTS"` case, but it does require nested updating logic, and some specific knowledge of the state tree shape.  Depending on how you want to compose your reducer logic, this may or may not be desired.
+이 접근은 '"ADD_COMMENTS"'의 경우에 어떤 일이 일어나는지 매우 명확하게 만듭니다. 하지만 이는 중첩된 업데이트 로직과 특정 상태 트리의 모양에 대한 지식을 필요로합니다. 리듀서 로직을 어떻게 구성하길 원하는지에 따라 원하는 결과일 수도, 아닐 수도 있습니다.
 
-### Redux-ORM
+### 리덕스-ORM
 
-The [Redux-ORM](https://github.com/tommikaikkonen/redux-orm) library provides a very useful abstraction layer for managing normalized data in a Redux store.  It allows you to declare Model classes and define relations between them.  It can then generate the empty "tables" for your data types, act as a specialized selector tool for looking up the data, and perform immutable updates on that data.
+[리덕스-ORM](https://github.com/tommikaikkonen/redux-orm)라이브러리는 리덕스 스토어에서 정규화된 데이터를 관리하기 위해 매우 유용한 추상 레이어를 제공합니다. 이는 모델 클래스를 선언하고 그들의 관계를 정의할 수 있게 합니다. 데이터 타입에 빈 "테이블"을 생성하고 데이터를 제공하는 특수한 선택 도구의 역할로 불변 데이터의 업데이트를 수행합니다.
 
-There's a couple ways Redux-ORM can be used to perform updates.  First, the Redux-ORM docs suggest defining reducer functions on each Model subclass, then including the auto-generated combined reducer function into your store:
+리덕스-ORM를 사용해서 업데이트를 수행하는 몇 가지 방법이 있습니다. 첫번째로 리덕스-ORM 도큐먼트에서는 각 모델의 서브 클래스에서 리듀서 함수를 정의하면 스토어에 리듀서가 자동 생성되어 결합합니다.
 
 ```js
 // models.js
@@ -197,8 +198,8 @@ import {Model, many, Schema} from "redux-orm";
 export class Post extends Model {
   static get fields() {
     return {
-      // Define a many-sided relation - one Post can have many Comments, 
-      // at a field named "comments"
+      // many-sided 관계정의 - 하나의 포스트가 여러 댓글을 가질 수 있음.
+      // "comments"라는 필드로
       comments : many("Comment") 
     };
   }
@@ -206,21 +207,20 @@ export class Post extends Model {
   static reducer(state, action, Post) {
     switch(action.type) {
       case "CREATE_POST" : {
-        // Queue up the creation of a Post instance
+        // 포스트 인스턴스 생성 대기
         Post.create(action.payload);
         break;
       }
       case "ADD_COMMENT" : {
         const {payload} = action;
         const {postId, commentId} = payload;
-        // Queue up the addition of a relation between this Comment ID 
-        // and this Post instance
+        // 해당 포스트 인스턴스와 댓글 ID사이의 관계 추가를 위한 대기
         Post.withId(postId).comments.add(commentId);
         break;
       }
     }
     
-    // Redux-ORM will automatically apply queued updates after this returns
+    // 리덕스-ORM은 반환 된 후 자동으로 큐를 업데이트합니다.
   }
 }
 Post.modelName = "Post";
@@ -236,18 +236,18 @@ export class Comment extends Model {
         const {payload} = action;
         const {commentId, commentText} = payload;
         
-        // Queue up the creation of a Comment instance
+        // 댓글 인스턴스 생성 대기
         Comment.create({id : commentId, text : commentText});
         break;
       }   
     }
     
-    // Redux-ORM will automatically apply queued updates after this returns
+    // 리덕스-ORM은 반환 된 후 자동으로 큐를 업데이트합니다.
   }
 }
 Comment.modelName = "Comment";
 
-// Create a Schema instance, and hook up the Post and Comment models
+// 스키마 인스턴스 생성, 포스트와 댓글 연결
 export const schema = new Schema();
 schema.register(Post, Comment);
 
@@ -257,13 +257,12 @@ import { createStore, combineReducers } from 'redux'
 import {schema} from "./models";
 
 const rootReducer = combineReducers({
-  // Insert the auto-generated Redux-ORM reducer.  This will
-  // initialize our model "tables", and hook up the reducer
-  // logic we defined on each Model subclass
+  // 자동 생성된 리덕스-ORM 리듀서를 삽입합니다. 이는 "테이블" 모델을 
+  // 초기화하고 각 모델의 서브클래스에 정의된 리듀서로직과 연결합니다.
   entities : schema.reducer()
 });
 
-// Dispatch an action to create a Post instance
+// 포스트 인스턴스를 만들기 위한 액션을 디스패치합니다.
 store.dispatch({
   type : "CREATE_POST",
   payload : {
@@ -273,6 +272,7 @@ store.dispatch({
 });
 
 // Dispatch an action to create a Comment instance as a child of that Post
+// 해당 포스트의 자식으로 댓글 인스턴스를 만들기 위한 액션을 디스패치합니다.
 store.dispatch({
   type : "ADD_COMMENT",
   payload : {
@@ -283,15 +283,15 @@ store.dispatch({
 });
 ```
 
-The Redux-ORM library maintains an internal queue of updates to be applied.  Those updates are then applied immutably, simplifying the update process.
+리덕스-ORM 라이브러리는 적용할 업데이트의 내부 큐를 유지합니다. 이후 업데이트는 불변하게 적용되므로 업데이트 프로세스가 단순해집니다.
 
-Another variation on this is to use Redux-ORM as an abstraction layer within a single case reducer:
+리덕스-ORM을 사용하는 또 다른 방법은 한 케이스의 리듀서내에서 추상 레이어로 사용하는 겁니다.
 
 ```js
 import {schema} from "./models";
 
-// Assume this case reducer is being used in our "entities" slice reducer, 
-// and we do not have reducers defined on our Redux-ORM Model subclasses
+// 여기서 리듀서가 "entities" 슬라이스 리듀스 내에서 사용되고 있다고 가정하고
+// 리덕스-ORM 모델의 서브클래스에 리듀서가 정의되어있지 않습니다.
 function addComment(entitiesState, action) {
     const session = schema.from(entitiesState);
     const {Post, Comment} = session;
@@ -307,4 +307,4 @@ function addComment(entitiesState, action) {
 }
 ```
 
-Overall, Redux-ORM provides a very useful set of abstractions for defining relations between data types, creating the "tables" in our state, retrieving and denormalizing relational data, and applying immutable updates to relational data.
+전반적으로, 리덕스-ORM은 데이터 타입 간의 관계를 정의하고, 상태에서 "테이블"을 생성하고, 관계형 데이터를 검색 및 비정규화하고, 관계형 데이터에 불변성을 적용하는 업데이트를 하는 매우 유용한 추상화 세트를 제공합니다.

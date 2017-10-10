@@ -1,12 +1,11 @@
-# Refactoring Reducer Logic Using Functional Decomposition and Reducer Composition
+# 기능적 분해와 리듀서 구성을 통해 리듀서 리팩토링하기
 
-It may be helpful to see examples of what the different types of sub-reducer functions look like and how they fit together.  Let's look at a demonstration of how a large single reducer function can be refactored into a composition of several smaller functions.
+서브리듀서 함수가 어떻게 생겼는지, 어떻게 같이 동작시키는지에 대한 여러유형의 예제를 보는 것이 도움이 될 수 있습니다. 거대한 하나의 리듀서 함수가 여러 개의 작은 함수로 나뉠 수 있음을 보도록 합시다.
 
-> **Note**: this example is deliberately written in a verbose style in order to illustrate the concepts and the process of refactoring, rather than perfectly concise code.
+> **주의**: 이 예제는 리팩토링에 대해 설명하기 위해 일부로 완벽히 간결한 코드가 아닌, 장황한 코드로 작성되었습니다.
 
-
-#### Initial Reducer
-Let's say that our initial reducer looks like this:
+### 초기 리듀서
+아래와 같은 초기 리듀서에 대해 봅시다.
 
 ```js
 const initialState = {
@@ -63,28 +62,27 @@ function appReducer(state = initialState, action) {
 
 ```
 
-That function is fairly short, but already becoming overly complex.  We're dealing with two different areas of concern (filtering vs managing our list of todos), the nesting is making the update logic harder to read, and it's not exactly clear what's going on everywhere.
+이 함수는 짧아 보여도 이미 충분히 복잡합니다. 우리는 생길 수 있는 두 가지 종류의 문제(필터링 vs todos의 목록을 관리)를 다룹니다. 중첩은 로직을 읽기 어렵게 만들고, 무슨 일이 일어나는지 명확히 알 수 없게 합니다.
 
+#### 유틸리티 함수 추출하기
 
-#### Extracting Utility Functions
-
-A good first step might be to break out a utility function to return a new object with updated fields.  There's also a repeated pattern with trying to update a specific item in an array that we could extract to a function: 
+업데이트된 필드를 포함된 새로운 객체를 반환하는 함수를 만드는 것이 좋은 첫걸음이 될 수 있습니다. 배열의 특정 항목을 업데이트하려면 추출 가능한 반복된 패턴이 나타냅니다.
 
 ```js
 function updateObject(oldObject, newValues) {
-    // Encapsulate the idea of passing a new object as the first parameter
-    // to Object.assign to ensure we correctly copy data instead of mutating
+    // 새로운 객체를 첫번째 매개변수로 전달한다는 아이디어를 캡슐화
+    // 데이터를 변경하는 대신에 데이터를 확실히 복사하기 위해 Object.assign을 사용합니다.
     return Object.assign({}, oldObject, newValues);
 }
 
 function updateItemInArray(array, itemId, updateItemCallback) {
     const updatedItems = array.map(item => {
         if(item.id !== itemId) {
-            // Since we only want to update one item, preserve all others as they are now
+            // 한가지 항목만 업데이트하기 때문에 다른 항목은 유지합니다.
             return item;
         }
         
-        // Use the provided callback to create an updated item
+        // 업데이트 된 항목을 만들기 위해 주어진 콜백을 사용합니다.
         const updatedItem = updateItemCallback(item);
         return updatedItem;
     });
@@ -125,14 +123,13 @@ function appReducer(state = initialState, action) {
 }
 ```
 
-That reduced the duplication and made things a bit easier to read.
+중복을 줄이고 읽기가 더 쉬워졌습니다.
 
-
-#### Extracting Case Reducers
-Next, we can split each specific case into its own function:
+#### 케이스 리듀서 추출
+다음으로, 각 케이스를 자체함수로 나눌 수 있습니다.
 
 ```js
-// Omitted
+// 생략
 function updateObject(oldObject, newValues) {}
 function updateItemInArray(array, itemId, updateItemCallback) {}
 
@@ -178,22 +175,21 @@ function appReducer(state = initialState, action) {
 }
 ```
 
-Now it's _very_ clear what's happening in each case.  We can also start to see some patterns emerging.  
+이제 무슨 일이 일어나는지 _매우_ 명확합니다. 또한, 우리는 어떤 패턴이 나타나기 시작함을 볼 수 있습니다.
 
+#### 데이터관리를 도메인으로 분리하기
 
-#### Separating Data Handling by Domain
-
-Our app reducer is still aware of all the different cases for our application.  Let's try splitting things up so that the filter logic and the todo logic are separated:
+우리의 리듀서는 여전히 애플리케이션의 모든 다른 케이스를 알고 있습니다. 필터로직과 todo로직이 분리되도록 항목을 분리해 봅시다.
 
 ```js
-// Omitted
+// 생략
 function updateObject(oldObject, newValues) {}
 function updateItemInArray(array, itemId, updateItemCallback) {}
 
 
 
 function setVisibilityFilter(visibilityState, action) {
-    // Technically, we don't even care about the previous state
+    // 기술적으로, 우리는 이전의 상태에 대해서도 신경쓰지 않습니다.
     return action.filter;
 }
 
@@ -248,14 +244,14 @@ function appReducer(state = initialState, action) {
 }
 ```
 
-Notice that because the two "slice of state" reducers are now getting only their own part of the whole state as arguments, they no longer need to return complex nested state objects, and are now simpler as a result.
+두가지 "상태조각" 리듀서가 전체 상태에 대해 자신과 관련된 부분만을 매개변수로 취하고 있기 때문에 더이상 복잡게 중첩된 상태객체를 반환하지 않아도 되고, 결과적으로 더 간단해졌습니다.
 
-#### Reducing Boilerplate
+#### 보일러플레이트 줄이기
 
-We're almost done.  Since many people don't like switch statements, it's very common to use a function that creates a lookup table of action types to case functions.  We'll use the `createReducer` function described in [Reducing Boilerplate](../ReducingBoilerplate.md#generating-reducers):
+거의 다 왔습니다. 많은사람들이 switch문을 좋아하지 않기 때문에 케이스 함수를 위한 액션타입의 룩업테이블을 만드는 함수를 사용하는 것이 일반적입니다. 우리는 [보일러플레이트 줄이기](../ReducingBoilerplate.md#generating-reducers) 에서 설명한 `createReducer`를 사용할 겁니다:
 
 ```js
-// Omitted
+// 생략
 function updateObject(oldObject, newValues) {}
 function updateItemInArray(array, itemId, updateItemCallback) {}
 
@@ -270,14 +266,14 @@ function createReducer(initialState, handlers) {
 }
 
 
-// Omitted
+// 생략
 function setVisibilityFilter(visibilityState, action) {}
 
 const visibilityReducer = createReducer('SHOW_ALL', {
     'SET_VISIBILITY_FILTER' : setVisibilityFilter
 });
 
-// Omitted
+// 생략
 function addTodo(todosState, action) {}
 function toggleTodo(todosState, action) {}
 function editTodo(todosState, action) {}
@@ -296,27 +292,27 @@ function appReducer(state = initialState, action) {
 }
 ```
 
-#### Combining Reducers by Slice
+#### 슬라이스로 리듀서 결합하기
 
-As our last step, we can now use Redux's built-in `combineReducers` utility to handle the "slice-of-state" logic for our top-level app reducer.  Here's the final result:
+마지막에 한 것처럼, 우리는 이제 최상위 앱 리듀서에 대한 "상태의 조각"의 로직을 처리하기 위해 리덕스에 빌트인 된 `combineReducers` 유틸리티를 사용할 수 있습니다. 이것이 최종결과입니다.
 
 ```js
-// Reusable utility functions
+// 재사용 가능한 유틸리티 함수
 
 function updateObject(oldObject, newValues) {
-    // Encapsulate the idea of passing a new object as the first parameter
-    // to Object.assign to ensure we correctly copy data instead of mutating
+    // 새로운 객체를 첫번째 매개변수로 전달한다는 아이디어를 캡슐화
+    // 데이터를 변경하는 대신에 데이터를 확실히 복사하기 위해 Object.assign을 사용합니다.
     return Object.assign({}, oldObject, newValues);
 }
 
 function updateItemInArray(array, itemId, updateItemCallback) {
     const updatedItems = array.map(item => {
         if(item.id !== itemId) {
-            // Since we only want to update one item, preserve all others as they are now
+            // 한가지 항목만 업데이트하기 때문에 다른 항목은 유지합니다.
             return item;
         }
         
-        // Use the provided callback to create an updated item
+        // 업데이트 된 항목을 만들기 위해 주어진 콜백을 사용합니다.
         const updatedItem = updateItemCallback(item);
         return updatedItem;
     });
@@ -335,18 +331,18 @@ function createReducer(initialState, handlers) {
 }
 
 
-// Handler for a specific case ("case reducer")
+// 특정 케이스의 핸들러 ("케이스 리듀서")
 function setVisibilityFilter(visibilityState, action) {
-    // Technically, we don't even care about the previous state
+    // 기술적으로, 우리는 이전의 상태에 대해서도 신경쓰지 않습니다.
     return action.filter;
 }
 
-// Handler for an entire slice of state ("slice reducer")
+// 전체 상태의 조각에 대한 핸들러("슬라이스 리듀서")
 const visibilityReducer = createReducer('SHOW_ALL', {
     'SET_VISIBILITY_FILTER' : setVisibilityFilter
 });
 
-// Case reducer
+// 케이스 리듀서
 function addTodo(todosState, action) {
     const newTodos = todosState.concat({
         id: action.id,
@@ -357,7 +353,7 @@ function addTodo(todosState, action) {
     return newTodos;
 }
 
-// Case reducer
+// 케이스 리듀서
 function toggleTodo(todosState, action) {
     const newTodos = updateItemInArray(todosState, action.id, todo => {
         return updateObject(todo, {completed : !todo.completed});
@@ -366,7 +362,7 @@ function toggleTodo(todosState, action) {
     return newTodos;
 }
 
-// Case reducer
+// 케이스 리듀서
 function editTodo(todosState, action) {
     const newTodos = updateItemInArray(todosState, action.id, todo => {
         return updateObject(todo, {text : action.text});
@@ -375,20 +371,20 @@ function editTodo(todosState, action) {
     return newTodos;
 }
 
-// Slice reducer
+// 슬라이스 리듀서
 const todosReducer = createReducer([], {
     'ADD_TODO' : addTodo,
     'TOGGLE_TODO' : toggleTodo,
     'EDIT_TODO' : editTodo
 });
 
-// "Root reducer"
+// "루트 리듀서"
 const appReducer = combineReducers({
     visibilityFilter : visibilityReducer,
     todos : todosReducer
 });
 ```
 
-We now have examples of several kinds of split-up reducer functions:  helper utilities like `updateObject` and `createReducer`, handlers for specific cases like `setVisibilityFilter` and `addTodo`, and slice-of-state handlers like `visibilityReducer` and `todosReducer`.  We also can see that `appReducer` is an example of a "root reducer".
+우리는 리듀서를 나누는 몇 가지 함수를 살펴봤습니다: `updateObject`, `createReducer`같은 헬퍼 유틸리티, `setVisibilityFilter`, `addTodo`같은 케이스에 대한 핸들러, `visibilityReducer`, `todosReducer`같은 부분상태 핸들러. 또한 `appReducer`는 "루트 리듀서"의 예입니다.
 
-Although the final result in this example is noticeably longer than the original version, this is primarily due to the extraction of the utility functions, the addition of comments, and some deliberate verbosity for the sake of clarity, such as separate return statements.  Looking at each function individually, the amount of responsibility is now smaller, and the intent is hopefully clearer.  Also, in a real application, these functions would probably then be split into separate files such as `reducerUtilities.js`, `visibilityReducer.js`, `todosReducer.js`, and `rootReducer.js`.
+이 예제에서의 결과는 처음보다 현저히 깁니다. 이는 유틸리티 함수를 추출했고, 명확성을 위해 분리된 명령문을 반환하는 것과 같은 방법으로 일부러 장황하게 작성했기 때문입니다. 함수를 개별적으로 보면 각각의 책임이 줄어들었고 의도가 명확해졌습니다. 또한 실제 애플리케이션에서는 아마 `reducerUtilities.js`, `visibilityReducer.js`, `todosReducer.js`, `rootReducer.js`과 같이 파일로 분리될 겁니다.
