@@ -8,8 +8,8 @@
 
 `combineReducers`를 사용할 때 알아야 할 몇 가지가 있습니다.
 
-- 우선 `combineReducers`는 **리덕스 리듀서를 작성할 때 가장 일반적인 용례를 단순화 하는 유틸리티 함수입니다.** 모든 애플리케이션에서 사용할 필요는 *없으며* 모든 가능한 시나리오를 처리하지 *않습니다.* 이 함수를 사용하지 않고도 리듀서로직을 작성할 수 있으며, `combineReducers`를 사용하지 않는 경우는 보통 커스텀 리듀서를 직접 만들어줘야 합니다. ([Beyond `combineReducers`](./BeyondCombineReducers.md) for examples and suggestions.)  
-- 리덕스는 상태의 구성에 대해 관여하지 않지만 `combineReducers`는 일반적으로 발생하는 에러를 피하기 위해 몇 가지 규칙을 강제합니다. (자세한건 [`combineReducers`](../../api/combineReducers.md)를 참고하세요)
+- 우선 `combineReducers`는 **리덕스 리듀서를 작성할 때 가장 일반적인 용례를 단순화 하는 유틸리티 함수입니다.** 모든 애플리케이션에서 사용할 필요는 *없으며* 모든 가능한 시나리오를 처리하지 *않습니다.* 이 함수를 사용하지 않고도 리듀서로직을 작성할 수 있으며, `combineReducers`를 사용하지 않는 경우는 보통 커스텀 리듀서를 직접 만들어줘야 합니다. (예제는 [`combineReducers`더 알아보기](./BeyondCombineReducers.md) 를 참조하세요)  
+- 리덕스는 상태의 구성에 대해서는 관여하지 않지만 `combineReducers`는 일반적으로 발생하는 에러를 피하기 위해 몇 가지 규칙을 강제합니다. (자세한건 [`combineReducers`](../../api/combineReducers.md)를 참고하세요)
 - 자주 하는 질문 중 하나는 리덕스가 액션을 디스패치 했을 때 "모든 리듀서를 호출"하는가? 입니다. 루트 리듀서 함수는 오직 하나만 존재하기 때문에 이에 대한 대답은 "아니오"입니다. 하지만 `combineReducers`에는 이러한 방식으로 _작동하는_ 특정 동작이 있습니다. `combineReducers`는 새로운 상태 트리를 조립하기 위해 상태의 부분과 현재 액션을 처리하는 각 슬라이스 리듀서를 호출하고, 필요하다면 슬라이스 리듀서에게 상태를 업데이트할 수 있게 할겁니다. 그래서 `combineReducers`는 "모든 리듀서를 호출"하거나 래핑 된 모든 슬라이스 리듀서를 호출합니다.
 
 ## 상태의 형태를 정의하기

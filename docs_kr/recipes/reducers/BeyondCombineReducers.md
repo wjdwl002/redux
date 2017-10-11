@@ -6,11 +6,11 @@
 
 ## 슬라이스 리듀서를 Immutable.js 객체와 사용하기
 
-`combineReducers`는 현재 일반적인 자바스크립트 객체로만 동작하기 때문에 최상위 상태에서 Immutable.js Map 객체를 사용하는 애플리케이션에서는 Map관리를 위해 `combineReducers`를 사용할 수 없습니다. 많은 개발자들이 Immutable.js를 사용하기 때문에 동일한 기능을 하는 [리덕스-불변성](https://github.com/gajus/redux-immutable)과 같은 많은 유틸리티가 있습니다. 이 패키지는 일반적인 자바스크립트 객체 대신에 Immutable Map을 사용할 수 있게하는 `combineReducers`를 자체적으로 구현했습니다.
+`combineReducers`는 현재 일반적인 자바스크립트 객체로만 동작하기 때문에 최상위 상태에서 Immutable.js Map 객체를 사용하는 애플리케이션에서는 Map관리를 위해 `combineReducers`를 사용할 수 없습니다. 많은 개발자들이 Immutable.js를 사용하기 때문에 동일한 기능을 하는 [redux-immutable](https://github.com/gajus/redux-immutable)과 같은 많은 유틸리티가 있습니다. 이 패키지는 일반적인 자바스크립트 객체 대신에 Immutable Map을 사용할 수 있게하는 `combineReducers`를 자체적으로 구현했습니다.
 
 ## 슬라이스 리듀서간의 데이터 공유
 
-마찬가지로, 특정 액션에서 `sliceReducerA`가 `sliceReducerB`의 데이터의 부분적인 상태가 필요하다던지, `sliceReducerB`가 매개변수로 전체 상태가 필요한 경우 `combineReducers`가 해당 작업을 처리하지 않습니다. 이는 다음과 같이 추가적인 매개변수로 필요한 데이터를 알고있는 특정 함수를 넘김으로서 해결할 수 있습니다:
+마찬가지로, 특정 액션에서 `sliceReducerA`가 `sliceReducerB`의 데이터의 부분적인 상태가 필요하다던지, `sliceReducerB`가 매개변수로 전체 상태가 필요한 경우 `combineReducers`가 해당 작업을 처리하지 않습니다. 이는 다음과 같이 필요한 데이터를 알고있는 특정 함수를 추가적인 매개변수로 넘김으로서 해결할 수 있습니다:
 
 ```js
 function combinedReducer(state, action) {
@@ -110,4 +110,4 @@ const rootReducer = combineReducers({
 
 `combineReducers`는 `a`에 대해 특별히 관리할 책임이 없고 알지도 못 한다는 것에 주의하세요. 우리는 실행취소하는 법을 알기 위해 `combineReducers`를 수정할 필요가 없습니다 - 우리는 그저 우리가 필요한 조각들로 새로운 함수로 구축하기만 하면 됩니다.
 
-또한 `combineReducers`는 리덕스에 포함된 하나의 리듀서 유틸리티지만 재사용을 위해 다양한 third-party 리듀서 유틸리티들이 나왔습니다. The [리덕스 애드온 카타로그](https://github.com/markerikson/redux-ecosystem-links)에는 사용가능한 많은 third-party 라이브러리들이 나와있습니다. 만약 나와있는 유틸리티중 당신의 문제를 해결할 수 있는 유틸리티가 없다면, 항상 필요한대로 함수를 만들 수 있습니다.
+또한 `combineReducers`는 리덕스에 포함된 하나의 리듀서 유틸리티지만 재사용을 위해 다양한 third-party 리듀서 유틸리티들이 나왔습니다. [ Redux Addons Catalog](https://github.com/markerikson/redux-ecosystem-links)에는 많은 third-party 라이브러리들이 나와있습니다. 나와있는 유틸리티중 당신의 문제를 해결할 수 있는 유틸리티가 없다면, 필요한 함수를 직접 만들 수 있습니다.
