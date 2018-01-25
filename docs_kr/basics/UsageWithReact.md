@@ -19,7 +19,7 @@ npm을 사용하지 않는 경우 unpkg로부터 최신 UMD 빌드를 가져올 
 
 ## Presentational 컴포넌트와 Container 컴포넌트
 
-Redux용 React 바인딩은 presentational 컴포넌트와 container 컴포넌트 components를 분리하는 아이디어를 채택했습니다. 이런 용어에 익숙하지 않으시다면, [이 글을 먼저 읽어보시고](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) 다시 이곳으로 돌아오세요. 이 개념들은 아주 중요하니, 돌아오실 때까지 기다리겠습니다!
+Redux용 React 바인딩은 **presentational 컴포넌트와 container 컴포넌트 components를 분리**하는 아이디어를 채택했습니다. 이런 용어에 익숙하지 않으시다면, [이 글을 먼저 읽어보시고](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) 다시 이곳으로 돌아오세요. 이 개념들은 아주 중요하니, 돌아오실 때까지 기다리겠습니다!
 
 글을 모두 읽어셨나요? 둘의 차이점을 다시 한 번 살펴봅시다:
 
@@ -55,7 +55,7 @@ Redux용 React 바인딩은 presentational 컴포넌트와 container 컴포넌�
     </tbody>
 </table>
 
-우리가 작성할 대부분의 컴포넌트는 presentational 컴포넌트가 될 것입니다. 하지만 여러 개의 container 컴포넌트를 만들어서 Redux store와 연결해야 할 필요성도 있습니다. 이것이 container 컴포넌트가 컴포넌트 트리 상단에 위치해야 한다는 것을 의미하지는 않습니다. 만약 container 컴포넌트가 너무 복잡해지면 (예를 들어 무거운 presentational 컴포넌트가 엄청나게 중첩되어 있고 셀 수 없는 콜백이 내려보내지고 있다면), [FAQ](../faq/ReactRedux.md#react-multiple-components)에서 설명한 대로 다른 container 컴포넌트를 만들어서 컴포넌트 트리 중간에 도입해보세요.
+우리가 작성할 대부분의 컴포넌트는 presentational 컴포넌트가 될 것입니다. 하지만 여러 개의 container 컴포넌트를 만들어서 Redux store와 연결해야 할 필요성도 있습니다. 이것이 container 컴포넌트가 컴포넌트 트리 상단에 위치해야 한다는 것을 의미하지는 않습니다. 만약 container 컴포넌트가 너무 복잡해지면 (예를 들어 presentational 컴포넌트가 엄청나게 중첩되어 있고 셀 수 없는 콜백이 내려보내지고 있다면), [FAQ](../faq/ReactRedux.md#react-multiple-components)에서 설명한 대로 다른 container 컴포넌트를 만들어서 컴포넌트 트리 중간에 도입해보세요.
 
 엄밀히 말하면 여러분이 직접 [`store.subscribe()`](../api/Store.md#subscribe)을 사용해서 container 컴포넌트를 작성할 수도 있습니다. 하지만 이렇게 하는 것을 추천하지는 않는데, React Redux는 여러분이 직접 구현하기는 힘든 여러가지 성능 최적화를 해주기 때문입니다. 이런 이유에서, 우리는 container 컴포넌트를 직접 작성하지 않고 React Redux가 제공해주는 [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) 함수를 사용해 container 컴포넌트를 생성해줄 것입니다. 이를 어떻게 할 수 있는지 아래에서 확인해보겠습니다.
 
@@ -107,7 +107,7 @@ Presentational 컴포넌트를 Redux에 연결하기 위해서는 container 컴�
 
 ### Presentational Component 구현하기
 
-이들은 모두 평범한 React 컴포넌트이므로, 여기서 자세히 뜯어보지는 않겠습니다. 우리는 지역 상태나 생애주기(lifecycle) 메소드가 필요하지 않은 경우 항상 상태를 갖지 않는 함수형 컴포넌트를 만들 것입니다. 이것이 presentational 컴포넌트는 항상 *함수여야만 한다*는 것을 뜻하지는 않습니다. 그냥 이 쪽이 정의하기 더 쉬운 것일 뿐이죠. 만약 지역 상태나 생애주기 메소드, 혹은 성능 최적화가 필요한 때가 오면 클래스로 바꿔줄 수 있습니다.
+이들은 모두 평범한 React 컴포넌트이므로, 여기서 자세히 뜯어보지는 않겠습니다. 우리는 지역 상태나 생애주기(lifecycle) 메소드가 필요하지 않은 경우 항상 상태를 갖지 않는 함수형 컴포넌트를 만들 것입니다. 이것이 presentational 컴포넌트는 항상 *함수여야만 한다*는 것을 뜻하지는 않습니다. 그냥 이 쪽이 정의하기 더 쉬운 것일 뿐이죠. 만약 지역 상태나 생애주기 메소드, 혹은 성능 최적화가 필요한 때가 오면 클래스로 바꿔주면 됩니다.
 
 #### `components/Todo.js`
 
@@ -250,7 +250,7 @@ const mapStateToProps = state => {
 }
 ```
 
-상태를 읽어오는 일 외에, container 컴포넌트는 스토어에 액션을 보낼 수 있습니다. 위와 비슷한 방식으로 `mapDispatchToProps()` 함수를 정의하면 되는데, 이 함수는 [`dispatch()`](../api/Store.md#dispatch) 메소드를 인자로 받습니다. 이 함수가 콜백으로 이루어진 속성들을 반환하도록 만들어주면, presentational 컴포넌트에 이 속성들이 주입됩니다. 예를 들어, `VisibleTodoLis`가 `onTodoClick` 속성을 `TodoList`에 주입하면서 `onTodoClick` 함수가 `TOGGLE_TODO` 액션을 파견하게끔 만들어주고 싶다면 아래와 같이 하면 됩니다:
+상태를 읽어오는 일 외에, container 컴포넌트는 스토어에 액션을 보낼 수 있습니다. 위와 비슷한 방식으로 `mapDispatchToProps()` 함수를 정의하면 되는데, 이 함수는 [`dispatch()`](../api/Store.md#dispatch) 메소드를 인자로 받습니다. 이 함수가 콜백으로 이루어진 속성들을 반환하도록 만들어주면, presentational 컴포넌트에 이 속성들이 주입됩니다. 예를 들어, `VisibleTodoList`가 `onTodoClick` 속성을 `TodoList`에 주입하면서 `onTodoClick` 함수가 `TOGGLE_TODO` 액션을 파견하게끔 만들어주고 싶다면 아래와 같이 하면 됩니다:
 
 ```js
 const mapDispatchToProps = dispatch => {
@@ -391,7 +391,7 @@ export default AddTodo
 
 만약 `ref` 속성에 친숙하지 않으시다면, [공식 문서](https://facebook.github.io/react/docs/refs-and-the-dom.html)를 통해 `ref`의 올바른 사용법을 익혀보세요.
 
-### 여러 Continer를 하나의 컴포넌트 안에 묶기
+### 여러 Container를 하나의 컴포넌트 안에 묶기
 #### `components/App.js`
 
 ```js
