@@ -1,6 +1,6 @@
-import {compose} from "../../index";
+import {compose} from "redux"
 
-// copied from DefinitelyTyped/compose-function
+// adapted from DefinitelyTyped/compose-function
 
 const numberToNumber = (a: number): number => a + 2;
 const numberToString = (a: number): string => "foo";
@@ -19,7 +19,8 @@ const t5: number = compose(stringToNumber, numberToString, numberToNumber)(5);
 const t6: string = compose(numberToString, stringToNumber, numberToString,
   numberToNumber)(5);
 
-const t7: string = compose(
+// rest signature
+const t7: string = compose<string>(
   numberToString, numberToNumber, stringToNumber, numberToString,
   stringToNumber)("fo");
 
@@ -36,4 +37,4 @@ const t11: number = compose(stringToNumber, numberToString, stringToNumber,
 
 
 const funcs = [stringToNumber, numberToString, stringToNumber];
-const t12 = compose(...funcs)('bar', 42, true);
+const t12 = compose(...funcs)('bar');

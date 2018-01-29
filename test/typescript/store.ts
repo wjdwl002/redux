@@ -1,35 +1,42 @@
 import {
-  Store, createStore, Reducer, Action, StoreEnhancer, GenericStoreEnhancer,
+  Store, createStore, Reducer, Action, StoreEnhancer,
   StoreCreator, StoreEnhancerStoreCreator, Unsubscribe
-} from "../../index";
+} from "redux"
 
 
 type State = {
-  todos: string[];
+  a: 'a';
+  b: {
+    c: 'c',
+    d: 'd',
+  };
 }
 
-const reducer: Reducer<State> = (state: State, action: Action): State => {
+const reducer: Reducer<State> = (state: State | undefined = {
+  a: 'a',
+  b: {
+    c: 'c',
+    d: 'd',
+  },
+}, action: Action): State => {
   return state;
-}
-
+};
 
 /* createStore */
 
-const store: Store<State> = createStore<State>(reducer);
+const store: Store<State> = createStore(reducer);
 
 const storeWithPreloadedState: Store<State> = createStore(reducer, {
-  todos: []
+  b: {c: 'c'}
 });
 
-const genericEnhancer: GenericStoreEnhancer = <S>(next: StoreEnhancerStoreCreator<S>) => next;
-const specificEnhencer: StoreEnhancer<State> = next => next;
+const enhancer: StoreEnhancer = next => next;
 
-const storeWithGenericEnhancer: Store<State> = createStore(reducer, genericEnhancer);
-const storeWithSpecificEnhancer: Store<State> = createStore(reducer, specificEnhencer);
+const storeWithSpecificEnhancer: Store<State> = createStore(reducer, enhancer);
 
 const storeWithPreloadedStateAndEnhancer: Store<State> = createStore(reducer, {
-  todos: []
-}, genericEnhancer);
+  b: {c: 'c'}
+}, enhancer);
 
 
 /* dispatch */
@@ -56,8 +63,6 @@ unsubscribe();
 
 /* replaceReducer */
 
-const newReducer: Reducer<State> = (state: State, action: Action): State => {
-  return state;
-}
+const newReducer: Reducer<State> = reducer;
 
 store.replaceReducer(newReducer);

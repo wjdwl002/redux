@@ -1,6 +1,6 @@
 # Reducers
 
-[Actions](./Actions.md) describe the fact that *something happened*, but don't specify how the application's state changes in response. This is the job of reducers.
+**Reducers** specify how the application's state changes in response to [actions](./Actions.md) sent to the store. Remember that actions only describe the fact that *something happened*, but don't describe how the application's state changes.
 
 ## Designing the State Shape
 
@@ -8,7 +8,7 @@ In Redux, all the application state is stored as a single object. It's a good id
 
 For our todo app, we want to store two different things:
 
-* The currently selected visibility filter;
+* The currently selected visibility filter.
 * The actual list of todos.
 
 You'll often find that you need to store some data, as well as some UI state, in the state tree. This is fine, but try to keep the data separate from the UI state.
@@ -105,7 +105,7 @@ Note that:
 
 >##### Note on `Object.assign`
 
->[`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) is a part of ES6, but is not implemented by most browsers yet. You'll need to either use a polyfill, a [Babel plugin](https://www.npmjs.com/package/babel-plugin-transform-object-assign), or a helper from another library like [`_.assign()`](https://lodash.com/docs#assign).
+>[`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) is a part of ES6, and is not supported by older browsers. To support them, you will need to either use a polyfill, a [Babel plugin](https://www.npmjs.com/package/babel-plugin-transform-object-assign), or a helper from another library like [`_.assign()`](https://lodash.com/docs#assign).
 
 >##### Note on `switch` and Boilerplate
 
@@ -118,7 +118,12 @@ Note that:
 We have two more actions to handle! Just like we did with `SET_VISIBILITY_FILTER`, we'll import the `ADD_TODO` and `TOGGLE_TODO` actions and then extend our reducer to handle `ADD_TODO`.
 
 ```js
-import { VisibilityFilters, ADD_TODO, TOGGLE_TODO } from './actions'
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  VisibilityFilters
+} from './actions'
 
 ...
 
@@ -236,6 +241,9 @@ function todoApp(state = initialState, action) {
         visibilityFilter: action.filter
       })
     case ADD_TODO:
+      return Object.assign({}, state, {
+        todos: todos(state.todos, action)
+      })
     case TOGGLE_TODO:
       return Object.assign({}, state, {
         todos: todos(state.todos, action)

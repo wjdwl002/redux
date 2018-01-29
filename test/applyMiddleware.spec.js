@@ -1,9 +1,20 @@
-import { createStore, applyMiddleware } from '../src/index'
+import { createStore, applyMiddleware } from '../'
 import * as reducers from './helpers/reducers'
 import { addTodo, addTodoAsync, addTodoIfEmpty } from './helpers/actionCreators'
 import { thunk } from './helpers/middleware'
 
 describe('applyMiddleware', () => {
+  it('warns when dispatching during middleware setup', () => {
+    function dispatchingMiddleware(store) {
+      store.dispatch(addTodo('Dont dispatch in middleware setup'))
+      return next => action => next(action)
+    }
+
+    expect(() =>
+      applyMiddleware(dispatchingMiddleware)(createStore)(reducers.todos)
+    ).toThrow()
+  })
+
   it('wraps dispatch method with middleware once', () => {
     function test(spyOnMethods) {
       return methods => {
@@ -23,7 +34,10 @@ describe('applyMiddleware', () => {
     expect(spy.mock.calls[0][0]).toHaveProperty('getState')
     expect(spy.mock.calls[0][0]).toHaveProperty('dispatch')
 
-    expect(store.getState()).toEqual([ { id: 1, text: 'Use Redux' }, { id: 2, text: 'Flux FTW!' } ])
+    expect(store.getState()).toEqual([
+      { id: 1, text: 'Use Redux' },
+      { id: 2, text: 'Flux FTW!' }
+    ])
   })
 
   it('passes recursive dispatches through the middleware chain', () => {
@@ -92,21 +106,29 @@ describe('applyMiddleware', () => {
     })
   })
 
-  it('keeps unwrapped dispatch available while middleware is initializing', () => {
-    // This is documenting the existing behavior in Redux 3.x.
-    // We plan to forbid this in Redux 4.x.
+  it('passes through all arguments of dispatch calls from within middleware', () => {
+    const spy = jest.fn()
+    const testCallArgs = ['test']
 
-    function earlyDispatch({ dispatch }) {
-      dispatch(addTodo('Hello'))
-      return () => action => action
+    function multiArgMiddleware() {
+      return next => (action, callArgs) => {
+        if (Array.isArray(callArgs)) {
+          return action(...callArgs)
+        }
+        return next(action)
+      }
     }
 
-    const store = createStore(reducers.todos, applyMiddleware(earlyDispatch))
-    expect(store.getState()).toEqual([
-      {
-        id: 1,
-        text: 'Hello'
-      }
-    ])
+    function dummyMiddleware({ dispatch }) {
+      return next => action => dispatch(action, testCallArgs)
+    }
+
+    const store = createStore(
+      reducers.todos,
+      applyMiddleware(multiArgMiddleware, dummyMiddleware)
+    )
+
+    store.dispatch(spy)
+    expect(spy.mock.calls[0]).toEqual(testCallArgs)
   })
 })

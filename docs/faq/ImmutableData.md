@@ -16,7 +16,7 @@
 	- [How does immutability enable a shallow check to detect object mutations?](#immutability-enables-shallow-checking)
 - [How can immutability in your reducers cause components to render unnecessarily?](#immutability-issues-with-redux)
 - [How can immutability in mapStateToProps cause components to render unnecessarily?](#immutability-issues-with-react-redux)
-- [What approaches are there for handling data immutably? Do I have to use Immutable.JS?](#do-i-have-to-use-immutable-js)
+- [What approaches are there for handling data immutability? Do I have to use Immutable.JS?](#do-i-have-to-use-immutable-js)
 - [What are the issues with using JavaScript for immutable operations?](#issues-with-es6-for-immutable-ops)
 
 
@@ -109,7 +109,7 @@ Specifically, at each stage of the iteration, `combineReducers` performs a shall
 
 After the iterations have completed, `combineReducers` will check the state of the `hasChanged` flag. If it’s true, the newly-constructed state object will be returned. If it’s false, the _current_ state object is returned.
 
-This is worth emphasising: *If the reducers all return the same `state` object passed to them, then `combineReducers` will return the _current_ root state object, not the newly updated one.*
+This is worth emphasizing: *If the reducers all return the same `state` object passed to them, then `combineReducers` will return the _current_ root state object, not the newly updated one.*
 
 #### Further Information
 
@@ -144,7 +144,7 @@ It then runs a shallow equality check on its reference to the root state object 
 
 
 ### Why does React-Redux shallowly check each value within the props object returned from `mapStateToProp`?
-React-Redux performs a shallow equality check on on each _value_ within the props object, not on the props object itself.
+React-Redux performs a shallow equality check on each _value_ within the props object, not on the props object itself.
 
 It does so because the props object is actually a hash of prop names and their values (or selector functions that are used to retrieve or generate the values), such as in this example:
 
@@ -423,7 +423,7 @@ Note that, conversely, if the values in your props object refer to mutable objec
 
 
 <a id="do-i-have-to-use-immutable-js"></a>
-## What approaches are there for handling data immutably? Do I have to use Immutable.JS?
+## What approaches are there for handling data immutability? Do I have to use Immutable.JS?
 You do not need to use Immutable.JS with Redux. Plain JavaScript, if written correctly, is perfectly capable of providing immutability without having to use an immutable-focused library.
 
 However, guaranteeing immutability with JavaScript is difficult, and it can be easy to mutate an object accidentally, causing bugs in your app that are extremely difficult to locate. For this reason, using an immutable update utility library such as Immutable.JS can significantly improve the reliability of your app, and make your app’s development much easier.
@@ -440,7 +440,7 @@ However, guaranteeing immutability with JavaScript is difficult, and it can be e
 JavaScript was never designed to provide guaranteed immutable operations. Accordingly, there are several issues you need to be aware of if you choose to use it for your immutable operations in your Redux app.
 
 ### Accidental Object Mutation
-With JavaScript, you can accidentally mutate an object (such as the Redux state tree) quite easily without realising it. For example, updating deeply nested properties, creating a new *reference* to an object instead of a new object, or performing a shallow copy rather than a deep copy, can all lead to inadvertent object mutations, and can trip up even the most experienced JavaScript coder.
+With JavaScript, you can accidentally mutate an object (such as the Redux state tree) quite easily without realizing it. For example, updating deeply nested properties, creating a new *reference* to an object instead of a new object, or performing a shallow copy rather than a deep copy, can all lead to inadvertent object mutations, and can trip up even the most experienced JavaScript coder.
 
 To avoid these issues, ensure you follow the recommended [immutable update patterns for ES6](http://redux.js.org/docs/recipes/reducers/ImmutableUpdatePatterns.html).
 

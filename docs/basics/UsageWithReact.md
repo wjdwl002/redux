@@ -59,7 +59,7 @@ Finished reading the article? Let's recount their differences:
     </tbody>
 </table>
 
-Most of the components we'll write will be presentational, but we'll need to generate a few container components to connect them to the Redux store. This and the design brief below do not imply container components must be near the top of the component tree. If a container component becomes too complex (i.e. it has heavily nested presentional components with countless callbacks being passed down), introduce another container within the component tree as noted in the [FAQ](../faq/ReactRedux.md#react-multiple-components).
+Most of the components we'll write will be presentational, but we'll need to generate a few container components to connect them to the Redux store. This and the design brief below do not imply container components must be near the top of the component tree. If a container component becomes too complex (i.e. it has heavily nested presentational components with countless callbacks being passed down), introduce another container within the component tree as noted in the [FAQ](../faq/ReactRedux.md#react-multiple-components).
 
 Technically you could write the container components by hand using [`store.subscribe()`](../api/Store.md#subscribe). We don't advise you to do this because React Redux makes many performance optimizations that are hard to do by hand. For this reason, rather than write container components, we will generate them using the [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function provided by React Redux, as you will see below.
 
@@ -78,10 +78,10 @@ I see the following presentational components and their props emerge from this b
   - `onTodoClick(id: number)` is a callback to invoke when a todo is clicked.
 * **`Todo`** is a single todo item.
   - `text: string` is the text to show.
-  - `completed: boolean` is whether todo should appear crossed out.
-  - `onClick()` is a callback to invoke when a todo is clicked.
+  - `completed: boolean` is whether the todo should appear crossed out.
+  - `onClick()` is a callback to invoke when the todo is clicked.
 * **`Link`** is a link with a callback.
-  - `onClick()` is a callback to invoke when link is clicked.
+  - `onClick()` is a callback to invoke when the link is clicked.
 * **`Footer`** is where we let the user change currently visible todos.
 * **`App`** is the root component that renders everything else.
 
@@ -120,7 +120,7 @@ import PropTypes from 'prop-types'
 const Todo = ({ onClick, completed, text }) => (
   <li
     onClick={onClick}
-    style={{
+    style={ {
       textDecoration: completed ? 'line-through' : 'none'
     }}
   >
@@ -146,8 +146,8 @@ import Todo from './Todo'
 
 const TodoList = ({ todos, onTodoClick }) => (
   <ul>
-    {todos.map(todo => (
-      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+    {todos.map((todo, index) => (
+      <Todo key={index} {...todo} onClick={() => onTodoClick(index)} />
     ))}
   </ul>
 )
@@ -179,7 +179,7 @@ const Link = ({ active, children, onClick }) => {
 
   return (
     <a
-      href="#"
+      href=""
       onClick={e => {
         e.preventDefault()
         onClick()
@@ -226,25 +226,6 @@ const Footer = () => (
 export default Footer
 ```
 
-#### `components/App.js`
-
-```js
-import React from 'react'
-import Footer from './Footer'
-import AddTodo from '../containers/AddTodo'
-import VisibleTodoList from '../containers/VisibleTodoList'
-
-const App = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </div>
-)
-
-export default App
-```
-
 ### Implementing Container Components
 
 Now it's time to hook up those presentational components to Redux by creating some containers. Technically, a container component is just a React component that uses [`store.subscribe()`](../api/Store.md#subscribe) to read a part of the Redux state tree and supply props to a presentational component it renders. You could write a container component by hand, but we suggest instead generating container components with the React Redux library's [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function, which provides many useful optimizations to prevent unnecessary re-renders. (One result of this is that you shouldn't have to worry about the [React performance suggestion](https://facebook.github.io/react/docs/advanced-performance.html) of implementing `shouldComponentUpdate` yourself.)
@@ -254,12 +235,13 @@ To use `connect()`, you need to define a special function called `mapStateToProp
 ```js
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
-    case 'SHOW_ALL':
-      return todos
     case 'SHOW_COMPLETED':
       return todos.filter(t => t.completed)
     case 'SHOW_ACTIVE':
       return todos.filter(t => !t.completed)
+    case 'SHOW_ALL':
+    default:
+      return todos
   }
 }
 
@@ -372,6 +354,8 @@ export default VisibleTodoList
 
 #### `containers/AddTodo.js`
 
+Recall as [mentioned previously](#designing-other-components), both the presentation and logic for the `AddTodo` component are mixed into a single definition.
+
 ```js
 import React from 'react'
 import { connect } from 'react-redux'
@@ -407,6 +391,28 @@ let AddTodo = ({ dispatch }) => {
 AddTodo = connect()(AddTodo)
 
 export default AddTodo
+```
+
+If you are unfamiliar with the `ref` attribute, please read this [documentation](https://facebook.github.io/react/docs/refs-and-the-dom.html) to familiarize yourself with the recommended use of this attribute.
+
+### Tying the containers together within a component
+#### `components/App.js`
+
+```js
+import React from 'react'
+import Footer from './Footer'
+import AddTodo from '../containers/AddTodo'
+import VisibleTodoList from '../containers/VisibleTodoList'
+
+const App = () => (
+  <div>
+    <AddTodo />
+    <VisibleTodoList />
+    <Footer />
+  </div>
+)
+
+export default App
 ```
 
 ## Passing the Store
