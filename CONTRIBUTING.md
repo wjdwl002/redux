@@ -1,10 +1,10 @@
 # Contributing
 
-We are open to, and grateful for, any contributions made by the community. By contributing to Redux, you agree to abide by the [code of conduct](https://github.com/reactjs/redux/blob/master/CODE_OF_CONDUCT.md).
+We are open to, and grateful for, any contributions made by the community. By contributing to Redux, you agree to abide by the [code of conduct](https://github.com/reduxjs/redux/blob/master/CODE_OF_CONDUCT.md).
 
 ## Reporting Issues and Asking Questions
 
-Before opening an issue, please search the [issue tracker](https://github.com/reactjs/redux/issues) to make sure your issue hasn't already been reported.
+Before opening an issue, please search the [issue tracker](https://github.com/reduxjs/redux/issues) to make sure your issue hasn't already been reported.
 
 ### Bugs and Improvements
 
@@ -30,7 +30,7 @@ Please keep in mind that people spend their free time trying to help you. You ca
 
 ## Development
 
-Visit the [issue tracker](https://github.com/reactjs/redux/issues) to find a list of open issues that need attention.
+Visit the [issue tracker](https://github.com/reduxjs/redux/issues) to find a list of open issues that need attention.
 
 Fork, then clone the repo:
 
@@ -42,7 +42,7 @@ git clone https://github.com/your-username/redux.git
 
 #### Building Redux
 
-Running the `build` task will create both a CommonJS module-per-module build and a UMD build.
+Running the `build` task will create a CommonJS module-per-module build, a ES Modules build and a UMD build.
 ```
 npm run build
 ```
@@ -50,10 +50,18 @@ npm run build
 To create just a CommonJS module-per-module build:
 
 ```
-npm run build:lib
+npm run build:commonjs
 ```
 
 The result will be in the `lib` folder.
+
+To create just a ES Modules build:
+
+```
+npm run build:es
+```
+
+The result will be in the `es` folder.
 
 To create just a UMD build:
 ```
@@ -87,45 +95,7 @@ npm run test:watch
 
 Improvements to the documentation are always welcome. In the docs we abide by typographic rules, so instead of ' you should use '. Same goes for “ ” and dashes (—) where appropriate. These rules only apply to the text, not to code blocks.
 
-#### Installing Gitbook
-
-To install the latest version of `gitbook` and prepare to build the documentation, run the following:
-
-```
-npm run docs:prepare
-```
-
-#### Building the Docs
-
-To build the documentation, run the following:
-
-```
-npm run docs:build
-```
-
-To watch and rebuild documentation when changes occur, run the following:
-
-```
-npm run docs:watch
-```
-
-The docs will be served at http://localhost:4000.
-
-#### Publishing the Docs
-
-To publish the documentation, run the following:
-
-```
-npm run docs:publish
-```
-
-#### Cleaning the Docs
-
-To remove previously built documentation, run the following:
-
-```
-npm run docs:clean
-```
+The docs are published automatically when the `master` branch is updated.
 
 ### Examples
 
@@ -153,7 +123,7 @@ On the other hand, sometimes the best way to start a conversation *is* to send a
 
 In general, the contribution workflow looks like this:
 
-* Open a new issue in the [Issue tracker](https://github.com/reactjs/redux/issues).
+* Open a new issue in the [Issue tracker](https://github.com/reduxjs/redux/issues).
 * Fork the repo.
 * Create a new feature branch based off the `master` branch.
 * Make sure all tests pass and there are no linting errors.

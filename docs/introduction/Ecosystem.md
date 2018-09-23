@@ -47,7 +47,7 @@ This page lists some of the Redux-related addons that the Redux maintainers have
 
 ## Library Integration and Bindings
 
-**[reactjs/react-redux](https://github.com/reactjs/react-redux)**  
+**[reduxjs/react-redux](https://github.com/reduxjs/react-redux)**  
 The official React bindings for Redux, maintained by the Redux team
 
 **[angular-redux/ng-redux](https://github.com/angular-redux/ng-redux)**  
@@ -62,11 +62,11 @@ Ember bindings for Redux
 **[glimmer-redux/glimmer-redux](glimmer-redux/glimmer-redux)**  
 Redux bindings for Ember's Glimmer component engine
 
-**[revue/revue](https://github.com/revue/revue)**  
-Redux bindings for Vue
-
 **[tur-nr/polymer-redux](https://github.com/tur-nr/polymer-redux)**  
 Redux bindings for Polymer
+
+**[lastmjs/redux-store-element](https://github.com/lastmjs/redux-store-element)**
+Redux bindings for custom elements
 
 
 ## Reducers
@@ -162,7 +162,7 @@ updateBazTitle(1, 'foo bar baz');
 
 ## Utilities
 
-**[reactjs/reselect](https://github.com/reactjs/reselect)**  
+**[reduxjs/reselect](https://github.com/reduxjs/reselect)**  
 Creates composable memoized selector functions for efficiently deriving data from the store state
 ```js
 const taxSelector = createSelector(
@@ -216,7 +216,7 @@ store.dispatch( subscribe("users.byId.abcd", "subscription1", () => {} );
 Store enhancer that can debounce subscription notifications
 ```js
 const debounceNotify = _.debounce(notify => notify());
-const store = createStore(reducer, intialState, batchedSubscribe(debounceNotify));
+const store = createStore(reducer, initialState, batchedSubscribe(debounceNotify));
 ```
 
 **[manaflair/redux-batch](https://github.com/manaflair/redux-batch)**  
@@ -398,7 +398,7 @@ Handle async logic using synchronous-looking generator functions. Sagas return d
 function* fetchData(action) {
     const {someValue} = action;
     try {
-        const result = yield call(myAjaxLib.post, "/someEndpoint", {data : someValue});
+        const response = yield call(myAjaxLib.post, "/someEndpoint", {data : someValue});
         yield put({type : "REQUEST_SUCCEEDED", payload : response});
     }
     catch(error) {
@@ -633,7 +633,7 @@ Makes component state in Redux as easy as setState
 const DynamicCounters = connectLean(
     scope: "dynamicCounters",
     getInitialState() => ({counterCount : 1}),
-    addCounter, removeCOunter
+    addCounter, removeCounter
 )(CounterList);
 ```
 
@@ -669,7 +669,7 @@ const scopedReducers = scopeReducers(reducers);
 
 #### Debuggers and Viewers
 
-**[gaearon/redux-devtools](https://github.com/gaearon/redux-devtools)**  
+**[reduxjs/redux-devtools](https://github.com/reduxjs/redux-devtools)**  
 
 Dan Abramov's original Redux DevTools implementation, built for in-app display of state and time-travel debugging
 
@@ -683,10 +683,10 @@ A cross-platform Electron app for inspecting React and React Native apps, includ
 
 #### DevTools Monitors
 
-**[Log Monitor](https://github.com/gaearon/redux-devtools-log-monitor)**  
+**[Log Monitor](https://github.com/reduxjs/redux-devtools-log-monitor)**  
 The default monitor for Redux DevTools with a tree view
 
-**[Dock Monitor](https://github.com/gaearon/redux-devtools-dock-monitor)**  
+**[Dock Monitor](https://github.com/reduxjs/redux-devtools-dock-monitor)**  
 A resizable and movable dock for Redux DevTools monitors
 
 **[Slider Monitor](https://github.com/calesce/redux-slider-monitor)**  

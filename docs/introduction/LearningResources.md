@@ -1,6 +1,6 @@
 # Learning Resources
 
-The Redux docs are intended to teach the basic concepts of Redux, as well as explain key concepts for use in real-world applications.  However, the docs can't cover everything.  Happily, there's many other great resources available for learning Redux.  We encourage you to check them out.  Many of them cover topics that are beyond the scope of the docs, or describe the same topics in other ways that may work better for your learning style.
+The Redux docs are intended to teach the basic concepts of Redux, as well as explain key concepts for use in real-world applications.  However, the docs can't cover everything.  Happily, there are many other great resources available for learning Redux.  We encourage you to check them out.  Many of them cover topics that are beyond the scope of the docs, or describe the same topics in other ways that may work better for your learning style.
 
 This page includes our recommendations for some of the best external resources available to learn Redux.  For an additional extensive list of tutorials, articles, and other resources on React, Redux, Javascript, and related topics, see the [React/Redux Links list](https://github.com/markerikson/react-redux-links).
 
@@ -70,11 +70,7 @@ This page includes our recommendations for some of the best external resources a
 - **Redux and React: An Introduction**  
   http://jakesidsmith.com/blog/post/2017-11-18-redux-and-react-an-introduction/  
   A great introduction to Redux's core concepts, with explanations of how to use the React-Redux package to use Redux with React.
-
-- **React Redux Tutorial**  
-   https://www.pshrmn.com/tutorials/react/react-redux  
-   A clear, easy-to-read explanation of how to use the React-Redux `connect` API. 
-
+ 
 
 ## Project-Based Tutorials
 
@@ -148,6 +144,10 @@ This page includes our recommendations for some of the best external resources a
 ## Selectors
 
 *Explanations of how and why to use selector functions to read values from state*
+  
+- **Idiomatic Redux: Using Reselect Selectors for Encapsulation and Performance**  
+  https://blog.isquaredsoftware.com/2017/12/idiomatic-redux-using-reselect-selectors/  
+  A complete guide to why you should use selector functions with Redux, how to use the Reselect library to write optimized selectors, and advanced tips for improving performance.
   
 - **ReactCasts #8: Selectors in Redux**  
   https://www.youtube.com/watch?v=frT3to2ACCw  
@@ -264,7 +264,7 @@ This page includes our recommendations for some of the best external resources a
   
 - **Reactive Redux State with RxJS**  
   https://ivanjov.com/reactive-redux-state-with-rxjs/  
-  Describes the concept of "Reactive PRogramming" and the RxJS library, and shows how to use redux-observable to fetch data, along with examples of testing.
+  Describes the concept of "Reactive Programming" and the RxJS library, and shows how to use redux-observable to fetch data, along with examples of testing.
   
 - **Using redux-observable to handle asynchronous logic in Redux**  
   https://medium.com/dailyjs/using-redux-observable-to-handle-asynchronous-logic-in-redux-d49194742522  
@@ -342,9 +342,9 @@ This page includes our recommendations for some of the best external resources a
   https://github.com/andrewngu/sound-redux  
   A Soundcloud client built with React / Redux
   
-- **Winamp2-js**  
-  https://jordaneldredge.com/projects/winamp2-js/  
-  https://github.com/captbaritone/winamp2-js  
+- **Webamp**  
+  https://webamp.org  
+  https://github.com/captbaritone/webamp  
   An in-browser recreation of Winamp2, built with React and Redux. Actually plays MP3s, and lets you load in local MP3 files.
   
 - **Tello**  
@@ -385,7 +385,7 @@ This page includes our recommendations for some of the best external resources a
   
 - **Redux, by Tyler McGinnis (paid)**  
   https://tylermcginnis.com/courses/redux/  
-  When learning Redux, you need to learn it in the context of an app big enough to see the benefits. That's why this course is huge. A better name might be 'Real World Redux. If you're sick of "todo list" Redux tutorials, you've come to the right place. In this course we'll talk all about what makes Redux special for managing state in your application. We'll build an actual "real world" application so you can see how Redux handles edge cases like optimistic updates and error handling. We'll also cover many other technologies that work well with Redux, Firebase, and CSS Modules.
+  When learning Redux, you need to learn it in the context of an app big enough to see the benefits. That's why this course is huge. A better name might be _"Real World Redux"_. If you're sick of "todo list" Redux tutorials, you've come to the right place. In this course we'll talk all about what makes Redux special for managing state in your application. We'll build an actual "real world" application so you can see how Redux handles edge cases like optimistic updates and error handling. We'll also cover many other technologies that work well with Redux, Firebase, and CSS Modules.
   
 - **Learn Redux, by Wes Bos (free)**  
   https://learnredux.com/  

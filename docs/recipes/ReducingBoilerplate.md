@@ -133,7 +133,7 @@ You can always write a function that generates an action creator:
 ```js
 function makeActionCreator(type, ...argNames) {
   return function (...args) {
-    let action = { type }
+    const action = { type }
     argNames.forEach((arg, index) => {
       action[argNames[index]] = args[index]
     })
@@ -198,7 +198,7 @@ import {
 class Posts extends Component {
   loadData(userId) {
     // Injected into props by React Redux `connect()` call:
-    let { dispatch, posts } = this.props
+    const { dispatch, posts } = this.props
 
     if (posts[userId]) {
       // There is cached data! Don't do anything.
@@ -231,7 +231,7 @@ class Posts extends Component {
       return <p>Loading...</p>
     }
 
-    let posts = this.props.posts.map(post =>
+    const posts = this.props.posts.map(post =>
       <Post post={post} key={post.id} />
     )
 
@@ -240,7 +240,8 @@ class Posts extends Component {
 }
 
 export default connect(state => ({
-  posts: state.posts
+  posts: state.posts,
+  isFetching: state.isFetching
 }))(Posts)
 ```
 
@@ -262,7 +263,7 @@ Consider the code above rewritten with [redux-thunk](https://github.com/gaearon/
 export function loadPosts(userId) {
   // Interpreted by the thunk middleware:
   return function (dispatch, getState) {
-    let { posts } = getState()
+    const { posts } = getState()
     if (posts[userId]) {
       // There is cached data! Don't do anything.
       return
@@ -315,7 +316,7 @@ class Posts extends Component {
       return <p>Loading...</p>
     }
 
-    let posts = this.props.posts.map(post =>
+    const posts = this.props.posts.map(post =>
       <Post post={post} key={post.id} />
     )
 
@@ -324,7 +325,8 @@ class Posts extends Component {
 }
 
 export default connect(state => ({
-  posts: state.posts
+  posts: state.posts,
+  isFetching: state.isFetching
 }))(Posts)
 ```
 
@@ -461,7 +463,7 @@ Redux reduces the boilerplate of Flux stores considerably by describing the upda
 Consider this Flux store:
 
 ```js
-let _todos = []
+const _todos = []
 
 const TodoStore = Object.assign({}, EventEmitter.prototype, {
   getAll() {
@@ -472,7 +474,7 @@ const TodoStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function (action) {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
-      let text = action.text.trim()
+      const text = action.text.trim()
       _todos.push(text)
       TodoStore.emitChange()
   }
@@ -487,7 +489,7 @@ With Redux, the same update logic can be described as a reducing function:
 export function todos(state = [], action) {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
-      let text = action.text.trim()
+      const text = action.text.trim()
       return [...state, text]
     default:
       return state
@@ -505,8 +507,8 @@ Let's write a function that lets us express reducers as an object mapping from a
 
 ```js
 export const todos = createReducer([], {
-  [ActionTypes.ADD_TODO](state, action) {
-    let text = action.text.trim()
+  [ActionTypes.ADD_TODO]: (state, action) => {
+    const text = action.text.trim()
     return [...state, text]
   }
 })
@@ -528,4 +530,4 @@ function createReducer(initialState, handlers) {
 
 This wasn't difficult, was it? Redux doesn't provide such a helper function by default because there are many ways to write it. Maybe you want it to automatically convert plain JS objects to Immutable objects to hydrate the server state. Maybe you want to merge the returned state with the current state. There may be different approaches to a “catch all” handler. All of this depends on the conventions you choose for your team on a specific project.
 
-The Redux reducer API is `(state, action) => state`, but how you create those reducers is up to you.
+The Redux reducer API is `(state, action) => newState`, but how you create those reducers is up to you.

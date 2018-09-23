@@ -25,11 +25,11 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/counter
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
-Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/counter).
+Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/counter):
+
+{% embed data="{\"url\":\"https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/counter\",\"type\":\"link\",\"title\":\"CodeSandbox\",\"description\":\"CodeSandbox is an online editor       tailored for web applications.\",\"icon\":{\"type\":\"icon\",\"url\":\"https://codesandbox.io/favicon.ico\",\"aspectRatio\":0},\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"https://codesandbox.io/static/img/banner.png\",\"width\":1200,\"height\":630,\"aspectRatio\":0.525}}" %}
 
 This is the most basic example of using Redux together with React. For simplicity, it re-renders the React component manually when the store changes. In real projects, you will likely want to use the highly performant [React Redux](https://github.com/reactjs/react-redux) bindings instead.
 
@@ -45,8 +45,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/todos
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/todos).
@@ -65,8 +63,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/todos-with-undo
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/todos-with-undo).
@@ -83,8 +79,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/todomvc
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/todomvc).
@@ -103,8 +97,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/shopping-cart
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/shopping-cart).
@@ -121,8 +113,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/tree-view
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/tree-view).
@@ -141,8 +131,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/async
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/async).
@@ -159,8 +147,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/universal
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 This is a basic demonstration of [server rendering](../recipes/ServerRendering.md) with Redux and React. It shows how to prepare the initial store state on the server, and pass it down to the client so the client store can boot up from an existing state.
@@ -175,8 +161,6 @@ git clone https://github.com/reactjs/redux.git
 cd redux/examples/real-world
 npm install
 npm start
-
-open http://localhost:3000/
 ```
 
 Or check out the [sandbox](https://codesandbox.io/s/github/reactjs/redux/tree/master/examples/real-world).

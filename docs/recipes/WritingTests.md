@@ -43,7 +43,7 @@ and run `npm test` to run it once, or `npm run test:watch` to test on every file
 
 ### Action Creators
 
-In Redux, action creators are functions which return plain objects. When testing action creators we want to test whether the correct action creator was called and also whether the right action was returned.
+In Redux, action creators are functions which return plain objects. When testing action creators, we want to test whether the correct action creator was called and also whether the right action was returned.
 
 #### Example
 
@@ -256,7 +256,7 @@ First, we will install [Enzyme](http://airbnb.io/enzyme/). Enzyme uses the [Reac
 npm install --save-dev enzyme
 ```
 
-We will also need to install Enzyme adapter for our version of React. Enzyme has adapters that provide compatability with `React 16.x`, `React 15.x`, `React 0.14.x` and `React 0.13.x`. If you are using React 16 you can run:
+We will also need to install Enzyme adapter for our version of React. Enzyme has adapters that provide compatibility with `React 16.x`, `React 15.x`, `React 0.14.x` and `React 0.13.x`. If you are using React 16 you can run:
 
 ```
 npm install --save-dev enzyme-adapter-react-16
@@ -304,10 +304,10 @@ can be tested like:
 ```js
 import React from 'react'
 import Enzyme, { mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from 'enzyme-adapter-react-16'
 import Header from '../../components/Header'
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() })
 
 function setup() {
   const props = {
@@ -350,7 +350,7 @@ describe('components', () => {
 
 ### Connected Components
 
-If you use a library like [React Redux](https://github.com/reactjs/react-redux), you might be using [higher-order components](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) like [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options). This lets you inject Redux state into a regular React component.
+If you use a library like [React Redux](https://github.com/reduxjs/react-redux), you might be using [higher-order components](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) like [`connect()`](https://github.com/reduxjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options). This lets you inject Redux state into a regular React component.
 
 Consider the following `App` component:
 
@@ -368,7 +368,7 @@ In a unit test, you would normally import the `App` component like this:
 import App from './App'
 ```
 
-However, when you import it, you're actually holding the wrapper component returned by `connect()`, and not the `App` component itself. If you want to test its interaction with Redux, this is good news: you can wrap it in a [`<Provider>`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store) with a store created specifically for this unit test. But sometimes you want to test just the rendering of the component, without a Redux store.
+However, when you import it, you're actually holding the wrapper component returned by `connect()`, and not the `App` component itself. If you want to test its interaction with Redux, this is good news: you can wrap it in a [`<Provider>`](https://github.com/reduxjs/react-redux/blob/master/docs/api.md#provider-store) with a store created specifically for this unit test. But sometimes you want to test just the rendering of the component, without a Redux store.
 
 In order to be able to test the App component itself without having to deal with the decorator, we recommend you to also export the undecorated component:
 
@@ -434,13 +434,13 @@ const create = () => {
   const store = {
     getState: jest.fn(() => ({})),
     dispatch: jest.fn(),
-  };
+  }
   const next = jest.fn()
 
   const invoke = (action) => thunk(store)(next)(action)
 
   return {store, next, invoke}
-};
+}
 ```
 
 We test that our middleware is calling the `getState`, `dispatch`, and `next` functions at the right time.
@@ -458,17 +458,17 @@ it('calls the function', () => {
   const fn = jest.fn()
   invoke(fn)
   expect(fn).toHaveBeenCalled()
-});
+})
 
 it('passes dispatch and getState', () => {
   const { store, invoke } = create()
   invoke((dispatch, getState) => {
     dispatch('TEST DISPATCH')
-    getState();
+    getState()
   })
   expect(store.dispatch).toHaveBeenCalledWith('TEST DISPATCH')
   expect(store.getState).toHaveBeenCalled()
-});
+})
 ```
 
 In some cases, you will need to modify the `create` function to use different mock implementations of `getState` and `next`.

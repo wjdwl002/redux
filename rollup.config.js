@@ -1,7 +1,7 @@
 import nodeResolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
-import uglify from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
 
 const env = process.env.NODE_ENV
 const config = {
@@ -10,7 +10,7 @@ const config = {
 }
 
 if (env === 'es' || env === 'cjs') {
-  config.output = { format: env }
+  config.output = { format: env, indent: false }
   config.external = ['symbol-observable']
   config.plugins.push(
     babel({
@@ -20,8 +20,7 @@ if (env === 'es' || env === 'cjs') {
 }
 
 if (env === 'development' || env === 'production') {
-  config.output = { format: 'umd' }
-  config.name = 'Redux'
+  config.output = { format: 'umd', name: 'Redux', indent: false }
   config.plugins.push(
     nodeResolve({
       jsnext: true
@@ -38,7 +37,7 @@ if (env === 'development' || env === 'production') {
 
 if (env === 'production') {
   config.plugins.push(
-    uglify({
+    terser({
       compress: {
         pure_getters: true,
         unsafe: true,

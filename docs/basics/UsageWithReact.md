@@ -8,7 +8,7 @@ We will use React to build our simple todo app.
 
 ## Installing React Redux
 
-[React bindings](https://github.com/reactjs/react-redux) are not included in Redux by default. You need to install them explicitly:
+[React bindings](https://github.com/reduxjs/react-redux) are not included in Redux by default. You need to install them explicitly:
 
 ```
 npm install --save react-redux
@@ -18,9 +18,7 @@ If you don't use npm, you may grab the latest UMD build from unpkg (either a [de
 
 ## Presentational and Container Components
 
-React bindings for Redux embrace the idea of **separating presentational and container components**. If you're not familiar with these terms, [read about them first](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0), and then come back. They are important, so we'll wait!
-
-Finished reading the article? Let's recount their differences:
+React bindings for Redux separate _presentational_ components from _container_ components. This approach can make your app easier to understand and allow you to more easily reuse components. Here's a summary of the differences between presentational and container components (but if you're unfamiliar, we recommend that you also read [Dan Abramov's original article describing the concept of presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)):
 
 <table>
     <thead>
@@ -61,7 +59,7 @@ Finished reading the article? Let's recount their differences:
 
 Most of the components we'll write will be presentational, but we'll need to generate a few container components to connect them to the Redux store. This and the design brief below do not imply container components must be near the top of the component tree. If a container component becomes too complex (i.e. it has heavily nested presentational components with countless callbacks being passed down), introduce another container within the component tree as noted in the [FAQ](../faq/ReactRedux.md#react-multiple-components).
 
-Technically you could write the container components by hand using [`store.subscribe()`](../api/Store.md#subscribe). We don't advise you to do this because React Redux makes many performance optimizations that are hard to do by hand. For this reason, rather than write container components, we will generate them using the [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function provided by React Redux, as you will see below.
+Technically you could write the container components by hand using [`store.subscribe()`](../api/Store.md#subscribe). We don't advise you to do this because React Redux makes many performance optimizations that are hard to do by hand. For this reason, rather than write container components, we will generate them using the [`connect()`](https://github.com/reduxjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function provided by React Redux, as you will see below.
 
 ## Designing Component Hierarchy
 
@@ -97,7 +95,7 @@ We will also need some container components to connect the presentational compon
 
 ### Designing Other Components
 
-Sometimes it's hard to tell if some component should be a presentational component or a container. For example, sometimes form and function are really coupled together, such as in case of this tiny component:
+Sometimes it's hard to tell if some component should be a presentational component or a container. For example, sometimes form and function are really coupled together, such as in the case of this tiny component:
 
 * **`AddTodo`** is an input field with an “Add” button
 
@@ -204,20 +202,21 @@ export default Link
 ```js
 import React from 'react'
 import FilterLink from '../containers/FilterLink'
+import { VisibilityFilters } from '../actions'
 
 const Footer = () => (
   <p>
     Show:
     {' '}
-    <FilterLink filter="SHOW_ALL">
+    <FilterLink filter={VisibilityFilters.SHOW_ALL}>
       All
     </FilterLink>
     {', '}
-    <FilterLink filter="SHOW_ACTIVE">
+    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>
       Active
     </FilterLink>
     {', '}
-    <FilterLink filter="SHOW_COMPLETED">
+    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
       Completed
     </FilterLink>
   </p>
@@ -228,9 +227,9 @@ export default Footer
 
 ### Implementing Container Components
 
-Now it's time to hook up those presentational components to Redux by creating some containers. Technically, a container component is just a React component that uses [`store.subscribe()`](../api/Store.md#subscribe) to read a part of the Redux state tree and supply props to a presentational component it renders. You could write a container component by hand, but we suggest instead generating container components with the React Redux library's [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function, which provides many useful optimizations to prevent unnecessary re-renders. (One result of this is that you shouldn't have to worry about the [React performance suggestion](https://facebook.github.io/react/docs/advanced-performance.html) of implementing `shouldComponentUpdate` yourself.)
+Now it's time to hook up those presentational components to Redux by creating some containers. Technically, a container component is just a React component that uses [`store.subscribe()`](../api/Store.md#subscribe) to read a part of the Redux state tree and supply props to a presentational component it renders. You could write a container component by hand, but we suggest instead generating container components with the React Redux library's [`connect()`](https://github.com/reduxjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function, which provides many useful optimizations to prevent unnecessary re-renders. (One result of this is that you shouldn't have to worry about the [React performance suggestion](https://facebook.github.io/react/docs/advanced-performance.html) of implementing `shouldComponentUpdate` yourself.)
 
-To use `connect()`, you need to define a special function called `mapStateToProps` that tells how to transform the current Redux store state into the props you want to pass to a presentational component you are wrapping. For example, `VisibleTodoList` needs to calculate `todos` to pass to the `TodoList`, so we define a function that filters the `state.todos` according to the `state.visibilityFilter`, and use it in its `mapStateToProps`:
+To use `connect()`, you need to define a special function called `mapStateToProps` that describes how to transform the current Redux store state into the props you want to pass to a presentational component you are wrapping. For example, `VisibleTodoList` needs to calculate `todos` to pass to the `TodoList`, so we define a function that filters the `state.todos` according to the `state.visibilityFilter`, and use it in its `mapStateToProps`:
 
 ```js
 const getVisibleTodos = (todos, filter) => {
@@ -277,7 +276,7 @@ const VisibleTodoList = connect(
 export default VisibleTodoList
 ```
 
-These are the basics of the React Redux API, but there are a few shortcuts and power options so we encourage you to check out [its documentation](https://github.com/reactjs/react-redux) in detail. In case you are worried about `mapStateToProps` creating new objects too often, you might want to learn about [computing derived data](../recipes/ComputingDerivedData.md) with [reselect](https://github.com/reactjs/reselect).
+These are the basics of the React Redux API, but there are a few shortcuts and power options so we encourage you to check out [its documentation](https://github.com/reduxjs/react-redux) in detail. In case you are worried about `mapStateToProps` creating new objects too often, you might want to learn about [computing derived data](../recipes/ComputingDerivedData.md) with [reselect](https://github.com/reduxjs/reselect).
 
 Find the rest of the container components defined below:
 
@@ -419,7 +418,7 @@ export default App
 
 All container components need access to the Redux store so they can subscribe to it. One option would be to pass it as a prop to every container component. However it gets tedious, as you have to wire `store` even through presentational components just because they happen to render a container deep in the component tree.
 
-The option we recommend is to use a special React Redux component called [`<Provider>`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store) to [magically](https://facebook.github.io/react/docs/context.html) make the store available to all container components in the application without passing it explicitly. You only need to use it once when you render the root component:
+The option we recommend is to use a special React Redux component called [`<Provider>`](https://github.com/reduxjs/react-redux/blob/master/docs/api.md#provider-store) to [magically](https://facebook.github.io/react/docs/context.html) make the store available to all container components in the application without passing it explicitly. You only need to use it once when you render the root component:
 
 #### `index.js`
 
@@ -431,7 +430,7 @@ import { createStore } from 'redux'
 import todoApp from './reducers'
 import App from './components/App'
 
-let store = createStore(todoApp)
+const store = createStore(todoApp)
 
 render(
   <Provider store={store}>
