@@ -25,11 +25,11 @@ Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
 
 If you're brand new to Redux and want to understand the basic concepts, see:
 
-- The **[Motivation](https://redux.js.org/introduction/motivation)** behind building Redux, the **[Core Concepts](https://redux.js.org/introduction/coreconcepts)**, and the **[Three Principles](https://redux.js.org/introduction/threeprinciples)**.
-- The **[basic tutorial in the Redux docs](https://redux.js.org/basics)**
+- The **[Motivation](https://lunit.gitbook.io/redux-in-korean/introduction/motivation)** behind building Redux, the **[Core Concepts](https://lunit.gitbook.io/redux-in-korean/introduction/coreconcepts)**, and the **[Three Principles](https://lunit.gitbook.io/redux-in-korean/introduction/threeprinciples)**.
+- The **[basic tutorial in the Redux docs](https://lunit.gitbook.io/redux-in-korean/basics)**
 - Redux creator Dan Abramov's **free ["Getting Started with Redux" video series](https://egghead.io/series/getting-started-with-redux)** on Egghead.io
 - Redux co-maintainer Mark Erikson's **["Redux Fundamentals" slideshow](http://blog.isquaredsoftware.com/2018/03/presentation-reactathon-redux-fundamentals/)** and **[list of suggested resources for learning Redux](http://blog.isquaredsoftware.com/2017/12/blogged-answers-learn-redux/)**
-- If you learn best by looking at code and playing with it, check out our list of **[Redux example applications](https://redux.js.org/introduction/examples)**, available as separate projects in the Redux repo, and also as interactive online examples on CodeSandbox.
+- If you learn best by looking at code and playing with it, check out our list of **[Redux example applications](https://lunit.gitbook.io/redux-in-korean/introduction/examples)**, available as separate projects in the Redux repo, and also as interactive online examples on CodeSandbox.
 - The **[Redux Tutorials](https://github.com/markerikson/react-redux-links/blob/master/redux-tutorials.md)** section of the **[React/Redux links list](https://github.com/markerikson/react-redux-links)**.  Here's a top list of our recommended tutorials:
     - Dave Ceddia's posts [What Does Redux Do? (and when should you use it?)](https://daveceddia.com/what-does-redux-do/) and [How Redux Works: A Counter-Example](https://daveceddia.com/how-does-redux-work/) are a great intro to the basics of Redux and how to use it with React, as is this post on [React and Redux: An Introduction](http://jakesidsmith.com/blog/post/2017-11-18-redux-and-react-an-introduction/).
     - Valentino Gagliardi's post [React Redux Tutorial for Beginners: Learning Redux in 2018](https://www.valentinog.com/blog/react-redux-tutorial-beginners/) is an excellent extended introduction to many aspects of using Redux.
@@ -41,8 +41,8 @@ If you're brand new to Redux and want to understand the basic concepts, see:
 
 Once you've picked up the basics of working with actions, reducers, and the store, you may have questions about topics like working with asynchronous logic and AJAX requests, connecting a UI framework like React to your Redux store, and setting up an application to use Redux:
 
-- The **["Advanced" docs section](https://redux.js.org/advanced)** covers working with async logic, middleware, routing.
-- The Redux docs **["Learning Resources"](https://redux.js.org/introduction/learning-resources)** page points to recommended articles on a variety of Redux-related topics.
+- The **["Advanced" docs section](https://lunit.gitbook.io/redux-in-korean/advanced)** covers working with async logic, middleware, routing.
+- The Redux docs **["Learning Resources"](https://lunit.gitbook.io/redux-in-korean/introduction/learning-resources)** page points to recommended articles on a variety of Redux-related topics.
 - Sophie DeBenedetto's 8-part **[Building a Simple CRUD App with React + Redux](http://www.thegreatcodeadventure.com/building-a-simple-crud-app-with-react-redux-part-1/)** series shows how to put together a basic CRUD app from scratch.
 
 
@@ -51,10 +51,10 @@ Once you've picked up the basics of working with actions, reducers, and the stor
 Going from a TodoMVC app to a real production application can be a big jump, but we've got plenty of resources to help:
 
 - Redux creator Dan Abramov's **[free "Building React Applications with Idiomatic Redux" video series](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)** builds on his first video series and covers topics like middleware, routing, and persistence.
-- The **[Redux FAQ](https://redux.js.org/faq)** answers many common questions about how to use Redux, and the **["Recipes" docs section](https://redux.js.org/recipes)** has information on handling derived data, testing, structuring reducer logic, and reducing boilerplate.
+- The **[Redux FAQ](https://lunit.gitbook.io/redux-in-korean/faq)** answers many common questions about how to use Redux, and the **["Recipes" docs section](https://lunit.gitbook.io/redux-in-korean/recipes)** has information on handling derived data, testing, structuring reducer logic, and reducing boilerplate.
 - Redux co-maintainer Mark Erikson's **["Practical Redux" tutorial series](http://blog.isquaredsoftware.com/series/practical-redux/)** demonstrates real-world intermediate and advanced techniques for working with React and Redux (also available as **[an interactive course on Educative.io](https://www.educative.io/collection/5687753853370368/5707702298738688)**).
 - The **[React/Redux links list](https://github.com/markerikson/react-redux-links)** has categorized articles on working with [reducers and selectors](https://github.com/markerikson/react-redux-links/blob/master/redux-reducers-selectors.md), [managing side effects](https://github.com/markerikson/react-redux-links/blob/master/redux-side-effects.md), [Redux architecture and best practices](https://github.com/markerikson/react-redux-links/blob/master/redux-architecture.md), and more.
-- Our community has created thousands of Redux-related libraries, addons, and tools.  The **["Ecosystem" docs page](https://redux.js.org/introduction/ecosystem)** lists our recommendations, and there's a complete listing available in the **[Redux addons catalog](https://github.com/markerikson/redux-ecosystem-links)**.
+- Our community has created thousands of Redux-related libraries, addons, and tools.  The **["Ecosystem" docs page](https://lunit.gitbook.io/redux-in-korean/introduction/ecosystem)** lists our recommendations, and there's a complete listing available in the **[Redux addons catalog](https://github.com/markerikson/redux-ecosystem-links)**.
 - If you're looking to learn from actual application codebases, the addons catalog also has a list of **[purpose-built examples and real-world applications](https://github.com/markerikson/redux-ecosystem-links/blob/master/apps-and-examples.md)**.
 
 Finally, Mark Erikson is teaching a series of **[Redux workshops through Workshop.me](#redux-workshops)**.  Check the [workshop schedule](https://workshop.me/?a=mark) for upcoming dates and locations.
@@ -67,7 +67,7 @@ The **[#redux channel](https://discord.gg/0ZcbPKXt5bZ6au5t)** of the **[Reactifl
 
 
 
-### 더 나아가기 전에
+## 더 나아가기 전에
 
 Redux는 상태를 관리하기에 좋은 도구이지만 여러분의 상황에 적당한지는 따져 보아야 합니다. 단지 누군가가 사용하라고 했다는 이유만으로 Redux를 사용하지는 마세요 - 시간을 들여서 잠재적인 이점과 그에 따른 등가교환에 대해 이해하세요.
 
@@ -82,18 +82,18 @@ Yes, these guidelines are subjective and vague, but this is for good reason. The
 >- **[당신에게 Redux는 필요 없을지도 모릅니다.](https://medium.com/@Dev_Bono/당신에게-redux는-필요-없을지도-모릅니다-b88dcd175754)**<br>
 >- **[The Tao of Redux, Part 1 - Implementation and Intent](http://blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-1/)**<br>
 >- **[The Tao of Redux, Part 2 - Practice and Philosophy](http://blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-2/)**
->- **[Redux FAQ](https://redux.js.org/faq)**
+>- **[Redux FAQ](https://lunit.gitbook.io/redux-in-korean/faq)**
 
-### 개발자 경험
+## 개발자 경험
 
 Dan Abramov (Redux의 제작자)는 Redux를 ["Hot Reloading with Time Travel"](https://www.youtube.com/watch?v=xsSnOQynTHs)이라는 React Europe 발표를 위해 작업하면서 만들었습니다. 그의 목표는 최소한의 API를 가지면서도 완전히 예측 가능한 행동을 하는 상태 관리 라이브러리를 만들어서, 이를 통해 로깅, 핫 리로딩, 시간여행, 유니버셜 앱, 기록과 재생 등을 개발자의 노력 없이도 구현하는 것이었습니다.
 
-### 영향을 받은 것들
+## 영향을 받은 것들
 
 Redux는 [Flux](https://facebook.github.io/flux)의 아이디어를 발전시키되, [Elm](https://github.com/evancz/elm-architecture-tutorial/)의 큐들을 가져옴으로써 복잡성은 줄였습니다.
 이들을 써보셨는지와 상관 없이, Redux를 시작하는데는 몇 분이면 충분합니다.
 
-### 설치
+## 설치
 
 안정 버전을 설치하시려면:
 
@@ -111,7 +111,7 @@ npm install --save redux
 
 Redux 소스코드는 ES2015로 작성되었지만 CommonJS와 UMD 빌드 모두를 ES5로 미리 컴파일해두었기 때문에 [모든 모던 브라우저](http://caniuse.com/#feat=es5)에서 작동합니다. [Redux를 시작하기](https://github.com/reactjs/redux/blob/master/examples/counter-vanilla/index.html)위해 Babel이나 모듈 번들러를 사용할 필요는 없습니다.
 
-#### 보조 패키지
+### 보조 패키지
 
 아마 여러분은 [React 바인딩](http://github.com/gaearon/react-redux)과 [개발자 도구](http://github.com/gaearon/redux-devtools)도 필요하실겁니다.
 
@@ -122,7 +122,7 @@ npm install --save-dev redux-devtools
 
 Redux 자체와는 달리 Redux 생태계의 많은 패키지들은 UMD 빌드를 제공하지 않으므로, 편안한 개발 경험을 위해 [Webpack](https://webpack.js.org/)이나 [Browserify](http://browserify.org/) 같은 CommonJS 모듈 번들러를 사용하기를 권합니다.
 
-### The Gist
+## The Gist
 
 여러분의 앱의 상태 전부는 하나의 스토어(**store**)안에 있는 객체 트리에 저장됩니다.
 상태 트리를 변경하는 유일한 방법은 무엇이 일어날지 서술하는 객체인 액션(**action**)을 보내는 것 뿐입니다.
@@ -252,39 +252,39 @@ Redux co-maintainer [Mark Erikson](https://twitter.com/acemarke) has put togethe
 - Real-world Redux app structure and development
 
 
-### 문서
+## 문서
 
-* [소개](https://lunit.gitbook.io/redux-in-korean/table-of-contents/introduction)
-* [기초](https://lunit.gitbook.io/redux-in-korean/table-of-contents/basics)
-* [심화](https://lunit.gitbook.io/redux-in-korean/table-of-contents/advanced)
-* [레시피](https://lunit.gitbook.io/redux-in-korean/table-of-contents/recipes)
-* [FAQ](https://lunit.gitbook.io/redux-in-korean/table-of-contents/faq)
-* [문제해결](https://lunit.gitbook.io/redux-in-korean/table-of-contents/Troubleshooting.html)
-* [용어사전](https://lunit.gitbook.io/redux-in-korean/table-of-contents/Glossary.html)
-* [API 레퍼런스](https://lunit.gitbook.io/redux-in-korean/table-of-contents/api)
+* [소개](https://lunit.gitbook.io/redux-in-korean/introduction)
+* [기초](https://lunit.gitbook.io/redux-in-korean/basics)
+* [심화](https://lunit.gitbook.io/redux-in-korean/advanced)
+* [레시피](https://lunit.gitbook.io/redux-in-korean/recipes)
+* [FAQ](https://lunit.gitbook.io/redux-in-korean/faq)
+* [문제해결](https://lunit.gitbook.io/redux-in-korean/Troubleshooting)
+* [용어사전](https://lunit.gitbook.io/redux-in-korean/Glossary)
+* [API 레퍼런스](https://lunit.gitbook.io/redux-in-korean/api)
 
 오프라인에서 읽기 위한 PDF, ePub, MOBI 버전을 받거나 어떻게 만드는지 알고 싶다면, [paulkogel/redux-offline-docs](https://github.com/paulkogel/redux-offline-docs)을 보세요.
 
 Offline 문서는 [devdocs](http://devdocs.io/redux/)을 보세요.
 
-### 예시
+## 예시
 
 Almost all examples have a corresponding CodeSandbox sandbox. This is an interactive version of the code that you can play with online.
 
-* [**Counter Vanilla**](https://redux.js.org/introduction/examples#counter-vanilla): [Source](https://github.com/reduxjs/redux/tree/master/examples/counter-vanilla)
-* [**Counter**](https://redux.js.org/introduction/examples#counter): [Source](https://github.com/reduxjs/redux/tree/master/examples/counter) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/counter)
-* [**Todos**](https://redux.js.org/introduction/examples#todos): [Source](https://github.com/reduxjs/redux/tree/master/examples/todos) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todos)
-* [**Todos with Undo**](https://redux.js.org/introduction/examples#todos-with-undo): [Source](https://github.com/reduxjs/redux/tree/master/examples/todos-with-undo) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todos-with-undo)
-* [**TodoMVC**](https://redux.js.org/introduction/examples#todomvc): [Source](https://github.com/reduxjs/redux/tree/master/examples/todomvc) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todomvc)
-* [**Shopping Cart**](https://redux.js.org/introduction/examples#shopping-cart): [Source](https://github.com/reduxjs/redux/tree/master/examples/shopping-cart) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/shopping-cart)
-* [**Tree View**](https://redux.js.org/introduction/examples#tree-view): [Source](https://github.com/reduxjs/redux/tree/master/examples/tree-view) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/tree-view)
-* [**Async**](https://redux.js.org/introduction/examples#async): [Source](https://github.com/reduxjs/redux/tree/master/examples/async) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/async)
-* [**Universal**](https://redux.js.org/introduction/examples#universal): [Source](https://github.com/reduxjs/redux/tree/master/examples/universal)
-* [**Real World**](https://redux.js.org/introduction/examples#real-world): [Source](https://github.com/reduxjs/redux/tree/master/examples/real-world) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/real-world)
+* [**Counter Vanilla**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#counter-vanilla): [Source](https://github.com/reduxjs/redux/tree/master/examples/counter-vanilla)
+* [**Counter**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#counter): [Source](https://github.com/reduxjs/redux/tree/master/examples/counter) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/counter)
+* [**Todos**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#todos): [Source](https://github.com/reduxjs/redux/tree/master/examples/todos) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todos)
+* [**Todos with Undo**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#todos-with-undo): [Source](https://github.com/reduxjs/redux/tree/master/examples/todos-with-undo) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todos-with-undo)
+* [**TodoMVC**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#todomvc): [Source](https://github.com/reduxjs/redux/tree/master/examples/todomvc) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todomvc)
+* [**Shopping Cart**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#shopping-cart): [Source](https://github.com/reduxjs/redux/tree/master/examples/shopping-cart) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/shopping-cart)
+* [**Tree View**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#tree-view): [Source](https://github.com/reduxjs/redux/tree/master/examples/tree-view) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/tree-view)
+* [**Async**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#async): [Source](https://github.com/reduxjs/redux/tree/master/examples/async) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/async)
+* [**Universal**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#universal): [Source](https://github.com/reduxjs/redux/tree/master/examples/universal)
+* [**Real World**](https://lunit.gitbook.io/redux-in-korean/introduction/examples#real-world): [Source](https://github.com/reduxjs/redux/tree/master/examples/real-world) | [Sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/real-world)
 
 만약 여러분이 NPM 생태계가 생소하고 프로젝트를 시작하는데 문제가 있거나 위의 코드를 어디에 붙여넣어야 할지 모르겠다면, Redux를 React와 Browserify와 함께 사용하는 [simplest-redux-example](https://github.com/jackielii/simplest-redux-example)을 참고하세요.
 
-### 추천사
+## 추천사
 
 >["Love what you’re doing with Redux"](https://twitter.com/jingc/status/616608251463909376)
 >Jing Chen, creator of Flux
@@ -295,7 +295,7 @@ Almost all examples have a corresponding CodeSandbox sandbox. This is an interac
 >["It's cool that you are inventing a better Flux by not doing Flux at all."](https://twitter.com/andrestaltz/status/616271392930201604)
 >André Staltz, creator of Cycle
 
-### 감사의 말
+## 감사의 말
 
 * [The Elm Architecture](https://github.com/evancz/elm-architecture-tutorial) for a great intro to modeling state updates with reducers;
 * [Turning the database inside-out](http://blog.confluent.io/2015/03/04/turning-the-database-inside-out-with-apache-samza/) for blowing my mind;
@@ -310,16 +310,16 @@ Almost all examples have a corresponding CodeSandbox sandbox. This is an interac
 
 NPM 패키지명인 `redux`를 넘겨주신 [Jamie Paton](http://jdpaton.github.io)에게 특별한 감사의 말을 전합니다.
 
-### 로고
+## 로고
 
 공식 로고를 [GitHub](https://github.com/reactjs/redux/tree/master/logo)에서 찾아보실 수 있습니다.
 
-### 변경 기록
+## 변경 기록
 
 이 프로젝트는 [유의적 버전](http://semver.org/lang/ko/)을 따릅니다.
 매 릴리즈는 마이그레이션 설명과 함께 깃헙 [릴리즈](https://github.com/reduxjs/redux/releases) 페이지에 문서화됩니다.
 
-### 후원자
+## 후원자
 
 Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patreon.com/reactdx).
 이를 가능하게 했던 주요한 회사들을 소개합니다.
@@ -329,10 +329,10 @@ Redux 작업은 [커뮤니티에 의해 펀딩되었습니다](https://www.patre
 
 [전체 후원자 명단](PATRONS_kr.md)과 지속적으로 늘어나고 있는 [Redux를 사용하는 사람과 회사들](https://github.com/reactjs/redux/issues/310) 목록을 볼 수 있습니다.
 
-### 라이선스
+## 라이선스
 
 MIT
 
-### 번역
+## 번역
 
 한국어 번역 기여는 [Github 저장소](https://github.com/deminoth/redux)로 풀 리퀘스트를 보내주시기 바랍니다.
