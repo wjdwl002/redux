@@ -3,9 +3,9 @@
 
 
 Redux는 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너입니다.
-(혹시 워드프레스 프레임워크인 [Redux Framework](https://reduxframework.com/)와 혼동하지 마세요.)
+(워드프레스 프레임워크인 [Redux Framework](https://reduxframework.com/)와 혼동하지 마세요.)
 
-Redux는 여러분이 일관적으로 동작하고, 서로 다른 환경(서버, 클라이언트, 네이티브)에서 작동하고, 테스트하기 쉬운 앱을 작성하도록 도와줍니다. 여기에 더해서 [시간여행형 디버거와 결합된 실시간 코드 수정](https://github.com/gaearon/redux-devtools)과 같은 훌륭한 개발자 경험을 제공합니다.
+Redux는 여러분이 일관적으로 동작하고, 서로 다른 환경(서버, 클라이언트, 네이티브)에서 작동하고, 테스트하기 쉬운 앱을 작성하도록 도와줍니다. 여기에 더해서 [시간여행형 디버거와 결합된 실시간 코드 수정](https://github.com/reduxjs/redux-devtools)과 같은 훌륭한 개발자 경험을 제공합니다.
 
 여러분은 Redux를 [React](https://facebook.github.io/react/)나 다른 뷰 라이브러리와 함께 사용할 수 있습니다.
 Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
@@ -21,9 +21,9 @@ Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
 
 여러분의 배경이나 학습방법에 관계 없이 Redux를 배우는 데 도움이 될 수 있도록 여러 종류의 자료가 있습니다.
 
-### Just the Basics
+### 기초부터
 
-If you're brand new to Redux and want to understand the basic concepts, see:
+Redux를 처음 접해서 기초 개념을 이해하고 싶다면:
 
 - The **[Motivation](https://lunit.gitbook.io/redux-in-korean/introduction/motivation)** behind building Redux, the **[Core Concepts](https://lunit.gitbook.io/redux-in-korean/introduction/coreconcepts)**, and the **[Three Principles](https://lunit.gitbook.io/redux-in-korean/introduction/threeprinciples)**.
 - The **[basic tutorial in the Redux docs](https://lunit.gitbook.io/redux-in-korean/basics)**
@@ -37,7 +37,7 @@ If you're brand new to Redux and want to understand the basic concepts, see:
     - This [DevGuides: Introduction to Redux](http://devguides.io/redux/) tutorial covers several aspects of Redux, including actions, reducers, usage with React, and middleware.
 
 
-### Intermediate Concepts
+### 중급 개념
 
 Once you've picked up the basics of working with actions, reducers, and the store, you may have questions about topics like working with asynchronous logic and AJAX requests, connecting a UI framework like React to your Redux store, and setting up an application to use Redux:
 
@@ -46,7 +46,7 @@ Once you've picked up the basics of working with actions, reducers, and the stor
 - Sophie DeBenedetto's 8-part **[Building a Simple CRUD App with React + Redux](http://www.thegreatcodeadventure.com/building-a-simple-crud-app-with-react-redux-part-1/)** series shows how to put together a basic CRUD app from scratch.
 
 
-### Real-World Usage
+### 실제 사용
 
 Going from a TodoMVC app to a real production application can be a big jump, but we've got plenty of resources to help:
 
@@ -60,7 +60,7 @@ Going from a TodoMVC app to a real production application can be a big jump, but
 Finally, Mark Erikson is teaching a series of **[Redux workshops through Workshop.me](#redux-workshops)**.  Check the [workshop schedule](https://workshop.me/?a=mark) for upcoming dates and locations.
 
 
-### Help and Discussion
+### 도움과 논의
 
 The **[#redux channel](https://discord.gg/0ZcbPKXt5bZ6au5t)** of the **[Reactiflux Discord community](http://www.reactiflux.com)** is our official resource for all questions related to learning and using Redux.  Reactiflux is a great place to hang out, ask questions, and learn - come join us!
 
@@ -71,14 +71,14 @@ The **[#redux channel](https://discord.gg/0ZcbPKXt5bZ6au5t)** of the **[Reactifl
 
 Redux는 상태를 관리하기에 좋은 도구이지만 여러분의 상황에 적당한지는 따져 보아야 합니다. 단지 누군가가 사용하라고 했다는 이유만으로 Redux를 사용하지는 마세요 - 시간을 들여서 잠재적인 이점과 그에 따른 등가교환에 대해 이해하세요.
 
-Here are some suggestions on when it makes sense to use Redux:
-* You have reasonable amounts of data changing over time
-* You need a single source of truth for your state
-* You find that keeping all your state in a top-level component is no longer sufficient
+Redux를 사용할만한 시점을 알기 위한 몇 가지 제안이 있습니다:
+* 시간에 따라 바뀌는 충분한 양의 데이터가 있다
+* 상태를 위한 단 하나의 원천이 필요하다
+* 모든 상태를 가지고 있기에 최상위 상태는 더 이상 적당하지 않다
 
-Yes, these guidelines are subjective and vague, but this is for good reason. The point at which you should integrate Redux into your application is different for every user and different for every application.
+이러한 가이드라인은 주관적이고 애매하지만, 그럴만한 이유가 있습니다. 당신의 앱에 Redux를 사용해야 할 시점은 사용자에 따라 다르고 앱에 따라 다릅니다.
 
->**For more thoughts on how Redux is meant to be used, see:**<br>
+>**Redux가 어떻게 사용되어야 하는지에 대한 여러 생각들을 보려면:**<br>
 >- **[당신에게 Redux는 필요 없을지도 모릅니다.](https://medium.com/@Dev_Bono/당신에게-redux는-필요-없을지도-모릅니다-b88dcd175754)**<br>
 >- **[The Tao of Redux, Part 1 - Implementation and Intent](http://blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-1/)**<br>
 >- **[The Tao of Redux, Part 2 - Practice and Philosophy](http://blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-2/)**
@@ -105,15 +105,15 @@ npm install --save redux
 
 만약 아니라면 [이들 파일을 unpkg에서 접근](https://unpkg.com/redux/)해서 다운로드받거나 여러분의 패키지 매니저에 지정해주세요.
 
-대부분의 사람들은 Redux를 [CommonJS](http://webpack.github.io/docs/commonjs.html) 모듈로 사용합니다. 이 모듈은 [Webpack](https://webpack.js.org/)이나 [Browserify](http://browserify.org/), 네이티브 환경에서 `redux`를 임포트할때 불러와집니다. 여러분이 최첨단을 걷고 있으며 [Rollup](http://rollupjs.org)을 사용한다면 이 역시 지원합니다.
+대부분의 사람들은 Redux를 [CommonJS](http://webpack.github.io/docs/commonjs.html) 모듈로 사용합니다. 이 모듈은 [Webpack](https://webpack.js.org/)이나 [Browserify](http://browserify.org/) 또는 Node 환경에서 `redux`를 임포트할때 불러와집니다. 여러분이 최첨단을 걷고 있으며 [Rollup](https://rollupjs.org)을 사용한다면 이 역시 지원합니다.
 
-만약 여러분이 모듈 번들러를 사용하고 있지 않더라도 괜찮습니다. `redux` npm 패키지는 미리 컴파일된 프로덕션과 개발용 [UMD](https://github.com/umdjs/umd) 빌드를 [`dist` 폴더](https://unpkg.com/redux/dist/)에 포함하고 있습니다. 이들은 번들러 없이 바로 사용 가능하고 대부분의 자바스크립트 모듈 로더나 환경과 호환됩니다. 예를 들어 UMD 빌드를 페이지 상의 [`<script>` 태그](https://npmcdn.com/redux/dist/redux.js)로 사용하거나 [Bower가 설치하게 할 수 있습니다](https://github.com/reactjs/redux/pull/1181#issuecomment-167361975). UMD 빌드는 Redux를 `window.Redux` 전역변수로 사용하게 해줍니다.
+만약 여러분이 모듈 번들러를 사용하고 있지 않더라도 괜찮습니다. `redux` npm 패키지는 미리 컴파일된 프로덕션과 개발용 [UMD](https://github.com/umdjs/umd) 빌드를 [`dist` 폴더](https://unpkg.com/redux/dist/)에 포함하고 있습니다. 이들은 번들러 없이 바로 사용 가능하고 대부분의 자바스크립트 모듈 로더나 환경과 호환됩니다. 예를 들어 UMD 빌드를 페이지 상의 [`<script>` 태그](https://npmcdn.com/redux/dist/redux.js)에서 사용하거나 [Bower가 설치하게 할 수 있습니다](https://github.com/reactjs/redux/pull/1181#issuecomment-167361975). UMD 빌드는 Redux를 `window.Redux` 전역변수로 사용하게 해줍니다.
 
 Redux 소스코드는 ES2015로 작성되었지만 CommonJS와 UMD 빌드 모두를 ES5로 미리 컴파일해두었기 때문에 [모든 모던 브라우저](http://caniuse.com/#feat=es5)에서 작동합니다. [Redux를 시작하기](https://github.com/reactjs/redux/blob/master/examples/counter-vanilla/index.html)위해 Babel이나 모듈 번들러를 사용할 필요는 없습니다.
 
 ### 보조 패키지
 
-아마 여러분은 [React 바인딩](http://github.com/gaearon/react-redux)과 [개발자 도구](http://github.com/gaearon/redux-devtools)도 필요하실겁니다.
+아마 여러분은 [React 바인딩](https://github.com/reduxjs/react-redux)과 [개발자 도구](https://github.com/reduxjs/redux-devtools)도 필요하실겁니다.
 
 ```
 npm install --save react-redux
