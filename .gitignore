@@ -1,7 +1,13 @@
-.DS_Store
-*.log
 node_modules
+
+coverage
+
 dist
 lib
 es
-coverage
+types
+
+website/translated_docs
+website/build/
+website/node_modules
+website/i18n/*

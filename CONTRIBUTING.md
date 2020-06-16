@@ -34,7 +34,7 @@ Visit the [issue tracker](https://github.com/reduxjs/redux/issues) to find a lis
 
 Fork, then clone the repo:
 
-```
+```sh
 git clone https://github.com/your-username/redux.git
 ```
 
@@ -43,91 +43,66 @@ git clone https://github.com/your-username/redux.git
 #### Building Redux
 
 Running the `build` task will create a CommonJS module-per-module build, a ES Modules build and a UMD build.
-```
+
+```sh
 npm run build
 ```
-
-To create just a CommonJS module-per-module build:
-
-```
-npm run build:commonjs
-```
-
-The result will be in the `lib` folder.
-
-To create just a ES Modules build:
-
-```
-npm run build:es
-```
-
-The result will be in the `es` folder.
-
-To create just a UMD build:
-```
-npm run build:umd
-npm run build:umd:min
-```
-
-The result will be in the `dist` folder.
 
 ### Testing and Linting
 
 To only run linting:
 
-```
+```sh
 npm run lint
 ```
 
 To only run tests:
 
-```
+```sh
 npm run test
 ```
 
 To continuously watch and run tests, run the following:
 
-```
+```sh
 npm run test:watch
 ```
 
 ### Docs
 
-Improvements to the documentation are always welcome. In the docs we abide by typographic rules, so instead of ' you should use '. Same goes for “ ” and dashes (—) where appropriate. These rules only apply to the text, not to code blocks.
-
-The docs are published automatically when the `master` branch is updated.
+Improvements to the documentation are always welcome. You can find them in the [`docs`](/website/docs) path. We use [Docusaurus](https://docusaurus.io/) to build our documentation website. The website is published automatically whenever the `master` branch is updated.
 
 ### Examples
 
-Redux comes with [official examples](http://redux.js.org/docs/introduction/Examples.html) to demonstrate various concepts and best practices.
+Redux comes with [official examples](https://redux.js.org/introduction/examples) to demonstrate various concepts and best practices.
 
-When adding a new example, please adhere to the style and format of the existing examples, and try to reuse as much code as possible.  For example, `index.html`, `server.js`, and `webpack.config.js` can typically be reused.
+When adding a new example, please adhere to the style and format of the existing examples, and try to reuse as much code as possible. For example, `index.html`, `server.js`, and `webpack.config.js` can typically be reused.
 
 #### Testing the Examples
 
 To test the official Redux examples, run the following:
 
-```
+```sh
 npm run examples:test
 ```
 
 Not all examples have tests. If you see an example project without tests, you are very welcome to add them in a way consistent with the examples that have tests.
 
-Please visit the [Examples page](http://redux.js.org/docs/introduction/Examples.html) for information on running individual examples.
+Please visit the [Examples page](https://redux.js.org/introduction/examples) for information on running individual examples.
 
 ### Sending a Pull Request
 
 For non-trivial changes, please open an issue with a proposal for a new feature or refactoring before starting on the work. We don't want you to waste your efforts on a pull request that we won't want to accept.
 
-On the other hand, sometimes the best way to start a conversation *is* to send a pull request. Use your best judgement!
+On the other hand, sometimes the best way to start a conversation _is_ to send a pull request. Use your best judgement!
 
 In general, the contribution workflow looks like this:
 
-* Open a new issue in the [Issue tracker](https://github.com/reduxjs/redux/issues).
-* Fork the repo.
-* Create a new feature branch based off the `master` branch.
-* Make sure all tests pass and there are no linting errors.
-* Submit a pull request, referencing any issues it addresses.
+- Open a new issue in the [Issue tracker](https://github.com/reduxjs/redux/issues).
+- Fork the repo.
+- Create a new feature branch based off the `master` branch.
+- Make sure all tests pass and there are no linting errors.
+- Submit a pull request, referencing any issues it addresses.
 
 Please try to keep your pull request focused in scope and avoid including unrelated commits.
 

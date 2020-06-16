@@ -1,6 +1,12 @@
+---
+id: server-rendering
+title: Server Rendering
+hide_title: true
+---
+
 # Server Rendering
 
-The most common use case for server-side rendering is to handle the _initial render_ when a user (or search engine crawler) first requests our app.  When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.  From that point on, the client takes over rendering duties.
+The most common use case for server-side rendering is to handle the _initial render_ when a user (or search engine crawler) first requests our app. When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client. From that point on, the client takes over rendering duties.
 
 We will use React in the examples below, but the same techniques can be used with other view frameworks that can render on the server.
 
@@ -10,12 +16,12 @@ When using Redux with server rendering, we must also send the state of our app a
 
 To send the data down to the client, we need to:
 
-* create a fresh, new Redux store instance on every request;
-* optionally dispatch some actions;
-* pull the state out of store;
-* and then pass the state along to the client.
+- create a fresh, new Redux store instance on every request;
+- optionally dispatch some actions;
+- pull the state out of store;
+- and then pass the state along to the client.
 
-On the client side, a new Redux store will be created and initialized with the state provided from the server.  
+On the client side, a new Redux store will be created and initialized with the state provided from the server.
 Redux's **_only_** job on the server side is to provide the **initial state** of our app.
 
 ## Setting Up
@@ -26,8 +32,8 @@ In the following recipe, we are going to look at how to set up server-side rende
 
 For this example, we'll be using [Express](http://expressjs.com/) as a simple web server. We also need to install the React bindings for Redux, since they are not included in Redux by default.
 
-```
-npm install --save express react-redux
+```sh
+npm install express react-redux
 ```
 
 ## The Server Side
@@ -57,15 +63,19 @@ app.use('/static', Express.static('static'))
 app.use(handleRender)
 
 // We are going to fill these out in the sections to follow
-function handleRender(req, res) { /* ... */ }
-function renderFullPage(html, preloadedState) { /* ... */ }
+function handleRender(req, res) {
+  /* ... */
+}
+function renderFullPage(html, preloadedState) {
+  /* ... */
+}
 
 app.listen(port)
 ```
 
 ### Handling the Request
 
-The first thing that we need to do on every request is create a new Redux store instance. The only purpose of this store instance is to provide the initial state of our application.
+The first thing that we need to do on every request is to create a new Redux store instance. The only purpose of this store instance is to provide the initial state of our application.
 
 When rendering, we will wrap `<App />`, our root component, inside a `<Provider>` to make the store available to all components in the component tree, as we saw in [Usage with React](../basics/UsageWithReact.md).
 
@@ -115,8 +125,11 @@ function renderFullPage(html, preloadedState) {
         <div id="root">${html}</div>
         <script>
           // WARNING: See the following for security issues around embedding JSON in HTML:
-          // http://redux.js.org/recipes/ServerRendering.html#security-considerations
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+          // https://redux.js.org/recipes/server-rendering/#security-considerations
+          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+            /</g,
+            '\\u003c'
+          )}
         </script>
         <script src="/static/bundle.js"></script>
       </body>
@@ -160,7 +173,7 @@ hydrate(
 
 You can set up your build tool of choice (Webpack, Browserify, etc.) to compile a bundle file into `static/bundle.js`.
 
-When the page loads, the bundle file will be started up and [`ReactDOM.hydrate()`](https://reactjs.org/docs/react-dom.html#hydrate) will hook into the `data-react-id` attributes from the server-rendered HTML. This will connect our newly-started React instance to the virtual DOM used on the server. Since we have the same initial state for our Redux store and used the same code for all our view components, the result will be the same real DOM.
+When the page loads, the bundle file will be started up and [`ReactDOM.hydrate()`](https://reactjs.org/docs/react-dom.html#hydrate) will reuse the server-rendered HTML. This will connect our newly-started React instance to the virtual DOM used on the server. Since we have the same initial state for our Redux store and used the same code for all our view components, the result will be the same real DOM.
 
 And that's it! That is all we need to do to implement server side rendering.
 

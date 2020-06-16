@@ -1,17 +1,23 @@
+---
+id: compose
+title: compose
+hide_title: true
+---
+
 # `compose(...functions)`
 
 Composes functions from right to left.
 
-This is a functional programming utility, and is included in Redux as a convenience.  
+This is a functional programming utility, and is included in Redux as a convenience.
 You might want to use it to apply several [store enhancers](../Glossary.md#store-enhancer) in a row.
 
 #### Arguments
 
-1. (*arguments*): The functions to compose. Each function is expected to accept a single parameter. Its return value will be provided as an argument to the function standing to the left, and so on. The exception is the right-most argument which can accept multiple parameters, as it will provide the signature for the resulting composed function.
+1. (_arguments_): The functions to compose. Each function is expected to accept a single parameter. Its return value will be provided as an argument to the function standing to the left, and so on. The exception is the right-most argument which can accept multiple parameters, as it will provide the signature for the resulting composed function.
 
 #### Returns
 
-(*Function*): The final function obtained by composing the given functions from right to left.
+(_Function_): The final function obtained by composing the given functions from right to left.
 
 #### Example
 
@@ -25,13 +31,10 @@ import reducer from '../reducers'
 
 const store = createStore(
   reducer,
-  compose(
-    applyMiddleware(thunk),
-    DevTools.instrument()
-  )
+  compose(applyMiddleware(thunk), DevTools.instrument())
 )
 ```
 
 #### Tips
 
-* All `compose` does is let you write deeply nested function transformations without the rightward drift of the code. Don't give it too much credit!
+- All `compose` does is let you write deeply nested function transformations without the rightward drift of the code. Don't give it too much credit!

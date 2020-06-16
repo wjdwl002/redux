@@ -1,6 +1,12 @@
+---
+id: troubleshooting
+title: Troubleshooting
+hide_title: true
+---
+
 # Troubleshooting
 
-This is a place to share common problems and solutions to them.  
+This is a place to share common problems and solutions to them.
 The examples use React, but you should still find them useful if you use something else.
 
 ### Nothing happens when I dispatch an action
@@ -119,12 +125,11 @@ return state.map((todo, index) => {
 
 Note that experimental language features are subject to change.
 
-Also keep an eye out for nested state objects that need to be deeply copied. Both `_.extend` and `Object.assign` make a shallow copy of the state. See [Updating Nested Objects](/docs/recipes/reducers/ImmutableUpdatePatterns.md#updating-nested-objects) for suggestions on how to deal with nested state objects.
+Also keep an eye out for nested state objects that need to be deeply copied. Both `_.extend` and `Object.assign` make a shallow copy of the state. See [Updating Nested Objects](./recipes/structuring-reducers/ImmutableUpdatePatterns.md#updating-nested-objects) for suggestions on how to deal with nested state objects.
 
-#### Don't forget to call [`dispatch(action)`](api/Store.md#dispatch)
+#### Don't forget to call [`dispatch(action)`](api/Store.md#dispatchaction)
 
-If you define an action creator, calling it will *not* automatically dispatch the action. For example, this code will do nothing:
-
+If you define an action creator, calling it will _not_ automatically dispatch the action. For example, this code will do nothing:
 
 #### `TodoActions.js`
 
@@ -147,18 +152,14 @@ class AddTodo extends Component {
   }
 
   render() {
-    return (
-      <button onClick={() => this.handleClick()}>
-        Add
-      </button>
-    )
+    return <button onClick={() => this.handleClick()}>Add</button>
   }
 }
 ```
 
-It doesn't work because your action creator is just a function that *returns* an action. It is up to you to actually dispatch it. We can't bind your action creators to a particular Store instance during the definition because apps that render on the server need a separate Redux store for every request.
+It doesn't work because your action creator is just a function that _returns_ an action. It is up to you to actually dispatch it. We can't bind your action creators to a particular Store instance during the definition because apps that render on the server need a separate Redux store for every request.
 
-The fix is to call [`dispatch()`](api/Store.md#dispatch) method on the [store](api/Store.md) instance:
+The fix is to call [`dispatch()`](api/Store.md#dispatchaction) method on the [store](api/Store.md) instance:
 
 ```js
 handleClick() {
@@ -170,7 +171,9 @@ handleClick() {
 If you're somewhere deep in the component hierarchy, it is cumbersome to pass the store down manually. This is why [react-redux](https://github.com/gaearon/react-redux) lets you use a `connect` [higher-order component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) that will, apart from subscribing you to a Redux store, inject `dispatch` into your component's props.
 
 The fixed code looks like this:
+
 #### `AddTodo.js`
+
 ```js
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -183,11 +186,7 @@ class AddTodo extends Component {
   }
 
   render() {
-    return (
-      <button onClick={() => this.handleClick()}>
-        Add
-      </button>
-    )
+    return <button onClick={() => this.handleClick()}>Add</button>
   }
 }
 
@@ -203,5 +202,5 @@ It's possible you're correctly dispatching an action and applying your reducer b
 
 ## Something else doesn't work
 
-Ask around on the **#redux** [Reactiflux](http://reactiflux.com/) Discord channel, or [create an issue](https://github.com/reduxjs/redux/issues).  
+Ask around on the **#redux** [Reactiflux](http://reactiflux.com/) Discord channel, or [create an issue](https://github.com/reduxjs/redux/issues).
 If you figure it out, [edit this document](https://github.com/reduxjs/redux/edit/master/docs/Troubleshooting.md) as a courtesy to the next person having the same problem.

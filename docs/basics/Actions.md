@@ -1,8 +1,15 @@
+---
+id: actions
+title: Actions
+description: 'Basic Tutorial > Actions: Core concept - actions are plain objects that describe events'
+hide_title: true
+---
+
 # Actions
 
 First, let's define some actions.
 
-**Actions** are payloads of information that send data from your application to your store. They are the *only* source of information for the store. You send them to the store using [`store.dispatch()`](../api/Store.md#dispatch).
+**Actions** are payloads of information that send data from your application to your store. They are the _only_ source of information for the store. You send them to the store using [`store.dispatch()`](../api/Store.md#dispatchaction).
 
 Here's an example action which represents adding a new todo item:
 
@@ -23,9 +30,9 @@ Actions are plain JavaScript objects. Actions must have a `type` property that i
 import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
 ```
 
->##### Note on Boilerplate
-
->You don't have to define action type constants in a separate file, or even to define them at all. For a small project, it might be easier to just use string literals for action types. However, there are some benefits to explicitly declaring constants in larger codebases. Read [Reducing Boilerplate](../recipes/ReducingBoilerplate.md) for more practical tips on keeping your codebase clean.
+> ##### Note on Boilerplate
+>
+> You don't have to define action type constants in a separate file, or even to define them at all. For a small project, it might be easier to just use string literals for action types. However, there are some benefits to explicitly declaring constants in larger codebases. Read [Reducing Boilerplate](../recipes/ReducingBoilerplate.md) for more practical tips on keeping your codebase clean.
 
 Other than `type`, the structure of an action object is really up to you. If you're interested, check out [Flux Standard Action](https://github.com/acdlite/flux-standard-action) for recommendations on how actions could be constructed.
 
@@ -78,7 +85,7 @@ function addTodoWithDispatch(text) {
 }
 ```
 
-In Redux this is *not* the case.  
+In Redux this is _not_ the case.
 Instead, to actually initiate a dispatch, pass the result to the `dispatch()` function:
 
 ```js
@@ -95,12 +102,12 @@ const boundCompleteTodo = index => dispatch(completeTodo(index))
 
 Now you'll be able to call them directly:
 
-```
+```js
 boundAddTodo(text)
 boundCompleteTodo(index)
 ```
 
-The `dispatch()` function can be accessed directly from the store as [`store.dispatch()`](../api/Store.md#dispatch), but more likely you'll access it using a helper like [react-redux](http://github.com/gaearon/react-redux)'s `connect()`. You can use [`bindActionCreators()`](../api/bindActionCreators.md) to automatically bind many action creators to a `dispatch()` function.
+The `dispatch()` function can be accessed directly from the store as [`store.dispatch()`](../api/Store.md#dispatchaction), but more likely you'll access it using a helper like [react-redux](http://github.com/gaearon/react-redux)'s `connect()`. You can use [`bindActionCreators()`](../api/bindActionCreators.md) to automatically bind many action creators to a `dispatch()` function.
 
 Action creators can also be asynchronous and have side-effects. You can read about [async actions](../advanced/AsyncActions.md) in the [advanced tutorial](../advanced/README.md) to learn how to handle AJAX responses and compose action creators into async control flow. Don't skip ahead to async actions until you've completed the basics tutorial, as it covers other important concepts that are prerequisite for the advanced tutorial and async actions.
 
@@ -147,4 +154,3 @@ export function setVisibilityFilter(filter) {
 ## Next Steps
 
 Now let's [define some reducers](Reducers.md) to specify how the state updates when you dispatch these actions!
-
