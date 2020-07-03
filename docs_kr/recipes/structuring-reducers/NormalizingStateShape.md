@@ -1,49 +1,56 @@
+---
+id: normalizing-state-shape
+title: 상태 정규화하기
+description: '리듀서 구조 잡기 > 상태 정규화하기: Why and how to store data items for lookup based on ID'
+hide_title: true
+---
+
 # 상태 정규화하기
 
 실제로 많은 애플리케이션들은 관계가 있거나 중첩된 데이터를 처리합니다. 예를 들어 블로그 에디터는 많은 포스트를 가질 수 있고, 각각의 포스트는 많은 댓글이 있을 수 있으며, 포스트와 댓글은 사용자에 의해 작성됩니다. 이런 종류의 애플리케이션의 데이터는 아래와 같을 겁니다.
 
 ```js
 const blogPosts = [
-    {
-        id : "post1",
-        author : {username : "user1", name : "User 1"},
-        body : "......",
-        comments : [
-            {
-				id : "comment1",
-				author : {username : "user2", name : "User 2"},
-				comment : ".....",
-			},
-			{
-				id : "comment2",
-				author : {username : "user3", name : "User 3"},
-				comment : ".....",
-			}
-        ]    
-    },
-	{
-        id : "post2",
-        author : {username : "user2", name : "User 2"},
-        body : "......",
-        comments : [
-            {
-				id : "comment3",
-				author : {username : "user3", name : "User 3"},
-				comment : ".....",
-			},
-			{
-				id : "comment4",
-				author : {username : "user1", name : "User 1"},
-				comment : ".....",
-			},
-			{
-				id : "comment5",
-				author : {username : "user3", name : "User 3"},
-				comment : ".....",
-			}
-        ]    
-    }
-    // 많이 반복
+  {
+    id: 'post1',
+    author: { username: 'user1', name: 'User 1' },
+    body: '......',
+    comments: [
+      {
+        id: 'comment1',
+        author: { username: 'user2', name: 'User 2' },
+        comment: '.....'
+      },
+      {
+        id: 'comment2',
+        author: { username: 'user3', name: 'User 3' },
+        comment: '.....'
+      }
+    ]
+  },
+  {
+    id: 'post2',
+    author: { username: 'user2', name: 'User 2' },
+    body: '......',
+    comments: [
+      {
+        id: 'comment3',
+        author: { username: 'user3', name: 'User 3' },
+        comment: '.....'
+      },
+      {
+        id: 'comment4',
+        author: { username: 'user1', name: 'User 1' },
+        comment: '.....'
+      },
+      {
+        id: 'comment5',
+        author: { username: 'user3', name: 'User 3' },
+        comment: '.....'
+      }
+    ]
+  }
+  // 많이 반복
 ]
 ```
 
@@ -74,13 +81,13 @@ const blogPosts = [
                 id : "post1",
 				author : "user1",
 				body : "......",
-				comments : ["comment1", "comment2"]    
+				comments : ["comment1", "comment2"]
             },
             "post2" : {
 				id : "post2",
 				author : "user2",
 				body : "......",
-				comments : ["comment3", "comment4", "comment5"]    
+				comments : ["comment3", "comment4", "comment5"]
             }
         }
         allIds : ["post1", "post2"]
@@ -193,7 +200,7 @@ const blogPosts = [
                 }
             },
             allIds : [1, 2, 3]
-        
+
         }
     }
 }

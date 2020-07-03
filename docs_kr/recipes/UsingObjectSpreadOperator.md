@@ -1,4 +1,10 @@
-# 객체 확산 연산자 (Object Spread Operator) 사용하기
+---
+id: using-object-spread-operator
+title: 객체 확산 연산자 사용하기
+hide_title: true
+---
+
+# 객체 확산 연산자 사용하기
 
 Redux 의 핵심 규칙 중 하나가 절대 state를 직접 변경하지 않는 것이기 때문에 새로운 값이 추가되거나 업데이트 된 객체를 복사하기 위해서 [`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)을 자주 사용하게 될 것입니다. 예를 들면, `todoApp` 에서 아래의 `Object.assign()`은 `visibilityFilter` 프로퍼티가 업데이트 된 새로운 `state` 객체를 리턴하기 위해 쓰였습니다.
 
@@ -59,4 +65,3 @@ return getAddedIds(state.cart).map(id => ({
 ```
 
 아직 실험적인 언어 기능 제안이기 때문에 미래에 바뀔 수 있다는 것을 알아두세요. 그럼에도 불구하고 [React Native](https://github.com/facebook/react-native)와 같은 일부 대규모 프로젝트에서는 이미 이 객체 확산 문법을 광범위하게 사용하기 때문에 혹시 변경 되더라도 좋은 자동 마이그레이션(migration) 경로가 있을 것 이라 말할 수 있습니다.
-

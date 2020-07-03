@@ -1,7 +1,13 @@
+---
+id: troubleshooting
+title: 문제해결
+hide_title: true
+---
+
 # 문제해결
 
 여기는 일반적인 문제들과 그 해결책들을 공유하는 곳입니다.
-예시는 React를 사용하지만, 다른 뭔가를 쓰더라도 유용할겁니다.
+예제는 React를 사용하지만, 다른 뭔가를 쓰더라도 유용할겁니다.
 
 ### 액션을 디스패치했는데 아무 일도 일어나지 않는다
 
@@ -93,7 +99,6 @@ return update(state, {
 
 마지막으로, 객체를 업데이트하기 위해 Underscore의 `_.extend` 같은 것들이나, 더 좋은 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 폴리필 등을 사용할 수 있습니다.
 
-
 `Object.assign`을 올바르게 사용하도록 하세요. 예를 들어 리듀서에서 `Object.assign(state, newData)` 처럼 반환하는 대신 `Object.assign({}, state, newData)`처럼 반환해야 합니다. 이렇게 하면 이전의 `state`를 덮어쓰지 않게 됩니다.
 
 더 간결한 문법을 위해 [object spread operator proposal](recipes/UsingObjectSpreadOperator.md)을 사용할 수도 있습니다:
@@ -147,11 +152,7 @@ class AddTodo extends Component {
   }
 
   render() {
-    return (
-      <button onClick={() => this.handleClick()}>
-        Add
-      </button>
-    )
+    return <button onClick={() => this.handleClick()}>Add</button>
   }
 }
 ```
@@ -170,7 +171,9 @@ handleClick() {
 컴포넌트 계층의 깊은 곳까지 스토어를 전달하는 것은 번거로운 일입니다. [react-redux](https://github.com/gaearon/react-redux)가 `connect` [고차 컴포넌트](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750)를 써서 컴포넌트의 props에 `dispatch`를 주입해주는 이유입니다.
 
 수정된 코드는 아래와 같습니다:
+
 #### `AddTodo.js`
+
 ```js
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -183,11 +186,7 @@ class AddTodo extends Component {
   }
 
   render() {
-    return (
-      <button onClick={() => this.handleClick()}>
-        Add
-      </button>
-    )
+    return <button onClick={() => this.handleClick()}>Add</button>
   }
 }
 

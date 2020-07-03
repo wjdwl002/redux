@@ -1,6 +1,14 @@
+---
+id: basic-reducer-structure
+title: 기본 리듀서 구조
+description: '리듀서 구조 잡기 > 기본 리듀서 구조: Overview of how reducer functions work with Redux state'
+hide_title: true
+---
+
 # 기본 리듀서 구조와 상태의 형태
 
 ## 기본 리듀서 구조
+
 우선 우리 애플리케이션의 리듀서는 사실 `createStore`로 전달한 첫 번째 매개변수인 **하나의 함수**라는 것을 이해하는 것이 중요합니다. 이 하나의 리듀서는 궁극적으로 몇 가지 일을 해야합니다.
 
 - 리듀서가 처음 호출될 때, `state`값은 `undefined`가 됩니다. 초깃값을 지정해서 액션이 발생하기 전에 이 케이스에 대해 처리해줘야 합니다.
@@ -13,17 +21,15 @@
 ```js
 function counter(state, action) {
   if (typeof state === 'undefined') {
-    state = 0; // 상태가 undefined이면 기본값으로 초기화합니다.
+    state = 0 // 상태가 undefined이면 기본값으로 초기화합니다.
   }
 
   if (action.type === 'INCREMENT') {
-    return state + 1;
-  } 
-  else if (action.type === 'DECREMENT') {
-    return state - 1;
-  } 
-  else {
-    return state; // 정해놓지 않은 액션인 경우
+    return state + 1
+  } else if (action.type === 'DECREMENT') {
+    return state - 1
+  } else {
+    return state // 정해놓지 않은 액션인 경우
   }
 }
 ```
@@ -36,11 +42,11 @@ function counter(state, action) {
 function counter(state = 0, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return state + 1;
+      return state + 1
     case 'DECREMENT':
-      return state - 1;
+      return state - 1
     default:
-      return state;
+      return state
   }
 }
 ```
@@ -49,7 +55,7 @@ function counter(state = 0, action) {
 
 ## 기본적인 상태의 형태
 
-리덕스는 관리해야 할 데이터라는 측면에서 애플리케이션을 생각할 것을 권장합니다. 특정 시점의 데이터는 애플리케이션의 "*상태*"라고 하고 이 상태의 구조와 구성은 보통 "*형태*" 라고 합니다. 상태의 형태는 리듀서의 로직을 구성하는 데 중요한 역할을 합니다.
+리덕스는 관리해야 할 데이터라는 측면에서 애플리케이션을 생각할 것을 권장합니다. 특정 시점의 데이터는 애플리케이션의 "_상태_"라고 하고 이 상태의 구조와 구성은 보통 "_형태_" 라고 합니다. 상태의 형태는 리듀서의 로직을 구성하는 데 중요한 역할을 합니다.
 
 리덕스의 상태는 보통 상태 트리의 제일 꼭대기에 일반적인 자바스크립트 객체를 가지고 있습니다. (분명 숫자나 배열 혹은 다른 데이터구조를 가지는 것도 가능하지만 대부분의 라이브러리에서는 맨 꼭대기의 값이 객체라고 가정합니다) 꼭대기 객체의 데이터를 구성하는 일반적인 방법은 최상위의 키를 연관된 "도메인"이나 "조각"을 나타내는 서브 트리로 나누는 것입니다. 예를 들어 기본 Todo 앱의 상태는 다음과 같을 것입니다:
 

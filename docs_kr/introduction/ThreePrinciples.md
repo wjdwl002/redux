@@ -1,8 +1,15 @@
+---
+id: three-principles
+title: 3가지 원칙
+description: '소개 > 3가지 원칙: Redux 사용의 3가지 중요 원칙'
+hide_title: true
+---
+
 # 3가지 원칙
 
-Redux의 근본적인 원칙들은 다음과 같습니다.
+Redux의 기초를 이루는 원칙들은 다음과 같습니다.
 
-### 진실은 하나의 소스로부터
+### 진실은 하나의 원천으로부터
 
 **애플리케이션의 모든 [상태](../Glossary.md#상태)는 하나의 [스토어](../Glossary.md#스토어) 안에 하나의 객체 트리 구조로 저장됩니다.**
 
@@ -33,12 +40,12 @@ console.log(store.getState());
 store.dispatch({
   type: 'COMPLETE_TODO',
   index: 1
-});
+})
 
 store.dispatch({
   type: 'SET_VISIBILITY_FILTER',
   filter: 'SHOW_COMPLETED'
-});
+})
 ```
 
 ### 변화는 순수 함수로 작성되어야한다
@@ -50,36 +57,39 @@ store.dispatch({
 ```js
 function visibilityFilter(state = 'SHOW_ALL', action) {
   switch (action.type) {
-  case 'SET_VISIBILITY_FILTER':
-    return action.filter;
-  default:
-    return state;
+    case 'SET_VISIBILITY_FILTER':
+      return action.filter
+    default:
+      return state
   }
 }
 
 function todos(state = [], action) {
   switch (action.type) {
-  case 'ADD_TODO':
-    return [...state, {
-      text: action.text,
-      completed: false
-    }];
-  case 'COMPLETE_TODO':
-    return [
-      ...state.slice(0, action.index),
-      Object.assign({}, state[action.index], {
-        completed: true
-      }),
-      ...state.slice(action.index + 1)
-    ];
-  default:
-    return state;
+    case 'ADD_TODO':
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case 'COMPLETE_TODO':
+      return [
+        ...state.slice(0, action.index),
+        Object.assign({}, state[action.index], {
+          completed: true
+        }),
+        ...state.slice(action.index + 1)
+      ]
+    default:
+      return state
   }
 }
 
-import { combineReducers, createStore } from 'redux';
-let reducer = combineReducers({ visibilityFilter, todos });
-let store = createStore(reducer);
+import { combineReducers, createStore } from 'redux'
+let reducer = combineReducers({ visibilityFilter, todos })
+let store = createStore(reducer)
 ```
 
 이게 전부입니다. Redux가 무엇인지에 대해서 전부 배웠습니다.

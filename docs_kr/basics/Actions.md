@@ -1,10 +1,17 @@
+---
+id: actions
+title: 액션
+description: '기초 강좌 > 액션: Core concept - actions are plain objects that describe events'
+hide_title: true
+---
+
 # 액션
 
 먼저 액션을 정의해봅시다.
 
 **액션**은 애플리케이션에서 스토어로 보내는 데이터 묶음입니다. 이들이 스토어의 **유일한** 정보원이 됩니다. 여러분은 [`store.dispatch()`](../api/Store.md#dispatch)를 통해 이들을 보낼 수 있습니다.
 
-이것이 새 할일의 추가를 나타내는 액션의 예시입니다.
+이것이 새 할일의 추가를 나타내는 액션의 예제입니다.
 
 ```js
 const ADD_TODO = 'ADD_TODO'
@@ -23,9 +30,9 @@ const ADD_TODO = 'ADD_TODO'
 import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
 ```
 
->##### 보일러플레이트에 대한 설명
+> ##### 보일러플레이트에 대한 설명
 
->액션 타입 상수를 반드시 별도의 파일에 정의할 필요는 없으며, 심지어 정의하지 않아도 됩니다. 작은 프로젝트에서는 액션 타입으로 그냥 문자열을 쓰는게 쉬울겁니다. 하지만 코드베이스가 커지면 상수를 정의해서 얻을 수 있는 장점이 있습니다. 코드베이스를 깨끗하게 유지하기 위한 실용적인 팁들을 [보일러플레이트 줄이기](../recipes/ReducingBoilerplate.md)에서 더 읽을 수 있습니다.
+> 액션 타입 상수를 반드시 별도의 파일에 정의할 필요는 없으며, 심지어 정의하지 않아도 됩니다. 작은 프로젝트에서는 액션 타입으로 그냥 문자열을 쓰는게 쉬울겁니다. 하지만 코드베이스가 커지면 상수를 정의해서 얻을 수 있는 장점이 있습니다. 코드베이스를 깨끗하게 유지하기 위한 실용적인 팁들을 [보일러플레이트 줄이기](../recipes/ReducingBoilerplate.md)에서 더 읽을 수 있습니다.
 
 `type`외에 액션 객체의 구조는 여러분 마음대로입니다. 혹시 관심이 있다면 [Flux Standard Action](https://github.com/acdlite/flux-standard-action)에서 액션을 어떻게 구성할지에 대한 권장사항을 알아보세요.
 
@@ -86,8 +93,8 @@ dispatch(completeTodo(index))
 아니면 자동으로 액션을 보내주는 **바인드된 액션 생산자**를 만듭니다:
 
 ```js
-const boundAddTodo = (text) => dispatch(addTodo(text))
-const boundCompleteTodo = (index) => dispatch(completeTodo(index))
+const boundAddTodo = text => dispatch(addTodo(text))
+const boundCompleteTodo = index => dispatch(completeTodo(index))
 ```
 
 이들은 바로 호출할 수 있습니다:
@@ -141,7 +148,8 @@ export function setVisibilityFilter(filter) {
 
 ## 다음 단계
 
-이제 이 액션들을 보냈을 때 상태가 어떻게 변하는지 명시하기 위해 [리듀서를 정의](Reducers.md) 해봅시다! 
+이제 이 액션들을 보냈을 때 상태가 어떻게 변하는지 명시하기 위해 [리듀서를 정의](Reducers.md) 해봅시다!
 
->##### 숙련된 사용자들을 위한 한마디
->여러분이 기본적인 컨셉에 익숙하고 이 튜토리얼을 이미 마치셨다면, [심화 튜토리얼](../advanced/README.md)의 [비동기 액션](../advanced/AsyncActions.md)에서 어떻게 AJAX 응답을 다루고 비동기 흐름에 액션 생산자를 결합하는지 알아보세요.
+> ##### 숙련된 사용자들을 위한 한마디
+>
+> 여러분이 기본적인 컨셉에 익숙하고 이 강좌를 이미 마치셨다면, [심화 강좌](../advanced/README.md)의 [비동기 액션](../advanced/AsyncActions.md)에서 어떻게 AJAX 응답을 다루고 비동기 흐름에 액션 생산자를 결합하는지 알아보세요.

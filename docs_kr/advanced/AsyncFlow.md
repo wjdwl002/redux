@@ -1,3 +1,10 @@
+---
+id: async-flow
+title: 비동기 흐름
+description: '심화 강좌 > 비동기 흐름: Using middleware to add async capabilities'
+hide_title: true
+---
+
 # 비동기 흐름
 
 [미들웨어](Middleware.md)가 없으면 Redux는 [동기 데이터 흐름](../basics/DataFlow.md)만을 지원합니다. [`createStore()`](../api/createStore.md)의 기본값입니다.
@@ -10,4 +17,4 @@
 
 ## 다음 단계
 
-여러분은 이제 Redux 앱에서 데이터 흐름에 대한 모든 것을 알았습니다! [비동기 예시의 소스 코드](ExampleRedditAPI.md)를 확인하거나 [React Router 통합하기](UsageWithReactRouter.md)를 읽어보세요.
+여러분은 이제 Redux 앱에서 데이터 흐름에 대한 모든 것을 알았습니다! [비동기 예제의 소스 코드](ExampleRedditAPI.md)를 확인하거나 [React Router 통합하기](UsageWithReactRouter.md)를 읽어보세요.

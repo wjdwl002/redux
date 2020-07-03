@@ -1,3 +1,10 @@
+---
+id: reducers
+title: 리듀서
+description: '기초 강좌 > 리듀서: Core concept - reducers are plain functions that return new state'
+hide_title: true
+---
+
 # 리듀서
 
 [액션](./Actions.md)은 **무언가 일어난다**는 사실을 기술하지만, 그 결과 애플리케이션의 상태가 어떻게 바뀌는지는 특정하지 않습니다. 이것은 리듀서가 할 일이죠.
@@ -8,8 +15,8 @@ Redux에서 애플리케이션의 모든 상태는 하나의 객체에 저장됩
 
 우리의 할일 앱을 위해 두 가지를 저장하고 싶습니다:
 
-* 현재 선택된 필터;
-* 할일의 실제 목록.
+- 현재 선택된 필터;
+- 할일의 실제 목록.
 
 여러분은 종종 데이터 뿐만 아니라 UI 상태도 상태 트리에 저장해야 한다는걸 발견하실겁니다. 그래도 좋지만, 데이터는 UI 상태와 분리하도록 하세요.
 
@@ -26,23 +33,23 @@ Redux에서 애플리케이션의 모든 상태는 하나의 객체에 저장됩
 }
 ```
 
->##### 관계에 대한 한마디
+> ##### 관계에 대한 한마디
 
->더 복잡한 앱에서는 각기 다른 개체들이 서로를 참조하게 만들고 싶으실겁니다. 우리는 여러분이 앱의 상태를 가능한한 중첩되지 않도록 정규화할것을 권합니다. 모든 개체가 ID를 키로 가지고, ID를 통해 다른 개체나 목록을 참조하도록 하세요. 앱의 상태를 데이터베이스라고 생각하시면 됩니다. 이런 접근은 [normalizr's](https://github.com/gaearon/normalizr)의 문서에 자세히 나와있습니다. 예를 들어 상태 안에 `todosById: { id -> todo }`와 `todos: array<id>`처럼 구현하는 것이 실제 앱에서는 더 적절합니다. 하지만 예시에서는 단순하게 하겠습니다.
+> 더 복잡한 앱에서는 각기 다른 개체들이 서로를 참조하게 만들고 싶으실겁니다. 우리는 여러분이 앱의 상태를 가능한한 중첩되지 않도록 정규화할것을 권합니다. 모든 개체가 ID를 키로 가지고, ID를 통해 다른 개체나 목록을 참조하도록 하세요. 앱의 상태를 데이터베이스라고 생각하시면 됩니다. 이런 접근은 [normalizr's](https://github.com/gaearon/normalizr)의 문서에 자세히 나와있습니다. 예를 들어 상태 안에 `todosById: { id -> todo }`와 `todos: array<id>`처럼 구현하는 것이 실제 앱에서는 더 적절합니다. 하지만 예제에서는 단순하게 하겠습니다.
 
 ## 액션 다루기
 
-상태 객체가 어떻게 생겼는지 정했으니 리듀서를 작성해봅시다. 리듀서는 이전 상태와 액션을 받아서 다음 상태를 반환하는 순수 함수입니다. 
+상태 객체가 어떻게 생겼는지 정했으니 리듀서를 작성해봅시다. 리듀서는 이전 상태와 액션을 받아서 다음 상태를 반환하는 순수 함수입니다.
 
 ```js
-(previousState, action) => newState
+;(previousState, action) => newState
 ```
 
 여러분이 이 형태의 함수를 [`Array.prototype.reduce(reducer, ?initialValue)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)로 넘길 것이기 때문에 리듀서라고 부릅니다. 리듀서를 순수하게 유지하는것은 매우 중요합니다. 여러분이 **절대로** 리듀서 내에서 하지 말아야 할 것들은:
 
-* 인수들을 변경(mutate)하기;
-* API 호출이나 라우팅 전환같은 사이드이펙트를 일으키기;
-* `Date.now()`나 `Math.random()` 같이 순수하지 않은 함수를 호출하기.
+- 인수들을 변경(mutate)하기;
+- API 호출이나 라우팅 전환같은 사이드이펙트를 일으키기;
+- `Date.now()`나 `Math.random()` 같이 순수하지 않은 함수를 호출하기.
 
 사이드이펙트를 어떻게 일으키는지는 [심화과정](../advanced/README.md)에서 확인하게 될겁니다. 지금은 리듀서가 반드시 순수해야 한다는 점만 기억해두세요. **인수가 주어지면, 다음 상태를 계산해서 반환하면 됩니다. 예기치 못한 일은 없어야 합니다. 사이드 이펙트도 없어야 합니다. API 호출도 안됩니다. 변경도 안됩니다. 계산만 가능합니다.**
 
@@ -84,12 +91,12 @@ function todoApp(state = initialState, action) {
 ```js
 function todoApp(state = initialState, action) {
   switch (action.type) {
-  case SET_VISIBILITY_FILTER:
-    return Object.assign({}, state, {
-      visibilityFilter: action.filter
-    });
-  default:
-    return state
+    case SET_VISIBILITY_FILTER:
+      return Object.assign({}, state, {
+        visibilityFilter: action.filter
+      })
+    default:
+      return state
   }
 }
 ```
@@ -100,15 +107,15 @@ function todoApp(state = initialState, action) {
 
 2. **`default` 케이스에 대해 이전의 `state`를 반환했습니다.** 알 수 없는 액션에 대해서는 이전의 `state`를 반환하는것이 중요합니다.
 
->##### `Object.assign`에 관하여
+> ##### `Object.assign`에 관하여
 
->[`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)은 ES6의 일부이지만, 대부분의 브라우저에서 구현되지 않았습니다. 폴리필을 사용하거나 [Babel 플러그인](https://www.npmjs.com/package/babel-plugin-object-assign)이나 [`_.assign()`](https://lodash.com/docs#assign)같이 다른 라이브러리의 헬퍼를 사용해야 합니다.
+> [`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)은 ES6의 일부이지만, 대부분의 브라우저에서 구현되지 않았습니다. 폴리필을 사용하거나 [Babel 플러그인](https://www.npmjs.com/package/babel-plugin-object-assign)이나 [`_.assign()`](https://lodash.com/docs#assign)같이 다른 라이브러리의 헬퍼를 사용해야 합니다.
 
->##### `switch`와 보일러플레이트에 관하여
+> ##### `switch`와 보일러플레이트에 관하여
 
->`switch`문은 진짜 보일러플레이트가 **아닙니다**. Flux의 진짜 보일러플레이트는 개념적인 부분입니다: 변경사항을 보내야 하고, 디스패쳐에 스토어를 등록해야 하고, 스토어가 객체가 되어야 합니다(그리고 유니버셜 앱을 만들때 그 복잡성이 드러나죠). Redux는 이러한 문제들을 이벤트 이미터 대신 순수 리듀서를 사용함으로써 해결했습니다.
+> `switch`문은 진짜 보일러플레이트가 **아닙니다**. Flux의 진짜 보일러플레이트는 개념적인 부분입니다: 변경사항을 보내야 하고, 디스패쳐에 스토어를 등록해야 하고, 스토어가 객체가 되어야 합니다(그리고 유니버셜 앱을 만들때 그 복잡성이 드러나죠). Redux는 이러한 문제들을 이벤트 이미터 대신 순수 리듀서를 사용함으로써 해결했습니다.
 
->많은 이들이 아직도 문서에 `switch`문을 사용하는가를 보고 프레임워크를 선택한다는건 불행한 일입니다. 만약 여러분이 `switch`를 싫어한다면 [“보일러플레이트 줄이기”](../recipes/ReducingBoilerplate.md#리듀서)에 나온 것처럼 핸들러 맵을 받도록 직접 만든 `createReducer` 함수를 사용할 수 있습니다.
+> 많은 이들이 아직도 문서에 `switch`문을 사용하는가를 보고 프레임워크를 선택한다는건 불행한 일입니다. 만약 여러분이 `switch`를 싫어한다면 [“보일러플레이트 줄이기”](../recipes/ReducingBoilerplate.md#리듀서)에 나온 것처럼 핸들러 맵을 받도록 직접 만든 `createReducer` 함수를 사용할 수 있습니다.
 
 ## 더 많은 액션 다루기
 
@@ -117,19 +124,22 @@ function todoApp(state = initialState, action) {
 ```js
 function todoApp(state = initialState, action) {
   switch (action.type) {
-  case SET_VISIBILITY_FILTER:
-    return Object.assign({}, state, {
-      visibilityFilter: action.filter
-    });
-  case ADD_TODO:
-    return Object.assign({}, state, {
-      todos: [...state.todos, {
-        text: action.text,
-        completed: false
-      }]
-    });    
-  default:
-    return state;
+    case SET_VISIBILITY_FILTER:
+      return Object.assign({}, state, {
+        visibilityFilter: action.filter
+      })
+    case ADD_TODO:
+      return Object.assign({}, state, {
+        todos: [
+          ...state.todos,
+          {
+            text: action.text,
+            completed: false
+          }
+        ]
+      })
+    default:
+      return state
   }
 }
 ```
@@ -160,29 +170,32 @@ case COMPLETE_TODO:
 ```js
 function todoApp(state = initialState, action) {
   switch (action.type) {
-  case SET_VISIBILITY_FILTER:
-    return Object.assign({}, state, {
-      visibilityFilter: action.filter
-    });
-  case ADD_TODO:
-    return Object.assign({}, state, {
-      todos: [...state.todos, {
-        text: action.text,
-        completed: false
-      }]
-    });
-  case COMPLETE_TODO:
-    return Object.assign({}, state, {
-      todos: [
-        ...state.todos.slice(0, action.index),
-        Object.assign({}, state.todos[action.index], {
-          completed: true
-        }),
-        ...state.todos.slice(action.index + 1)
-      ]
-    });
-  default:
-    return state;
+    case SET_VISIBILITY_FILTER:
+      return Object.assign({}, state, {
+        visibilityFilter: action.filter
+      })
+    case ADD_TODO:
+      return Object.assign({}, state, {
+        todos: [
+          ...state.todos,
+          {
+            text: action.text,
+            completed: false
+          }
+        ]
+      })
+    case COMPLETE_TODO:
+      return Object.assign({}, state, {
+        todos: [
+          ...state.todos.slice(0, action.index),
+          Object.assign({}, state.todos[action.index], {
+            completed: true
+          }),
+          ...state.todos.slice(action.index + 1)
+        ]
+      })
+    default:
+      return state
   }
 }
 ```
@@ -192,37 +205,40 @@ function todoApp(state = initialState, action) {
 ```js
 function todos(state = [], action) {
   switch (action.type) {
-  case ADD_TODO:
-    return [...state, {
-      text: action.text,
-      completed: false
-    }];
-  case COMPLETE_TODO:
-    return [
-      ...state.slice(0, action.index),
-      Object.assign({}, state[action.index], {
-        completed: true
-      }),
-      ...state.slice(action.index + 1)
-    ];
-  default:
-    return state;
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case COMPLETE_TODO:
+      return [
+        ...state.slice(0, action.index),
+        Object.assign({}, state[action.index], {
+          completed: true
+        }),
+        ...state.slice(action.index + 1)
+      ]
+    default:
+      return state
   }
 }
 
 function todoApp(state = initialState, action) {
   switch (action.type) {
-  case SET_VISIBILITY_FILTER:
-    return Object.assign({}, state, {
-      visibilityFilter: action.filter
-    });
-  case ADD_TODO:
-  case COMPLETE_TODO:
-    return Object.assign({}, state, {
-      todos: todos(state.todos, action)
-    });
-  default:
-    return state;
+    case SET_VISIBILITY_FILTER:
+      return Object.assign({}, state, {
+        visibilityFilter: action.filter
+      })
+    case ADD_TODO:
+    case COMPLETE_TODO:
+      return Object.assign({}, state, {
+        todos: todos(state.todos, action)
+      })
+    default:
+      return state
   }
 }
 ```
@@ -234,10 +250,10 @@ function todoApp(state = initialState, action) {
 ```js
 function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
-  case SET_VISIBILITY_FILTER:
-    return action.filter;
-  default:
-    return state;
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
   }
 }
 ```
@@ -247,30 +263,33 @@ function visibilityFilter(state = SHOW_ALL, action) {
 ```js
 function todos(state = [], action) {
   switch (action.type) {
-  case ADD_TODO:
-    return [...state, {
-      text: action.text,
-      completed: false
-    }];
-  case COMPLETE_TODO:
-    return [
-      ...state.slice(0, action.index),
-      Object.assign({}, state[action.index], {
-        completed: true
-      }),
-      ...state.slice(action.index + 1)
-    ];
-  default:
-    return state;
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case COMPLETE_TODO:
+      return [
+        ...state.slice(0, action.index),
+        Object.assign({}, state[action.index], {
+          completed: true
+        }),
+        ...state.slice(action.index + 1)
+      ]
+    default:
+      return state
   }
 }
 
 function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
-  case SET_VISIBILITY_FILTER:
-    return action.filter;
-  default:
-    return state;
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
   }
 }
 
@@ -278,25 +297,25 @@ function todoApp(state = {}, action) {
   return {
     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
     todos: todos(state.todos, action)
-  };
+  }
 }
 ```
 
-**각각의 리듀서는 전체 상태에서 자신의 부분만을 관리합니다. 모든 리듀서의 `state` 매개변수는  서로 다르고, 자신이 관리하는 부분에 해당합니다.
+\*\*각각의 리듀서는 전체 상태에서 자신의 부분만을 관리합니다. 모든 리듀서의 `state` 매개변수는 서로 다르고, 자신이 관리하는 부분에 해당합니다.
 
 벌써 그럴듯해 보이네요! 앱이 커지면 리듀서를 별도의 파일로 분리해서 완전히 독립적이고 다른 데이터 도메인을 관리하도록 할 수 있습니다.
 
 마지막으로, Redux는 `todoApp`이 위에서 했던것과 동일한 보일러플레이트 로직을 지원하는 [`combineReducers()`](../api/combineReducers.md)라는 유틸리티를 제공합니다. 이를 이용하면 `todoApp`을 이렇게 재작성할 수 있습니다:
 
 ```js
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
 const todoApp = combineReducers({
   visibilityFilter,
   todos
-});
+})
 
-export default todoApp;
+export default todoApp
 ```
 
 이는 아래와 완전히 의미가 같은 코드입니다:
@@ -306,7 +325,7 @@ export default function todoApp(state, action) {
   return {
     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
     todos: todos(state.todos, action)
-  };
+  }
 }
 ```
 
@@ -317,7 +336,7 @@ const reducer = combineReducers({
   a: doSomethingWithA,
   b: processB,
   c: c
-});
+})
 ```
 
 ```js
@@ -326,69 +345,77 @@ function reducer(state, action) {
     a: doSomethingWithA(state.a, action),
     b: processB(state.b, action),
     c: c(state.c, action)
-  };
+  }
 }
 ```
 
 [`combineReducers()`](../api/combineReducers.md)가 하는 일은 여러분의 리듀서들을 **키에 따라 선택해서 잘라낸 상태들**로 호출하고 그 결과를 다시 하나의 객체로 합쳐주는 함수를 만드는 것 뿐입니다. [딱히 마법같은건 아닙니다.](https://github.com/rackt/redux/issues/428#issuecomment-129223274)
 
->##### ES6을 이해하는 사용자를 위한 한마디
+> ##### ES6을 이해하는 사용자를 위한 한마디
 
->`combineReducers`는 객체를 기대하기 때문에, 모든 최상위 리듀서들을 각기 다른 파일에 놓고 `export`한 다음 `import * as reducers`를 이용해 각각의 이름을 키로 가지는 객체를 얻을 수 있습니다:
+> `combineReducers`는 객체를 기대하기 때문에, 모든 최상위 리듀서들을 각기 다른 파일에 놓고 `export`한 다음 `import * as reducers`를 이용해 각각의 이름을 키로 가지는 객체를 얻을 수 있습니다:
 
->```js
->import { combineReducers } from 'redux';
->import * as reducers from './reducers';
+> ```js
+> import { combineReducers } from 'redux'
+> import * as reducers from './reducers'
 >
->const todoApp = combineReducers(reducers);
->```
+> const todoApp = combineReducers(reducers)
+> ```
 >
->`import *`은 아직은 새로운 문법이기 때문에 이 문서에서는 [혼동](https://github.com/rackt/redux/issues/428#issuecomment-129223274)을 막기 위해 더 이상 사용하지 않겠지만, 커뮤니티의 예시들에서 만날수도 있습니다.
+> `import *`은 아직은 새로운 문법이기 때문에 이 문서에서는 [혼동](https://github.com/rackt/redux/issues/428#issuecomment-129223274)을 막기 위해 더 이상 사용하지 않겠지만, 커뮤니티의 예제들에서 만날수도 있습니다.
 
 ## Source Code
 
 #### `reducers.js`
 
 ```js
-import { combineReducers } from 'redux';
-import { ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions';
-const { SHOW_ALL } = VisibilityFilters;
+import { combineReducers } from 'redux'
+import {
+  ADD_TODO,
+  COMPLETE_TODO,
+  SET_VISIBILITY_FILTER,
+  VisibilityFilters
+} from './actions'
+const { SHOW_ALL } = VisibilityFilters
 
 function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
-  case SET_VISIBILITY_FILTER:
-    return action.filter;
-  default:
-    return state;
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
   }
 }
 
 function todos(state = [], action) {
   switch (action.type) {
-  case ADD_TODO:
-    return [...state, {
-      text: action.text,
-      completed: false
-    }];
-  case COMPLETE_TODO:
-    return [
-      ...state.slice(0, action.index),
-      Object.assign({}, state[action.index], {
-        completed: true
-      }),
-      ...state.slice(action.index + 1)
-    ];
-  default:
-    return state;
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case COMPLETE_TODO:
+      return [
+        ...state.slice(0, action.index),
+        Object.assign({}, state[action.index], {
+          completed: true
+        }),
+        ...state.slice(action.index + 1)
+      ]
+    default:
+      return state
   }
 }
 
 const todoApp = combineReducers({
   visibilityFilter,
   todos
-});
+})
 
-export default todoApp;
+export default todoApp
 ```
 
 ## 다음 단계

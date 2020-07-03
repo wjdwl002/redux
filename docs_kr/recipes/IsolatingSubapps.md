@@ -1,3 +1,9 @@
+---
+id: isolating-redux-sub-apps
+title: Isolating Redux Sub-Apps
+hide_title: true
+---
+
 # Isolating Redux Sub-Apps
 
 Consider the case of a “big” app (contained in a `<BigApp>` component)
@@ -53,6 +59,7 @@ initializes the store in the constructor:
 ```js
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import reducer from './reducers'
 import App from './App'
 
@@ -61,7 +68,7 @@ class SubApp extends Component {
     super(props)
     this.store = createStore(reducer)
   }
-  
+
   render() {
     return (
       <Provider store={this.store}>
@@ -74,8 +81,7 @@ class SubApp extends Component {
 
 This way every instance will be independent.
 
-This pattern is *not* recommended for parts of the same app that share data.
+This pattern is _not_ recommended for parts of the same app that share data.
 However, it can be useful when the bigger app has zero access to the smaller apps' internals,
 and we'd like to keep the fact that they are implemented with Redux as an implementation detail.
 Each component instance will have its own store, so they won't “know” about each other.
-

@@ -1,3 +1,9 @@
+---
+id: configuring-your-store
+title: Configuring Your Store
+hide_title: true
+---
+
 # Configuring Your Store
 
 In the [basics section](../basics/README.md), we introduced the fundamental Redux concepts by building an example Todo list app.
@@ -42,11 +48,12 @@ We will add two middlewares and one enhancer:
 
 #### Install `redux-thunk`
 
-```
-npm install --save redux-thunk
+```sh
+npm install redux-thunk
 ```
 
 #### middleware/logger.js
+
 ```js
 const logger = store => next => action => {
   console.group(action.type)
@@ -61,6 +68,7 @@ export default logger
 ```
 
 #### enhancers/monitorReducer.js
+
 ```js
 const round = number => Math.round(number * 100) / 100
 
@@ -86,13 +94,14 @@ const monitorReducerEnhancer = createStore => (
 export default monitorReducerEnhancer
 ```
 
-Let's add these to our  existing `index.js`.
+Let's add these to our existing `index.js`.
 
 - First, we need to import `redux-thunk` plus our `loggerMiddleware` and `monitorReducerEnhancer`, plus two extra functions provided by Redux: `applyMiddleware` and `compose`.
 - We then use `applyMiddleware` to create a store enhancer which will apply our `loggerMiddleware` and the `thunkMiddleware` to the store's dispatch function.
 - Next, we use `compose` to compose our new `middlewareEnhancer` and our `monitorReducerEnhancer` into one function.
 
-    This is needed because you can only pass one enhancer into `createStore`. To use multiple enhancers, you must first compose them into a single larger enhancer, as shown in this example.
+  This is needed because you can only pass one enhancer into `createStore`. To use multiple enhancers, you must first compose them into a single larger enhancer, as shown in this example.
+
 - Finally, we pass this new `composedEnhancers` function into `createStore` as its third argument. _Note: the second argument, which we will ignore, lets you preloaded state into the store._
 
 ```js
@@ -177,18 +186,19 @@ This function follows the same steps outlined above, with some of the logic spli
 
 - Both `middlewares` and `enhancers` are defined as arrays, separate from the functions which consume them.
 
-    This allows us to easily add more middleware or enhancers based on different conditions.
-  
+  This allows us to easily add more middleware or enhancers based on different conditions.
+
   For example, it is common to add some middleware only when in development mode, which is easily achieved by pushing to the middlewares array inside an if statement:
 
   ```js
-  if (process.env === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     middlewares.push(secretMiddleware)
   }
   ```
+
 - A `preloadedState` variable is passed through to `createStore` in case we want to add this later.
 
-This also makes our `createStore` function easier to reason about -  each step is clearly separated, which makes it more obvious what exactly is happening.
+This also makes our `createStore` function easier to reason about - each step is clearly separated, which makes it more obvious what exactly is happening.
 
 ## Integrating the devtools extension
 
@@ -200,7 +210,7 @@ There are several ways to integrate the extension, but we will use the most conv
 
 First, we install the package via npm:
 
-```
+```sh
 npm install --save-dev redux-devtools-extension
 ```
 
@@ -264,9 +274,7 @@ export default function configureStore(preloadedState) {
   const store = createStore(rootReducer, preloadedState, composedEnhancers)
 
   if (process.env.NODE_ENV !== 'production' && module.hot) {
-    module.hot.accept('./reducers', () =>
-      store.replaceReducer(rootReducer)
-    )
+    module.hot.accept('./reducers', () => store.replaceReducer(rootReducer))
   }
 
   return store
@@ -288,23 +296,83 @@ import configureStore from './configureStore'
 
 const store = configureStore()
 
-const renderApp = () => render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+const renderApp = () =>
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  )
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-  module.hot.accept('./components/App', () => {
-    renderApp()
-  })
+  module.hot.accept('./components/App', renderApp)
 }
 
 renderApp()
 ```
 
 The only extra change here is that we have encapsulated our app's rendering into a new `renderApp` function, which we now call to re-render the app.
+
+## Simplifying Setup with Redux Toolkit
+
+The Redux core library is deliberately unopinionated. It lets you decide how you want to handle everything, like store
+setup, what your state contains, and how you want to build your reducers.
+
+This is good in some cases, because it gives you flexibility, but that flexibility isn't always needed. Sometimes we
+just want the simplest possible way to get started, with some good default behavior out of the box.
+
+The [Redux Toolkit](https://redux-toolkit.js.org/) package is designed to help simplify several common Redux use cases, including store setup.
+Let's see how it can help improve the store setup process.
+
+Redux Toolkit includes a prebuilt [`configureStore` function](https://redux-toolkit.js.org/api/configureStore) like
+the one shown in the earlier examples.
+
+The fastest way to use is it is to just pass the root reducer function:
+
+```js
+import { configureStore } from '@reduxjs/toolkit'
+import rootReducer from './reducers'
+
+const store = configureStore({
+  reducer: rootReducer
+})
+
+export default store
+```
+
+Note that it accepts an object with named parameters, to make it clearer what you're passing in.
+
+By default, `configureStore` from Redux Toolkit will:
+
+- Call `applyMiddleware` with [a default list of middleware, including `redux-thunk`](https://redux-toolkit.js.org/api/getDefaultMiddleware), and some development-only middleware that catch common mistakes like mutating state
+- Call `composeWithDevTools` to set up the Redux DevTools Extension
+
+Here's what the hot reloading example might look like using Redux Toolkit:
+
+```js
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+
+import monitorReducersEnhancer from './enhancers/monitorReducers'
+import loggerMiddleware from './middleware/logger'
+import rootReducer from './reducers'
+
+export default function configureAppStore(preloadedState) {
+  const store = configureStore({
+    reducer: rootReducer,
+    middleware: [loggerMiddleware, ...getDefaultMiddleware()],
+    preloadedState,
+    enhancers: [monitorReducersEnhancer]
+  })
+
+  if (process.env.NODE_ENV !== 'production' && module.hot) {
+    module.hot.accept('./reducers', () => store.replaceReducer(rootReducer))
+  }
+
+  return store
+}
+```
+
+That definitely simplifies some of the setup process.
 
 ## Next Steps
 

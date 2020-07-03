@@ -1,3 +1,10 @@
+---
+id: motivation
+title: 동기
+description: '소개 > 동기: Redux는 어떤 문제를 해결하려 하나요?'
+hide_title: true
+---
+
 # 동기
 
 자바스크립트 싱글 페이지 애플리케이션이 갖추어할 요건이 점점 더 복잡해지고있는 만큼, 어느 때보다도 **많은 상태를** 자바스크립트 코드로 **관리할 필요가 생겨났습니다**. 여기에서 상태에는 서버 응답, 캐시 데이터, 지역적으로 생성해서 사용하고 있지만 아직 서버에 저장되지 않은 데이터를 의미합니다. 이외에도 활성화된 라우트, 선택된 탭, 로딩을 보여줄지 여부, 페이지네이션 컨트롤 등 다양한 UI 상태도 포함합니다.
@@ -6,6 +13,6 @@
 
 더욱 안 좋은 소식은 **프론트엔트 제품 개발에 있어서 새로 갖춰야할 요건들이 늘어나고 있다는 점**입니다. 이러한 예로 낙관적 업데이트(Optimistic update), 서버 렌더링, 라우트가 일어나기 전에 데이터 가져오기 등이 있습니다. 프론트엔드 개발자들은 이전에 겪어보지 못 했던 복잡한 상황에 둘러싸여 있습니다. [이제 포기할 때가 된 걸까요?](http://www.quirksmode.org/blog/archives/2015/07/stop_pushing_th.html)
 
-이러한 복잡함은 변화(mutation)나 비동기(asyncronicity)와 같이 사람이 추론해내기 어려운 **두 가지 개념을 섞어서 사용한다는 데**서 옵니다. 저는 이 두 가지를 [멘토스와 콜라](https://en.wikipedia.org/wiki/Diet_Coke_and_Mentos_eruption)라고 부릅니다. 이 둘은 나눠서 보면 훌륭하지만 함께 두면 엉망이 됩니다. [React](http://facebook.github.io/react)와 같은 라이브러리들에서는 이 문제를 해결하기 위해 뷰 레이어에서 비동기와 DOM 조작들을 없애버렸습니다. 하지만 React는  데이터를 관리하는 일에는 관여하지 않습니다.
+이러한 복잡함은 변화(mutation)나 비동기(asyncronicity)와 같이 사람이 추론해내기 어려운 **두 가지 개념을 섞어서 사용한다는 데**서 옵니다. 저는 이 두 가지를 [멘토스와 콜라](https://en.wikipedia.org/wiki/Diet_Coke_and_Mentos_eruption)라고 부릅니다. 이 둘은 나눠서 보면 훌륭하지만 함께 두면 엉망이 됩니다. [React](http://facebook.github.io/react)와 같은 라이브러리들에서는 이 문제를 해결하기 위해 뷰 레이어에서 비동기와 DOM 조작들을 없애버렸습니다. 하지만 React는 데이터를 관리하는 일에는 관여하지 않습니다.
 
 [Flux](http://facebook.github.io/flux), [CQRS](http://martinfowler.com/bliki/CQRS.html), [Event Sourcing](http://martinfowler.com/eaaDev/EventSourcing.html)을 따라, Redux는 상태 변화가 일어나는 시점에 제약을 두어 상태 변화를 예측 가능하게 만들고자 시도합니다. 이러한 제약은 [세가지 원칙](ThreePrinciples.md)에 반영되어 있습니다.

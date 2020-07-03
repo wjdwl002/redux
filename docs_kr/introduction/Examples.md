@@ -1,9 +1,17 @@
+---
+id: examples
+title: 예제
+description: '소개 > 예제: Redux 인터렉티브 앱들'
+hide_title: true
+---
+
 # 예제
 
 Redux [소스코드](https://github.com/rackt/redux/tree/master/examples)에는 몇 가지 예제 코드와 함께 배포됩니다.
 
->##### 복사에 대하여
->Redux 예제를 예제 폴더 밖에 복사해서 사용한다면, `webpack.config.js` 파일의 마지막 몇 줄은 지워도 괜찮습니다. 이는 "여러분의 프로젝트에서 이 부분을 안전하게 지울 수 있습니다(You can safely delete these lines in your project)."라는 주석이 있습니다.
+> ##### 복사에 대하여
+>
+> Redux 예제를 예제 폴더 밖에 복사해서 사용한다면, `webpack.config.js` 파일의 마지막 몇 줄은 지워도 괜찮습니다. 이는 "여러분의 프로젝트에서 이 부분을 안전하게 지울 수 있습니다(You can safely delete these lines in your project)."라는 주석이 있습니다.
 
 ## 카운터 바닐라(Counter Vanilla)
 
@@ -168,7 +176,7 @@ npm start
 open http://localhost:3000/
 ```
 
-이 예제는 최상급 예시입니다. 디자인도 반영되어 있습니다. 이제는 들어온 엔티티(entities)를 표준화 된 캐시에 유지하기, API 호출을 위한 사용자 정의 미들웨어 구현, 부분적으로 로드된 데이터 렌더링, 페이지네이션, 응답 캐싱, 에러메시지 표시 및 라우팅에 대해 다룹니다. 또한 Redux DevTools도 포함됩니다.
+이 예제는 최상급 예제입니다. 디자인도 반영되어 있습니다. 이제는 들어온 엔티티(entities)를 표준화 된 캐시에 유지하기, API 호출을 위한 사용자 정의 미들웨어 구현, 부분적으로 로드된 데이터 렌더링, 페이지네이션, 응답 캐싱, 에러메시지 표시 및 라우팅에 대해 다룹니다. 또한 Redux DevTools도 포함됩니다.
 
 ## 더 많은 예제
 

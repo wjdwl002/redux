@@ -1,3 +1,10 @@
+---
+id: immutable-update-patterns
+title: 불변 업데이트 패턴
+description: '리듀서 구조 잡기 > 불변 업데이트 패턴: How to correctly update state immutably, with examples of common mistakes'
+hide_title: true
+---
+
 # 불변 업데이트 패턴
 
 [사전에 요구되는 개념들#불변객체관리](PrerequisiteConcepts.md#immutable-data-management)에서 소개된 글들은 객체의 필드를 업데이트하거나 배열의 끝에 항목을 추가한다던지하는, 불변객체를 관리하는 기본적인 방법들의 좋은 예를 제공합니다. 하지만 가끔 리듀서가 복잡한 작업을 수행하기 위해 여러 기본적인 것들을 조합해서 사용해야 할 수 있습니다. 여기서는 일반적으로 구현해야 하는 작업의 예를 보여줍니다.
@@ -12,14 +19,14 @@
 
 ```js
 function updateNestedState(state, action) {
-    let nestedState = state.nestedState;
-    // 에러: 존재하는 객체의 참조에 대한 직접적인 변경 - 하지마세요!
-    nestedState.nestedField = action.data;
-    
-    return {
-        ...state,
-        nestedState
-    };
+  let nestedState = state.nestedState
+  // 에러: 존재하는 객체의 참조에 대한 직접적인 변경 - 하지마세요!
+  nestedState.nestedField = action.data
+
+  return {
+    ...state,
+    nestedState
+  }
 }
 ```
 
@@ -31,13 +38,13 @@ function updateNestedState(state, action) {
 
 ```js
 function updateNestedState(state, action) {
-    // 문제: 이는 얕은 복사를 수행합니다!
-    let newState = {...state};
-    
-    // 에러: nestedState는 여전히 같은 객체입니다!
-    newState.nestedState.nestedField = action.data;
-    
-    return newState;
+  // 문제: 이는 얕은 복사를 수행합니다!
+  let newState = { ...state }
+
+  // 에러: nestedState는 여전히 같은 객체입니다!
+  newState.nestedState.nestedField = action.data
+
+  return newState
 }
 ```
 
@@ -73,36 +80,33 @@ function updateVeryNestedField(state, action) {
 
 ```js
 function insertItem(array, action) {
-    return [
-        ...array.slice(0, action.index),
-        action.item,
-        ...array.slice(action.index)
-    ]
+  return [
+    ...array.slice(0, action.index),
+    action.item,
+    ...array.slice(action.index)
+  ]
 }
 
 function removeItem(array, action) {
-    return [
-        ...array.slice(0, action.index),
-        ...array.slice(action.index + 1)
-    ];
+  return [...array.slice(0, action.index), ...array.slice(action.index + 1)]
 }
 ```
 
-그러나, _원래 메모리의 참조_는 수정되지 않는다는 것이 중요합니다. **우리가 먼저 복사본을 만드는 한, 안전한 가변 복사를 할 수 있습니다.** 배열과 객에 모두에 적용되지만 중첩된 값도 같은 규칙으로 업데이트돼야 한다는 것에 주의해야 합니다.
+그러나, *원래 메모리의 참조*는 수정되지 않는다는 것이 중요합니다. **우리가 먼저 복사본을 만드는 한, 안전한 가변 복사를 할 수 있습니다.** 배열과 객에 모두에 적용되지만 중첩된 값도 같은 규칙으로 업데이트돼야 한다는 것에 주의해야 합니다.
 
 이는 다음과 같이 삽입과 제거함수를 작성할 수 있다는 의미입니다.
 
 ```js
 function insertItem(array, action) {
-    let newArray = array.slice();
-    newArray.splice(action.index, 0, action.item);
-    return newArray;
+  let newArray = array.slice()
+  newArray.splice(action.index, 0, action.item)
+  return newArray
 }
 
 function removeItem(array, action) {
-    let newArray = array.slice();
-    newArray.splice(action.index, 1);
-    return newArray;
+  let newArray = array.slice()
+  newArray.splice(action.index, 1)
+  return newArray
 }
 ```
 
@@ -110,7 +114,7 @@ function removeItem(array, action) {
 
 ```js
 function removeItem(array, action) {
-    return array.filter( (item, index) => index !== action.index);
+  return array.filter((item, index) => index !== action.index)
 }
 ```
 
@@ -120,18 +124,18 @@ function removeItem(array, action) {
 
 ```js
 function updateObjectInArray(array, action) {
-    return array.map( (item, index) => {
-        if(index !== action.index) {
-            // 이는 관심없는 요소입니다 - 그대로 유지하세요
-            return item;
-        }
-        
-        // 그게 아니면, 우리가 원하는것입니다. - 업데이트된 값을 반환하세요
-        return {
-            ...item,
-            ...action.item
-        };    
-    });
+  return array.map((item, index) => {
+    if (index !== action.index) {
+      // 이는 관심없는 요소입니다 - 그대로 유지하세요
+      return item
+    }
+
+    // 그게 아니면, 우리가 원하는것입니다. - 업데이트된 값을 반환하세요
+    return {
+      ...item,
+      ...action.item
+    }
+  })
 }
 ```
 
@@ -146,8 +150,10 @@ state = dotProp.set(state, `todos.${index}.complete`, true)
 그 외에 [immutability-helper](https://github.com/kolodny/immutability-helper)(현재 사용되지 않는 리액트 불변 헬퍼 에드온의 포크) 같은 것은 중첩된 값과 헬퍼 함수를 사용합니다.
 
 ```js
-var collection = [1, 2, {a: [12, 17, 15]}];
-var newCollection = update(collection, {2: {a: {$splice: [[1, 1, 13, 14]]}}});
+var collection = [1, 2, { a: [12, 17, 15] }]
+var newCollection = update(collection, {
+  2: { a: { $splice: [[1, 1, 13, 14]] } }
+})
 ```
 
 이들은 수동으로 불변 업데이트 로직을 작성하는 것에 대한 유용한 대안을 제공합니다.

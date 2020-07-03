@@ -1,3 +1,9 @@
+---
+id: api-reference
+title: API 레퍼런스
+hide_title: true
+---
+
 # API 레퍼런스
 
 Redux API의 드러난 부분은 매우 작습니다. Redux는 ([reducers](../Glossary.md#리듀서)와 같은)구현을 위한 규약 모음을 정의하고, 이들 규약을 한데 묶기 위한 몇 가지 헬퍼 함수들을 제공합니다.
@@ -6,19 +12,19 @@ Redux API의 드러난 부분은 매우 작습니다. Redux는 ([reducers](../Gl
 
 ### 최상위 익스포트
 
-* [createStore(reducer, [preloadedState])](createStore.md)
-* [combineReducers(reducers)](combineReducers.md)
-* [applyMiddleware(...middlewares)](applyMiddleware.md)
-* [bindActionCreators(actionCreators, dispatch)](bindActionCreators.md)
-* [compose(...functions)](compose.md)
+- [createStore(reducer, [preloadedState])](createStore.md)
+- [combineReducers(reducers)](combineReducers.md)
+- [applyMiddleware(...middlewares)](applyMiddleware.md)
+- [bindActionCreators(actionCreators, dispatch)](bindActionCreators.md)
+- [compose(...functions)](compose.md)
 
 ### Store API
 
-* [Store](Store.md)
-  * [getState()](Store.md#getState)
-  * [dispatch(action)](Store.md#dispatch)
-  * [subscribe(listener)](Store.md#subscribe)
-  * [replaceReducer(nextReducer)](Store.md#replaceReducer)
+- [Store](Store.md)
+  - [getState()](Store.md#getState)
+  - [dispatch(action)](Store.md#dispatch)
+  - [subscribe(listener)](Store.md#subscribe)
+  - [replaceReducer(nextReducer)](Store.md#replaceReducer)
 
 ### 임포트하기
 

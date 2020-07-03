@@ -1,3 +1,9 @@
+---
+id: glossary
+title: 용어사전
+hide_title: true
+---
+
 # 용어사전
 
 이 문서는 Redux의 핵심 용어들을 그 타입 시그니처와 함께 모아둔 용어사전입니다. 타입은 [Flow notation](http://flowtype.org/docs/quick-reference.html)에 따라 문서화되어 있습니다.
@@ -5,7 +11,7 @@
 ## 상태
 
 ```js
-type State = any;
+type State = any
 ```
 
 **상태**(**상태 트리**라고도 합니다)는 넓은 의미의 단어이지만, Redux API에서는 보통 스토어에 의해 관리되고 [`getState()`](api/Store.md#getState)에 의해 반환되는 하나의 상태값을 지칭합니다. 상태는 Redux 애플리케이션의 전체 상태를 나타내며, 보통 깊게 중첩되어 있는 객체입니다.
@@ -15,7 +21,7 @@ type State = any;
 ## 액션
 
 ```js
-type Action = Object;
+type Action = Object
 ```
 
 **액션**은 상태를 변화시키려는 의도를 표현하는 평범한 객체입니다. 액션은 스토어에 데이터를 넣는 유일한 방법입니다. 어떤 데이터가 UI 이벤트에서 왔건, 네트워크 콜백에서 왔건, 웹소캣과 같은 다른 소스에서 왔건간에 결국은 액션으로써 보내집니다.
@@ -29,7 +35,7 @@ type Action = Object;
 ## 리듀서
 
 ```js
-type Reducer<S, A> = (state: S, action: A) => S;
+type Reducer<S, A> = (state: S, action: A) => S
 ```
 
 **리듀서**(**리듀싱 함수**라고 부르기도 합니다)는 누적값과 값을 받아서 새로운 누적값을 반환하는 함수입니다. 이들은 값들의 컬렉션을 받아서 하나의 값으로 줄이는데 사용됩니다.
@@ -40,13 +46,13 @@ Redux에서 누적값은 상태 객체이고, 누적될 값은 액션입니다. 
 
 리듀서는 Redux에서 가장 중요한 개념입니다.
 
-*API 호출을 리듀서 안에 넣지 마세요.*
+_API 호출을 리듀서 안에 넣지 마세요._
 
 ## 디스패치 함수
 
 ```js
-type BaseDispatch = (a: Action) => Action;
-type Dispatch = (a: Action | AsyncAction) => any;
+type BaseDispatch = (a: Action) => Action
+type Dispatch = (a: Action | AsyncAction) => any
 ```
 
 **디스패치 함수**는 액션이나 [비동기 액션](#비동기-액션)을 받는 함수입니다; 그런 다음 하나나 여러개의 액션을 스토어에 보냅니다.
@@ -60,7 +66,7 @@ type Dispatch = (a: Action | AsyncAction) => any;
 ## 액션 생산자
 
 ```js
-type ActionCreator = (...args: any) => Action | AsyncAction;
+type ActionCreator = (...args: any) => Action | AsyncAction
 ```
 
 **액션 생산자**는 단지 액션을 만드는 함수입니다. 액션은 정보의 묶음이고, 액션 생산자는 액션을 만드는 곳이니 두 용어를 혼동하지 마세요.
@@ -72,16 +78,16 @@ type ActionCreator = (...args: any) => Action | AsyncAction;
 ## 비동기 액션
 
 ```js
-type AsyncAction = any;
+type AsyncAction = any
 ```
 
-**비동기 액션**은 디스패치 함수로 보내지는 값이지만, 아직 리듀서에게 받아들여질 준비가 되어 있지는 않습니다. 비동기 액션은 기본 [`dispatch()`](api/Store.md#dispatch) 함수로 전달되기 전에 [미들웨어](#미들웨어)를 통해 액션(이나 일련의 액션들)으로 바뀌어야 합니다. 비동기 액션은 여러분이 사용하는 미들웨어에 따라 서로 다른 타입이 될 수 있습니다. 이들은 종종 약속이나 썽크와 같은 비동기 기본형으로, 리듀서에게 직접 전달되지는 않지만, 작업이 완료되면 액션을 보냅니다. 
+**비동기 액션**은 디스패치 함수로 보내지는 값이지만, 아직 리듀서에게 받아들여질 준비가 되어 있지는 않습니다. 비동기 액션은 기본 [`dispatch()`](api/Store.md#dispatch) 함수로 전달되기 전에 [미들웨어](#미들웨어)를 통해 액션(이나 일련의 액션들)으로 바뀌어야 합니다. 비동기 액션은 여러분이 사용하는 미들웨어에 따라 서로 다른 타입이 될 수 있습니다. 이들은 종종 약속이나 썽크와 같은 비동기 기본형으로, 리듀서에게 직접 전달되지는 않지만, 작업이 완료되면 액션을 보냅니다.
 
 ## 미들웨어
 
 ```js
-type MiddlewareAPI = { dispatch: Dispatch, getState: () => State };
-type Middleware = (api: MiddlewareAPI) => (next: Dispatch) => Dispatch;
+type MiddlewareAPI = { dispatch: Dispatch, getState: () => State }
+type Middleware = (api: MiddlewareAPI) => (next: Dispatch) => Dispatch
 ```
 
 미들웨어는 [디스패치 함수](#디스패치-함수)를 결합해서 새 디스패치 함수를 반환하는 고차함수입니다. 이들은 종종 [비동기 액션](#비동기-액션)을 액션으로 전환합니다.
@@ -94,14 +100,14 @@ type Middleware = (api: MiddlewareAPI) => (next: Dispatch) => Dispatch;
 
 ```js
 type Store = {
-  dispatch: Dispatch;
-  getState: () => State;
-  subscribe: (listener: () => void) => () => void;
-  replaceReducer: (reducer: Reducer) => void;
-};
+  dispatch: Dispatch,
+  getState: () => State,
+  subscribe: (listener: () => void) => () => void,
+  replaceReducer: (reducer: Reducer) => void
+}
 ```
 
-스토어는 애플리케이션의 상태 트리를 가지고 있는 객체입니다. 
+스토어는 애플리케이션의 상태 트리를 가지고 있는 객체입니다.
 Redux 앱에는 단 하나의 스토어만 있어야 하고, 결합은 리듀서 단계에서 일어납니다.
 
 - [`dispatch(action)`](api/Store.md#dispatch)는 위에서 설명한 기본 디스패치 함수입니다.
@@ -114,7 +120,7 @@ Redux 앱에는 단 하나의 스토어만 있어야 하고, 결합은 리듀서
 ## 스토어 생산자
 
 ```js
-type StoreCreator = (reducer: Reducer, initialState: ?State) => Store;
+type StoreCreator = (reducer: Reducer, initialState: ?State) => Store
 ```
 
 스토어 생산자는 Redux 스토어를 만드는 함수입니다. 디스패치 함수와 마찬가지로, Redux 패키지에 들어있는 기본 스토어 생산자인 [`createStore(reducer, initialState)`](api/createStore.md)와 스토어 인핸서에서 반환되는 스토어 생산자는 구분해야 합니다.
@@ -122,13 +128,13 @@ type StoreCreator = (reducer: Reducer, initialState: ?State) => Store;
 ## 스토어 인핸서
 
 ```js
-type StoreEnhancer = (next: StoreCreator) => StoreCreator;
+type StoreEnhancer = (next: StoreCreator) => StoreCreator
 ```
 
 스토어 인핸서는 스토어 생산자를 결합하여 강화된 새 스토어 생산자를 반환하는 고차함수입니다. 이는 미들웨어와 비슷하게 조합가능한 방식으로 스토어 인터페이스를 바꿀 수 있게 해줍니다.
 
 스토어 인핸서는 React에서 "component enhancers"라 불리는 고차 컴포넌트와 같은 개념입니다.
 
-스토어는 인스턴스라기보다는 함수들이 모인 보통의 객체이기 때문에, 기존의 스토어를 변경하지 않고도 복제본을 만들고 수정할 수 있습니다. [`compose`](api/compose.md) 문서에 자세한 예시가 있습니다.
+스토어는 인스턴스라기보다는 함수들이 모인 보통의 객체이기 때문에, 기존의 스토어를 변경하지 않고도 복제본을 만들고 수정할 수 있습니다. [`compose`](api/compose.md) 문서에 자세한 예제가 있습니다.
 
 여러분이 스토어 인핸서를 작성할 일은 거의 없지만, [개발자 도구](https://github.com/gaearon/redux-devtools)가 제공하는 인핸서를 사용할수는 있습니다. 이 인핸서는 앱에 다른 일이 일어날 걱정 없이도 시간여행을 가능하게 해줍니다. 재미있게도, [Redux의 미들웨어 구현](api/applyMiddleware.md)도 스토어 인핸서입니다.

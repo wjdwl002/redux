@@ -1,3 +1,9 @@
+---
+id: bindactioncreators
+title: bindActionCreators
+hide_title: true
+---
+
 # `bindActionCreators(actionCreators, dispatch)`
 
 값이 [액션 생산자](../Glossary.md#액션-생산자)인 객체를 받아서, 같은 키를 가지지만 각각의 생산자들을 [`dispatch`](Store.md#dispatch)로 감싸서 바로 호출 가능하게 만든 객체로 바꿉니다.
@@ -10,15 +16,15 @@
 
 #### 인자
 
-1. `actionCreators` (*Function* or *Object*): [액션 생산자](../Glossary.md#액션-생산자) 또는 값으로 액션 생산자들을 가지는 객체.
+1. `actionCreators` (_Function_ or _Object_): [액션 생산자](../Glossary.md#액션-생산자) 또는 값으로 액션 생산자들을 가지는 객체.
 
-2. `dispatch` (*Function*): [`Store`](Store.md) 인스턴스에서 가져온 [`dispatch`](Store.md#dispatch) 함수.
+2. `dispatch` (_Function_): [`Store`](Store.md) 인스턴스에서 가져온 [`dispatch`](Store.md#dispatch) 함수.
 
 #### 반환
 
-(*Function* or *Object*): 원래의 객체를 모사하지만 각각의 함수가 원래의 액션 생산자가 반환하는 액션을 바로 디스패치하는 객체. 만약 `actionCreators`로 함수를 넘겼다면, 반환값 역시 함수가 됩니다.
+(_Function_ or _Object_): 원래의 객체를 모사하지만 각각의 함수가 원래의 액션 생산자가 반환하는 액션을 바로 디스패치하는 객체. 만약 `actionCreators`로 함수를 넘겼다면, 반환값 역시 함수가 됩니다.
 
-#### 예시
+#### 예제
 
 #### `TodoActionCreators.js`
 
@@ -82,10 +88,7 @@ class TodoListContainer extends Component {
     //   removeTodo: Function
     // }
 
-    return (
-      <TodoList todos={todos}
-                {...boundActionCreators} />
-    )
+    return <TodoList todos={todos} {...boundActionCreators} />
 
     // An alternative to bindActionCreators is to pass
     // just the dispatch function down, but then your child component
@@ -95,13 +98,11 @@ class TodoListContainer extends Component {
   }
 }
 
-export default connect(
-  state => ({ todos: state.todos })
-)(TodoListContainer)
+export default connect(state => ({ todos: state.todos }))(TodoListContainer)
 ```
 
 #### 팁
 
-* 왜 전통적인 Flux처럼 액션 생산자를 스토어 인스턴스에 바로 바인드하지 않는지 물을 수도 있습니다. 문제는 그 방법이 서버에서 랜더해야 하는 유니버설 앱에서는 잘 작동하지 않는다는겁니다. 보통은 매 요청마다 서로 다른 데이터로 스토어 인스턴스를 준비해야 하지만, 액션 생산자를 선언 중에 바인드하면 모든 요청에 대해 하나의 스토어 인스턴스 밖에 쓸 수 없습니다.
+- 왜 전통적인 Flux처럼 액션 생산자를 스토어 인스턴스에 바로 바인드하지 않는지 물을 수도 있습니다. 문제는 그 방법이 서버에서 랜더해야 하는 유니버설 앱에서는 잘 작동하지 않는다는겁니다. 보통은 매 요청마다 서로 다른 데이터로 스토어 인스턴스를 준비해야 하지만, 액션 생산자를 선언 중에 바인드하면 모든 요청에 대해 하나의 스토어 인스턴스 밖에 쓸 수 없습니다.
 
-* ES5를 사용한다면 `import * as` 대신 `require('./TodoActionCreators')`를 `bindActionCreators`의 첫번째 인수로 넘기면 됩니다. 모듈 시스템과는 상관 없이 `actionCreators`의 인수 값이 함수이기만 하면 됩니다.
+- ES5를 사용한다면 `import * as` 대신 `require('./TodoActionCreators')`를 `bindActionCreators`의 첫번째 인수로 넘기면 됩니다. 모듈 시스템과는 상관 없이 `actionCreators`의 인수 값이 함수이기만 하면 됩니다.

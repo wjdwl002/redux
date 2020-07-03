@@ -1,3 +1,10 @@
+---
+id: reusing-reducer-logic
+title: 리듀서 로직 재사용하기
+description: '리듀서 구조 잡기 > 리듀서 로직 재사용하기: Patterns for creating reusable reducers'
+hide_title: true
+---
+
 # 리듀서 로직 재사용하기
 
 애플리케이션의 크기가 커지면 리듀서 로직의 공통된 패턴이 나타날 겁니다. 어쩌면 당신의 리듀서로직이 다른 종류만 다른 데이터에 대해 같은 일을 함을 발견하고 중복을 줄이고자 각 데이터 타입에 대해 같은 로직을 재사용하고 싶을 수 있습니다. 또는 특정 데이터에 대해 여러 "인스턴스"를 스토어에서 처리하고 싶을 수도 있습니다. 하지만 전역 리덕스 구조는 몇 가지 트레이드오프가 있습니다: 이는 애플리케이션의 전체적인 상태를 쉽게 추적할 수 있게 해줍니다. 하지만 특히 `combineReducers`를 사용하는 경우, 업데이트가 필요한 상태 조각을 "지정하는 작업"을 어렵게 합니다.
@@ -6,21 +13,21 @@
 
 ```js
 function counter(state = 0, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return state + 1;
-        case 'DECREMENT':
-            return state - 1;
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'DECREMENT':
+      return state - 1
+    default:
+      return state
+  }
 }
 
 const rootReducer = combineReducers({
-    counterA : counter,
-    counterB : counter,
-    counterC : counter
-});
+  counterA: counter,
+  counterB: counter,
+  counterC: counter
+})
 ```
 
 안타깝게도 이 설정엔 문제가 있습니다.`combineReducers`는 같은 액션에 대해 각 슬라이스 리듀서를 호출합니다. `{type : 'INCREMENT'}`가 디스패치되면 하나가 아닌 세 카운터 값을 증가시킬 겁니다. 우리가 원하는 카운터값만을 증가시키기 위해 `counter`로직을 래핑하는 방법이 필요합니다.
@@ -31,32 +38,32 @@ const rootReducer = combineReducers({
 
 ```js
 function createCounterWithNamedType(counterName = '') {
-    return function counter(state = 0, action) {
-        switch (action.type) {
-            case `INCREMENT_${counterName}`:
-                return state + 1;
-            case `DECREMENT_${counterName}`:
-                return state - 1;
-            default:
-                return state;
-        }
+  return function counter(state = 0, action) {
+    switch (action.type) {
+      case `INCREMENT_${counterName}`:
+        return state + 1
+      case `DECREMENT_${counterName}`:
+        return state - 1
+      default:
+        return state
     }
+  }
 }
 
 function createCounterWithNameData(counterName = '') {
-    return function counter(state = 0, action) {
-        const {name} = action;
-        if(name !== counterName) return state;
-        
-        switch (action.type) {
-            case `INCREMENT`:
-                return state + 1;
-            case `DECREMENT`:
-                return state - 1;
-            default:
-                return state;
-        }
+  return function counter(state = 0, action) {
+    const { name } = action
+    if (name !== counterName) return state
+
+    switch (action.type) {
+      case `INCREMENT`:
+        return state + 1
+      case `DECREMENT`:
+        return state - 1
+      default:
+        return state
     }
+  }
 }
 ```
 
@@ -64,13 +71,13 @@ function createCounterWithNameData(counterName = '') {
 
 ```js
 const rootReducer = combineReducers({
-    counterA : createCounterWithNamedType('A'),
-    counterB : createCounterWithNamedType('B'),
-    counterC : createCounterWithNamedType('C'),
-});
+  counterA: createCounterWithNamedType('A'),
+  counterB: createCounterWithNamedType('B'),
+  counterC: createCounterWithNamedType('C')
+})
 
-store.dispatch({type : 'INCREMENT_B'});
-console.log(store.getState());
+store.dispatch({ type: 'INCREMENT_B' })
+console.log(store.getState())
 // {counterA : 0, counterB : 1, counterC : 0}
 ```
 
@@ -78,31 +85,31 @@ console.log(store.getState());
 
 ```js
 function counter(state = 0, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return state + 1;
-        case 'DECREMENT':
-            return state - 1;
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'DECREMENT':
+      return state - 1
+    default:
+      return state
+  }
 }
 
 function createNamedWrapperReducer(reducerFunction, reducerName) {
-    return (state, action) => {
-        const {name} = action;
-        const isInitializationCall = state === undefined;
-        if(name !== reducerName && !isInitializationCall) return state;
-        
-        return reducerFunction(state, action);    
-    }
+  return (state, action) => {
+    const { name } = action
+    const isInitializationCall = state === undefined
+    if (name !== reducerName && !isInitializationCall) return state
+
+    return reducerFunction(state, action)
+  }
 }
 
 const rootReducer = combineReducers({
-    counterA : createNamedWrapperReducer(counter, 'A'),
-    counterB : createNamedWrapperReducer(counter, 'B'),
-    counterC : createNamedWrapperReducer(counter, 'C'),
-});
+  counterA: createNamedWrapperReducer(counter, 'A'),
+  counterB: createNamedWrapperReducer(counter, 'B'),
+  counterC: createNamedWrapperReducer(counter, 'C')
+})
 ```
 
 일반 필터링이 적용된 고차 리듀서를 만들 수도 있습니다.
