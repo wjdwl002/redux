@@ -1,10 +1,10 @@
 module.exports = {
   title: 'Redux',
-  tagline: 'A Predictable State Container for JS Apps',
-  url: 'https://redux.js.org',
+  tagline: '자바스크립트 앱을 위한 예측 가능한 상태 컨테이너',
+  url: 'https://ko.redux.js.org',
   baseUrl: '/',
   favicon: 'img/favicon/favicon.ico',
-  organizationName: 'reduxjs',
+  organizationName: 'deminoth',
   projectName: 'redux',
   themeConfig: {
     disableDarkMode: false,
@@ -28,7 +28,7 @@ module.exports = {
         { label: 'FAQ', to: 'faq', position: 'right' },
         {
           label: 'GitHub',
-          href: 'https://www.github.com/reduxjs/redux',
+          href: 'https://www.github.com/deminoth/redux',
           position: 'right'
         },
         {
@@ -100,8 +100,7 @@ module.exports = {
         src: 'img/redux.svg',
         href: 'https://redux.js.org/'
       },
-      copyright: 
-        `Copyright © 2015–${new Date().getFullYear()} Dan Abramov and the Redux documentation authors.`
+      copyright: `Copyright © 2015–${new Date().getFullYear()} Dan Abramov and the Redux documentation authors.`
     },
     algolia: {
       apiKey: '518c6e3c629811d8daa1d21dc8bcfa37',
