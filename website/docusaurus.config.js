@@ -20,7 +20,7 @@ module.exports = {
       },
       links: [
         {
-          label: 'Getting Started',
+          label: '시작하기',
           to: 'introduction/getting-started',
           position: 'right'
         },
@@ -28,7 +28,7 @@ module.exports = {
         { label: 'FAQ', to: 'faq', position: 'right' },
         {
           label: 'GitHub',
-          href: 'https://www.github.com/deminoth/redux',
+          href: 'https://github.com/deminoth/redux',
           position: 'right'
         },
         {
@@ -45,7 +45,7 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Getting Started',
+              label: '시작하기',
               to: 'introduction/getting-started'
             },
             {
@@ -53,11 +53,11 @@ module.exports = {
               to: 'faq'
             },
             {
-              label: 'Tutorial',
+              label: '강좌',
               to: 'basics/basic-tutorial'
             },
             {
-              label: 'API Reference',
+              label: 'API 레퍼런스',
               to: 'api/api-reference'
             }
           ]
@@ -80,7 +80,7 @@ module.exports = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/reduxjs/redux'
+              href: 'https://github.com/deminoth/redux'
             },
             {
               html: `

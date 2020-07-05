@@ -10,9 +10,9 @@ const features = [
   {
     content: (
       <p>
-        Redux helps you write applications that{' '}
-        <strong>behave consistently</strong>, run in different environments
-        (client, server, and native), and are <strong>easy to test</strong>.
+        Redux는 <strong>일관적으로 동작하고</strong>, 서로 다른 환경(클라이언트,
+        서버, 네이티브)에서도 실행되며, <strong>테스트하기 쉬운</strong>{' '}
+        애플리케이션을 작성하도록 도와줍니다.
       </p>
     ),
     image: (
@@ -25,14 +25,14 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: 'Predictable'
+    title: '예측 가능한'
   },
   {
     content: (
       <p>
-        Centralizing your application's state and logic enables powerful
-        capabilities like <strong>undo/redo</strong>,{' '}
-        <strong>state persistence</strong>, and much more.
+        애플리케이션의 상태와 로직을 중앙화하여{' '}
+        <strong>실행 취소/다시 실행</strong>, <strong>영속적인 상태</strong>등의
+        강력한 기능을 사용할 수 있게 합니다.
       </p>
     ),
     image: (
@@ -45,18 +45,18 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: 'Centralized'
+    title: '중앙화된'
   },
   {
     content: (
       <p>
-        The Redux DevTools make it easy to trace{' '}
+        Redux DevTools는{' '}
         <strong>
-          when, where, why, and how your application's state changed
-        </strong>
-        . Redux's architecture lets you log changes, use{' '}
-        <strong>"time-travel debugging"</strong>, and even send complete error
-        reports to a server.
+          애플리케이션의 상태가 언제, 어디서, 왜, 어떻게 바뀌었는지
+        </strong>{' '}
+        쉽게 추적할 수 있도록 해줍니다. Redux의 아키텍처를 통해 변경사항을
+        기록하고, <strong>"시간여행형 디버깅"</strong>을 사용하고, 완전한 에러
+        리포트를 서버로 보낼 수 있습니다.
       </p>
     ),
     image: (
@@ -73,13 +73,13 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: 'Debuggable'
+    title: '디버깅이 쉬운'
   },
   {
     content: (
       <p>
-        Redux <strong>works with any UI layer</strong>, and has{' '}
-        <strong>a large ecosystem of addons</strong> to fit your needs.
+        Redux는 <strong>어떤 UI 레이어에서도 동작하며</strong>, 여러분의 요구에
+        부합하는 <strong>거대한 애드온 생태계</strong>를 가지고 있습니다.
       </p>
     ),
     image: (
@@ -92,13 +92,13 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: 'Flexible'
+    title: '유연한'
   }
 ]
 
 const otherLibraries = [
   {
-    content: 'Official React bindings for Redux',
+    content: 'Redux를 위한 공식 React 바인딩',
     title: 'React-Redux',
     link: 'https://react-redux.js.org',
     image: (
@@ -114,8 +114,7 @@ const otherLibraries = [
     )
   },
   {
-    content:
-      'The official, opinionated, batteries-included toolset for efficient Redux development',
+    content: '효율적인 Redux 개발을 위한 모든 것을 제공하는 공식 도구',
     title: 'Redux Toolkit',
     link: 'https://redux-toolkit.js.org',
     image: (
@@ -137,8 +136,8 @@ function Home() {
   const { siteConfig = {} } = context
   return (
     <Layout
-      title={`${siteConfig.title} - A predictable state container for JavaScript apps.`}
-      description="A predictable state container for JavaScript apps."
+      title={`${siteConfig.title} - 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너`}
+      description="자바스크립트 앱을 위한 예측 가능한 상태 컨테이너"
     >
       <div style={{ background: '#111', padding: '10px 0', lineHeight: 2 }}>
         <div className="container">
@@ -180,7 +179,7 @@ function Home() {
               )}
               to={useBaseUrl('introduction/getting-started')}
             >
-              Get Started
+              시작하기
             </Link>
           </div>
         </div>
@@ -214,7 +213,7 @@ function Home() {
               <div className="row">
                 <div className="col">
                   <h2 className={`text--center ${styles.secondTitle}`}>
-                    Other Libraries from the Redux Team
+                    Redux팀의 다른 라이브러리
                   </h2>
                 </div>
               </div>
