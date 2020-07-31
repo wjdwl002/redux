@@ -7,6 +7,14 @@ hide_title: true
 
 # React와 함께 사용하기
 
+:::info
+
+While the concepts in the "Basic" and "Advanced" tutorials are still valid, these pages are some of the oldest parts of our docs. We'll be updating those tutorials soon to improve the explanations and show some patterns that are simpler and easier to use. Keep an eye out for those updates. We'll also be reorganizing our docs to make it easier to find information.
+
+**We recommend starting with the [Redux Essentials tutorial](../tutorials/essentials/part-1-overview-concepts)**, since it covers the key points you need to know about how to get started using Redux to write actual applications.
+
+:::
+
 처음 시작할때부터 우리는 Redux가 React와는 관계가 없음을 강조했습니다. 여러분은 React, Angular, Ember, jQuery, 순수 JavaScript 중 어떤 것을 가지고도 Redux 앱을 만들 수 있습니다.
 
 그렇긴 하지만 Redux는 액션에 반응하여 상태를 변경하기 때문에, [React](http://facebook.github.io/react/)나 [Deku](https://github.com/dekujs/deku)와 같이 UI를 상태에 대한 함수로 기술하는 프레임워크와 특히 잘 어울립니다.

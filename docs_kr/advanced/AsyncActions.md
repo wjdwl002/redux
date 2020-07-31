@@ -7,6 +7,14 @@ hide_title: true
 
 # 비동기 액션
 
+:::info
+
+While the concepts in the "Basic" and "Advanced" tutorials are still valid, these pages are some of the oldest parts of our docs. We'll be updating those tutorials soon to improve the explanations and show some patterns that are simpler and easier to use. Keep an eye out for those updates. We'll also be reorganizing our docs to make it easier to find information.
+
+**We recommend starting with the [Redux Essentials tutorial](../tutorials/essentials/part-1-overview-concepts)**, since it covers the key points you need to know about how to get started using Redux to write actual applications.
+
+:::
+
 [기초 가이드](../basics/README.md)에서 우리는 간단한 할일 애플리케이션을 만들었습니다. 이 앱은 완전히 동기적이었죠. 매번 액션이 보내질때마다, 상태가 바로 변경되었습니다.
 
 이 가이드에서 우리는 비동기 애플리케이션을 만들겠습니다. Reddit API를 써서 선택한 subreddit의 현재 헤드라인을 보여줄겁니다. 비동기가 어떻게 Redux의 흐름에 적용되게 될까요?

@@ -7,6 +7,14 @@ hide_title: true
 
 # 액션
 
+:::info
+
+While the concepts in the "Basic" and "Advanced" tutorials are still valid, these pages are some of the oldest parts of our docs. We'll be updating those tutorials soon to improve the explanations and show some patterns that are simpler and easier to use. Keep an eye out for those updates. We'll also be reorganizing our docs to make it easier to find information.
+
+**We recommend starting with the [Redux Essentials tutorial](../tutorials/essentials/part-1-overview-concepts)**, since it covers the key points you need to know about how to get started using Redux to write actual applications.
+
+:::
+
 먼저 액션을 정의해봅시다.
 
 **액션**은 애플리케이션에서 스토어로 보내는 데이터 묶음입니다. 이들이 스토어의 **유일한** 정보원이 됩니다. 여러분은 [`store.dispatch()`](../api/Store.md#dispatch)를 통해 이들을 보낼 수 있습니다.

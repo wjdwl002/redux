@@ -66,7 +66,7 @@ type Dispatch = (a: Action | AsyncAction) => any
 ## 액션 생산자
 
 ```js
-type ActionCreator = (...args: any) => Action | AsyncAction
+type ActionCreator<A, P extends any[] = any[]> = (...args: P) => Action | AsyncAction
 ```
 
 **액션 생산자**는 단지 액션을 만드는 함수입니다. 액션은 정보의 묶음이고, 액션 생산자는 액션을 만드는 곳이니 두 용어를 혼동하지 마세요.

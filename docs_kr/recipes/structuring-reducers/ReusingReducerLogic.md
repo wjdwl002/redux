@@ -134,3 +134,42 @@ const rootReducer = combineReducers({
 ```
 
 이 기본패턴은 UI에서 스마트하게 연결된 인스턴스를 여러 개 만들거나, 페이지네이션이나 정렬 같은 기능에 일반적인 로직을 재사용할 수 있습니다.
+
+## Collection / Item Reducer Pattern
+
+This pattern allows you to have multiple states and use a common reducer to update each state based on an additional parameter inside the action object.
+
+```js
+function counterReducer(state, action) {
+    switch(action.type) {
+        case "INCREMENT" : return state + 1;
+        case "DECREMENT" : return state - 1;
+    }
+}
+
+function countersArrayReducer(state, action) {
+    switch(action.type) {
+        case "INCREMENT":
+        case "DECREMENT":
+            return state.map( (counter, index) => {
+                if(index !== action.index) return counter;
+                return counterReducer(counter, action);
+            });
+        default:
+            return state;
+    }
+}
+
+function countersMapReducer(state, action) {
+    switch(action.type) {
+        case "INCREMENT":
+        case "DECREMENT":
+            return {
+                ...state,
+                state[action.name] : counterReducer(state[action.name], action)
+            };
+        default:
+            return state;
+    }
+}
+```
