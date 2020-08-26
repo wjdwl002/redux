@@ -1,7 +1,7 @@
 ---
 id: getting-started
 title: Redux 시작하기
-description: '소개 > 시작하기: Resources to get started learning and using Redux'
+description: '소개 > 시작하기: Redux를 배우고 사용하기 위한 리소스'
 hide_title: true
 ---
 
@@ -11,24 +11,23 @@ Redux는 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너�
 
 Redux는 여러분이 일관적으로 동작하고, 서로 다른 환경(서버, 클라이언트, 네이티브)에서 작동하고, 테스트하기 쉬운 앱을 작성하도록 도와줍니다. 여기에 더해서 [시간여행형 디버거와 결합된 실시간 코드 수정](https://github.com/reduxjs/redux-devtools)과 같은 훌륭한 개발자 경험을 제공합니다.
 
-여러분은 Redux를 [React](https://facebook.github.io/react/)나 다른 뷰 라이브러리와 함께 사용할 수 있습니다.
-Redux는 매우 작습니다 (2kB, 의존 라이브러리 포함).
+여러분은 Redux를 [React](https://reactjs.org)나 다른 뷰 라이브러리와 함께 사용할 수 있습니다. Redux는 매우 작지만(의존 라이브러리 포함 2kB), 사용 가능한 애드온은 매우 많습니다.
 
 ## 설치
 
 ### Redux Toolkit
 
-[**Redux Toolkit**](https://redux-toolkit.js.org) is our official recommended approach for writing Redux logic. It wraps around the Redux core, and contains packages and functions that we think are essential for building a Redux app. Redux Toolkit builds in our suggested best practices, simplifies most Redux tasks, prevents common mistakes, and makes it easier to write Redux applications.
+[**Redux Toolkit**](https://redux-toolkit.js.org)은 Redux 로직을 작성하기 위해 저희가 공식적으로 추천하는 방법입니다. RTK는 Redux 앱을 만들기에 필수적이라 생각한 패키지와 함수들을 포함하고 있습니다. 대부분의 Redux 작업을 단순화하고, 흔한 실수를 방지하며, Redux 앱을 만들기 쉽게 해주는 모범 사례를 통해 만들어졌습니다.
 
-RTK includes utilities that help simplify many common use cases, including [store setup](https://redux-toolkit.js.org/api/configureStore),
-[creating reducers and writing immutable update logic](https://redux-toolkit.js.org/api/createreducer),
-and even [creating entire "slices" of state at once](https://redux-toolkit.js.org/api/createslice).
+RTK는 [저장소 준비](../api/configureStore),
+[리듀서 생산과 불변 수정 로직 작성](../api/createreducer),
+[상태 "조각" 전부를 한번에 작성](../api/createslice) 등 일반적인 작업들을 단순화해주는 유틸리티를 포함하고 있습니다.
 
-Whether you're a brand new Redux user setting up your first project, or an experienced user who wants to
-simplify an existing application, **[Redux Toolkit](https://redux-toolkit.js.org/)** can help you
-make your Redux code better.
+여러분이 첫 프로젝트에 Redux를 새로 도입하는 신참이든 기존 앱을 단순화하고 싶은 경험자든 상관 없이,
+**[Redux Toolkit](https://redux-toolkit.js.org/)**은 더 나은 Redux 코드를 만들게
+도와줍니다.
 
-Redux Toolkit is available as a package on NPM for use with a module bundler or in a Node application:
+Redux Toolkit은 NPM에서 패키지로 받아 모듈 번들러나 Node 앱에서 사용 가능합니다.
 
 ```bash
 # NPM
@@ -38,17 +37,17 @@ npm install @reduxjs/toolkit
 yarn add @reduxjs/toolkit
 ```
 
-### Create a React Redux App
+### React Redux 앱 만들기
 
-The recommended way to start new apps with React and Redux is by using the [official Redux+JS template](https://github.com/reduxjs/cra-template-redux) for [Create React App](https://github.com/facebook/create-react-app), which takes advantage of **[Redux Toolkit](https://redux-toolkit.js.org/)** and React Redux's integration with React components.
+React와 Redux로 새 앱을 만들기 위해 추천하는 방법은 [Create React App](https://github.com/facebook/create-react-app)를 위한 [공식 Redux+JS 템플릿](https://github.com/reduxjs/cra-template-redux)을 사용하는 것입니다. 이를 통해 **[Redux Toolkit](https://redux-toolkit.js.org/)**와 React Redux가 React 컴포넌트와 통합되는 이점을 누릴 수 있습니다.
 
 ```sh
 npx create-react-app my-app --template redux
 ```
 
-### Redux Core
+### Redux 코어
 
-The Redux core library is available as a package on NPM for use with a module bundler or in a Node application:
+Redux 코어 라이브러리는 NPM에서 패키지로 받아 모듈 번들러나 Node 앱에서 사용 가능합니다.
 
 ```bash
 # NPM
@@ -58,9 +57,9 @@ npm install redux
 yarn add redux
 ```
 
-It is also available as a precompiled UMD package that defines a `window.Redux` global variable. The UMD package can be used as a [`<script>` tag](https://unpkg.com/redux/dist/redux.js) directly.
+`window.Redux` 전역변수를 선언해주는 UMD 패키지도 사용 가능합니다. UMD 패키지는 [`<script>` 태그](https://unpkg.com/redux/dist/redux.js)로 바로 사용 가능합니다.
 
-For more details, see the [Installation](Installation.md) page.
+자세한 사항은 [설치](Installation.md) 페이지를 보세요.
 
 ## 기본 예제
 
@@ -78,7 +77,7 @@ import { createStore } from 'redux'
  * 리듀서는 액션이 어떻게 상태를 다음 상태로 변경하는지 서술합니다.
  *
  * 상태의 모양은 당신 마음대로입니다: 기본형(primitive)일수도, 배열일수도, 객체일수도,
- * 심지어 Immutable.js 자료구조일수도 있습니다. 오직 중요한 점은 상태 객체를 변경해서는 안되며,
+ * 심지어 Immutable.js 자료구조일수도 있습니다.  오직 중요한 점은 상태 객체를 변경해서는 안되며,
  * 상태가 바뀐다면 새로운 객체를 반환해야 한다는 것입니다.
  *
  * 이 예제에서 우리는 `switch` 구문과 문자열을 썼지만,
@@ -100,14 +99,14 @@ function counter(state = 0, action) {
 // API로는 { subscribe, dispatch, getState }가 있습니다.
 let store = createStore(counter)
 
-// 업데이트를 직접 구독하거나 뷰 레이어에 바인딩할수 있습니다.
+// subscribe()를 이용해 상태 변화에 따라 UI가 변경되게 할 수 있습니다.
 // 보통은 subscribe()를 직접 사용하기보다는 뷰 바인딩 라이브러리(예를 들어 React Redux)를 사용합니다.
 // 하지만 현재 상태를 localStorage에 영속적으로 저장할 때도 편리합니다.
 
-store.subscribe(() => console.log(store.getState()))
+store.subscribe(() => console.log(store.getState())))
 
 // 내부 상태를 변경하는 유일한 방법은 액션을 보내는 것뿐입니다.
-// 액션은 직렬화될수도, 로깅할수도, 저장할수도 있으며 나중에 재실행할수도 있습니다.
+// 액션은 직렬화할수도, 로깅할수도, 저장할수도 있으며 나중에 재실행할수도 있습니다.
 store.dispatch({ type: 'INCREMENT' })
 // 1
 store.dispatch({ type: 'INCREMENT' })
@@ -118,9 +117,9 @@ store.dispatch({ type: 'DECREMENT' })
 
 상태를 바로 변경하는 대신, **액션**이라 불리는 평범한 객체를 통해 일어날 변경을 명시합니다. 그리고 각각의 액션이 전체 애플리케이션의 상태를 어떻게 변경할지 결정하는 특별한 함수인 **리듀서**를 작성합니다.
 
-만약 여러분이 Flux를 개발하다가 왔다면, 알아둬야 할 중요한 차이점이 있습니다. Redux는 Dispatcher가 없고 저장소 여러개를 지원하지도 않습니다. 대신 루트 리듀싱 함수 하나를 가지는 단 하나의 저장소가 있습니다. 당신의 앱이 커지면 저장소를 추가하는 대신 루트 리듀서를 쪼개서 상태 트리의 각기 다른 부분을 독립적으로 다루는 리듀서들을 만들면 됩니다. 마치 React 앱에는 하나의 루트 컴포넌트가 있고 이 루트 컴포넌트가 여러개의 작은 컴포넌트로 이루어진 것처럼요.
+보통의 Redux 앱에는 하나의 루트 리듀서 함수를 가진 단 하나의 저장소가 있습니다. 앱이 커짐에 따라 루트 리듀서를 상태 트리의 서로 다른 부분에서 개별적으로 동작하는 작은 리듀서들로 나눌 수 있습니다. React 앱을 하나의 루트 컴포넌트에서 시작해서 여러 작은 컴포넌트의 조합으로 바꾸는 것과 동일합니다.
 
-이 아키텍쳐는 숫자 세는 앱 하나 만드는데에는 과도해 보일 수 있지만 이 패턴의 아름다움은 크고 복잡한 앱으로 확장하기 좋다는 점입니다. 이는 또한 액션이 일으키는 모든 변경을 추적함으로써 강력한 개발자 도구를 가능하게 합니다. 여러분은 액션을 재생하는 것만으로 사용자 세션을 기록하고 재생산할 수 있습니다.
+이런 아키텍처가 카운터 앱에서는 너무 과한 것처럼 보이지만, 크고 복잡한 앱에서는 이 패턴의 확장성이 잘 드러납니다. 액션에 따른 모든 변경을 추적할 수 있기 때문에, 매우 강력한 개발자 도구를 가능하게 해주기도 합니다. 여러분은 사용자 세션을 기록한 다음 액션 하나하나를 다시 실행해 볼 수 있습니다.
 
 ## Redux 배우기
 
@@ -155,13 +154,13 @@ If you have a bug report or need to leave other feedback, [please file an issue 
 
 ## Redux를 사용해야 할까요?
 
-Redux는 상태를 관리하기에 좋은 도구이지만 여러분의 상황에 적당한지는 따져 보아야 합니다. **단지 누군가가 사용하라고 했다는 이유만으로 Redux를 사용하지는 마세요 - 시간을 들여서 잠재적인 이점과 그에 따른 장단점에 대해 이해하세요.**
+Redux는 상태를 관리하기에 좋은 도구이지만 여러분의 상황에 적당한지는 따져 보아야 합니다. **단지 누군가가 사용하라고 했다는 이유만으로 Redux를 사용하지는 마세요 - 시간을 들여서 잠재적인 이점과 그에 따르는 단점을 이해하세요.**
 
-Redux를 사용할만한 시점을 알기 위한 몇 가지 제안이 있습니다:
+Redux를 사용하기 적절한 때를 알기 위한 몇 가지 제안이 있습니다:
 
 - 계속해서 바뀌는 상당한 양의 데이터가 있다
-- 상태를 위한 단 하나의 원천이 필요하다
-- 모든 상태를 가지고 있기에는 최상위 컴포넌트가 더 이상 적당하지 않다
+- 상태를 위한 단 하나의 근원이 필요하다
+- 최상위 컴포넌트가 모든 상태를 가지고 있는 것은 더 이상 적절하지 않다
 
 > **Redux가 어떻게 사용되어야 하는지에 대한 여러 생각들을 보려면:**
 >
