@@ -32,6 +32,11 @@ module.exports = {
         { label: 'API', to: 'api/api-reference', position: 'right' },
         { label: 'FAQ', to: 'faq', position: 'right' },
         {
+          label: 'Best Practices',
+          to: '/style-guide/style-guide',
+          position: 'right'
+        },
+        {
           label: 'GitHub',
           href: 'https://github.com/deminoth/redux',
           position: 'right'

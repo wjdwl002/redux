@@ -170,7 +170,7 @@ export const PostsList = () => {
   const posts = useSelector(state => state.posts)
 
   const renderedPosts = posts.map(post => (
-    <article className="post-excerpt">
+    <article className="post-excerpt" key={post.id}>
       <h3>{post.title}</h3>
       <p>{post.content.substring(0, 100)}</p>
     </article>
@@ -325,6 +325,8 @@ const postsSlice = createSlice({
 
 // highlight-next-line
 export const { postAdded } = postsSlice.actions
+
+export default postsSlice.reducer
 ```
 
 :::warning
