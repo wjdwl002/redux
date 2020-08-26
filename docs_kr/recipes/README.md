@@ -1,6 +1,6 @@
 ---
 id: recipe-index
-title: '레시피: 목차'
+title: '레시피 색인'
 hide_title: true
 ---
 

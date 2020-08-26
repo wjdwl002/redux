@@ -1,71 +1,73 @@
 ---
 id: faq
-title: FAQ Index
+title: FAQ 색인
 hide_title: true
 ---
 
 # Redux FAQ
 
-## Table of Contents
+## 목차
 
-- **General**
-  - [When should I learn Redux?](/docs/faq/General.md#general-when-to-learn)
-  - [When should I use Redux?](/docs/faq/General.md#general-when-to-use)
-  - [Can Redux only be used with React?](/docs/faq/General.md#general-only-react)
-  - [Do I need to have a particular build tool to use Redux?](/docs/faq/General.md#general-build-tools)
-- **Reducers**
-  - [How do I share state between two reducers? Do I have to use combineReducers?](/docs/faq/Reducers.md#reducers-share-state)
-  - [Do I have to use the switch statement to handle actions?](/docs/faq/Reducers.md#reducers-use-switch)
-- **Organizing State**
-  - [Do I have to put all my state into Redux? Should I ever use React's setState()?](/docs/faq/OrganizingState.md#organizing-state-only-redux-state)
-  - [Can I put functions, promises, or other non-serializable items in my store state?](/docs/faq/OrganizingState.md#organizing-state-non-serializable)
-  - [How do I organize nested or duplicate data in my state?](/docs/faq/OrganizingState.md#organizing-state-nested-data)
-- **Store Setup**
-  - [Can or should I create multiple stores? Can I import my store directly, and use it in components myself?](/docs/faq/StoreSetup.md#store-setup-multiple-stores)
-  - [Is it OK to have more than one middleware chain in my store enhancer? What is the difference between next and dispatch in a middleware function?](/docs/faq/StoreSetup.md#store-setup-middleware-chains)
-  - [How do I subscribe to only a portion of the state? Can I get the dispatched action as part of the subscription?](/docs/faq/StoreSetup.md#store-setup-subscriptions)
-- **Actions**
-  - [Why should type be a string, or at least serializable? Why should my action types be constants?](/docs/faq/Actions.md#actions-string-constants)
-  - [Is there always a one-to-one mapping between reducers and actions?](/docs/faq/Actions.md#actions-reducer-mappings)
-  - [How can I represent “side effects” such as AJAX calls? Why do we need things like “action creators”, “thunks”, and “middleware” to do async behavior?](/docs/faq/Actions.md#actions-side-effects)
-  - [Should I dispatch multiple actions in a row from one action creator?](/docs/faq/Actions.md#actions-multiple-actions)
-- **Immutable Data**
-  - [What are the benefits of Immutability?](/docs/faq/ImmutableData.md#benefits-of-immutability)
-  - [Why is immutability required in Redux?](/docs/faq/ImmutableData.md#why-is-immutability-required)
-  - [Do I have to use Immutable.JS?](/docs/faq/ImmutableData.md#do-i-have-to-use-immutable-js)
-  - [What are the issues with using ES6 for immutable operations?](/docs/faq/ImmutableData.md#issues-with-es6-for-immutable-ops)
-- **Using Immutable.JS with Redux**
-
-  - [Why should I use an immutable-focused library such as Immutable.JS?](/docs/recipes/UsingImmutableJS.md#why-use-immutable-library)
-  - [Why should I choose Immutable.JS as an immutable library?](/docs/recipes/UsingImmutableJS.md#why-choose-immutable-js)
-  - [What are the issues with using Immutable.JS?](/docs/recipes/UsingImmutableJS.md#issues-with-immutable-js)
-  - [Is Immutable.JS worth the effort?](/docs/recipes/UsingImmutableJS.md#is-immutable-js-worth-effort)
-  - [What are some opinionated Best Practices for using Immutable.JS with Redux?](/docs/recipes/UsingImmutableJS.md#immutable-js-best-practices)
-
-- **Code Structure**
-  - [What should my file structure look like? How should I group my action creators and reducers in my project? Where should my selectors go?](/docs/faq/CodeStructure.md#structure-file-structure)
-  - [How should I split my logic between reducers and action creators? Where should my “business logic” go?](/docs/faq/CodeStructure.md#structure-business-logic)
-  - [Why should I use action creators?](/docs/faq/CodeStructure.md#structure-action-creators)
-- **Performance**
-  - [How well does Redux “scale” in terms of performance and architecture?](/docs/faq/Performance.md#performance-scaling)
-  - [Won't calling “all my reducers” for each action be slow?](/docs/faq/Performance.md#performance-all-reducers)
-  - [Do I have to deep-clone my state in a reducer? Isn't copying my state going to be slow?](/docs/faq/Performance.md#performance-clone-state)
-  - [How can I reduce the number of store update events?](/docs/faq/Performance.md#performance-update-events)
-  - [Will having “one state tree” cause memory problems? Will dispatching many actions take up memory?](/docs/faq/Performance.md#performance-state-memory)
-  - [Will caching remote data cause memory problems?](/docs/faq/Performance.md#performance-cache-memory)
-- **Design Decisions**
-  - [Why doesn't Redux pass the state and action to subscribers?](/docs/faq/DesignDecisions.md#does-not-pass-state-action-to-subscribers)
-  - [Why doesn't Redux support using classes for actions and reducers?](/docs/faq/DesignDecisions.md#does-not-support-classes)
-  - [Why does the middleware signature use currying?](/docs/faq/DesignDecisions.md#why-currying)
-  - [Why does applyMiddleware use a closure for dispatch?](/docs/faq/DesignDecisions.md#closure-dispatch)
-  - [Why doesn't `combineReducers` include a third argument with the entire state when it calls each reducer?](/docs/faq/DesignDecisions.md#combineReducers-limitations)
-  - [Why doesn't `mapDispatchToProps` allow use of return values from `getState()` or `mapStateToProps()`?](/docs/faq/DesignDecisions.md#no-asynch-in-mapDispatchToProps)
+- **일반**
+  - [Redux를 언제 배워야 할까요?](faq/General.md#when-should-i-learn-redux)
+  - [Redux를 언제 써야 할까요?](faq/General.md#when-should-i-use-redux)
+  - [Redux는 React에만 사용할 수 있나요?](faq/General.md#can-redux-only-be-used-with-react)
+  - [Redux를 사용하기 위해 특정한 빌드 도구를 사용해야 하나요?Do I need to have a particular build tool to use Redux?](faq/General.md#do-i-need-to-have-a-particular-build-tool-to-use-redux)
+- **리듀서**
+  - [두 리듀서의 상태를 공유하는 방법은? CombineReducers를 사용해야 하나요?](faq/Reducers.md#how-do-i-share-state-between-two-reducers-do-i-have-to-use-combinereducers)
+  - [액션을 다루기 위해 switch 구문을 사용해야 하나요?](faq/Reducers.md#do-i-have-to-use-the-switch-statement-to-handle-actions)
+- **상태 조직하기**
+  - [상태 전부를 Redux에 넣어야 하나요? React의 setState()를 사용해도 되나요?](faq/OrganizingState.md#do-i-have-to-put-all-my-state-into-redux-should-i-ever-use-reacts-setstate)
+  - [함수나 Promise 같은 직렬화 할 수 없는 것들을 상태 저장소에 넣어도 되나요?](faq/OrganizingState.md#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)
+  - [중첩되거나 중복된 값을 상태에 넣어도 되나요?](faq/OrganizingState.md#how-do-i-organize-nested-or-duplicate-data-in-my-state)
+  - [폼이나 다른 UI 상태를 저장소에 넣어도 되나요?](faq/OrganizingState.md#should-i-put-form-state-or-other-ui-state-in-my-store)
+- **저장소 준비**
+  - [저장소를 여럿 만들어도 되나요? 저장소를 바로 임포트해서 컴포넌트 안에서 사용해도 되나요?](faq/StoreSetup.md#can-or-should-i-create-multiple-stores-can-i-import-my-store-directly-and-use-it-in-components-myself)
+  - [저장소 인핸서에 하나 이상의 미들웨어가 있어도 괜찮은가요? 미들웨어 함수 내에서 next와 dispatch의 차이가 무엇인가요?](faq/StoreSetup.md#is-it-ok-to-have-more-than-one-middleware-chain-in-my-store-enhancer-what-is-the-difference-between-next-and-dispatch-in-a-middleware-function)
+  - [어떻게 상태의 일부만 구독하나요? 디스패치된 액션을 구독과 함께 가져올 수 있나요?](faq/StoreSetup.md#how-do-i-subscribe-to-only-a-portion-of-the-state-can-i-get-the-dispatched-action-as-part-of-the-subscription)
+- **액션**
+  - [액션 타입은 왜 문자열이거나 직렬화 할 수 있어야 하나요? 왜 액션 타입은 상수여야 하나요?](faq/Actions.md#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants)
+  - [리듀서와 액션은 항상 일대일로 대응하나요?](faq/Actions.md#is-there-always-a-one-to-one-mapping-between-reducers-and-actions)
+  - [AJAX 호출과 같은 "부수 작용"을 어떻게 나타내나요? 비동기 동작을 위해 "액션 생산자", "썽크", "미들웨어" 같은 것들이 필요한 이유가 뭔가요?](faq/Actions.md#how-can-i-represent-side-effects-such-as-ajax-calls-why-do-we-need-things-like-action-creators-thunks-and-middleware-to-do-async-behavior)
+  - [어느 비동기 미들웨어를 사용해야 할까요? 썽크, 사가, 옵저버블이나 다른 미들웨어 중에서 어떻게 골라야 하나요?](faq/Actions.md#what-async-middleware-should-i-use-how-do-you-decide-between-thunks-sagas-observables-or-something-else)
+  - [액션 생산자 하나에서 여러 액션을 연이어 디스패치해도 되나요?](faq/Actions.md#should-i-dispatch-multiple-actions-in-a-row-from-one-action-creator)
+- **불변 데이터**
+  - [불변성이 가진 이점은 무엇인가요?](faq/ImmutableData.md#what-are-the-benefits-of-immutability)
+  - [Redux에서 불변성이 강제되는 이유는 무엇인가요?](faq/ImmutableData.md#why-is-immutability-required-by-redux)
+  - [데이터 불변성을 다루는 방법으로는 어떤 것이 있나요? Immutable.JS를 사용해야 하나요?](faq/ImmutableData.md#what-approaches-are-there-for-handling-data-immutability-do-i-have-to-use-immutable-js)
+  - [불변 작업을 위해 자바스크립트를 사용하는데 무슨 문제가 있나요?](faq/ImmutableData.md#what-are-the-issues-with-using-plain-javascript-for-immutable-operations)
+- **Redux에서 Immutable.JS 사용하기**
+  - [왜 Immutable.JS 같은 불변성을 위한 라이브러리를 사용해야 하나요?](recipes/UsingImmutableJS.md#why-should-i-use-an-immutable-focused-library-such-as-immutable-js)
+  - [왜 불변성을 위한 라이브러리로 Immutable.JS를 선택해야 하나요?](recipes/UsingImmutableJS.md#why-should-i-choose-immutable-js-as-an-immutable-library)
+  - [Immutable.JS를 사용하는데 있어서 문제점은 무엇인가요?](recipes/UsingImmutableJS.md#what-are-the-issues-with-using-immutable-js)
+  - [Immutable.JS에 수고를 들일 가치가 있나요?](recipes/UsingImmutableJS.md#is-using-immutable-js-worth-the-effort)
+  - [Redux에서 Immutable.JS를 사용하는데 있어서 모범 사례가 있을까요?](recipes/UsingImmutableJS.md#what-are-some-opinionated-best-practices-for-using-immutable-js-with-redux)
+- **코드 구조**
+  - [파일 구조를 어떤 식으로 구성해야 하나요? 액션 생산자와 리듀서를 어떻게 묶어야 하나요? 셀렉터는 어디에 둬야 하나요?](faq/CodeStructure.md#what-should-my-file-structure-look-like-how-should-i-group-my-action-creators-and-reducers-in-my-project-where-should-my-selectors-go)
+  - [리듀서와 액션 생산자 사이에서 로직을 어떻게 나눠야 하나요? "비즈니스 로직"은 어디에 둬야 하나요?](faq/CodeStructure.md#how-should-i-split-my-logic-between-reducers-and-action-creators-where-should-my-business-logic-go)
+  - [왜 액션 생산자를 사용해야 하나요?](faq/CodeStructure.md#why-should-i-use-action-creators)
+  - [웹소켓 같은 영속적인 연결은 어디에 둬야 하나요?](faq/CodeStructure.md#where-should-websockets-and-other-persistent-connections-live)
+- **성능**
+  - [Redux는 성능이나 아키텍처 관점에서 얼마나 잘 "확장" 할 수 있나요?](faq/Performance.md#how-well-does-redux-scale-in-terms-of-performance-and-architecture)
+  - [액션마다 "모든 리듀서"들을 호출하면 느려지지 않나요?](faq/Performance.md#wont-calling-all-my-reducers-for-each-action-be-slow)
+  - [리듀서에서 상태를 깊이 복사해야 하나요? 상태를 복사하다가 느려지지는 않을까요?](faq/Performance.md#do-i-have-to-deep-clone-my-state-in-a-reducer-isnt-copying-my-state-going-to-be-slow)
+  - [저장소가 업데이트되는 횟수를 줄이려면 어떻게 해야 하나요?](faq/Performance.md#how-can-i-reduce-the-number-of-store-update-events)
+  - ["하나의 상태 트리"를 가지면 메모리 문제가 생기지 않나요? 액션을 많이 디스패치하면 메모리를 차지하지 않나요?](faq/Performance.md#will-having-one-state-tree-cause-memory-problems-will-dispatching-many-actions-take-up-memory)
+  - [원격 데이터를 캐시하면 메모리 문제가 생기지 않나요?](faq/Performance.md#will-caching-remote-data-cause-memory-problems)
+- **디자인 결정**
+  - [Redux는 왜 구독자들에게 상태와 액션을 전달하지 않나요?](faq/DesignDecisions.md#why-doesnt-redux-pass-the-state-and-action-to-subscribers)
+  - [왜 Redux는 액션과 리듀서에서 클래스를 지원하지 않나요?](faq/DesignDecisions.md#why-doesnt-redux-support-using-classes-for-actions-and-reducers)
+  - [미들웨어의 시그니처는 왜 커링을 사용하나요?](faq/DesignDecisions.md#why-does-the-middleware-signature-use-currying)
+  - [왜 applyMiddleware는 디스패치를 위해 클로저를 사용하나요?](faq/DesignDecisions.md#why-does-applymiddleware-use-a-closure-for-dispatch)
+  - [왜 `combineReducers`는 각 리듀서를 호출할 때 세 번째 인자로 전체 상태를 포함하지 않나요?](faq/DesignDecisions.md#why-doesnt-combinereducers-include-a-third-argument-with-the-entire-state-when-it-calls-each-reducer)
+  - [왜 mapDispatchToProps에서 `getState()`이나 `mapStateToProps()`의 리턴값을 사용할 수 없나요?](faq/DesignDecisions.md#why-doesnt-mapdispatchtoprops-allow-use-of-return-values-from-getstate-or-mapstatetoprops)
 - **React Redux**
-  - [Why isn't my component re-rendering, or my mapStateToProps running?](/docs/faq/ReactRedux.md#react-not-rerendering)
-  - [Why is my component re-rendering too often?](/docs/faq/ReactRedux.md#react-rendering-too-often)
-  - [How can I speed up my mapStateToProps?](/docs/faq/ReactRedux.md#react-mapstate-speed)
-  - [Why don't I have this.props.dispatch available in my connected component?](/docs/faq/ReactRedux.md#react-props-dispatch)
-  - [Should I only connect my top component, or can I connect multiple components in my tree?](/docs/faq/ReactRedux.md#react-multiple-components)
-- **Miscellaneous**
-  - [Are there any larger, “real” Redux projects?](/docs/faq/Miscellaneous.md#miscellaneous-real-projects)
-  - [How can I implement authentication in Redux?](/docs/faq/Miscellaneous.md#miscellaneous-authentication)
+  - [왜 React-Redux를 사용해야 하나요?](faq/ReactRedux.md#why-should-i-use-react-redux)
+  - [왜 내 컴포넌트가 다시 랜더링되지 않나요? 왜 내 mapStateToProps가 작동하지 않나요?](faq/ReactRedux.md#why-isnt-my-component-re-rendering-or-my-mapstatetoprops-running)
+  - [왜 컴포넌트가 너무 자주 다시 랜더링되나요?](faq/ReactRedux.md#why-is-my-component-re-rendering-too-often)
+  - [mapStateToProps 속도를 더 빠르게 할 수는 없나요?](faq/ReactRedux.md#how-can-i-speed-up-my-mapstatetoprops)
+  - [연결된 컴포넌트에서 this.props.dispatch를 사용할 수 없는 이유가 뭔가요?](faq/ReactRedux.md#why-dont-i-have-this-props-dispatch-available-in-my-connected-component)
+  - [최상단 컴포넌트만 연결해야 하나요? 아니면 트리 내에서 여러 컴포넌트를 연결해도 되나요?](faq/ReactRedux.md#should-i-only-connect-my-top-component-or-can-i-connect-multiple-components-in-my-tree)
+- **기타**
+  - [더 대규모의 "진짜" Redux 프로젝트가 있나요?](faq/Miscellaneous.md#are-there-any-larger-real-redux-projects)
+  - [Redux에서 인증은 어떻게 구현하나요?](faq/Miscellaneous.md#how-can-i-implement-authentication-in-redux)
