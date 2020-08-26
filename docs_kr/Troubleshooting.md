@@ -157,7 +157,7 @@ class AddTodo extends Component {
 }
 ```
 
-액션 생산자는 단지 액션을 **반환하는** 함수일 뿐이기 때문에 이 코드는 작동하지 않습니다. 실제로 디스패치하는 것은 당신에게 달렸습니다. 서버에서 랜더링되는 앱의 경우 매 요청마다 별개의 스토어를 요구하기 때문에 액션 생산자를 정의하는 동안 특정 스토어 인스턴스에 바인드 할 수는 없습니다.
+액션 생산자는 단지 액션을 **반환하는** 함수일 뿐이기 때문에 이 코드는 작동하지 않습니다. 실제로 디스패치하는 것은 당신에게 달렸습니다. 서버에서 랜더링되는 앱의 경우 매 요청마다 별개의 저장소를 요구하기 때문에 액션 생산자를 정의하는 동안 특정 저장소 인스턴스에 바인드 할 수는 없습니다.
 
 [store](api/Store.md) 인스턴스의 [`dispatch()`](api/Store.md#dispatch) 메서드를 호출해서 고칠 수 있습니다:
 
@@ -168,7 +168,7 @@ handleClick() {
 }
 ```
 
-컴포넌트 계층의 깊은 곳까지 스토어를 전달하는 것은 번거로운 일입니다. [react-redux](https://github.com/gaearon/react-redux)가 `connect` [고차 컴포넌트](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750)를 써서 컴포넌트의 props에 `dispatch`를 주입해주는 이유입니다.
+컴포넌트 계층의 깊은 곳까지 저장소를 전달하는 것은 번거로운 일입니다. [react-redux](https://github.com/gaearon/react-redux)가 `connect` [고차 컴포넌트](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750)를 써서 컴포넌트의 props에 `dispatch`를 주입해주는 이유입니다.
 
 수정된 코드는 아래와 같습니다:
 

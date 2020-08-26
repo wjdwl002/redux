@@ -10,7 +10,7 @@ hide_title: true
 
 보통은 [`Store`](Store.md) 인스턴스에서 바로 [`dispatch`](Store.md#dispatch)를 호출하면 됩니다. Redux를 React와 함께 사용한다면, [react-redux](https://github.com/gaearon/react-redux)가 [`dispatch`](Store.md#dispatch) 함수를 함께 제공하므로 바로 호출할 수 있습니다.
 
-`bindActionCreators`의 유일한 사용처는, Redux를 상관하지 않는 컴포넌트로 액션 생산자를 넘기지만 [`dispatch`](Store.md#dispatch)나 Redux 스토어는 넘기고 싶지 않을 때입니다.
+`bindActionCreators`의 유일한 사용처는, Redux를 상관하지 않는 컴포넌트로 액션 생산자를 넘기지만 [`dispatch`](Store.md#dispatch)나 Redux 저장소는 넘기고 싶지 않을 때입니다.
 
 편의상 첫 번째 인수로 함수를 넘겼다가 함수를 반환 받을 수도 있습니다.
 
@@ -103,6 +103,6 @@ export default connect(state => ({ todos: state.todos }))(TodoListContainer)
 
 #### 팁
 
-- 왜 전통적인 Flux처럼 액션 생산자를 스토어 인스턴스에 바로 바인드하지 않는지 물을 수도 있습니다. 문제는 그 방법이 서버에서 랜더해야 하는 유니버설 앱에서는 잘 작동하지 않는다는겁니다. 보통은 매 요청마다 서로 다른 데이터로 스토어 인스턴스를 준비해야 하지만, 액션 생산자를 선언 중에 바인드하면 모든 요청에 대해 하나의 스토어 인스턴스 밖에 쓸 수 없습니다.
+- 왜 전통적인 Flux처럼 액션 생산자를 저장소 인스턴스에 바로 바인드하지 않는지 물을 수도 있습니다. 문제는 그 방법이 서버에서 랜더해야 하는 유니버설 앱에서는 잘 작동하지 않는다는겁니다. 보통은 매 요청마다 서로 다른 데이터로 저장소 인스턴스를 준비해야 하지만, 액션 생산자를 선언 중에 바인드하면 모든 요청에 대해 하나의 저장소 인스턴스 밖에 쓸 수 없습니다.
 
 - ES5를 사용한다면 `import * as` 대신 `require('./TodoActionCreators')`를 `bindActionCreators`의 첫번째 인수로 넘기면 됩니다. 모듈 시스템과는 상관 없이 `actionCreators`의 인수 값이 함수이기만 하면 됩니다.

@@ -1,24 +1,24 @@
 ---
 id: store
-title: 스토어
-description: '기초 강좌 > 스토어: Core concept - the Redux store'
+title: 저장소
+description: '기초 강좌 > 저장소: Core concept - the Redux store'
 hide_title: true
 ---
 
-# 스토어
+# 저장소
 
 이전 섹션에서 우리는 "무엇이 일어날지"를 나타내는 [액션](Actions.md)과 이 액션에 따라 상태를 수정하는 [리듀서](Reducers.md)를 정의했습니다.
 
-**스토어**는 이들을 함께 가져오는 객체입니다. 스토어는 아래와 같은 일들을 해야 합니다:
+**저장소**는 이들을 함께 가져오는 객체입니다. 저장소는 아래와 같은 일들을 해야 합니다:
 
 - 애플리케이션의 상태를 저장하고;
 - [`getState()`](../api/Store.md#getState)를 통해 상태에 접근하게 하고;
 - [`dispatch(action)`](../api/Store.md#dispatch)를 통해 상태를 수정할 수 있게 하고;
 - [`subscribe(listener)`](../api/Store.md#subscribe)를 통해 리스너를 등록합니다.
 
-Redux 애플리케이션에서 단 하나의 스토어만 가질 수 있음을 알아두는것이 중요합니다. 만약 데이터를 다루는 로직을 쪼개고 싶다면, 여러개의 스토어 대신 [리듀서 조합](Reducers.md#splitting-reducers)을 사용할 수 있습니다.
+Redux 애플리케이션에서 단 하나의 저장소만 가질 수 있음을 알아두는것이 중요합니다. 만약 데이터를 다루는 로직을 쪼개고 싶다면, 여러개의 저장소 대신 [리듀서 조합](Reducers.md#splitting-reducers)을 사용할 수 있습니다.
 
-리듀서를 만들었다면 스토어를 만드는건 쉽습니다. [이전 섹션](Reducers.md)에서 우리는 [`combineReducers()`](../api/combineReducers.md)를 통해 여러 리듀서를 하나로 합쳤습니다. 우리는 이것을 가져와서 [`createStore()`](../api/createStore.md)에 넘길겁니다.
+리듀서를 만들었다면 저장소를 만드는건 쉽습니다. [이전 섹션](Reducers.md)에서 우리는 [`combineReducers()`](../api/combineReducers.md)를 통해 여러 리듀서를 하나로 합쳤습니다. 우리는 이것을 가져와서 [`createStore()`](../api/createStore.md)에 넘길겁니다.
 
 ```js
 import { createStore } from 'redux'
@@ -35,7 +35,7 @@ let store = createStore(todoApp, window.STATE_FROM_SERVER)
 
 ## 액션을 보내기
 
-스토어를 만들었으니, 우리 프로그램이 작동하는지 검증해봅시다! 아무 UI도 없지만 이미 우리는 수정하는 로직을 테스트할 수 있습니다.
+저장소를 만들었으니, 우리 프로그램이 작동하는지 검증해봅시다! 아무 UI도 없지만 이미 우리는 수정하는 로직을 테스트할 수 있습니다.
 
 ```js
 import {
@@ -63,7 +63,7 @@ store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
 unsubscribe()
 ```
 
-여러분은 스토어에 보관된 상태가 어떻게 바뀌는지 볼 수 있습니다:
+여러분은 저장소에 보관된 상태가 어떻게 바뀌는지 볼 수 있습니다:
 
 <img src='http://i.imgur.com/zMMtoMz.png' width='70%' />
 

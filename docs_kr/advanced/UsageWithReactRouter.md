@@ -217,6 +217,6 @@ const App = ({ params }) => {
 
 > ##### 다른 라우팅 라이브러리에 대해서
 
-> *Redux Router*는 실험적인 라이브러리로, URL의 전체 상태를 전부 리덕스 스토어 안에 저장하게 해줍니다. React Router와 같은 API를 가졌지만 react-router보다 지원하는 커뮤니티는 작습니다.
+> *Redux Router*는 실험적인 라이브러리로, URL의 전체 상태를 전부 리덕스 저장소 안에 저장하게 해줍니다. React Router와 같은 API를 가졌지만 react-router보다 지원하는 커뮤니티는 작습니다.
 
 > *React Router Redux*는 리덕스 앱과 react-router 사이를 바인딩해서 동기화가 유지되도록 해줍니다. 이 바인딩 없이는 시간여행을 통해 액션을 되돌릴 수 없습니다. 이 기능이 필요하지 않다면, React-router와 Redux는 완전히 분리되어 작동할 수 있습니다.

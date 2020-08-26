@@ -30,11 +30,11 @@ Redux와 관련 있는 모든 목록을 보고싶다면 [Awesome Redux](https://
 
 ## 컴포넌트
 
-- [redux-form](https://github.com/erikras/redux-form) — Redux 스토어를 통한 HTML form을 포함한 React 컴포넌트 상태 관리 지원
+- [redux-form](https://github.com/erikras/redux-form) — Redux 저장소를 통한 HTML form을 포함한 React 컴포넌트 상태 관리 지원
 
-## 스토어 확장
+## 저장소 확장
 
-- [redux-batched-subscribe](https://github.com/tappleby/redux-batched-subscribe) — 디스패치에 따른 배치 구독 알림(subscribe notification)을 보낼 수 있는 스토어 확장
+- [redux-batched-subscribe](https://github.com/tappleby/redux-batched-subscribe) — 디스패치에 따른 배치 구독 알림(subscribe notification)을 보낼 수 있는 저장소 확장
 
 ## 유틸리티
 

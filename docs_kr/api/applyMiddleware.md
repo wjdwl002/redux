@@ -6,7 +6,7 @@ hide_title: true
 
 # `applyMiddleware(...middleware)`
 
-Redux에 임의의 기능을 넣어 확장하는 방법으로는 미들웨어를 추천합니다. 미들웨어는 스토어의 [`dispatch`](Store.md#dispatch) 메서드를 재미삼아서나 실용적으로 감쌀 수 있게 해줍니다. 미들웨어의 중요한 기능 중 하나는 조합 가능하다는 점입니다. 여러 개의 미들웨어가 조합될 수 있고, 각각의 미들웨어는 체인 내에서 자기 앞이나 뒤의 미들웨어에 대해 아무것도 몰라도 됩니다.
+Redux에 임의의 기능을 넣어 확장하는 방법으로는 미들웨어를 추천합니다. 미들웨어는 저장소의 [`dispatch`](Store.md#dispatch) 메서드를 재미삼아서나 실용적으로 감쌀 수 있게 해줍니다. 미들웨어의 중요한 기능 중 하나는 조합 가능하다는 점입니다. 여러 개의 미들웨어가 조합될 수 있고, 각각의 미들웨어는 체인 내에서 자기 앞이나 뒤의 미들웨어에 대해 아무것도 몰라도 됩니다.
 
 가장 일반적인 미들웨어의 사용법은 많은 보일러플레이트나 [Rx](https://github.com/Reactive-Extensions/RxJS)와 같은 라이브러리에 대한 의존성 없이도 비동기 액션을 지원하는 것입니다. 이는 [비동기 액션](../Glossary.md#비동기-액션)을 보통의 액션처럼 보내게 해줌으로써 이루어집니다.
 
@@ -16,11 +16,11 @@ Redux에 임의의 기능을 넣어 확장하는 방법으로는 미들웨어를
 
 #### 인수
 
-- `...middleware` (_arguments_): *미들웨어 API*를 따르는 함수입니다. 각각의 미들웨어는 [`Store`](Store.md)의 [`dispatch`](Store.md#dispatch)와 [`getState`](Store.md#getState) 함수를 명명된 인수로 받아서, 함수를 반환합니다. 이 함수는 미들웨어의 디스패치 함수에서 `next`로 주어져서, 다른 인수와 함께, 아니면 다른 시점에, 아니면 전혀 호출되지 않을 수도 있는, `next(action)`을 호출하는 `action`의 함수여야 합니다. 체인의 마지막 미들웨어는 `next` 인자로 원래 스토어의 [`dispatch`](Store.md#dispatch)를 받아 체인을 마무리합니다. 그러므로 미들웨어의 시그니처는 `({ getState, dispatch }) => next => action`입니다.
+- `...middleware` (_arguments_): *미들웨어 API*를 따르는 함수입니다. 각각의 미들웨어는 [`Store`](Store.md)의 [`dispatch`](Store.md#dispatch)와 [`getState`](Store.md#getState) 함수를 명명된 인수로 받아서, 함수를 반환합니다. 이 함수는 미들웨어의 디스패치 함수에서 `next`로 주어져서, 다른 인수와 함께, 아니면 다른 시점에, 아니면 전혀 호출되지 않을 수도 있는, `next(action)`을 호출하는 `action`의 함수여야 합니다. 체인의 마지막 미들웨어는 `next` 인자로 원래 저장소의 [`dispatch`](Store.md#dispatch)를 받아 체인을 마무리합니다. 그러므로 미들웨어의 시그니처는 `({ getState, dispatch }) => next => action`입니다.
 
 #### 반환
 
-(_Function_) 주어진 미들웨어를 적용하는 스토어 인핸서입니다. 시그니처는 `createStore => createStore'`이지만, 인핸서를 적용하는 가장 간단한 방법은 [`createStore()`](./createStore.md)의 마지막 인수인 `enhancer`로 넘기는 것입니다.
+(_Function_) 주어진 미들웨어를 적용하는 저장소 인핸서입니다. 시그니처는 `createStore => createStore'`이지만, 인핸서를 적용하는 가장 간단한 방법은 [`createStore()`](./createStore.md)의 마지막 인수인 `enhancer`로 넘기는 것입니다.
 
 #### 예제: Custom Logger Middleware
 
@@ -204,9 +204,9 @@ export default connect(state => ({
 
 #### 팁
 
-- 미들웨어는 스토어의 [`dispatch`](Store.md#dispatch) 함수만을 감쌉니다. 기술적으로는, 미들웨어가 할 수 있는 모든 것을 모든 `dispatch` 호출을 직접 감싸서 할 수 있습니다. 하지만 이들을 한 곳에서 관리하고 전체 프로젝트에서 액션의 변환을 정의할 수 있는 가장 쉬운 방법은 미들웨어입니다.
+- 미들웨어는 저장소의 [`dispatch`](Store.md#dispatch) 함수만을 감쌉니다. 기술적으로는, 미들웨어가 할 수 있는 모든 것을 모든 `dispatch` 호출을 직접 감싸서 할 수 있습니다. 하지만 이들을 한 곳에서 관리하고 전체 프로젝트에서 액션의 변환을 정의할 수 있는 가장 쉬운 방법은 미들웨어입니다.
 
-- 만약 `applyMiddleware`이외의 스토어 인핸서를 사용한다면, 미들웨어는 비동기적일 수 있으므로 `applyMiddleware`를 체인에서 앞쪽에 두도록 하세요. 예를 들어 `applyMiddleware`를 [redux-devtools](https://github.com/gaearon/redux-devtools) 앞에 두지 않으면 DevTools은 Promise 등의 미들웨어에 전달되는 액션들을 볼 수 없을겁니다.
+- 만약 `applyMiddleware`이외의 저장소 인핸서를 사용한다면, 미들웨어는 비동기적일 수 있으므로 `applyMiddleware`를 체인에서 앞쪽에 두도록 하세요. 예를 들어 `applyMiddleware`를 [redux-devtools](https://github.com/gaearon/redux-devtools) 앞에 두지 않으면 DevTools은 Promise 등의 미들웨어에 전달되는 액션들을 볼 수 없을겁니다.
 
 - 만약 조건부로 미들웨어를 적용하고 싶다면 필요할 때에만 임포트하도록 하세요:
 
@@ -227,8 +227,8 @@ export default connect(state => ({
 
 이렇게 하면 번들링 도구들이 필요없는 모듈과 리듀서를 제거해서 빌드 사이즈를 줄이기 쉽게 됩니다.
 
-- `applyMiddleware` 자신이 뭔지 궁금한가요? 당연히 미들웨어 자체보다 더 강력한 확장 매커니즘입니다. 사실 `applyMiddleware`는 Redux의 가장 강력한 확장 매커니즘인 [스토어 인핸서](../Glossary.md#스토어-인핸서)의 한 예입니다. 스토어 인핸서의 다른 예로는 [redux-devtools](https://github.com/gaearon/redux-devtools)가 있습니다. 미들웨어는 스토어 인핸서보다는 덜 강력하지만, 작성하기는 더 쉽습니다.
+- `applyMiddleware` 자신이 뭔지 궁금한가요? 당연히 미들웨어 자체보다 더 강력한 확장 매커니즘입니다. 사실 `applyMiddleware`는 Redux의 가장 강력한 확장 매커니즘인 [저장소 인핸서](../Glossary.md#저장소-인핸서)의 한 예입니다. 저장소 인핸서의 다른 예로는 [redux-devtools](https://github.com/gaearon/redux-devtools)가 있습니다. 미들웨어는 저장소 인핸서보다는 덜 강력하지만, 작성하기는 더 쉽습니다.
 
 - 미들웨어는 실제보다 더 복잡하게 들립니다. 미들웨어를 정말로 이해하려면 기존의 미들웨어가 어떻게 작동하는지 보고, 여러분이 직접 작성해보는 방법 뿐입니다. 함수를 중첩하는 일에 겁을 먹을 수도 있지만, 대부분의 미들웨어들이 사실 10줄 내외이고, 중첩과 조합가능성이야말로 미들웨어 시스템을 강력하게 만들어줍니다.
 
-- 스토어 인핸서를 여럿 적용하려면, [`compose()`](./compose.md)를 사용하세요.
+- 저장소 인핸서를 여럿 적용하려면, [`compose()`](./compose.md)를 사용하세요.

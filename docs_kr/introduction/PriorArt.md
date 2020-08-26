@@ -15,7 +15,7 @@ Redux를 [Flux](https://facebook.github.io/flux/)의 구현 중 하나라고 생
 
 (단지 궁금한 게 그거라면 걱정하지 마세요. [Flux를 만든 개발자도](https://twitter.com/jingc/status/616608251463909376) [Redux를 좋아합니다](https://twitter.com/fisherwebdev/status/616286955693682688))
 
-Redux는 Flux의 중요한 특징들로부터 영감을 얻었습니다. Flux와 마찬가지로 Redux에서는 애플리케이션의 특정 레이어에 있을 모델 업데이트 로직에 집중할 수 있도록 해줍니다(Flux의 '스토어', Redux의 '리듀서'). 스토어나 리듀서는 애플리케이션 코드가 직접 데이터를 조작하는 대신 액션이라고 불리는 평범한 객체로만 모든 데이터 변화를 묘사하도록 강제합니다.
+Redux는 Flux의 중요한 특징들로부터 영감을 얻었습니다. Flux와 마찬가지로 Redux에서는 애플리케이션의 특정 레이어에 있을 모델 업데이트 로직에 집중할 수 있도록 해줍니다(Flux의 '저장소', Redux의 '리듀서'). 저장소나 리듀서는 애플리케이션 코드가 직접 데이터를 조작하는 대신 액션이라고 불리는 평범한 객체로만 모든 데이터 변화를 묘사하도록 강제합니다.
 
 Flux와 달리 **Redux에는 디스패처라는 개념이 존재하지 않습니다**. 이는 Redux가 이벤트 에미터보다 순수 함수들에 의존하고 있기 때문입니다. 그리고 순수 함수는 이것들을 관리하는 추가적인 엔티티 없이도 조합하기 쉽습니다. Flux를 어떻게 보느냐에 따라서 이를 상세 구현 방법의 하나라고 생각할 수도 있습니다. Flux는 [`(state, action) => state`](https://speakerdeck.com/jmorrell/jsconf-uy-flux-those-who-forget-the-past-dot-dot-dot) 형식으로 묘사되곤 합니다. 따라서 Redux 역시 Flux 아키텍처라고 이야기할 수 있지만, 순수 함수를 통해 이를 더 간단하게 만듭니다.
 
@@ -51,7 +51,7 @@ Immutable과 달리 Baobab은 내부적으로 어떤 특별하고 효율적인 �
 
 [Reactive Extensions](https://github.com/Reactive-Extensions/RxJS) (그리고 [현대적으로 재작성하고 있는 RxJS](https://github.com/ReactiveX/RxJS))는 비동기 애플리케이션의 복잡도를 제어하는 아주 뛰어난 방법입니다. 실제로 [독립적인 observables로서 사람과 컴퓨터가 인터렉션하는 모델을 구현하는 라이브러리를 만드려는 노력도 있습니다.](http://cycle.js.org).
 
-Redux와 Rx를 함께 사용하는 게 합리적일까요? 물론입니다! Redux와 Rx는 아주 잘 어울립니다. 예를 들어 Redux 스토어를 observable로 사용하는 것은 아주 쉽습니다.
+Redux와 Rx를 함께 사용하는 게 합리적일까요? 물론입니다! Redux와 Rx는 아주 잘 어울립니다. 예를 들어 Redux 저장소를 observable로 사용하는 것은 아주 쉽습니다.
 
 ```js
 function toObservable(store) {

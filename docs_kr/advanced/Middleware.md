@@ -9,7 +9,7 @@ hide_title: true
 
 여러분이 [Express](http://expressjs.com/)나 [Koa](http://koajs.com/)같은 서버사이드 라이브러리를 사용하신다면, **미들웨어**라는 컨셉에 익숙하실겁니다. 이들 프레임워크에서 미들웨어는 프레임워크가 요청을 받고 응답을 만드는 사이에 놓을 수 있는 코드입니다. 예를 들어, Express나 Koa 미들웨어는 CORS 헤더를 추가하거나 로깅을 하거나 압축을 하거나 다른 것들도 할 수 있죠. 미들웨어의 가장 좋은 점은 체이닝을 통해 조합 가능하다는 점입니다. 여러분은 하나의 프로젝트에서 여러개의 개별 서드파티 미들웨어들을 사용할 수 있습니다.
 
-Redux의 미들웨어는 Express나 Koa와는 다른 문제를 해결하지만 해결방법의 컨셉은 비슷합니다. **미들웨어는 액션을 보내는 순간부터 스토어에 도착하는 순간까지 사이에 서드파티 확장을 사용할 수 있는 지점을 제공합니다.** 여러분은 미들웨어를 로깅이나, 충돌 보고나, 비동기 API와의 통신이나, 라우팅이나 기타 등등에 사용할 수 있습니다.
+Redux의 미들웨어는 Express나 Koa와는 다른 문제를 해결하지만 해결방법의 컨셉은 비슷합니다. **미들웨어는 액션을 보내는 순간부터 저장소에 도착하는 순간까지 사이에 서드파티 확장을 사용할 수 있는 지점을 제공합니다.** 여러분은 미들웨어를 로깅이나, 충돌 보고나, 비동기 API와의 통신이나, 라우팅이나 기타 등등에 사용할 수 있습니다.
 
 이 글은 여러분이 컨셉을 완전히 이해하도록 소개하는 부분과 [몇가지 실용적인 예제](#일곱가지-예제) 부분으로 나뉩니다. 혹시 지루해지거나 와닿는 부분이 있으면 앞뒤로 왔다갔다하면서 보시는 것도 도움이 될겁니다.
 
@@ -41,7 +41,7 @@ Redux에서는 어떻게 접근해야 할까요?
 
 > ##### 한마디
 
-> 여러분이 [react-redux](https://github.com/gaearon/react-redux)나 비슷한 바인딩을 사용한다면 컴포넌트에서 바로 스토어로 접근할 수 없을겁니다. 다음 몇 문단 동안은 여러분이 스토어를 명시적으로 전달했다고 가정하겠습니다.
+> 여러분이 [react-redux](https://github.com/gaearon/react-redux)나 비슷한 바인딩을 사용한다면 컴포넌트에서 바로 저장소로 접근할 수 없을겁니다. 다음 몇 문단 동안은 여러분이 저장소를 명시적으로 전달했다고 가정하겠습니다.
 
 여러분이 할일을 만들때 이렇게 호출한다고 해봅시다:
 
@@ -83,7 +83,7 @@ dispatchAndLog(store, addTodo('Use Redux'))
 
 ### Attempt #3: 디스패치 몽키패칭하기
 
-우리가 스토어 인스턴스에 있는 `dispatch` 함수를 대체한다면 어떨까요? Redux의 스토어는 [몇개의 메서드](../api/Store.md)를 가진 평범한 오브젝트일 뿐이고, 우리는 자바스크립트로 작성하고 있으니 `dispatch`구현을 몽키패칭할 수 있습니다:
+우리가 저장소 인스턴스에 있는 `dispatch` 함수를 대체한다면 어떨까요? Redux의 저장소는 [몇개의 메서드](../api/Store.md)를 가진 평범한 오브젝트일 뿐이고, 우리는 자바스크립트로 작성하고 있으니 `dispatch`구현을 몽키패칭할 수 있습니다:
 
 ```js
 let next = store.dispatch
@@ -139,7 +139,7 @@ function patchStoreToAddCrashReporting(store) {
 }
 ```
 
-이들 함수를 분리된 모듈로 내놓을 수 있다면, 나중에 다시 스토어에 적용할 수 있습니다:
+이들 함수를 분리된 모듈로 내놓을 수 있다면, 나중에 다시 저장소에 적용할 수 있습니다:
 
 ```js
 patchStoreToAddLogging(store)
@@ -254,11 +254,11 @@ const crashReporter = store => next => action => {
 
 **이게 바로 Redux의 미들웨어가 생긴 모양입니다.**
 
-이제 미들웨어는 `next()` 디스패치 함수를 받아서, 디스패치 함수를 반환하고, 이는 다시 왼쪽의 미들웨어에 `next()`로 전달되고, 이런 식으로 계속됩니다. 스토어의 `getState()` 같은 메서드에 접근할 수 있으면 유용하기 때문에 `store`는 계속 최상위 인수로 남아있습니다.
+이제 미들웨어는 `next()` 디스패치 함수를 받아서, 디스패치 함수를 반환하고, 이는 다시 왼쪽의 미들웨어에 `next()`로 전달되고, 이런 식으로 계속됩니다. 저장소의 `getState()` 같은 메서드에 접근할 수 있으면 유용하기 때문에 `store`는 계속 최상위 인수로 남아있습니다.
 
 ### 시도 #6: 적당히 미들웨어 적용하기
 
-`applyMiddlewareByMonkeypatching()` 대신, 완전히 감싸여진 `dispatch()` 함수를 가지고 스토어의 복사본을 반환하는 `applyMiddleware()`를 작성할 수 있습니다:
+`applyMiddlewareByMonkeypatching()` 대신, 완전히 감싸여진 `dispatch()` 함수를 가지고 저장소의 복사본을 반환하는 `applyMiddleware()`를 작성할 수 있습니다:
 
 ```js
 // 주의: 적당히 구현함!
@@ -311,7 +311,7 @@ const crashReporter = store => next => action => {
 }
 ```
 
-이것을 Redux 스토어에 이렇게 적용합니다:
+이것을 Redux 저장소에 이렇게 적용합니다:
 
 ```js
 import { createStore, combineReducers, applyMiddleware } from 'redux'
@@ -328,7 +328,7 @@ let todoApp = combineReducers(reducers)
 let store = createStoreWithMiddleware(todoApp)
 ```
 
-됐습니다! 이제 스토어 인스턴스로 전달되는 모든 액션은 `logger`와 `crashReporter`를 지납니다:
+됐습니다! 이제 저장소 인스턴스로 전달되는 모든 액션은 `logger`와 `crashReporter`를 지납니다:
 
 ```js
 // 흐름이 logger와 crashRepoter 미들웨어 둘 다 지나가게 됩니다!

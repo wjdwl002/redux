@@ -93,7 +93,7 @@ hide_title: true
 - [관용적인 리덕스: 상태모양 정규화](https://egghead.io/lessons/javascript-redux-normalizing-the-state-shape)
 - [Normalizr 도큐먼트](https://github.com/paularmstrong/normalizr)
 - [깔끔한 리덕스: Normalizr](https://tonyhb.gitbooks.io/redux-without-profanity/content/normalizer.html)
-- [리덕스 스토어 쿼리](https://medium.com/@adamrackis/querying-a-redux-store-37db8c7f3b0f)
+- [리덕스 저장소 쿼리](https://medium.com/@adamrackis/querying-a-redux-store-37db8c7f3b0f)
 - [위키피디아: 연관 개체](https://en.wikipedia.org/wiki/Associative_entity)
 - [데이터베이스 설계: Many-to-Many](http://www.tomjewett.com/dbdesign/dbdesign.php?page=manymany.php)
 - [애플리케이션 상태의 우발적 복잡성 피하기](https://medium.com/@talkol/avoiding-accidental-complexity-when-structuring-your-app-state-6e6d22ad5e2a)

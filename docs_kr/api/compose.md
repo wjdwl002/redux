@@ -9,7 +9,7 @@ hide_title: true
 함수를 오른쪽에서 왼쪽으로 조합합니다.
 
 이것은 함수형 프로그래밍 유틸리티로, Redux에는 편리함을 위해 포함되었습니다.
-여러 [스토어 인핸서](../Glossary.md#스토어-인핸서)들을 순차적으로 적용하기 위해 사용할 수 있습니다.
+여러 [저장소 인핸서](../Glossary.md#저장소-인핸서)들을 순차적으로 적용하기 위해 사용할 수 있습니다.
 
 #### 인수
 
@@ -21,7 +21,7 @@ hide_title: true
 
 #### 예제
 
-이 예제는 `compose`를 사용해 [스토어](Store.md)를 [`applyMiddleware`](applyMiddleware.md)와 [redux-devtools](https://github.com/gaearon/redux-devtools) 패키지의 몇몇 개발툴로 강화하는 방법을 보여줍니다.
+이 예제는 `compose`를 사용해 [저장소](Store.md)를 [`applyMiddleware`](applyMiddleware.md)와 [redux-devtools](https://github.com/gaearon/redux-devtools) 패키지의 몇몇 개발툴로 강화하는 방법을 보여줍니다.
 
 ```js
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'

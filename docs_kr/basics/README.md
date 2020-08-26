@@ -20,7 +20,7 @@ While the concepts in the "Basic" and "Advanced" tutorials are still valid, thes
 
 - [액션](Actions.md)
 - [리듀서](Reducers.md)
-- [스토어](Store.md)
+- [저장소](Store.md)
 - [데이터 흐름](DataFlow.md)
 - [React와 함께 사용하기](UsageWithReact.md)
 - [예제: Todo List](ExampleTodoList.md)

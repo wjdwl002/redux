@@ -498,7 +498,7 @@ store.dispatch(fetchPostsIfNeeded('reactjs')).then(() =>
 
 > ##### 서버 랜더링에 대하여
 
-> 비동기 액션 생산자는 서버 랜더링에서 특히 편리합니다. 여러분은 스토어를 만들고, 다른 비동기 액션 생성자들을 보내주는 비동기 액션 생성자 하나를 보내고, 여기서 반환되는 약속이 완료되었을 때에만 그려주면 됩니다. 그러면 여러분의 스토어는 랜더링에 필요한 상태로 이미 채워져있을겁니다.
+> 비동기 액션 생산자는 서버 랜더링에서 특히 편리합니다. 여러분은 저장소를 만들고, 다른 비동기 액션 생성자들을 보내주는 비동기 액션 생성자 하나를 보내고, 여기서 반환되는 약속이 완료되었을 때에만 그려주면 됩니다. 그러면 여러분의 저장소는 랜더링에 필요한 상태로 이미 채워져있을겁니다.
 
 [썽크 미들웨어](https://github.com/gaearon/redux-thunk)만이 Redux에서 비동기 액션을 통제하는 방법은 아닙니다. 함수 대신 약속을 보내기 위해 [redux-promise](https://github.com/acdlite/redux-promise)나 [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)를 사용할 수도 있습니다. [redux-rx](https://github.com/acdlite/redux-rx)를 통해 옵서버(Observables)를 보낼 수도 있습니다. 아니면 [real world example](../introduction/Examples.md#리얼-월드real-world)에서처럼 API 호출을 위한 미들웨어를 직접 작성할수도 있습니다. 미들웨어를 쓰건 쓰지 않건, 몇가지 선택지들을 시도해보고 마음에 드는 규칙을 골라서 사용하는것은 여러분에게 달렸습니다.
 

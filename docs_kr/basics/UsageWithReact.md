@@ -77,7 +77,7 @@ Redux용 React 바인딩은 **presentational 컴포넌트와 container 컴포넌
 
 ### Container 컴포넌트 설계하기
 
-Presentational 컴포넌트를 Redux에 연결하기 위해서는 container 컴포넌트 역시 필요합니다. 예를 들어, `TodoList` presentational 컴포넌트는 `VisibleTodoList`와 같은 container 컴포넌트를 필요로 합니다. 여기서 `VisibleTodoList`는 Redux 스토어의 변경사항을 구독하고 현재 필터를 어떻게 적용해야 할 지를 아는 컴포넌트입니다. 필터를 변경하기 위해, `FilterLink` 컴포넌트를 만들어서 `Link` 컴포넌트를 렌더링하고 여기에 클릭이 일어날 때마다 적절한 액션을 파견해 줄 것입니다:
+Presentational 컴포넌트를 Redux에 연결하기 위해서는 container 컴포넌트 역시 필요합니다. 예를 들어, `TodoList` presentational 컴포넌트는 `VisibleTodoList`와 같은 container 컴포넌트를 필요로 합니다. 여기서 `VisibleTodoList`는 Redux 저장소의 변경사항을 구독하고 현재 필터를 어떻게 적용해야 할 지를 아는 컴포넌트입니다. 필터를 변경하기 위해, `FilterLink` 컴포넌트를 만들어서 `Link` 컴포넌트를 렌더링하고 여기에 클릭이 일어날 때마다 적절한 액션을 파견해 줄 것입니다:
 
 - **`VisibleTodoList`** 컴포넌트는 현재 필터 상태에 따라 할일 목록을 필터링해서 `TodoList` 컴포넌트를 표시합니다.
 - **`FilterLink`** 컴포넌트는 현재 필터 상태를 가져와서 `Link` 컴포넌트를 표시합니다.
@@ -210,7 +210,7 @@ export default Footer
 
 이제 위에서 만들었던 presentational 컴포넌트를 Redux와 연결해줄 시간입니다. 이를 위해 몇 개의 container 컴포넌트를 만들 것입니다. 사실 container 컴포넌트는 그저 React 컴포넌트일 뿐입니다. 다만 [`store.subscribe()`](../api/Store.md#subscribe)를 사용해서 Redux 상태 트리를 일부분을 읽어오기도 하고, 다른 presentational 컴포넌트에 속성을 넘겨주기도 하죠. 여러분이 container 컴포넌트를 직접 작성할 수도 있지만, 그 대신 React Redux 라이브러리에 내장된 [`connect()`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) 함수를 통해 container 컴포넌트를 생성하는 것을 추천합니다. `connect()`를 사용하면, 쓸데없는 렌더링을 막아주어 성능이 향상됩니다. (이로써 직접 `shouldComponentUpdate`를 직접 구현해야 하는 부담을 덜 수 있게 됩니다. 자세한 내용은 [React performance suggestion](https://facebook.github.io/react/docs/advanced-performance.html)을 참고하세요.)
 
-`connect()`를 사용하려면, `mapStateToProps`라 불리는 특별한 함수를 정의해야 합니다. 이 함수에는 현재 Redux 스토어의 상태를 어떻게 변형할지, 그리고 어떤 속성을 통해 presentational 컴포넌트로 넘겨줄 지를 서술하면 됩니다. 예를 들어, `VisibleTodoList` 컴포넌트는 `todos`를 필터링해서 `TodoList`에 넘겨주어야 하기 때문에, `state.visibilityFilter`에 따라 `state.todos`를 필터링하는 함수를 작성하고 이 함수를 `mapStateToProps`로서 사용할 수 있습니다:
+`connect()`를 사용하려면, `mapStateToProps`라 불리는 특별한 함수를 정의해야 합니다. 이 함수에는 현재 Redux 저장소의 상태를 어떻게 변형할지, 그리고 어떤 속성을 통해 presentational 컴포넌트로 넘겨줄 지를 서술하면 됩니다. 예를 들어, `VisibleTodoList` 컴포넌트는 `todos`를 필터링해서 `TodoList`에 넘겨주어야 하기 때문에, `state.visibilityFilter`에 따라 `state.todos`를 필터링하는 함수를 작성하고 이 함수를 `mapStateToProps`로서 사용할 수 있습니다:
 
 ```js
 const getVisibleTodos = (todos, filter) => {
@@ -232,7 +232,7 @@ const mapStateToProps = state => {
 }
 ```
 
-상태를 읽어오는 일 외에, container 컴포넌트는 스토어에 액션을 보낼 수 있습니다. 위와 비슷한 방식으로 `mapDispatchToProps()` 함수를 정의하면 되는데, 이 함수는 [`dispatch()`](../api/Store.md#dispatch) 메소드를 인자로 받습니다. 이 함수가 콜백으로 이루어진 속성들을 반환하도록 만들어주면, presentational 컴포넌트에 이 속성들이 주입됩니다. 예를 들어, `VisibleTodoList`가 `onTodoClick` 속성을 `TodoList`에 주입하면서 `onTodoClick` 함수가 `TOGGLE_TODO` 액션을 파견하게끔 만들어주고 싶다면 아래와 같이 하면 됩니다:
+상태를 읽어오는 일 외에, container 컴포넌트는 저장소에 액션을 보낼 수 있습니다. 위와 비슷한 방식으로 `mapDispatchToProps()` 함수를 정의하면 되는데, 이 함수는 [`dispatch()`](../api/Store.md#dispatch) 메소드를 인자로 받습니다. 이 함수가 콜백으로 이루어진 속성들을 반환하도록 만들어주면, presentational 컴포넌트에 이 속성들이 주입됩니다. 예를 들어, `VisibleTodoList`가 `onTodoClick` 속성을 `TodoList`에 주입하면서 `onTodoClick` 함수가 `TOGGLE_TODO` 액션을 파견하게끔 만들어주고 싶다면 아래와 같이 하면 됩니다:
 
 ```js
 const mapDispatchToProps = dispatch => {
@@ -383,11 +383,11 @@ const App = () => (
 export default App
 ```
 
-## 스토어 넘겨주기
+## 저장소 넘겨주기
 
-모든 container 컴포넌트는 Redux 스토어에 접근하거나 스토어를 구독할 수 있어야 합니다. 이렇게 만들 수 있는 한 가지 방법은 모든 container 컴포넌트의 속성에다가 스토어를 넘겨주는 것입니다. 하지만 이 방법은 너무 진이 빠지는 방법이고, 컴포넌트 트리 하부에 있는 container 컴포넌트에 스토어를 넘겨주기 위해 presentational 컴포넌트에까지 스토어를 넘겨주어야 합니다.
+모든 container 컴포넌트는 Redux 저장소에 접근하거나 저장소를 구독할 수 있어야 합니다. 이렇게 만들 수 있는 한 가지 방법은 모든 container 컴포넌트의 속성에다가 저장소를 넘겨주는 것입니다. 하지만 이 방법은 너무 진이 빠지는 방법이고, 컴포넌트 트리 하부에 있는 container 컴포넌트에 저장소를 넘겨주기 위해 presentational 컴포넌트에까지 저장소를 넘겨주어야 합니다.
 
-저희가 권장하는 방법은 React Redux가 제공하는 특별한 컴포넌트인 [`<Provider>`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store)를 사용하는 것입니다. 이 컴포넌트는 명시적으로 스토어를 넘겨주지 않더라도 [마법처럼](https://facebook.github.io/react/docs/context.html) 모든 container 컴포넌트에서 스토어를 사용할 수 있도록 해줍니다. 이 컴포넌트는 최상단 컴포넌트를 렌더링할 때 한 번만 사용해주면 됩니다.
+저희가 권장하는 방법은 React Redux가 제공하는 특별한 컴포넌트인 [`<Provider>`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store)를 사용하는 것입니다. 이 컴포넌트는 명시적으로 저장소를 넘겨주지 않더라도 [마법처럼](https://facebook.github.io/react/docs/context.html) 모든 container 컴포넌트에서 저장소를 사용할 수 있도록 해줍니다. 이 컴포넌트는 최상단 컴포넌트를 렌더링할 때 한 번만 사용해주면 됩니다.
 
 #### `index.js`
 
