@@ -7,7 +7,7 @@ hide_title: true
 
 # React Router와 함께 사용하기
 
-Redux 앱에서 라우팅을 하기 원한다면 [React Router](https://github.com/reactjs/react-router)와 함께 사용할 수 있습니다. Redux가 데이터의 진실의 원천이 될 것이고 React Router가 URL의 진실의 원천이 될 것입니다. 시간여행이나 URL을 바꾸는 액션들을 되감을 필요가 없다면 대부분의 경우엔 이들을 따로 두어도 **괜찮습니다**.
+Redux 앱에서 라우팅을 하기 원한다면 [React Router](https://github.com/reactjs/react-router)와 함께 사용할 수 있습니다. Redux가 데이터의 진실의 근원이 될 것이고 React Router가 URL의 진실의 근원이 될 것입니다. 시간여행이나 URL을 바꾸는 액션들을 되감을 필요가 없다면 대부분의 경우엔 이들을 따로 두어도 **괜찮습니다**.
 
 ## React Router 설치하기
 
