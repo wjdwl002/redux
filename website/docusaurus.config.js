@@ -7,18 +7,21 @@ module.exports = {
   organizationName: 'deminoth',
   projectName: 'redux',
   themeConfig: {
-    disableDarkMode: false,
+    image: 'img/redux-logo-landscape.png',
+    metadatas: [{ name: 'twitter:card', content: 'summary' }],
     prism: {
       theme: require('./src/js/monokaiTheme.js')
     },
+    colorMode: {
+      disableSwitch: false
+    },
     navbar: {
       title: 'Redux',
-      image: 'img/redux-logo-landscape.png',
       logo: {
         alt: 'Redux Logo',
         src: 'img/redux.svg'
       },
-      links: [
+      items: [
         {
           label: '시작하기',
           to: 'introduction/getting-started',

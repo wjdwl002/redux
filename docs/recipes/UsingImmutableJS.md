@@ -156,7 +156,7 @@ This, together with its performance and rich API for data manipulation, is why I
 
 **Documentation**
 
-- [Troubleshooting: Nothing happens when I dispatch an action](../Troubleshooting.md#nothing-happens-when-i-dispatch-an-action)
+- [Troubleshooting: Nothing happens when I dispatch an action](./Troubleshooting.md#nothing-happens-when-i-dispatch-an-action)
 
 ## What are some opinionated Best Practices for using Immutable.JS with Redux?
 
@@ -246,7 +246,7 @@ Smart components that access the store via React Redux’s `connect` function mu
 **Documentation**
 
 - [Recipes: Computing Derived Data](./ComputingDerivedData.md)
-- [FAQ: Immutable Data](/faq/ImmutableData.html#immutability-issues-with-react-redux)
+- [FAQ: Immutable Data](../faq/ImmutableData.md#immutability-issues-with-react-redux)
 - [Reselect Documentation: How do I use Reselect with Immutable.js?](https://github.com/reduxjs/reselect/#q-how-do-i-use-reselect-with-immutablejs)
 
 **Articles**
