@@ -11,7 +11,7 @@ Redux의 아키텍쳐는 **엄격한 일방향 데이터 흐름**을 따라 전�
 
 이는 애플리케이션 내의 모든 데이터가 같은 생명주기 패턴을 따르며, 앱의 로직을 좀 더 예측가능하게 하고 이해하기 쉽게 만든다는 뜻입니다. 이는 또한 데이터 정규화를 도와서 같은 데이터의 복제본들이 서로를 모르는 여럿으로 나눠지고 말지 않도록 해줍니다.
 
-여러분이 아직도 이에 익숙치 않으시다면, [동기](../introduction/Motivation.md)와 [The Case for Flux](https://medium.com/@dan_abramov/the-case-for-flux-379b7d1982c6)의 일방향 데이터 흐름에 대한 설득당할수밖에 없는 논거를 읽어보시기 바랍니다. [Redux가 정확히 Flux는 아니지만](../introduction/PriorArt.md) 같은 중요한 잇점들을 함께합니다.
+여러분이 아직도 이에 익숙치 않으시다면, [동기](../understanding/thinking-in-redux/Motivation.md)와 [The Case for Flux](https://medium.com/@dan_abramov/the-case-for-flux-379b7d1982c6)의 일방향 데이터 흐름에 대한 설득당할수밖에 없는 논거를 읽어보시기 바랍니다. [Redux가 정확히 Flux는 아니지만](../understanding/history-and-design/PriorArt.md) 같은 중요한 잇점들을 함께합니다.
 
 모든 Redux 앱에서의 데이터는 아래와 같이 4단계의 생명주기를 따릅니다:
 

@@ -115,7 +115,7 @@ module.exports = {
       logo: {
         alt: 'Redux Logo',
         src: 'img/redux.svg',
-        href: 'https://redux.js.org/'
+        href: 'https://ko.redux.js.org/'
       },
       copyright: `Copyright © 2015–${new Date().getFullYear()} Dan Abramov and the Redux documentation authors.`
     },

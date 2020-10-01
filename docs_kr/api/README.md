@@ -6,7 +6,7 @@ hide_title: true
 
 # API 레퍼런스
 
-Redux API의 드러난 부분은 매우 작습니다. Redux는 ([reducers](../Glossary.md#리듀서)와 같은)구현을 위한 규약 모음을 정의하고, 이들 규약을 한데 묶기 위한 몇 가지 헬퍼 함수들을 제공합니다.
+Redux API의 드러난 부분은 매우 작습니다. Redux는 ([reducers](../understanding/thinking-in-redux/Glossary.md#리듀서)와 같은)구현을 위한 규약 모음을 정의하고, 이들 규약을 한데 묶기 위한 몇 가지 헬퍼 함수들을 제공합니다.
 
 이 절은 Redux의 전체 API 문서입니다. Redux는 상태를 관리하는데에만 집중한다는 점을 기억해두세요. 실제 앱에서는 [react-redux](https://github.com/gaearon/react-redux)와 같은 UI 바인딩 또한 필요할겁니다.
 

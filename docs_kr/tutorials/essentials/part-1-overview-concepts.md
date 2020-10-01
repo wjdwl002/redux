@@ -181,14 +181,13 @@ const obj = {
   a: {
     // To safely update obj.a.c, we have to copy each piece
     c: 3
-  }
-  b: 2,
+  },
+  b: 2
 }
-
 
 const obj2 = {
   // copy obj
-  ...obj
+  ...obj,
   // overwrite a
   a: {
     // copy obj.a
@@ -198,14 +197,14 @@ const obj2 = {
   }
 }
 
-const arr = ["a", "b"];
+const arr = ['a', 'b']
 // Create a new copy of arr, with "c" appended to the end
-const arr2 = arr.concat("c");
+const arr2 = arr.concat('c')
 
 // or, we can make a copy of the original array:
-const arr3 = arr.slice();
+const arr3 = arr.slice()
 // and mutate the copy:
-arr3.push("c");
+arr3.push('c')
 ```
 
 **Redux expects that all state updates are done immutably**. We'll look at where and how this is important a bit later, as well as some easier ways to write immutable update logic.
@@ -255,7 +254,7 @@ const addTodo = text => {
 
 #### Reducers
 
-A **reducer** is a function that receives the current `state` and an `action` object, decides how to update the state if necessary, and returns the new state: `(state, action) => newState`.
+A **reducer** is a function that receives the current `state` and an `action` object, decides how to update the state if necessary, and returns the new state: `(state, action) => newState`. **You can think of a reducer as an event listener which handles events based on the received action (event) type.**
 
 :::info
 

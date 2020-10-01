@@ -125,7 +125,7 @@ return state.map((todo, index) => {
 
 이 실험적인 언어 기능은 변경될 수 있음을 알아두세요.
 
-중첩된 상태 객체가 깊게 복사되도록 주의하세요. `_.extend`와 `Object.assign` 모두 상태를 얕게 복사합니다. 중첩된 상태를 어떻게 다룰지에 대한 제안은 [중첩된 객체 업데이트하기](/recipes/reducers/ImmutableUpdatePatterns.md#updating-nested-objects)에서 볼 수 있습니다.
+중첩된 상태 객체가 깊게 복사되도록 주의하세요. `_.extend`와 `Object.assign` 모두 상태를 얕게 복사합니다. 중첩된 상태를 어떻게 다룰지에 대한 제안은 [중첩된 객체 업데이트하기](./recipes/structuring-reducers/ImmutableUpdatePatterns.md#updating-nested-objects)에서 볼 수 있습니다.
 
 #### [`dispatch(action)`](api/Store.md#dispatch)를 호출하는걸 잊지 마세요
 

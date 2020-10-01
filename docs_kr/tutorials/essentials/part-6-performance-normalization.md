@@ -26,7 +26,7 @@ import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 ## Introduction
 
-In [Part 5: Async Logic and Data Fetching](./part-5-async-logic.md), we saw how write async thunks to fetch data from a server API, patterns for handling async request loading state, and use of selector functions for encapsulating lookups of data from the Redux state.
+In [Part 5: Async Logic and Data Fetching](./part-5-async-logic.md), we saw how to write async thunks to fetch data from a server API, patterns for handling async request loading state, and use of selector functions for encapsulating lookups of data from the Redux state.
 
 In this final section, we'll look at optimized patterns for ensuring good performance in our application, and techniques for automatically handling common updates of data in the store.
 
@@ -295,6 +295,30 @@ export const Navbar = () => {
 }
 ```
 
+Lastly, we need to update `App.js` with the "Notifications" route so we can navigate to it:
+
+```js title="App.js"
+// omit imports
+// highlight-next-line
+import { NotificationsList } from './features/notifications/NotificationsList'
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <div className="App">
+        <Switch>
+          // highlight-next-line
+          <Route exact path="/notifications" component={NotificationsList} />
+          // omit existing routes
+          <Redirect to="/" />
+        </Switch>
+      </div>
+    </Router>
+  )
+}
+```
+
 Here's what the "Notifications" tab looks like so far:
 
 ![Initial Notifications tab](/img/tutorials/essentials/notifications-initial.png)
@@ -418,6 +442,54 @@ Here's how the notifications tab looks now that we've got the "new/read" behavio
 
 ![New notifications](/img/tutorials/essentials/notifications-new.png)
 
+The last thing we need to do before we move on is to add the badge on our "Notifications" tab in the navbar. This will show us the count of "Unread" notifications when we are in other tabs:
+
+```js title="app/Navbar.js"
+// omit imports
+// highlight-next-line
+import { useDispatch, useSelector } from 'react-redux'
+
+// highlight-start
+import {
+  fetchNotifications,
+  selectAllNotifications
+} from '../features/notifications/notificationsSlice'
+// highlight-end
+
+export const Navbar = () => {
+  const dispatch = useDispatch()
+  // highlight-start
+  const notifications = useSelector(selectAllNotifications)
+  const numUnreadNotifications = notifications.filter(n => !n.read).length
+  // highlight-end
+  // omit component contents
+  // highlight-start
+  let unreadNotificationsBadge
+
+  if (numUnreadNotifications > 0) {
+    unreadNotificationsBadge = (
+      <span className="badge">{numUnreadNotifications}</span>
+    )
+  }
+  // highlight-end
+  return (
+    <nav>
+      // omit component contents
+      <div className="navLinks">
+        <Link to="/">Posts</Link>
+        <Link to="/users">Users</Link>
+        // highlight-start
+        <Link to="/notifications">
+          Notifications {unreadNotificationsBadge}
+        </Link>
+        // highlight-end
+      </div>
+      // omit component contents
+    </nav>
+  )
+}
+```
+
 ## Improving Render Performance
 
 Our application is looking useful, but we've actually got a couple flaws in when and how our components re-render. Let's look at those problems, and talk about some ways to improve the performance.
@@ -451,7 +523,7 @@ export const UserPage = ({ match }) => {
 }
 ```
 
-We know that `useSelector` will re-run every time an action is dispatched, and that it force the component to re-render if we return a new reference value.
+We know that `useSelector` will re-run every time an action is dispatched, and that it forces the component to re-render if we return a new reference value.
 
 We're calling `filter()` inside of our `useSelector` hook, so that we only return the list of posts that belong to this user. Unfortunately, **this means that `useSelector` _always_ returns a new array reference, and so our component will re-render after _every_ action even if the posts data hasn't changed!**.
 

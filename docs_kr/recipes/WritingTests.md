@@ -270,7 +270,7 @@ If you are using jest as recommended above, we also recommend installing [jest-d
 npm install --save-dev @testing-library/jest-dom
 ```
 
-To test the components, we `render` them into the DOM and pass stubbed callbacks as props, then we assert wheter the callbacks were called when expected.
+To test the components, we `render` them into the DOM and pass stubbed callbacks as props, then we assert whether the callbacks were called when expected.
 
 #### Example
 
@@ -348,6 +348,10 @@ const App = props => {
   return <div>{props.user}</div>
 }
 
+const mapStateToProps = state => {
+  return state
+}
+
 export default connect(mapStateToProps)(App)
 ```
 
@@ -361,6 +365,8 @@ import React from 'react'
 import { render as rtlRender } from '@testing-library/react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+// Import your own reducer
+import reducer from '../reducer'
 
 function render(
   ui,

@@ -13,7 +13,7 @@ Redux는 하나의 거대한 프레임워크가 아닌, 규약들과 [그들을 
 
 ## Flux로부터
 
-[리듀서](../Glossary.md#리듀서)는 Flux 저장소의 "핵심"을 지니고 있기 때문에, [Flummox](http://github.com/acdlite/flummox), [Alt](http://github.com/goatslacker/alt), [traditional Flux](https://github.com/facebook/flux), 기타 Flux 라이브러리 중 무엇을 쓰고 있었다고 해도 기존의 Flux 프로젝트에서 Redux로 옮기는 것은 어렵지 않습니다.
+[리듀서](../understanding/thinking-in-redux/Glossary.md#리듀서)는 Flux 저장소의 "핵심"을 지니고 있기 때문에, [Flummox](http://github.com/acdlite/flummox), [Alt](http://github.com/goatslacker/alt), [traditional Flux](https://github.com/facebook/flux), 기타 Flux 라이브러리 중 무엇을 쓰고 있었다고 해도 기존의 Flux 프로젝트에서 Redux로 옮기는 것은 어렵지 않습니다.
 
 Redux에서 저들 라이브러리로 옮기는 것도 아래의 순서를 반대로 행하면 가능합니다.
 

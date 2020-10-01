@@ -6,7 +6,7 @@ hide_title: true
 
 # `combineReducers(reducers)`
 
-앱이 점점 복잡해지면 [리듀싱 함수](../Glossary.md#리듀서)를 [상태](../Glossary.md#상태)의 독립된 부분들을 관리하는 함수들로 분리하고 싶어질겁니다.
+앱이 점점 복잡해지면 [리듀싱 함수](../understanding/thinking-in-redux/Glossary.md#리듀서)를 [상태](../understanding/thinking-in-redux/Glossary.md#상태)의 독립된 부분들을 관리하는 함수들로 분리하고 싶어질겁니다.
 
 `combineReducers` 헬퍼 함수는 서로 다른 리듀싱 함수들을 값으로 가지는 객체를 받아서 [`createStore`](createStore.md)에 넘길 수 있는 하나의 리듀싱 함수로 바꿔줍니다.
 

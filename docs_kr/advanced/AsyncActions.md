@@ -380,24 +380,6 @@ export function fetchPosts(reddit) {
 }
 ```
 
-> ##### Note on `fetch`
-
-> 이 예제에서는 [`fetch` API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)를 사용했습니다. 일반적인 경우에 `XMLHttpRequest`를 대신해서 네트워크 요청을 만들어주는 새로운 API입니다. 대부분의 브라우저는 아직 이를 지원하지 않기 때문에 [`isomorphic-fetch`](https://github.com/matthew-andrews/isomorphic-fetch)를 사용하는 것을 권장합니다:
-
-> ```js
-> // `fetch`를 사용하는 모든 파일마다 넣어줍니다
-> import fetch from 'isomorphic-fetch'
-> ```
-
-> 내부적으로 이 라이브러리는 클라이언트에서 [`whatwg-fetch` 폴리필](https://github.com/github/fetch)을, 서버에서 [`node-fetch`](https://github.com/bitinn/node-fetch)를 사용하므로 여러분이 앱을 [유니버셜](https://medium.com/@mjackson/universal-javascript-4761051b7ae9)로 바꾸더라도 API 호출을 바꿀 필요가 없습니다.
-
-> `fetch` 폴리필들은 [약속](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 폴리필이 이미 적용되어 있다고 가정한다는 점을 명심하세요. 약속 폴리필이 적용되어 있도록 하는 가장 확실한 방법은 Babel의 ES6 폴리필을 모든 엔트리 포인트에서 사용하는겁니다:
-
-> ```js
-> // 앱의 다른 코드들 앞에 한번 넣어줍니다
-> import 'babel-core/polyfill'
-> ```
-
 Redux 썽크 미들웨어를 디스패치 작동방식 안에 어떻게 포함시킬까요? 아래와 같이 Redux의 [`applyMiddleware()`](../api/applyMiddleware.md) 메서드를 사용합니다:
 
 #### `index.js`

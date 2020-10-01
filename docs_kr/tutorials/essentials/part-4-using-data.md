@@ -242,7 +242,7 @@ export default postsSlice.reducer
 
 ### Creating an Edit Post Form
 
-Our new `<EditPostForm>` component will look similar to the `<AddPostForm>`, but the logic needs to be a bit different. We need to retrieve the right `post` object from the store, then use that to initialize the state fields in the component so the user can make changes. We'll save the changed title and content values back to the store after the user is done. We'll also uses React Router's history API to switch over to the single post page and show that post.
+Our new `<EditPostForm>` component will look similar to the `<AddPostForm>`, but the logic needs to be a bit different. We need to retrieve the right `post` object from the store, then use that to initialize the state fields in the component so the user can make changes. We'll save the changed title and content values back to the store after the user is done. We'll also use React Router's history API to switch over to the single post page and show that post.
 
 ```jsx title="features/posts/EditPostForm.js"
 import React, { useState } from 'react'
@@ -306,6 +306,13 @@ export const EditPostForm = ({ match }) => {
 Like with `SinglePostPage`, we'll need to import it into `App.js` and add a route that will render this component. We should also add a new link to our `SinglePostPage` that will route to `EditPostPage`, like:
 
 ```jsx title="features/post/SinglePostPage.js"
+// highlight-next-line
+import { Link } from 'react-router-dom'
+
+export const SinglePostPage = ({ match }) => {
+
+        // omit other contents
+
         <p  className="post-content">{post.content}</p>
         // highlight-start
         <Link to={`/editPost/${post.id}`} className="button">
@@ -489,6 +496,7 @@ export const AddPostForm = () => {
 
   const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
+  // highlight-next-line
   const onAuthorChanged = e => setUserId(e.target.value)
 
   const onSavePostClicked = () => {
@@ -537,6 +545,7 @@ export const AddPostForm = () => {
           value={content}
           onChange={onContentChanged}
         />
+        // highlight-next-line
         <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
           Save Post
         </button>
@@ -654,6 +663,29 @@ const renderedPosts = orderedPosts.map(post => {
     </article>
   )
 })
+```
+
+We also need to add the `date` field to `initialState` in `postsSlice.js`. We'll use `date-fns` here again to subtract minutes from the current date/time so they differ from each other.
+
+```jsx title="features/posts/postsSlice.js"
+import { createSlice, nanoid } from '@reduxjs/toolkit'
+// highlight-next-line
+import { sub } from 'date-fns'
+
+const initialState = [
+  {
+    // omitted fields
+    content: 'Hello!',
+    // highlight-next-line
+    date: sub(new Date(), { minutes: 10 }).toISOString()
+  },
+  {
+    // omitted fields
+    content: 'More text',
+    // highlight-next-line
+    date: sub(new Date(), { minutes: 5 }).toISOString()
+  }
+]
 ```
 
 ### Post Reaction Buttons
