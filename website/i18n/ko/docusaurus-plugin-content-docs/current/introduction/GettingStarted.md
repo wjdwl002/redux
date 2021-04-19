@@ -1,7 +1,7 @@
 ---
 id: getting-started
 title: Redux 시작하기
-description: '소개 > 시작하기: Redux를 배우고 사용하기 위한 리소스'
+description: '소개 > 시작하기: Redux를 배우고 사용하기 위한 자료'
 hide_title: true
 ---
 
@@ -67,8 +67,6 @@ yarn add redux
 상태 트리를 변경하는 유일한 방법은 무엇이 일어날지 서술하는 객체인 액션(_action_)을 보내는 것 뿐입니다.
 액션이 상태 트리를 어떻게 변경할지 명시하기 위해 여러분은 리듀서(_reducers_)를 작성해야 합니다.
 
-이게 다입니다!
-
 ```js
 import { createStore } from 'redux'
 
@@ -125,9 +123,13 @@ store.dispatch({ type: 'DECREMENT' })
 
 Redux를 배우는 데 도움이 될 다양한 자료가 있습니다.
 
-### Redux Essentials Tutorial
+### Redux 핵심 튜토리얼
 
-The [**Redux Essentials tutorial**](../tutorials/essentials/part-1-overview-concepts.md) is a "top-down" tutorial that teaches how to use Redux the right way, using our latest recommended APIs and best practices. We recommend starting there.
+[**Redux 핵심 튜토리얼**](../tutorials/essentials/part-1-overview-concepts.md)은 추천 API와 모범 사례를 통해 어떻게 하면 Redux를 올바르게 사용할 수 있는지를 가르쳐주는 "하향식" 튜토리얼입니다. 여기서부터 시작하기를 추천합니다.
+
+### Redux Fundamentals Tutorial
+
+[**Redux 기반 튜토리얼**](../tutorials/fundamentals/part-1-overview.md)은 요약 없이 기초 원리부터 "Redux가 어떻게 동작하는가"와 왜 Redux 표준 패턴이 있는지를 알려주는 "상향식" 튜토리얼입니다.
 
 ### Additional Tutorials
 

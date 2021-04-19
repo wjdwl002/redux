@@ -36,11 +36,12 @@ hide_title: true
   - [Redux에서 불변성이 강제되는 이유는 무엇인가요?](faq/ImmutableData.md#why-is-immutability-required-by-redux)
   - [데이터 불변성을 다루는 방법으로는 어떤 것이 있나요? Immer를 사용해야 하나요?](faq/ImmutableData.md#what-approaches-are-there-for-handling-data-immutability-do-i-have-to-use-immer)
   - [불변 작업을 위해 자바스크립트를 사용하는데 무슨 문제가 있나요?](faq/ImmutableData.md#what-are-the-issues-with-using-plain-javascript-for-immutable-operations)
-**코드 구조**
+- **코드 구조**
   - [파일 구조를 어떤 식으로 구성해야 하나요? 액션 생산자와 리듀서를 어떻게 묶어야 하나요? 셀렉터는 어디에 둬야 하나요?](faq/CodeStructure.md#what-should-my-file-structure-look-like-how-should-i-group-my-action-creators-and-reducers-in-my-project-where-should-my-selectors-go)
   - [리듀서와 액션 생산자 사이에서 로직을 어떻게 나눠야 하나요? "비즈니스 로직"은 어디에 둬야 하나요?](faq/CodeStructure.md#how-should-i-split-my-logic-between-reducers-and-action-creators-where-should-my-business-logic-go)
   - [왜 액션 생산자를 사용해야 하나요?](faq/CodeStructure.md#why-should-i-use-action-creators)
   - [웹소켓 같은 영속적인 연결은 어디에 둬야 하나요?](faq/CodeStructure.md#where-should-websockets-and-other-persistent-connections-live)
+  - [컴포넌트가 아닌 파일에서 Redux 저장소를 사용하려면 어떻게 해야 하나요?](faq/CodeStructure.md#how-can-i-use-the-redux-store-in-non-component-files)
 - **성능**
   - [Redux는 성능이나 아키텍처 관점에서 얼마나 잘 "확장" 할 수 있나요?](faq/Performance.md#how-well-does-redux-scale-in-terms-of-performance-and-architecture)
   - [액션마다 "모든 리듀서"들을 호출하면 느려지지 않나요?](faq/Performance.md#wont-calling-all-my-reducers-for-each-action-be-slow)

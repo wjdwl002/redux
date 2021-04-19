@@ -80,8 +80,8 @@ The simplest and most common way to do this is to add the [Redux Thunk](https://
 
 **Documentation**
 
-- [Redux Fundamentals: Async Logic and Data Flow](../tutorials/fundamentals/part-6-async-logic.md)
-- [Redux Fundamentals: Store - Middleware](../tutorials/fundamentals/part-4-store.md#middleware)
+- [Redux 기반: Async Logic and Data Flow](../tutorials/fundamentals/part-6-async-logic.md)
+- [Redux 기반: Store - Middleware](../tutorials/fundamentals/part-4-store.md#middleware)
 
 **Articles**
 

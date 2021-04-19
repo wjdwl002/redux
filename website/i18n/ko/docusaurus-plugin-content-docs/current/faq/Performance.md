@@ -163,7 +163,7 @@ Redux does not store a history of actions itself. However, the Redux DevTools do
 
 **Documentation**
 
-- [Redux Fundamentals: Async Logic and Data Flow](../tutorials/fundamentals/part-6-async-logic.md)
+- [Redux 기반: Async Logic and Data Flow](../tutorials/fundamentals/part-6-async-logic.md)
 
 **Discussions**
 

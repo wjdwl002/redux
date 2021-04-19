@@ -1,14 +1,14 @@
 ---
 id: part-3-state-actions-reducers
-title: 'Redux Fundamentals, Part 3: State, Actions, and Reducers'
+title: 'Redux 기반, Part 3: State, Actions, and Reducers'
 sidebar_label: 'State, Actions, and Reducers'
 hide_title: true
-description: 'The official Redux Fundamentals tutorial: learn how reducers update state in response to actions'
+description: 'The official Redux 기반 튜토리얼: learn how reducers update state in response to actions'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Fundamentals, Part 3: State, Actions, and Reducers
+# Redux 기반, Part 3: State, Actions, and Reducers
 
 :::tip What You'll Learn
 
@@ -698,7 +698,7 @@ values are the slice reducer functions that know how to update those slices of t
 
 Here's the contents of our app so far:
 
-<iframe 
+<iframe
   class="codesandbox"
   src="https://codesandbox.io/embed/github/reduxjs/redux-fundamentals-example-app/tree/checkpoint-1-combinedReducers/?fontsize=14&hidenavigation=1&module=%2Fsrc%2Freducer.js&theme=dark&runonclick=1"
   title="redux-fundamentals-example-app"

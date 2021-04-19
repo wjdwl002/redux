@@ -1,14 +1,14 @@
 ---
 id: part-2-concepts-data-flow
-title: 'Redux Fundamentals, Part 2: Concepts and Data Flow'
+title: 'Redux 기반, Part 2: Concepts and Data Flow'
 sidebar_label: 'Redux Concepts and Data Flow'
 hide_title: true
-description: 'The official Redux Fundamentals tutorial: learn key Redux terms and how data flows in a Redux app'
+description: 'The official Redux 기반 튜토리얼: learn key Redux terms and how data flows in a Redux app'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Fundamentals, Part 2: Concepts and Data Flow
+# Redux 기반, Part 2: Concepts and Data Flow
 
 :::tip What You'll Learn
 

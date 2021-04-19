@@ -65,6 +65,9 @@
   "Other Libraries from the Redux Team": {
     "message": "Redux팀의 다른 라이브러리"
   },
+  "Detailed Explanation": {
+    "message": "자세한 설명"
+  },
   "theme.NotFound.title": {
     "message": "Page Not Found",
     "description": "The title of the 404 page"

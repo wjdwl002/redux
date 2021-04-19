@@ -1,14 +1,14 @@
 ---
 id: part-6-performance-normalization
-title: 'Redux Essentials, Part 6: Performance and Normalizing Data'
+title: 'Redux 핵심, Part 6: Performance and Normalizing Data'
 sidebar_label: 'Performance and Normalizing Data'
 hide_title: true
-description: 'The official Redux Essentials tutorial: learn how to improve app performance and structure data correctly'
+description: 'The official Redux 핵심 튜토리얼: learn how to improve app performance and structure data correctly'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Essentials, Part 6: Performance and Normalizing Data
+# Redux 핵심, Part 6: Performance and Normalizing Data
 
 :::tip What You'll Learn
 
@@ -274,7 +274,7 @@ export const Navbar = () => {
   return (
     <nav>
       <section>
-        <h1>Redux Essentials Example</h1>
+        <h1>Redux 핵심 Example</h1>
 
         <div className="navContent">
           <div className="navLinks">
@@ -966,7 +966,7 @@ And with that... we're done!
 
 ## What You've Learned
 
-Congratulations, you've completed the Redux Essentials tutorial! Let's see what the final app looks like in action:
+Congratulations, you've completed the Redux 핵심 튜토리얼! Let's see what the final app looks like in action:
 
 <iframe
   class="codesandbox"
@@ -1006,7 +1006,7 @@ Here's what we covered in this section:
 
 The concepts we've covered in this tutorial should be enough to get you started building your own applications using React and Redux. Now's a great time to try working on a project yourself to solidify these concepts and see how they work in practice. If you're not sure what kind of a project to build, see [this list of app project ideas](https://github.com/florinpop17/app-ideas) for some inspiration.
 
-The Redux Essentials tutorial focused on "how to use Redux correctly", rather than "how it works" or "why it works this way". In particular, Redux Toolkit is a higher-level set of abstractions and utilities, and it's helpful to understand what the abstractions in RTK are actually doing for you. Reading through the ["Redux Fundamentals" tutorial](../fundamentals/part-1-overview.md) will help you understand how to write Redux code "by hand", and why we recommend Redux Toolkit as the default way to write Redux logic.
+The Redux 핵심 튜토리얼 focused on "how to use Redux correctly", rather than "how it works" or "why it works this way". In particular, Redux Toolkit is a higher-level set of abstractions and utilities, and it's helpful to understand what the abstractions in RTK are actually doing for you. Reading through the ["Redux 기반" 튜토리얼](../fundamentals/part-1-overview.md) will help you understand how to write Redux code "by hand", and why we recommend Redux Toolkit as the default way to write Redux logic.
 
 The [Recipes](../../recipes/README.md) section has information on a number of important concepts, like [how to structure your reducers](../../recipes/structuring-reducers/StructuringReducers.md), and [our Style Guide page](../../style-guide/style-guide) has important information on our recommended patterns and best practices.
 

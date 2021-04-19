@@ -1,14 +1,14 @@
 ---
 id: part-5-async-logic
-title: 'Redux Essentials, Part 5: Async Logic and Data Fetching'
+title: 'Redux 핵심, Part 5: Async Logic and Data Fetching'
 sidebar_label: 'Async Logic and Data Fetching'
 hide_title: true
-description: 'The official Redux Essentials tutorial: learn how async logic works in Redux apps'
+description: 'The official Redux 핵심 튜토리얼: learn how async logic works in Redux apps'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Essentials, Part 5: Async Logic and Data Fetching
+# Redux 핵심, Part 5: Async Logic and Data Fetching
 
 :::tip What You'll Learn
 

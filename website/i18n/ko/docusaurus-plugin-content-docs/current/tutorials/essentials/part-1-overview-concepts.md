@@ -1,6 +1,6 @@
 ---
 id: part-1-overview-concepts
-title: 'Redux Essentials, Part 1: Redux Overview and Concepts'
+title: 'Redux 핵심, Part 1: Redux Overview and Concepts'
 sidebar_label: 'Redux Overview and Concepts'
 hide_title: true
 description: 'The official Essentials tutorial for Redux: learn how to use Redux, the right way'
@@ -8,7 +8,7 @@ description: 'The official Essentials tutorial for Redux: learn how to use Redux
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Essentials, Part 1: Redux Overview and Concepts
+# Redux 핵심, Part 1: Redux Overview and Concepts
 
 :::tip What You'll Learn
 
@@ -20,7 +20,7 @@ import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 ## Introduction
 
-Welcome to the Redux Essentials tutorial! **This tutorial will introduce you to Redux and teach you how to use it the right way, using our latest recommended tools and best practices**. By the time you finish, you should be able to start building your own Redux applications using the tools and patterns you've learned here.
+Welcome to the Redux 핵심 튜토리얼! **This tutorial will introduce you to Redux and teach you how to use it the right way, using our latest recommended tools and best practices**. By the time you finish, you should be able to start building your own Redux applications using the tools and patterns you've learned here.
 
 In Part 1 of this tutorial, we'll cover the key concepts and terms you need to know to use Redux, and in [Part 2: Redux App Structure](./part-2-app-structure.md) we'll examine a basic React + Redux app to see how the pieces fit together.
 

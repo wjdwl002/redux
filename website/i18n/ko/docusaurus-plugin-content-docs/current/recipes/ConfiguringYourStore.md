@@ -6,9 +6,9 @@ hide_title: true
 
 # Configuring Your Store
 
-In the ["Redux Fundamentals" tutorial](../tutorials/fundamentals/part-1-overview.md), we introduced the fundamental Redux concepts by building an example Todo list app. As part of that, we talked about [how to create and configure a Redux store](../tutorials/fundamentals/part-4-store.md).
+In the ["Redux 기반" 튜토리얼](../tutorials/fundamentals/part-1-overview.md), we introduced the fundamental Redux concepts by building an example Todo list app. As part of that, we talked about [how to create and configure a Redux store](../tutorials/fundamentals/part-4-store.md).
 
-We will now explore how to customise the store to add extra functionality. We'll start with the source code from ["Redux Fundamentals" part 5: UI and React](../tutorials/fundamentals/part-5-ui-and-react.md). You can view the source from this stage of the tutorial in [the example app repository on Github](https://github.com/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions), or [in your browser via CodeSandbox](https://codesandbox.io/s/github/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions/).
+We will now explore how to customise the store to add extra functionality. We'll start with the source code from ["Redux 기반" part 5: UI and React](../tutorials/fundamentals/part-5-ui-and-react.md). You can view the source from this stage of the tutorial in [the example app repository on Github](https://github.com/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions), or [in your browser via CodeSandbox](https://codesandbox.io/s/github/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions/).
 
 ## Creating the store
 

@@ -64,7 +64,7 @@ While it ultimately doesn't matter how you lay out your code on disk, it's impor
 **Documentation**
 
 - [Style Guide: Structure Files as Feature Folders with Single-File Logic](../style-guide/style-guide.md##structure-files-as-feature-folders-with-single-file-logic)
-- [Redux Essentials tutorial: App Structure](../tutorials/essentials/part-2-app-structure.md)
+- [Redux 핵심 튜토리얼: App Structure](../tutorials/essentials/part-2-app-structure.md)
 - [FAQ: Actions - "1:1 mapping between reducers and actions?"](./Actions.md#actions-reducer-mappings)
 
 **Articles**

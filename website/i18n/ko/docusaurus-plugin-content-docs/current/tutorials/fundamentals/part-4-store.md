@@ -1,14 +1,14 @@
 ---
 id: part-4-store
-title: 'Redux Fundamentals, Part 4: Store'
+title: 'Redux 기반, Part 4: Store'
 sidebar_label: 'Store'
 hide_title: true
-description: 'The official Redux Fundamentals tutorial: learn how to create and use a Redux store'
+description: 'The official Redux 기반 튜토리얼: learn how to create and use a Redux store'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Fundamentals, Part 4: Store
+# Redux 기반, Part 4: Store
 
 :::tip What You'll Learn
 

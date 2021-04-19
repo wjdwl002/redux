@@ -1,14 +1,14 @@
 ---
 id: part-2-app-structure
-title: 'Redux Essentials, Part 2: Redux App Structure'
+title: 'Redux 핵심, Part 2: Redux App Structure'
 sidebar_label: 'Redux App Structure'
 hide_title: true
-description: 'The official Redux Essentials tutorial: learn the structure of a typical React + Redux app'
+description: 'The official Redux 핵심 튜토리얼: learn the structure of a typical React + Redux app'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Essentials, Part 2: Redux App Structure
+# Redux 핵심, Part 2: Redux App Structure
 
 :::tip What You'll Learn
 

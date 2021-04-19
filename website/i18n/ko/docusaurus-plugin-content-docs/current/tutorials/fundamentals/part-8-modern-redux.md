@@ -1,6 +1,6 @@
 ---
 id: part-8-modern-redux
-title: 'Redux Fundamentals, Part 8: Modern Redux with Redux Toolkit'
+title: 'Redux 기반, Part 8: Modern Redux with Redux Toolkit'
 sidebar_label: 'Modern Redux with Redux Toolkit'
 hide_title: true
 description: 'The official Fundamentals tutorial for Redux: learn the modern way to write Redux logic'
@@ -8,7 +8,7 @@ description: 'The official Fundamentals tutorial for Redux: learn the modern way
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Fundamentals, Part 8: Modern Redux with Redux Toolkit
+# Redux 기반, Part 8: Modern Redux with Redux Toolkit
 
 :::tip What You'll Learn
 
@@ -805,7 +805,7 @@ Notice that our other selectors still use `selectTodos` as an input. That's beca
 
 ## What You've Learned
 
-**Congratulations! You've completed the "Redux Fundamentals" tutorial!**
+**Congratulations! You've completed the "Redux 기반" tutorial!**
 
 You should now have a solid understanding of what Redux is, how it works, and how to use it correctly:
 
@@ -865,7 +865,7 @@ Now that you've completed this tutorial, we have several suggestions for what yo
 
 This "Fundamentals" tutorial focused on the low-level aspects of Redux: writing action types and immutable updates by hand, how a Redux store and middleware work, and why we use patterns like action creators and normalized state. In addition, our todo example app is fairly small, and not meant as a realistic example of building a full app.
 
-However, our [**"Redux Essentials" tutorial**](../essentials/part-1-overview-concepts.md) specifically teaches you **how to build a "real-world" type application**. It focuses on "how to use Redux the right way" using Redux Toolkit, and talks about more realistic patterns that you'll see in larger apps. It covers many of the same topics as this "Fundamentals" tutorial, such as why reducers need to use immutable updates, but with a focus on building a real working application. **We strongly recommend reading through the "Redux Essentials" tutorial as your next step.**
+However, our [**"Redux 핵심" tutorial**](../essentials/part-1-overview-concepts.md) specifically teaches you **how to build a "real-world" type application**. It focuses on "how to use Redux the right way" using Redux Toolkit, and talks about more realistic patterns that you'll see in larger apps. It covers many of the same topics as this "Fundamentals" tutorial, such as why reducers need to use immutable updates, but with a focus on building a real working application. **We strongly recommend reading through the "Redux 핵심" tutorial as your next step.**
 
 At the same time, the concepts we've covered in this tutorial should be enough to get you started building your own applications using React and Redux. Now's a great time to try working on a project yourself to solidify these concepts and see how they work in practice. If you're not sure what kind of a project to build, see [this list of app project ideas](https://github.com/florinpop17/app-ideas) for some inspiration.
 

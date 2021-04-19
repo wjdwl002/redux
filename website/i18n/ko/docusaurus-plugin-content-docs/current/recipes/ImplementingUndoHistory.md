@@ -8,7 +8,7 @@ hide_title: true
 
 :::Prerequisites
 
-- Completion of the ["Redux Fundamentals" tutorial](../tutorials/fundamentals/part-1-overview.md)
+- Completion of the ["Redux 기반" 튜토리얼](../tutorials/fundamentals/part-1-overview.md)
 - Understanding of ["reducer composition"](../tutorials/fundamentals/part-3-state-actions-reducers.md#splitting-reducers)
 
 :::

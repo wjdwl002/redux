@@ -1,14 +1,14 @@
 ---
 id: part-4-using-data
-title: 'Redux Essentials, Part 4: Using Redux Data'
+title: 'Redux 핵심, Part 4: Using Redux Data'
 sidebar_label: 'Using Redux Data'
 hide_title: true
-description: 'The official Redux Essentials tutorial: learn how to work with complex Redux state in React components'
+description: 'The official Redux 핵심 튜토리얼: learn how to work with complex Redux state in React components'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Essentials, Part 4: Using Redux Data
+# Redux 핵심, Part 4: Using Redux Data
 
 :::tip What You'll Learn
 
@@ -171,7 +171,7 @@ export const Navbar = () => {
   return (
     <nav>
       <section>
-        <h1>Redux Essentials Example</h1>
+        <h1>Redux 핵심 Example</h1>
 
         <div className="navContent">
           // highlight-start

@@ -60,7 +60,7 @@ This chain of middleware is defined by the arguments passed to the `applyMiddlew
 
 **Documentation**
 
-- [Redux Fundamentals: Store - Middleware](../tutorials/fundamentals/part-4-store.md#middleware)
+- [Redux 기반: Store - Middleware](../tutorials/fundamentals/part-4-store.md#middleware)
 - [API: applyMiddleware](../api/applyMiddleware.md)
 
 **Discussions**

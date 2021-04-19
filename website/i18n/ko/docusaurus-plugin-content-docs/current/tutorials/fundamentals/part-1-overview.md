@@ -1,6 +1,6 @@
 ---
 id: part-1-overview
-title: 'Redux Fundamentals, Part 1: Redux Overview'
+title: 'Redux 기반, Part 1: Redux Overview'
 sidebar_label: 'Redux Overview'
 hide_title: true
 description: 'The official Fundamentals tutorial for Redux: learn the fundamentals of using Redux'
@@ -8,7 +8,7 @@ description: 'The official Fundamentals tutorial for Redux: learn the fundamenta
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Fundamentals, Part 1: Redux Overview
+# Redux 기반, Part 1: Redux Overview
 
 :::tip What You'll Learn
 
@@ -19,7 +19,7 @@ import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 ## Introduction
 
-Welcome to the Redux Fundamentals tutorial! **This tutorial will introduce you to the core concepts, principles, and patterns for using Redux**. By the time you finish, you should understand the different pieces that make up a Redux app, how data flows when using Redux, and our standard recommended patterns for building Redux apps.
+Welcome to the Redux 기반 튜토리얼! **This tutorial will introduce you to the core concepts, principles, and patterns for using Redux**. By the time you finish, you should understand the different pieces that make up a Redux app, how data flows when using Redux, and our standard recommended patterns for building Redux apps.
 
 In Part 1 of this tutorial, we'll briefly look at a minimal example of a working Redux app to see what the pieces are, and in [Part 2: Redux Concepts and Data Flow](./part-2-concepts-data-flow.md) we'll look at those pieces in more detail and how data flows in a Redux application.
 
@@ -36,7 +36,7 @@ Starting in [Part 3: State, Actions, and Reducers](./part-3-state-actions-reduce
 If you're looking to learn more about how Redux is used to write real-world applications, please see:
 
 - [**The "Modern Redux" page in this tutorial**](./part-8-modern-redux.md), which shows how to convert the low-level examples from earlier sections into the modern patterns we do recommend for real-world usage
-- [**The "Redux Essentials" tutorial**](../essentials/part-1-overview-concepts.md), which teaches "how to use Redux, the right way" for real-world apps, using our latest recommended patterns and practices.
+- [**The "Redux 핵심" tutorial**](../essentials/part-1-overview-concepts.md), which teaches "how to use Redux, the right way" for real-world apps, using our latest recommended patterns and practices.
 
 :::
 

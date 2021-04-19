@@ -1,14 +1,14 @@
 {
   "version.label": {
-    "message": "Next",
+    "message": "다음",
     "description": "The label for version current"
   },
   "sidebar.docs.category.Introduction": {
-    "message": "Introduction",
+    "message": "소개",
     "description": "The label for category Introduction in sidebar docs"
   },
   "sidebar.docs.category.Tutorials": {
-    "message": "Tutorials",
+    "message": "튜토리얼",
     "description": "The label for category Tutorials in sidebar docs"
   },
   "sidebar.docs.category.Redux Essentials": {
@@ -20,7 +20,7 @@
     "description": "The label for category Redux Fundamentals in sidebar docs"
   },
   "sidebar.docs.category.Recipes": {
-    "message": "Recipes",
+    "message": "레시피",
     "description": "The label for category Recipes in sidebar docs"
   },
   "sidebar.docs.category.Structuring Reducers": {
@@ -44,11 +44,11 @@
     "description": "The label for category FAQ in sidebar docs"
   },
   "sidebar.docs.category.Style Guide": {
-    "message": "Style Guide",
+    "message": "스타일 가이드",
     "description": "The label for category Style Guide in sidebar docs"
   },
   "sidebar.docs.category.API Reference": {
-    "message": "API Reference",
+    "message": "API 레퍼런스",
     "description": "The label for category API Reference in sidebar docs"
   },
   "sidebar.docs.category.Redux Toolkit": {

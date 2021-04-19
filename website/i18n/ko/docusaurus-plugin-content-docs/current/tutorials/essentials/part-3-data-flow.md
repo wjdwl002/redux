@@ -1,14 +1,14 @@
 ---
 id: part-3-data-flow
-title: 'Redux Essentials, Part 3: Basic Redux Data Flow'
+title: 'Redux 핵심, Part 3: Basic Redux Data Flow'
 sidebar_label: 'Basic Redux Data Flow'
 hide_title: true
-description: 'The official Redux Essentials tutorial: learn how data flows in a React + Redux app'
+description: 'The official Redux 핵심 튜토리얼: learn how data flows in a React + Redux app'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Essentials, Part 3: Basic Redux Data Flow
+# Redux 핵심, Part 3: Basic Redux Data Flow
 
 :::tip What You'll Learn
 

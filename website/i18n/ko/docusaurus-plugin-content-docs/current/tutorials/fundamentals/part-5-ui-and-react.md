@@ -1,14 +1,14 @@
 ---
 id: part-5-ui-react
-title: 'Redux Fundamentals, Part 5: UI and React'
+title: 'Redux 기반, Part 5: UI and React'
 sidebar_label: 'UI and React'
 hide_title: true
-description: 'The official Redux Fundamentals tutorial: learn how to use Redux with React'
+description: 'The official Redux 기반 튜토리얼: learn how to use Redux with React'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux Fundamentals, Part 5: UI and React
+# Redux 기반, Part 5: UI and React
 
 :::tip What You'll Learn
 
