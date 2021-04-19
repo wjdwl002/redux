@@ -34,15 +34,9 @@ hide_title: true
 - **불변 데이터**
   - [불변성이 가진 이점은 무엇인가요?](faq/ImmutableData.md#what-are-the-benefits-of-immutability)
   - [Redux에서 불변성이 강제되는 이유는 무엇인가요?](faq/ImmutableData.md#why-is-immutability-required-by-redux)
-  - [데이터 불변성을 다루는 방법으로는 어떤 것이 있나요? Immutable.JS를 사용해야 하나요?](faq/ImmutableData.md#what-approaches-are-there-for-handling-data-immutability-do-i-have-to-use-immutable-js)
+  - [데이터 불변성을 다루는 방법으로는 어떤 것이 있나요? Immer를 사용해야 하나요?](faq/ImmutableData.md#what-approaches-are-there-for-handling-data-immutability-do-i-have-to-use-immer)
   - [불변 작업을 위해 자바스크립트를 사용하는데 무슨 문제가 있나요?](faq/ImmutableData.md#what-are-the-issues-with-using-plain-javascript-for-immutable-operations)
-- **Redux에서 Immutable.JS 사용하기**
-  - [왜 Immutable.JS 같은 불변성을 위한 라이브러리를 사용해야 하나요?](recipes/UsingImmutableJS.md#why-should-i-use-an-immutable-focused-library-such-as-immutable-js)
-  - [왜 불변성을 위한 라이브러리로 Immutable.JS를 선택해야 하나요?](recipes/UsingImmutableJS.md#why-should-i-choose-immutable-js-as-an-immutable-library)
-  - [Immutable.JS를 사용하는데 있어서 문제점은 무엇인가요?](recipes/UsingImmutableJS.md#what-are-the-issues-with-using-immutable-js)
-  - [Immutable.JS에 수고를 들일 가치가 있나요?](recipes/UsingImmutableJS.md#is-using-immutable-js-worth-the-effort)
-  - [Redux에서 Immutable.JS를 사용하는데 있어서 모범 사례가 있을까요?](recipes/UsingImmutableJS.md#what-are-some-opinionated-best-practices-for-using-immutable-js-with-redux)
-- **코드 구조**
+**코드 구조**
   - [파일 구조를 어떤 식으로 구성해야 하나요? 액션 생산자와 리듀서를 어떻게 묶어야 하나요? 셀렉터는 어디에 둬야 하나요?](faq/CodeStructure.md#what-should-my-file-structure-look-like-how-should-i-group-my-action-creators-and-reducers-in-my-project-where-should-my-selectors-go)
   - [리듀서와 액션 생산자 사이에서 로직을 어떻게 나눠야 하나요? "비즈니스 로직"은 어디에 둬야 하나요?](faq/CodeStructure.md#how-should-i-split-my-logic-between-reducers-and-action-creators-where-should-my-business-logic-go)
   - [왜 액션 생산자를 사용해야 하나요?](faq/CodeStructure.md#why-should-i-use-action-creators)

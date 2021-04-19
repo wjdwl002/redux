@@ -27,7 +27,7 @@ Redux에서 저들 라이브러리로 옮기는 것도 아래의 순서를 반�
 
 - Flux 저장소를 모두 리듀서 기반으로 옮기고 나면 Flux 라이브러리를 Redux 저장소로 교체하고 작성한 리듀서들을 [`combineReducers(reducers)`](../api/combineReducers.md)을 통해 합칩니다.
 
-- 이제 남은것은 [react-redux](../basics/UsageWithReact.md)나 다른 것들을 사용해 UI를 옮기는 작업입니다.
+- 이제 남은것은 [React-Redux](../tutorials/fundamentals/part-5-ui-and-react.md)나 다른 것들을 사용해 UI를 옮기는 작업입니다.
 
 - 마지막으로 비동기 코드를 더 단순화하기 위해 미들웨어같은 Redux 문법을 사용하기를 원할겁니다.
 
