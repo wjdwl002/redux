@@ -24,28 +24,16 @@ module.exports = {
       },
       {
         type: 'category',
-        label: 'Basic Tutorial',
+        label: 'Redux Fundamentals',
         items: [
-          'basics/basic-tutorial',
-          'basics/actions',
-          'basics/reducers',
-          'basics/store',
-          'basics/data-flow',
-          'basics/usage-with-react',
-          'basics/example'
-        ]
-      },
-      {
-        type: 'category',
-        label: 'Advanced Tutorial',
-        items: [
-          'advanced/advanced-tutorial',
-          'advanced/async-actions',
-          'advanced/async-flow',
-          'advanced/middleware',
-          'advanced/usage-with-react-router',
-          'advanced/example-reddit-api',
-          'advanced/next-steps'
+          'tutorials/fundamentals/part-1-overview',
+          'tutorials/fundamentals/part-2-concepts-data-flow',
+          'tutorials/fundamentals/part-3-state-actions-reducers',
+          'tutorials/fundamentals/part-4-store',
+          'tutorials/fundamentals/part-5-ui-react',
+          'tutorials/fundamentals/part-6-async-logic',
+          'tutorials/fundamentals/part-7-standard-patterns',
+          'tutorials/fundamentals/part-8-modern-redux'
         ]
       }
     ],
@@ -61,7 +49,6 @@ module.exports = {
       'recipes/computing-derived-data',
       'recipes/implementing-undo-history',
       'recipes/isolating-redux-sub-apps',
-      'recipes/using-immutablejs-with-redux',
       'recipes/code-splitting',
       'recipes/troubleshooting',
       {
@@ -96,7 +83,10 @@ module.exports = {
       {
         type: 'category',
         label: 'History and Design',
-        items: ['understanding/history-and-design/prior-art']
+        items: [
+          'understanding/history-and-design/prior-art',
+          'understanding/history-and-design/middleware'
+        ]
       }
     ],
     FAQ: [

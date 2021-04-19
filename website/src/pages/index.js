@@ -139,34 +139,6 @@ function Home() {
       title={`${siteConfig.title} - 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너`}
       description="자바스크립트 앱을 위한 예측 가능한 상태 컨테이너"
     >
-      <div style={{ background: '#111', padding: '10px 0', lineHeight: 2 }}>
-        <div className="container">
-          <div
-            style={{
-              color: 'white',
-              fontWeight: 'bold',
-              textAlign: 'center'
-            }}
-          >
-            Black Lives Matter.
-            <a
-              style={{
-                display: 'inline-block',
-                color: 'white',
-                fontWeight: 'bold',
-                margin: '0 10px',
-                padding: '7px 20px',
-                border: '1px solid white'
-              }}
-              href="https://support.eji.org/give/153413"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Support the Equal Justice Initiative.
-            </a>
-          </div>
-        </div>
-      </div>
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
