@@ -17,13 +17,13 @@ Redux는 여러분이 일관적으로 동작하고, 서로 다른 환경(서버,
 
 ### Redux Toolkit
 
-[**Redux Toolkit**](https://redux-toolkit.js.org)은 Redux 로직을 작성하기 위해 저희가 공식적으로 추천하는 방법입니다. RTK는 Redux 앱을 만들기에 필수적이라 생각한 패키지와 함수들을 포함하고 있습니다. 대부분의 Redux 작업을 단순화하고, 흔한 실수를 방지하며, Redux 앱을 만들기 쉽게 해주는 모범 사례를 통해 만들어졌습니다.
+[**Redux Toolkit**](https://redux-toolkit.js.org)은 Redux 로직을 작성하기 위해 저희가 공식적으로 추천하는 방법입니다. RTK는 Redux 앱을 만들기에 필수적으로 여기는 패키지와 함수들을 포함합니다. 대부분의 Redux 작업을 단순화하고, 흔한 실수를 방지하며, Redux 앱을 만들기 쉽게 해주는 모범 사례를 통해 만들어졌습니다.
 
 RTK는 [저장소 준비](https://redux-toolkit.js.org/api/configureStore),
 [리듀서 생산과 불변 수정 로직 작성](https://redux-toolkit.js.org/api/createreducer),
 [상태 "조각" 전부를 한번에 작성](https://redux-toolkit.js.org/api/createslice) 등 일반적인 작업들을 단순화해주는 유틸리티를 포함하고 있습니다.
 
-여러분이 첫 프로젝트에 Redux를 새로 도입하는 신참이든 기존 앱을 단순화하고 싶은 경험자든 상관 없이,
+여러분이 첫 프로젝트에 Redux를 새로 도입하는 입문자든 기존 앱을 단순화하고 싶은 경험자든 상관 없이,
 **[Redux Toolkit](https://redux-toolkit.js.org/)**은 더 나은 Redux 코드를 만들게
 도와줍니다.
 

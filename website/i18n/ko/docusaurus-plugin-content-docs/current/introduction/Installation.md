@@ -7,10 +7,32 @@ hide_title: true
 
 # 설치
 
+## Redux Toolkit
+
+Redux Toolkit은 Redux 코어 뿐 아니라 저희가 Redux 앱을 만들 때 필수적이라고 느낀 패키지들을 포함하고 있습니다(Redux Thunk나 Reselect 등).
+
+모듈 번들러나 Node 애플리케이션에서 사용하기 위해 NPM 패키지를 제공합니다:
+
+```bash
+# NPM
+npm install @reduxjs/toolkit
+
+# Yarn
+yarn add @reduxjs/toolkit
+```
+
+UMD 빌드 또한 [unpkg의 `dist` 폴더](https://unpkg.com/@reduxjs/toolkit/dist/)에서 사용 가능합니다. UMD 빌드를 통해 Redux Toolkit을 전역변수 `window.RTK`를 통해 사용할 수 있습니다.
+
+## Redux Core
+
 안정 버전을 설치하려면:
 
 ```bash
+# NPM
 npm install redux
+
+# Yarn
+yarn add redux
 ```
 
 이는 여러분이 [npm](https://www.npmjs.com/)을 패키지 매니저로 사용하고 있다고 가정합니다.
@@ -34,9 +56,9 @@ npm install --save-dev redux-devtools
 
 Redux 자체와는 달리 Redux 생태계의 많은 패키지들은 UMD 빌드를 제공하지 않으므로, 편안한 개발 경험을 위해 [Webpack](https://webpack.js.org/)이나 [Browserify](http://browserify.org/) 같은 CommonJS 모듈 번들러를 사용하기를 권합니다.
 
-## Create a React Redux App
+## React Redux 앱 만들기
 
-The recommended way to start new apps with React and Redux is by using the [official Redux+JS template](https://github.com/reduxjs/cra-template-redux) for [Create React App](https://github.com/facebook/create-react-app), which takes advantage of [Redux Toolkit](https://redux-toolkit.js.org/) and React Redux's integration with React components.
+React와 Redux를 사용하는 새 앱을 만드는 방법으로는 [Create React App](https://github.com/facebook/create-react-app)의 [공식 Redux+JS 템플릿](https://github.com/reduxjs/cra-template-redux)을 사용하는 것을 추천합니다. 이를 통해 [Redux Toolkit](https://redux-toolkit.js.org/)과 React Redux의 React 컴포넌트 통합이 주는 이점을 누릴 수 있습니다.
 
 ```sh
 npx create-react-app my-app --template redux
