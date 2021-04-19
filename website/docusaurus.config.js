@@ -6,6 +6,10 @@ module.exports = {
   favicon: 'img/favicon/favicon.ico',
   organizationName: 'deminoth',
   projectName: 'redux',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ko'],
+  },
   themeConfig: {
     image: 'img/redux-logo-landscape.png',
     metadatas: [{ name: 'twitter:card', content: 'summary' }],
@@ -48,6 +52,10 @@ module.exports = {
           label: 'Need help?',
           to: 'introduction/getting-started#help-and-discussion',
           position: 'right'
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
         }
       ]
     },
@@ -133,7 +141,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: '../docs_kr',
+          path: '../docs',
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js')
         },
