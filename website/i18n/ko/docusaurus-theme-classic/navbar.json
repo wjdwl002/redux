@@ -1,0 +1,34 @@
+{
+  "title": {
+    "message": "Redux",
+    "description": "The title in the navbar"
+  },
+  "item.label.Getting Started": {
+    "message": "시작하기",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Tutorial": {
+    "message": "튜토리얼",
+    "description": "Navbar item with label Tutorial"
+  },
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
+  },
+  "item.label.FAQ": {
+    "message": "FAQ",
+    "description": "Navbar item with label FAQ"
+  },
+  "item.label.Best Practices": {
+    "message": "모범 사례",
+    "description": "Navbar item with label Best Practices"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Need help?": {
+    "message": "Need help?",
+    "description": "Navbar item with label Need help?"
+  }
+}

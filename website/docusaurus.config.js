@@ -27,7 +27,7 @@ module.exports = {
       },
       items: [
         {
-          label: '시작하기',
+          label: 'Getting Started',
           to: 'introduction/getting-started',
           position: 'right'
         },
@@ -55,7 +55,7 @@ module.exports = {
         },
         {
           type: 'localeDropdown',
-          position: 'right',
+          position: 'right'
         }
       ]
     },
@@ -66,7 +66,7 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: '시작하기',
+              label: 'Getting Started',
               to: 'introduction/getting-started'
             },
             {
@@ -78,7 +78,7 @@ module.exports = {
               to: 'faq'
             },
             {
-              label: 'API 레퍼런스',
+              label: 'API Reference',
               to: 'api/api-reference'
             }
           ]
