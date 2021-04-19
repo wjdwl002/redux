@@ -6,6 +6,10 @@ module.exports = {
   favicon: 'img/favicon/favicon.ico',
   organizationName: 'deminoth',
   projectName: 'redux',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ko'],
+  },
   themeConfig: {
     image: 'img/redux-logo-landscape.png',
     metadatas: [{ name: 'twitter:card', content: 'summary' }],
@@ -23,7 +27,7 @@ module.exports = {
       },
       items: [
         {
-          label: '시작하기',
+          label: 'Getting Started',
           to: 'introduction/getting-started',
           position: 'right'
         },
@@ -58,7 +62,7 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: '시작하기',
+              label: 'Getting Started',
               to: 'introduction/getting-started'
             },
             {
@@ -70,7 +74,7 @@ module.exports = {
               to: 'faq'
             },
             {
-              label: 'API 레퍼런스',
+              label: 'API Reference',
               to: 'api/api-reference'
             }
           ]
@@ -133,7 +137,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: '../docs_kr',
+          path: '../docs',
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js')
         },

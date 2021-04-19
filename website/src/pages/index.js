@@ -4,15 +4,20 @@ import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
+import Translate, {translate} from '@docusaurus/Translate'
 import styles from './styles.module.css'
 
 const features = [
   {
     content: (
       <p>
-        Redux는 <strong>일관적으로 동작하고</strong>, 서로 다른 환경(클라이언트,
-        서버, 네이티브)에서도 실행되며, <strong>테스트하기 쉬운</strong>{' '}
-        애플리케이션을 작성하도록 도와줍니다.
+        <Translate id="features.predictable" values={{
+          strong1: (<strong><Translate>behave consistently</Translate></strong>),
+          strong2: (<strong><Translate>easy to test</Translate></strong>)
+        }}>{
+          'Redux helps you write applications that {strong1}, run in different environments(client, server, and native), and are {strong2}.'
+        }
+        </Translate>
       </p>
     ),
     image: (
@@ -25,14 +30,16 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: '예측 가능한'
+    title: translate({message: 'Predictable'})
   },
   {
     content: (
       <p>
-        애플리케이션의 상태와 로직을 중앙화하여{' '}
-        <strong>실행 취소/다시 실행</strong>, <strong>영속적인 상태</strong>등의
-        강력한 기능을 사용할 수 있게 합니다.
+        <Translate id="features.centralized" values={{
+          strong1: (<strong><Translate>undo/redo</Translate></strong>),
+          strong2: (<strong><Translate>state persistence</Translate></strong>)
+        }}>{"Centralizing your application's state and logic enables powerful capabilities like {strong1}, {strong2}, and much more."}
+        </Translate>
       </p>
     ),
     image: (
@@ -45,18 +52,17 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: '중앙화된'
+    title: translate({message: 'Centralized'})
   },
   {
     content: (
       <p>
-        Redux DevTools는{' '}
-        <strong>
-          애플리케이션의 상태가 언제, 어디서, 왜, 어떻게 바뀌었는지
-        </strong>{' '}
-        쉽게 추적할 수 있도록 해줍니다. Redux의 아키텍처를 통해 변경사항을
-        기록하고, <strong>"시간여행형 디버깅"</strong>을 사용하고, 완전한 에러
-        리포트를 서버로 보낼 수 있습니다.
+        <Translate id="features.debuggable" values={{
+          strong1: (<strong><Translate>when, where, why, and how your application's state changed</Translate></strong>),
+          strong2: (<strong>"<Translate>time-travel debugging</Translate>"</strong>)
+        }}>
+        {"The Redux DevTools make it easy to trace {strong1}. Redux's architecture lets you log changes, use {strong2}, and even send complete error reports to a server."}
+        </Translate>
       </p>
     ),
     image: (
@@ -73,13 +79,17 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: '디버깅이 쉬운'
+    title: translate({message: 'Debuggable'})
   },
   {
     content: (
       <p>
-        Redux는 <strong>어떤 UI 레이어에서도 동작하며</strong>, 여러분의 요구에
-        부합하는 <strong>거대한 애드온 생태계</strong>를 가지고 있습니다.
+        <Translate id="features.flexible" values={{
+          strong1: (<strong><Translate>works with any UI layer</Translate></strong>),
+          strong2: (<strong><Translate>a large ecosystem of addons</Translate></strong>)
+        }}>
+        {"Redux {strong1}, and has {strong2} to fit your needs."}
+        </Translate>
       </p>
     ),
     image: (
@@ -92,13 +102,13 @@ const features = [
       </svg>
     ),
     imageAlign: 'top',
-    title: '유연한'
+    title: translate({message: 'Flexible'})
   }
 ]
 
 const otherLibraries = [
   {
-    content: 'Redux를 위한 공식 React 바인딩',
+    content: translate({message: 'Official React bindings for Redux'}),
     title: 'React-Redux',
     link: 'https://react-redux.js.org',
     image: (
@@ -114,7 +124,8 @@ const otherLibraries = [
     )
   },
   {
-    content: '효율적인 Redux 개발을 위한 모든 것을 제공하는 공식 도구',
+    content:
+    translate({message: 'The official, opinionated, batteries-included toolset for efficient Redux development'}),
     title: 'Redux Toolkit',
     link: 'https://redux-toolkit.js.org',
     image: (
@@ -136,8 +147,8 @@ function Home() {
   const { siteConfig = {} } = context
   return (
     <Layout
-      title={`${siteConfig.title} - 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너`}
-      description="자바스크립트 앱을 위한 예측 가능한 상태 컨테이너"
+      title={translate({message: "{title} - A predictable state container for JavaScript apps."}, { title: siteConfig.title})}
+      description={translate({message:"A predictable state container for JavaScript apps."})}
     >
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
@@ -151,7 +162,7 @@ function Home() {
               )}
               to={useBaseUrl('introduction/getting-started')}
             >
-              시작하기
+              <Translate>Get Started</Translate>
             </Link>
           </div>
         </div>
@@ -185,7 +196,7 @@ function Home() {
               <div className="row">
                 <div className="col">
                   <h2 className={`text--center ${styles.secondTitle}`}>
-                    Redux팀의 다른 라이브러리
+                    <Translate>Other Libraries from the Redux Team</Translate>
                   </h2>
                 </div>
               </div>
