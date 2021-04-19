@@ -52,10 +52,6 @@ module.exports = {
           label: 'Need help?',
           to: 'introduction/getting-started#help-and-discussion',
           position: 'right'
-        },
-        {
-          type: 'localeDropdown',
-          position: 'right'
         }
       ]
     },
