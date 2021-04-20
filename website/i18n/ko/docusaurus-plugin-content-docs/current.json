@@ -12,11 +12,11 @@
     "description": "The label for category Tutorials in sidebar docs"
   },
   "sidebar.docs.category.Redux Essentials": {
-    "message": "Redux Essentials",
+    "message": "Redux 핵심",
     "description": "The label for category Redux Essentials in sidebar docs"
   },
   "sidebar.docs.category.Redux Fundamentals": {
-    "message": "Redux Fundamentals",
+    "message": "Redux 기반",
     "description": "The label for category Redux Fundamentals in sidebar docs"
   },
   "sidebar.docs.category.Recipes": {
@@ -24,19 +24,19 @@
     "description": "The label for category Recipes in sidebar docs"
   },
   "sidebar.docs.category.Structuring Reducers": {
-    "message": "Structuring Reducers",
+    "message": "리듀서 구조 잡기",
     "description": "The label for category Structuring Reducers in sidebar docs"
   },
   "sidebar.docs.category.Understanding Redux": {
-    "message": "Understanding Redux",
+    "message": "Redux 이해하기",
     "description": "The label for category Understanding Redux in sidebar docs"
   },
   "sidebar.docs.category.Thinking in Redux": {
-    "message": "Thinking in Redux",
+    "message": "Redux로 생각하기",
     "description": "The label for category Thinking in Redux in sidebar docs"
   },
   "sidebar.docs.category.History and Design": {
-    "message": "History and Design",
+    "message": "역사와 설계",
     "description": "The label for category History and Design in sidebar docs"
   },
   "sidebar.docs.category.FAQ": {
