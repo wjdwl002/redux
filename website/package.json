@@ -1,10 +1,10 @@
 {
   "scripts": {
-    "start": "docusaurus start",
+    "start": "docusaurus start --locale ko",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus build --locale ko && docusaurus deploy --skip-build",
-    "write-translations": "docusaurus write-translations"
+    "write-translations": "docusaurus write-translations --locale ko"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.71",
