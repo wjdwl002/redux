@@ -7,8 +7,8 @@
     "write-translations": "docusaurus write-translations --locale ko"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.71",
-    "@docusaurus/preset-classic": "2.0.0-alpha.71",
+    "@docusaurus/core": "2.0.0-alpha.74",
+    "@docusaurus/preset-classic": "2.0.0-alpha.74",
     "classnames": "2.2.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
