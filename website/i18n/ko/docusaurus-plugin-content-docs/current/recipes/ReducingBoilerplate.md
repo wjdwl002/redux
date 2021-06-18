@@ -4,6 +4,8 @@ title: 보일러플레이트 줄이기
 hide_title: true
 ---
 
+&nbsp;
+
 # 보일러플레이트 줄이기
 
 Redux는 [Flux에서 영감을 받았고](../understanding/history-and-design/PriorArt.md), Flux에서 가장 일반적인 불만은 보일러플레이트를 많이 쓰게 된다는 점이었습니다. 이 레시피에서 우리는 어떻게 개인적 스타일이나, 팀 세팅이나, 장기 유지보수성 등에 따라 코드를 어떻게 짜야 할지를 Redux가 다양하게 선택 가능하게 하는지 볼 것입니다.

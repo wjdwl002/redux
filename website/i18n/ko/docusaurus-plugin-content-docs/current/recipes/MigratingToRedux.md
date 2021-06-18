@@ -4,6 +4,8 @@ title: Redux로 마이그레이션
 hide_title: true
 ---
 
+&nbsp;
+
 # Redux로 마이그레이션
 
 Redux는 하나의 거대한 프레임워크가 아닌, 규약들과 [그들을 함께 작동하도록 묶는 함수들](../api/README.md)로 이루어져 있습니다. 여러분의 "Redux 코드"의 주요 부분은 Redux API를 사용하지도 않으며, 여러분은 대부분의 시간을 함수를 작성하는데 보낼겁니다.

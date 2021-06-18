@@ -5,6 +5,8 @@ description: '리듀서 구조 잡기 > 기본 리듀서 구조: Overview of how
 hide_title: true
 ---
 
+&nbsp;
+
 # 기본 리듀서 구조와 상태의 형태
 
 ## 기본 리듀서 구조

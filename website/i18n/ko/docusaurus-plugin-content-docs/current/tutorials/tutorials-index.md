@@ -7,6 +7,8 @@ hide_title: true
 description: 'Overview of the Redux tutorial pages'
 ---
 
+&nbsp;
+
 # Redux 튜토리얼 색인
 
 두 종류의 튜토리얼이 있습니다:

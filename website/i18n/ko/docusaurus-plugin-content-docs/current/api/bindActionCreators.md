@@ -4,6 +4,8 @@ title: bindActionCreators
 hide_title: true
 ---
 
+&nbsp;
+
 # `bindActionCreators(actionCreators, dispatch)`
 
 값이 [액션 생산자](../understanding/thinking-in-redux/Glossary.md#액션-생산자)인 객체를 받아서, 같은 키를 가지지만 각각의 생산자들을 [`dispatch`](Store.md#dispatch)로 감싸서 바로 호출 가능하게 만든 객체로 바꿉니다.

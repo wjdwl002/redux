@@ -5,6 +5,8 @@ description: '리듀서 구조 잡기 > combineReducers 사용하기: Explanatio
 hide_title: true
 ---
 
+&nbsp;
+
 # `combineReducers`사용하기
 
 ## 핵심 개념

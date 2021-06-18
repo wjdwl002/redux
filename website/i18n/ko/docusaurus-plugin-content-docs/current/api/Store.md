@@ -4,6 +4,8 @@ title: Store
 hide_title: true
 ---
 
+&nbsp;
+
 # Store
 
 앱의 전체 [상태 트리](../understanding/thinking-in-redux/Glossary.md#상태)를 가지고 있는 저장소입니다.
@@ -47,6 +49,8 @@ hide_title: true
 _(any)_: 애플리케이션의 현재 상태 트리.
 
 ---
+
+&nbsp;
 
 ### [`dispatch(action)`](#dispatch)
 

@@ -5,6 +5,8 @@ description: '소개 > 설치: Redux와 관련 패키지 설치 방법'
 hide_title: true
 ---
 
+&nbsp;
+
 # 설치
 
 ## Redux Toolkit

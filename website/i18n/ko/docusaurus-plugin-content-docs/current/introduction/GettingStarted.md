@@ -5,6 +5,8 @@ description: '소개 > 시작하기: Redux를 배우고 사용하기 위한 자�
 hide_title: true
 ---
 
+&nbsp;
+
 # Redux 시작하기
 
 Redux는 자바스크립트 앱을 위한 예측 가능한 상태 컨테이너입니다.

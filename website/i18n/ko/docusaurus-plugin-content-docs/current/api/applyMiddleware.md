@@ -4,6 +4,8 @@ title: applyMiddleware
 hide_title: true
 ---
 
+&nbsp;
+
 # `applyMiddleware(...middleware)`
 
 Redux에 임의의 기능을 넣어 확장하는 방법으로는 미들웨어를 추천합니다. 미들웨어는 저장소의 [`dispatch`](Store.md#dispatch) 메서드를 재미삼아서나 실용적으로 감쌀 수 있게 해줍니다. 미들웨어의 중요한 기능 중 하나는 조합 가능하다는 점입니다. 여러 개의 미들웨어가 조합될 수 있고, 각각의 미들웨어는 체인 내에서 자기 앞이나 뒤의 미들웨어에 대해 아무것도 몰라도 됩니다.

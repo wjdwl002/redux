@@ -4,6 +4,8 @@ title: Configuring Your Store
 hide_title: true
 ---
 
+&nbsp;
+
 # Configuring Your Store
 
 In the ["Redux 기반" 튜토리얼](../tutorials/fundamentals/part-1-overview.md), we introduced the fundamental Redux concepts by building an example Todo list app. As part of that, we talked about [how to create and configure a Redux store](../tutorials/fundamentals/part-4-store.md).

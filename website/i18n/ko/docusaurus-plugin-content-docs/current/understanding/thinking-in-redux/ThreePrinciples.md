@@ -5,6 +5,8 @@ description: '소개 > 3가지 원칙: Redux 사용의 3가지 중요 원칙'
 hide_title: true
 ---
 
+&nbsp;
+
 # 3가지 원칙
 
 Redux의 기초를 이루는 원칙들은 다음과 같습니다.

@@ -6,6 +6,8 @@ hide_title: true
 description: 'The official Redux 핵심 튜토리얼: learn the structure of a typical React + Redux app'
 ---
 
+&nbsp;
+
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 # Redux 핵심, Part 2: Redux App Structure

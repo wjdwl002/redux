@@ -4,6 +4,8 @@ title: combineReducers
 hide_title: true
 ---
 
+&nbsp;
+
 # `combineReducers(reducers)`
 
 앱이 점점 복잡해지면 [리듀싱 함수](../understanding/thinking-in-redux/Glossary.md#리듀서)를 [상태](../understanding/thinking-in-redux/Glossary.md#상태)의 독립된 부분들을 관리하는 함수들로 분리하고 싶어질겁니다.

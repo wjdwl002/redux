@@ -5,6 +5,8 @@ description: '리듀서 구조 잡기 > 상태 초기화하기: How Redux state 
 hide_title: true
 ---
 
+&nbsp;
+
 # 상태 초기화하기
 
 애플리케이션의 상태를 초기화하는 방법은 크게 두 가지가 있습니다. `createStore` 메소드는 추가적인 두 번째 인자로 `preloadedState`값을 받을 수 있습니다. 또한 리듀서는 `undefined`인 인자를 찾고 초깃값으로 사용할 값을 반환해서 초깃값을 지정할 수 있습니다. 이는 리듀서 내부에서 명시적으로 확인하거나 `function myReducer(state = someDefaultValue, action)` 처럼 ES6의 기본 인자 구문을 통해 사용할 수 있습니다.

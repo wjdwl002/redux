@@ -4,6 +4,8 @@ title: createStore
 hide_title: true
 ---
 
+&nbsp;
+
 # `createStore(reducer, [preloadedState], [enhancer])`
 
 앱의 상태 트리 전체를 보관하는 Redux [저장소](Store.md)를 만듭니다.

@@ -6,6 +6,8 @@ hide_title: true
 description: 'The official Redux 핵심 튜토리얼: learn how to work with complex Redux state in React components'
 ---
 
+&nbsp;
+
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 # Redux 핵심, Part 4: Using Redux Data

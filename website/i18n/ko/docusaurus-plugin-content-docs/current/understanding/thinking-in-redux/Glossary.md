@@ -4,6 +4,8 @@ title: 용어집
 hide_title: true
 ---
 
+&nbsp;
+
 # 용어집
 
 이 문서는 Redux의 핵심 용어들을 그 타입 시그니처와 함께 모아둔 용어집입니다. 타입은 [Flow notation](http://flowtype.org/docs/quick-reference.html)에 따라 문서화되어 있습니다.
