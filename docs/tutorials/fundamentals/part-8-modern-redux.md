@@ -6,6 +6,8 @@ hide_title: true
 description: 'The official Fundamentals tutorial for Redux: learn the modern way to write Redux logic'
 ---
 
+&nbsp;
+
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 # Redux Fundamentals, Part 8: Modern Redux with Redux Toolkit
@@ -354,9 +356,7 @@ Let's start converting our todos slice file to use `createSlice` instead. We'll 
 
 ```js title="src/features/todos/todosSlice.js"
 // highlight-next-line
-import { createSlice, createSelector } from '@reduxjs/toolkit'
-import { client } from '../../api/client'
-import { StatusFilters } from '../filters/filtersSlice'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   status: 'idle',
@@ -423,12 +423,8 @@ const todosSlice = createSlice({
   }
 })
 
-export const {
-  todoAdded,
-  todoToggled,
-  todoColorSelected,
-  todoDeleted
-} = todosSlice.actions
+export const { todoAdded, todoToggled, todoColorSelected, todoDeleted } =
+  todosSlice.actions
 
 export default todosSlice.reducer
 ```
@@ -753,10 +749,8 @@ export const {
 export default todosSlice.reducer
 
 // highlight-start
-export const {
-  selectAll: selectTodos,
-  selectById: selectTodoById
-} = todosAdapter.getSelectors(state => state.todos)
+export const { selectAll: selectTodos, selectById: selectTodoById } =
+  todosAdapter.getSelectors(state => state.todos)
 // highlight-end
 
 export const selectTodoIds = createSelector(

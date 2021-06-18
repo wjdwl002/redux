@@ -5,6 +5,8 @@ description: 'Introduction > Examples: Redux interactive example apps'
 hide_title: true
 ---
 
+&nbsp;
+
 # Examples
 
 Redux is distributed with a few examples in its [source code](https://github.com/reduxjs/redux/tree/master/examples). Most of these examples are also on [CodeSandbox](https://codesandbox.io), an online editor that lets you play with the examples online.
@@ -83,24 +85,6 @@ Or check out the [sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/ma
 <iframe class="codesandbox"src="https://codesandbox.io/embed/github/reduxjs/redux/tree/master/examples/todos-with-undo/?runonclick=1"sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This is a variation on the previous example. It is almost identical, but additionally shows how wrapping your reducer with [Redux Undo](https://github.com/omnidan/redux-undo) lets you add a Undo/Redo functionality to your app with a few lines of code.
-
-## Todos w/ Flow
-
-Run the [Todos w/ Flow](https://github.com/reduxjs/redux/tree/master/examples/todos-flow) example:
-
-```sh
-git clone https://github.com/reduxjs/redux.git
-
-cd redux/examples/todos-flow
-npm install
-npm start
-```
-
-Or check out the [sandbox](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/todos-flow):
-
-<iframe class="codesandbox"src="https://codesandbox.io/embed/github/reduxjs/redux/tree/master/examples/todos-flow/?runonclick=1"sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
-
-This is like the previous Todos examples, but shows how to use Redux in conjunction with [Flow](https://flow.org/).
 
 ## TodoMVC
 
