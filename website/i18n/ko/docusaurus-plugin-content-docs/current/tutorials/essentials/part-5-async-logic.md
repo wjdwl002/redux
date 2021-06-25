@@ -159,6 +159,15 @@ However, writing code using this approach is tedious. Each separate type of requ
 `createAsyncThunk` abstracts this pattern by generating the action types and action creators, and generating a thunk that dispatches those actions automatically. You provide a callback function that makes the async call and returns a Promise with the result.
 
 </DetailedExplanation>
+<br />
+
+:::tip
+
+Redux Toolkit has a new [**RTK Query data fetching API**](https://redux-toolkit.js.org/rtk-query/overview). RTK Query is a purpose built data fetching and caching solution for Redux apps, and **can eliminate the need to write _any_ thunks or reducers to manage data fetching**. We encourage you to try it out and see if it can help simplify the data fetching code in your own apps!
+
+We'll be updating the Redux tutorials soon to include sections on using RTK Query. Until then, see [the RTK Query section in the Redux Toolkit docs](https://redux-toolkit.js.org/rtk-query/overview).
+
+:::
 
 ## Loading Posts
 
