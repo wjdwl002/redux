@@ -1,7 +1,7 @@
 ---
 id: overview
 title: 'Redux Toolkit: 개요'
-description: 'Redux Toolkit is the recommended way to write Redux logic'
+description: 'Redux Toolkit은 Redux 로직 작성을 위해 권장하는 방법입니다'
 hide_title: true
 ---
 
@@ -54,7 +54,7 @@ Redux 코어 라이브러리는 의도적으로 특정한 방향을 배제하고
 Redux Toolkit에 포함된 것들은:
 
 - [`configureStore()`](https://redux-toolkit.js.org/api/configureStore): `createStore`를 감싸서 쓸만한 기본값들과 단순화된 설정을 제공합니다. 여러분의 리듀서 조각들을 자동으로 합쳐주고, 기본 제공되는 `redux-thunk`를 포함해서 여러분이 지정한 미들웨어들을 더해주고, Redux DevTools 확장을 사용할 수 있게 합니다.
-- [`createReducer()`](https://redux-toolkit.js.org/api/createReducer): switch 문을 작성하는 대신, 액션 타입과 리듀서 함수를 연결해주는 목록을 작성하도록 합니다. 여기에 더해 [`immer` 라이브러리](https://github.com/immerjs/immer)를 자동으로 사용해서, `state.todos[3].completed = true`과 같은 변이 코드를 통해 간편하게 불변 업데이트를 할 수 있도록 합니다.
+- [`createReducer()`](https://redux-toolkit.js.org/api/createReducer): switch 문을 작성하는 대신, 액션 타입과 리듀서 함수를 연결해주는 목록을 작성하도록 합니다. 여기에 더해 [`immer` 라이브러리](https://github.com/immerjs/immer)를 자동으로 사용해서, `state.todos[3].completed = true`와 같은 변이 코드를 통해 간편하게 불변 업데이트를 할 수 있도록 합니다.
 - [`createAction()`](https://redux-toolkit.js.org/api/createAction): 주어진 액션 타입 문자열을 이용해 액션 생산자 함수를 만들어줍니다. 함수 자체에 `toString()` 정의가 포함되어 있어서, 타입 상수가 필요한 곳에 사용할 수 있습니다.
 - [`createSlice()`](https://redux-toolkit.js.org/api/createSlice): 조각 이름과 상태 초기값, 리듀서 함수들로 이루어진 객체를 받아 그에 맞는 액션 생산자와 액션 타입을 포함하는 리듀서 조각을 자동으로 만들어줍니다.
 - [`createAsyncThunk`](https://redux-toolkit.js.org/api/createAsyncThunk): 액션 타입 문자열과 프로미스를 반환하는 함수를 받아, `pending/fulfilled/rejected` 액션 타입을 디스패치해주는 thunk를 생성해줍니다.
