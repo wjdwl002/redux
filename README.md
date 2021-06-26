@@ -14,7 +14,7 @@
 > - @Ephemera
 > - @ho1234c
 > - @seungha-kim
-> - @joeunha
+> - @hajoeun
 > - @AlexHanwool
 >
 > 번역 참여를 위해서는 먼저 PR Draft를 생성하여 번역 진행 중임을 다른 분들에게 알려주세요.
