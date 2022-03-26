@@ -175,4 +175,4 @@ export function Counter() {
 
 ## What's Next?
 
-See [the "Usage with TypeScript" page](../recipes/UsageWithTypescript.md) for extended details on how to use Redux Toolkit's APIs with TypeScript.
+See [the "Usage with TypeScript" page](../usage/UsageWithTypescript.md) for extended details on how to use Redux Toolkit's APIs with TypeScript.

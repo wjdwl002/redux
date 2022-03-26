@@ -66,11 +66,11 @@ Note that “updating data immutably” does _not_ mean that you must use [Immer
 
 **Documentation**
 
-- [Troubleshooting](../recipes/Troubleshooting.md)
+- [Troubleshooting](../usage/Troubleshooting.md)
 - [React Redux: Troubleshooting](https://react-redux.js.org/troubleshooting)
-- [Recipes: Using the Object Spread Operator](../recipes/UsingObjectSpreadOperator.md)
-- [Recipes: Structuring Reducers - Prerequisite Concepts](../recipes/structuring-reducers/PrerequisiteConcepts.md)
-- [Recipes: Structuring Reducers - Immutable Update Patterns](../recipes/structuring-reducers/ImmutableUpdatePatterns.md)
+- [Recipes: Using the Object Spread Operator](../usage/UsingObjectSpreadOperator.md)
+- [Recipes: Structuring Reducers - Prerequisite Concepts](../usage/structuring-reducers/PrerequisiteConcepts.md)
+- [Recipes: Structuring Reducers - Immutable Update Patterns](../usage/structuring-reducers/ImmutableUpdatePatterns.md)
 
 **Articles**
 
@@ -133,7 +133,7 @@ While React Redux does work to minimize the number of times that your `mapStateT
 
 **Documentation**
 
-- [Recipes: Computed Derived Data](../recipes/ComputingDerivedData.md)
+- [Recipes: Computed Derived Data](../usage/ComputingDerivedData.md)
 
 **Articles**
 

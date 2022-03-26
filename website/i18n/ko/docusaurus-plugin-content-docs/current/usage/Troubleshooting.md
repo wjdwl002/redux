@@ -103,7 +103,7 @@ return update(state, {
 
 `Object.assign`을 올바르게 사용하도록 하세요. 예를 들어 리듀서에서 `Object.assign(state, newData)` 처럼 반환하는 대신 `Object.assign({}, state, newData)`처럼 반환해야 합니다. 이렇게 하면 이전의 `state`를 덮어쓰지 않게 됩니다.
 
-더 간결한 문법을 위해 [object spread operator proposal](recipes/UsingObjectSpreadOperator.md)을 사용할 수도 있습니다:
+더 간결한 문법을 위해 [object spread operator proposal](usage/UsingObjectSpreadOperator.md)을 사용할 수도 있습니다:
 
 ```js
 // Before:
@@ -127,7 +127,7 @@ return state.map((todo, index) => {
 
 이 실험적인 언어 기능은 변경될 수 있음을 알아두세요.
 
-중첩된 상태 객체가 깊게 복사되도록 주의하세요. `_.extend`와 `Object.assign` 모두 상태를 얕게 복사합니다. 중첩된 상태를 어떻게 다룰지에 대한 제안은 [중첩된 객체 업데이트하기](./recipes/structuring-reducers/ImmutableUpdatePatterns.md#updating-nested-objects)에서 볼 수 있습니다.
+중첩된 상태 객체가 깊게 복사되도록 주의하세요. `_.extend`와 `Object.assign` 모두 상태를 얕게 복사합니다. 중첩된 상태를 어떻게 다룰지에 대한 제안은 [중첩된 객체 업데이트하기](./usage/structuring-reducers/ImmutableUpdatePatterns.md#updating-nested-objects)에서 볼 수 있습니다.
 
 #### [`dispatch(action)`](api/Store.md#dispatch)를 호출하는걸 잊지 마세요
 
