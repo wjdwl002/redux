@@ -2,11 +2,8 @@
 id: part-4-store
 title: 'Redux Fundamentals, Part 4: Store'
 sidebar_label: 'Store'
-hide_title: true
 description: 'The official Redux Fundamentals tutorial: learn how to create and use a Redux store'
 ---
-
-&nbsp;
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
@@ -434,7 +431,7 @@ function exampleMiddleware(storeAPI) {
 Let's break down what these three functions do and what their arguments are.
 
 - `exampleMiddleware`: The outer function is actually the "middleware" itself. It will be called by `applyMiddleware`, and receives a `storeAPI` object containing the store's `{dispatch, getState}` functions. These are the same `dispatch` and `getState` functions that are actually part of the store. If you call this `dispatch` function, it will send the action to the _start_ of the middleware pipeline. This is only called once.
-- `wrapDispatch`: The middle function receives a function called `next` as its argument. This function is actually the _next middleware_ in the pipeline. If this middleware is the last one in the sequence, then `next` is actually the original `store.dispatch` function instead. Calling `next(action)` passes the middleware to the _next_ middleware in the pipeline. This is also only called once
+- `wrapDispatch`: The middle function receives a function called `next` as its argument. This function is actually the _next middleware_ in the pipeline. If this middleware is the last one in the sequence, then `next` is actually the original `store.dispatch` function instead. Calling `next(action)` passes the action to the _next_ middleware in the pipeline. This is also only called once
 - `handleAction`: Finally, the inner function receives the current `action` as its argument, and will be called _every_ time an action is dispatched.
 
 :::tip
@@ -553,7 +550,7 @@ Once that's installed, open up the browser's DevTools window. You should now see
 
 Once the extension is installed, we need to configure the store so that the DevTools can see what's happening inside. The DevTools require a specific store enhancer to be added to make that possible.
 
-The [Redux DevTools Extension docs](https://github.com/zalmoxisus/redux-devtools-extension) have some instructions on how to set up the store, but the steps listed are a bit complicated. However, there's an NPM package called `redux-devtools-extension` that takes care of the complicated part. That package exports a specialized `composeWithDevTools` function that we can use instead of the original Redux `compose` function.
+The [Redux DevTools Extension docs](https://github.com/reduxjs/redux-devtools/tree/main/extension) have some instructions on how to set up the store, but the steps listed are a bit complicated. However, there's an NPM package called `redux-devtools-extension` that takes care of the complicated part. That package exports a specialized `composeWithDevTools` function that we can use instead of the original Redux `compose` function.
 
 Here's how that looks:
 

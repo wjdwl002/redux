@@ -2,11 +2,8 @@
 id: part-5-ui-react
 title: 'Redux Fundamentals, Part 5: UI and React'
 sidebar_label: 'UI and React'
-hide_title: true
 description: 'The official Redux Fundamentals tutorial: learn how to use Redux with React'
 ---
-
-&nbsp;
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
@@ -104,7 +101,7 @@ See **the official React-Redux docs at https://react-redux.js.org** for a comple
 
 ### Designing the Component Tree
 
-Much like we [designed the state structure](./part-3-state-actions-reducers.md#designing-the-state-structure) based on requirements, we can also design the overall set of UI components and how they related to each other in the application.
+Much like we [designed the state structure](./part-3-state-actions-reducers.md#designing-the-state-structure) based on requirements, we can also design the overall set of UI components and how they relate to each other in the application.
 
 Based on [the list of business requirements for the app](./part-3-state-actions-reducers.md#defining-requirements), at a minimum we're going to need this set of components:
 
@@ -538,7 +535,7 @@ We now have a working todo app! Our app creates a store, passes the store to the
 
 Try implementing the rest of the missing UI features on your own! Here's a list of the things you'll need to add:
 
-- In `<TodoListItem>` component, use the `useDispatch` hook to dispatch actions to for changing the color category and deleting the todo
+- In `<TodoListItem>` component, use the `useDispatch` hook to dispatch actions for changing the color category and deleting the todo
 - In `<Footer>`, use the `useDispatch` hook to dispatch actions for marking all todos as completed, clearing completed todos, and changing the filter values.
 
 We'll cover implementing the filters in [Part 7: Standard Redux Patterns](./part-7-standard-patterns.md).
