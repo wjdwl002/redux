@@ -2,15 +2,10 @@
 id: part-2-app-structure
 title: 'Redux Essentials, Part 2: Redux App Structure'
 sidebar_label: 'Redux App Structure'
-hide_title: true
 description: 'The official Redux Essentials tutorial: learn the structure of a typical React + Redux app'
 ---
 
-&nbsp;
-
 import { DetailedExplanation } from '../../components/DetailedExplanation'
-
-# Redux Essentials, Part 2: Redux App Structure
 
 :::tip What You'll Learn
 
@@ -416,7 +411,7 @@ On the other hand, the `incrementByAmount` reducer _does_ need to know something
 
 :::info Want to Know More?
 
-For more information on immutability and writing immutable updates, see [the "Immutable Update Patterns" docs page](../../recipes/structuring-reducers/ImmutableUpdatePatterns.md) and [The Complete Guide to Immutability in React and Redux](https://daveceddia.com/react-redux-immutability-guide/).
+For more information on immutability and writing immutable updates, see [the "Immutable Update Patterns" docs page](../../usage/structuring-reducers/ImmutableUpdatePatterns.md) and [The Complete Guide to Immutability in React and Redux](https://daveceddia.com/react-redux-immutability-guide/).
 
 :::
 

@@ -2,10 +2,7 @@
 id: overview
 title: 'Redux Toolkit: 개요'
 description: 'Redux Toolkit은 Redux 로직 작성을 위해 권장하는 방법입니다'
-hide_title: true
 ---
-
-&nbsp;
 
 ## Redux Toolkit이 뭐죠?
 

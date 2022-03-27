@@ -2,15 +2,10 @@
 id: getting-started
 title: Getting Started with Redux
 description: 'Introduction > Getting Started: Resources to get started learning and using Redux'
-hide_title: true
 ---
-
-&nbsp;
 
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
-
-# Getting Started with Redux
 
 Redux is a predictable state container for JavaScript apps.
 
@@ -85,7 +80,7 @@ import { createStore } from 'redux'
  * A reducer's function signature is: (state, action) => newState
  *
  * The Redux state should contain only plain JS objects, arrays, and primitives.
- * The root state value is usually an object.  It's important that you should
+ * The root state value is usually an object. It's important that you should
  * not mutate the state object, but return a new object if the state changes.
  *
  * You can use any conditional logic you want in a reducer. In this example,
@@ -192,7 +187,7 @@ Redux maintainer Mark Erikson appeared on the "Learn with Jason" show to explain
 
 See [the "Learn Modern Redux" show notes page](https://www.learnwithjason.dev/let-s-learn-modern-redux) for a transcript and links to the example app source.
 
-<LiteYouTubeEmbed 
+<LiteYouTubeEmbed
     id="9zySeP5vH9c"
     title="Learn Modern Redux - Redux Toolkit, React-Redux Hooks, and RTK Query"
 />
@@ -206,7 +201,7 @@ See [the "Learn Modern Redux" show notes page](https://www.learnwithjason.dev/le
 
 ### Other Resources
 
-- The **[Redux FAQ](../FAQ.md)** answers many common questions about how to use Redux, and the **["Recipes" docs section](../recipes/README.md)** has information on handling derived data, testing, structuring reducer logic, and reducing boilerplate.
+- The **[Redux FAQ](../FAQ.md)** answers many common questions about how to use Redux, and the **["Using Redux" docs section](../usage/index.md)** has information on handling derived data, testing, structuring reducer logic, and reducing boilerplate.
 - Redux maintainer Mark Erikson's **["Practical Redux" tutorial series](https://blog.isquaredsoftware.com/series/practical-redux/)** demonstrates real-world intermediate and advanced techniques for working with React and Redux (also available as **[an interactive course on Educative.io](https://www.educative.io/collection/5687753853370368/5707702298738688)**).
 - The **[React/Redux links list](https://github.com/markerikson/react-redux-links)** has categorized articles on working with [reducers and selectors](https://github.com/markerikson/react-redux-links/blob/master/redux-reducers-selectors.md), [managing side effects](https://github.com/markerikson/react-redux-links/blob/master/redux-side-effects.md), [Redux architecture and best practices](https://github.com/markerikson/react-redux-links/blob/master/redux-architecture.md), and more.
 - Our community has created thousands of Redux-related libraries, addons, and tools. The **["Ecosystem" docs page](./Ecosystem.md)** lists our recommendations, and there's a complete listing available in the **[Redux addons catalog](https://github.com/markerikson/redux-ecosystem-links)**.

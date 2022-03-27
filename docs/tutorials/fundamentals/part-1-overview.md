@@ -2,11 +2,8 @@
 id: part-1-overview
 title: 'Redux Fundamentals, Part 1: Redux Overview'
 sidebar_label: 'Redux Overview'
-hide_title: true
 description: 'The official Fundamentals tutorial for Redux: learn the fundamentals of using Redux'
 ---
-
-&nbsp;
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
@@ -115,7 +112,7 @@ Redux can integrate with any UI framework, and is most frequently used with Reac
 
 #### Redux DevTools Extension
 
-The [**Redux DevTools Extension**](https://github.com/zalmoxisus/redux-devtools-extension) shows a history of the changes to the state in your Redux store over time. This allows you to debug your applications effectively, including using powerful techniques like "time-travel debugging".
+The [**Redux DevTools Extension**](https://github.com/reduxjs/redux-devtools/tree/main/extension) shows a history of the changes to the state in your Redux store over time. This allows you to debug your applications effectively, including using powerful techniques like "time-travel debugging".
 
 ## Redux Basics
 

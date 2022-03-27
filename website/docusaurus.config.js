@@ -36,6 +36,7 @@ module.exports = {
           to: 'tutorials/essentials/part-1-overview-concepts',
           position: 'right'
         },
+        { label: 'Usage Guide', to: 'usage/index', position: 'right' },
         { label: 'API', to: 'api/api-reference', position: 'right' },
         { label: 'FAQ', to: 'faq', position: 'right' },
         {
@@ -65,6 +66,7 @@ module.exports = {
               label: 'Getting Started',
               to: 'introduction/getting-started'
             },
+            { label: 'Usage Guide', to: 'usage/index' },
             {
               label: 'Tutorial',
               to: 'tutorials/essentials/part-1-overview-concepts'
@@ -136,7 +138,9 @@ module.exports = {
         docs: {
           path: '../docs',
           routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.js')
+          sidebarPath: require.resolve('./sidebars.js'),
+          showLastUpdateTime: true,
+          editUrl: 'https://github.com/reduxjs/redux/edit/master/website'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css')

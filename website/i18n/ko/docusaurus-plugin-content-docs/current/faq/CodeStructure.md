@@ -1,10 +1,8 @@
 ---
 id: code-structure
 title: Code Structure
-hide_title: true
+sidebar_label: Code Structure
 ---
-
-&nbsp;
 
 import { DetailedExplanation } from '../components/DetailedExplanation'
 
@@ -75,7 +73,6 @@ While it ultimately doesn't matter how you lay out your code on disk, it's impor
 - [Redux Best Practices](https://medium.com/lexical-labs-engineering/redux-best-practices-64d59775802e)
 - [Rules For Structuring (Redux) Applications ](http://jaysoo.ca/2016/02/28/organizing-redux-application/)
 - [A Better File Structure for React/Redux Applications](https://marmelab.com/blog/2015/12/17/react-directory-structure.html)
-- [Organizing Large React Applications](http://engineering.kapost.com/2016/01/organizing-large-react-applications/)
 - [Four Strategies for Organizing Code](https://medium.com/@msandin/strategies-for-organizing-code-2c9d690b6f33)
 - [Encapsulating the Redux State Tree](https://randycoulman.com/blog/2016/09/13/encapsulating-the-redux-state-tree/)
 - [Redux Reducer/Selector Asymmetry](https://randycoulman.com/blog/2016/09/20/redux-reducer-selector-asymmetry/)
@@ -181,7 +178,7 @@ However, there may be times when other parts of the codebase need to interact wi
 Some possible solutions are:
 
 - Write your store-dependent logic as a thunk, and then dispatch that thunk from a component
-- Pass along references to `dispatch` from components as arguments the relevant functions
+- Pass along references to `dispatch` from components as arguments to the relevant functions
 - Write the logic as middleware and add them to the store at setup time
 - Inject the store instance into the relevant files as the app is being created.
 
@@ -192,16 +189,14 @@ You can expose an `injectStore` function from the interceptor file instead:
 ```js title="common/api.js"
 let store
 
-export const injectStore(_store) {
+export const injectStore = _store => {
   store = _store
 }
 
-axiosInstance.interceptors.request.use(
-  config => {
-    config.headers.authorization = store.getState().auth.token
-    return config;
-  }
-)
+axiosInstance.interceptors.request.use(config => {
+  config.headers.authorization = store.getState().auth.token
+  return config
+})
 ```
 
 Then, in your entry point file, inject the store into the API setup file:

@@ -2,10 +2,7 @@
 id: examples
 title: 예제
 description: '소개 > 예제: Redux 인터렉티브 예제'
-hide_title: true
 ---
-
-&nbsp;
 
 # 예제
 
@@ -192,7 +189,7 @@ npm install
 npm start
 ```
 
-이것은 Redux와 React를 사용한 [서버 렌더링](../recipes/ServerRendering.md)의 기본 데모입니다. 클라이언트 저장소가 기존 상태에서 부팅할 수 있도록 서버에서 초기 저장소 상태를 준비하고 클라이언트에 전달하는 방법을 보여줍니다.
+이것은 Redux와 React를 사용한 [서버 렌더링](../usage/ServerRendering.md)의 기본 데모입니다. 클라이언트 저장소가 기존 상태에서 부팅할 수 있도록 서버에서 초기 저장소 상태를 준비하고 클라이언트에 전달하는 방법을 보여줍니다.
 
 ## 리얼 월드(Real World)
 

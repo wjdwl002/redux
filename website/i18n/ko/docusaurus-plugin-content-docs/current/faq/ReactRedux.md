@@ -1,10 +1,8 @@
 ---
 id: react-redux
 title: React Redux
-hide_title: true
+sidebar_label: React Redux
 ---
-
-&nbsp;
 
 # Redux FAQ: React Redux
 
@@ -66,11 +64,10 @@ Note that “updating data immutably” does _not_ mean that you must use [Immer
 
 **Documentation**
 
-- [Troubleshooting](../recipes/Troubleshooting.md)
+- [Troubleshooting](../usage/Troubleshooting.md)
 - [React Redux: Troubleshooting](https://react-redux.js.org/troubleshooting)
-- [Recipes: Using the Object Spread Operator](../recipes/UsingObjectSpreadOperator.md)
-- [Recipes: Structuring Reducers - Prerequisite Concepts](../recipes/structuring-reducers/PrerequisiteConcepts.md)
-- [Recipes: Structuring Reducers - Immutable Update Patterns](../recipes/structuring-reducers/ImmutableUpdatePatterns.md)
+- [Using Redux: Structuring Reducers - Prerequisite Concepts](../usage/structuring-reducers/PrerequisiteConcepts.md)
+- [Using Redux: Structuring Reducers - Immutable Update Patterns](../usage/structuring-reducers/ImmutableUpdatePatterns.md)
 
 **Articles**
 
@@ -133,7 +130,7 @@ While React Redux does work to minimize the number of times that your `mapStateT
 
 **Documentation**
 
-- [Recipes: Computed Derived Data](../recipes/ComputingDerivedData.md)
+- [Using Redux: Deriving Data with Selectors](../usage/deriving-data-selectors.md)
 
 **Articles**
 
@@ -205,7 +202,7 @@ Both Redux and React's Context API deal with "prop drilling". That said, they bo
 
 **Differences**
 
-With Redux, you get the the power of [Redux Dev Tools Extension](https://github.com/zalmoxisus/redux-devtools-extension). It automatically logs every action your app performs, and it allows time traveling – you can click on any past action and jump to that point in time. Redux also supports the concept of middleware, where you may bind customized function calls on every action dispatch. Such examples include an automatic event logger, interception of certain actions, etc.
+With Redux, you get the power of [Redux Dev Tools Extension](https://github.com/reduxjs/redux-devtools/tree/main/extension). It automatically logs every action your app performs, and it allows time traveling – you can click on any past action and jump to that point in time. Redux also supports the concept of middleware, where you may bind customized function calls on every action dispatch. Such examples include an automatic event logger, interception of certain actions, etc.
 
 With React's Context API, you deal with a pair of components speaking only to each other. This gives you nice isolation between irrelevant data. You also have the flexibility of how you may use the data with your components, i.e., you can provide the state of a parent component, and you may pass context data as props to wrapped components.
 

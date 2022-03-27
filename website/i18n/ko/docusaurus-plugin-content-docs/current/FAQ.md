@@ -1,10 +1,7 @@
 ---
 id: faq
 title: FAQ 색인
-hide_title: true
 ---
-
-&nbsp;
 
 # Redux FAQ
 

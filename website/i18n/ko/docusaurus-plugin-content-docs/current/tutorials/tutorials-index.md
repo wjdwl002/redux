@@ -3,13 +3,17 @@ id: tutorials-index
 slug: index
 title: 'Redux 튜토리얼 색인'
 sidebar_label: '튜토리얼 색인'
-hide_title: true
 description: 'Overview of the Redux tutorial pages'
 ---
 
-&nbsp;
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 # Redux 튜토리얼 색인
+
+## Redux 공식 튜토리얼
+
+The [**Quick Start** page](./quick-start.md) briefly shows the basics of setting up a Redux Toolkit + React application, and the [**TypeScript Quick Start** page](./typescript.md) shows how to set up Redux Toolkit and React for use with TypeScript.
 
 두 종류의 튜토리얼이 있습니다:
 
@@ -21,3 +25,14 @@ description: 'Overview of the Redux tutorial pages'
 ** [Redux 핵심 튜토리얼](./essentials/part-1-overview-concepts)부터 시작하기를 권장합니다 **. 여러분이 Redux를 사용해서 실제 애플리케이션을 작성하기 위해 알아야 할 요점들을 포함하고 있기 때문입니다.
 
 :::
+
+## Additional Resources
+
+### Learn Modern Redux Livestream
+
+Redux maintainer Mark Erikson appeared on the "Learn with Jason" show to explain how we recommend using Redux today. The show includes a live-coded example app that shows how to use Redux Toolkit and React-Redux hooks with Typescript, as well as the new RTK Query data fetching APIs:
+
+<LiteYouTubeEmbed
+    id="9zySeP5vH9c"
+    title="Learn Modern Redux - Redux Toolkit, React-Redux Hooks, and RTK Query"
+/>
