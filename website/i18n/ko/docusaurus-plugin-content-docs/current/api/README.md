@@ -1,10 +1,7 @@
 ---
 id: api-reference
 title: API 레퍼런스
-hide_title: true
 ---
-
-&nbsp;
 
 # API 레퍼런스
 

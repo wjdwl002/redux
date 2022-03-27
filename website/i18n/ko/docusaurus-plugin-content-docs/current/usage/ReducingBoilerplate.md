@@ -1,10 +1,7 @@
 ---
 id: reducing-boilerplate
 title: 보일러플레이트 줄이기
-hide_title: true
 ---
-
-&nbsp;
 
 # 보일러플레이트 줄이기
 

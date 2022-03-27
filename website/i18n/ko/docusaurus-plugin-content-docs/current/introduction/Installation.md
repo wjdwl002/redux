@@ -2,10 +2,7 @@
 id: installation
 title: 설치
 description: '소개 > 설치: Redux와 관련 패키지 설치 방법'
-hide_title: true
 ---
-
-&nbsp;
 
 # 설치
 
@@ -62,6 +59,10 @@ Redux 자체와는 달리 Redux 생태계의 많은 패키지들은 UMD 빌드�
 
 React와 Redux를 사용하는 새 앱을 만드는 방법으로는 [Create React App](https://github.com/facebook/create-react-app)의 [공식 Redux+JS 템플릿](https://github.com/reduxjs/cra-template-redux)을 사용하는 것을 추천합니다. 이를 통해 [Redux Toolkit](https://redux-toolkit.js.org/)과 React Redux의 React 컴포넌트 통합이 주는 이점을 누릴 수 있습니다.
 
-```sh
+```bash
+# Redux + Plain JS template
 npx create-react-app my-app --template redux
+
+# Redux + TypeScript template
+npx create-react-app my-app --template redux-typescript
 ```

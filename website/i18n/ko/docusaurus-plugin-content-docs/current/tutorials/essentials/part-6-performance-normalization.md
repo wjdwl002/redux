@@ -2,7 +2,6 @@
 id: part-6-performance-normalization
 title: 'Redux 핵심, Part 6: Performance and Normalizing Data'
 sidebar_label: 'Performance and Normalizing Data'
-hide_title: true
 description: 'The official Redux 핵심 튜토리얼: learn how to improve app performance and structure data correctly'
 ---
 

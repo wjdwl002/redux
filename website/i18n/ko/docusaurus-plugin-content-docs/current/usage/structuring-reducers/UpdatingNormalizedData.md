@@ -2,7 +2,6 @@
 id: updating-normalized-data
 title: 정규화된 데이터 업데이트하기
 description: '리듀서 구조 잡기 > 정규화된 데이터 업데이트하기: Patterns for updating normalized data'
-hide_title: true
 ---
 
 &nbsp;

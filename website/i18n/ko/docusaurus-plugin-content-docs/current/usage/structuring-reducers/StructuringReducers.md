@@ -2,7 +2,6 @@
 id: structuring-reducers
 title: 리듀서 구조 잡기
 description: '리듀서 구조 잡기 > Intro: overview and contents'
-hide_title: true
 ---
 
 &nbsp;

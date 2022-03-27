@@ -2,10 +2,7 @@
 id: three-principles
 title: 3가지 원칙
 description: '소개 > 3가지 원칙: Redux 사용의 3가지 중요 원칙'
-hide_title: true
 ---
-
-&nbsp;
 
 # 3가지 원칙
 
@@ -18,18 +15,23 @@ Redux의 기초를 이루는 원칙들은 다음과 같습니다.
 이를 통해 범용적인 애플리케이션(universal application, 하나의 코드 베이스로 다양한 환경에서 실행 가능한 코드)을 만들기 쉽게 만들 수 있습니다. 서버로부터 가져온 상태는 시리얼라이즈되거나(serialized) 수화되어(hydrated) 전달되며 클라이언트에서 추가적인 코딩 없이도 사용할 수 있습니다. 또한 하나의 상태 트리만을 가지고 있기 때문에 디버깅에도 용이할 것입니다. 빠른 개발 사이클을 위해 개발중인 애플리케이션의 상태를 저장해놓을 수도 있습니다. 하나의 상태 트리만을 가지고 있기 때문에 이전에는 굉장히 구현하기 어려웠던 기능인 실행취소/다시실행(undo/redo)을 손쉽게 구현할 수 있습니다.
 
 ```js
-console.log(store.getState());
+console.log(store.getState())
 
+/* Prints
 {
   visibilityFilter: 'SHOW_ALL',
-  todos: [{
-    text: 'Consider using Redux',
-    completed: true,
-  }, {
-    text: 'Keep all state in a single tree',
-    completed: false
-  }]
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true,
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
 }
+*/
 ```
 
 ### 상태는 읽기 전용이다
@@ -77,21 +79,22 @@ function todos(state = [], action) {
         }
       ]
     case 'COMPLETE_TODO':
-      return [
-        ...state.slice(0, action.index),
-        Object.assign({}, state[action.index], {
-          completed: true
-        }),
-        ...state.slice(action.index + 1)
-      ]
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            completed: true
+          })
+        }
+        return todo
+      })
     default:
       return state
   }
 }
 
 import { combineReducers, createStore } from 'redux'
-let reducer = combineReducers({ visibilityFilter, todos })
-let store = createStore(reducer)
+const reducer = combineReducers({ visibilityFilter, todos })
+const store = createStore(reducer)
 ```
 
 이게 전부입니다. Redux가 무엇인지에 대해서 전부 배웠습니다.

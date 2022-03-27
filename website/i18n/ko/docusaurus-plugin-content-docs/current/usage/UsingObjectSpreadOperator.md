@@ -1,7 +1,6 @@
 ---
 id: using-object-spread-operator
 title: 객체 확산 연산자 사용하기
-hide_title: true
 ---
 
 &nbsp;

@@ -1,7 +1,6 @@
 ---
 id: troubleshooting
 title: 문제해결
-hide_title: true
 ---
 
 &nbsp;

@@ -2,7 +2,6 @@
 id: part-1-overview
 title: 'Redux 기반, Part 1: Redux Overview'
 sidebar_label: 'Redux Overview'
-hide_title: true
 description: 'The official Fundamentals tutorial for Redux: learn the fundamentals of using Redux'
 ---
 

@@ -2,7 +2,6 @@
 id: part-7-standard-patterns
 title: 'Redux 기반, Part 7: Standard Redux Patterns'
 sidebar_label: 'Standard Redux Patterns'
-hide_title: true
 description: 'The official Fundamentals tutorial for Redux: learn the standard patterns used in real-world Redux apps'
 ---
 

@@ -2,7 +2,6 @@
 id: reusing-reducer-logic
 title: 리듀서 로직 재사용하기
 description: '리듀서 구조 잡기 > 리듀서 로직 재사용하기: Patterns for creating reusable reducers'
-hide_title: true
 ---
 
 &nbsp;

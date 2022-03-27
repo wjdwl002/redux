@@ -1,10 +1,7 @@
 ---
 id: glossary
 title: 용어집
-hide_title: true
 ---
-
-&nbsp;
 
 # 용어집
 

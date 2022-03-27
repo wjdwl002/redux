@@ -2,10 +2,7 @@
 id: ecosystem
 title: 생태계
 description: '소개 > 생태계: Redux와 관련된 인기있거나, 추천하거나, 흥미로운 라이브러리들의 링크'
-hide_title: true
 ---
-
-&nbsp;
 
 # 생태계
 
@@ -319,7 +316,7 @@ const nextState = produce(baseState, draftState => {
 
 #### Widely Used
 
-**[gaearon/redux-thunk](https://github.com/gaearon/redux-thunk)** <br />
+**[reduxjs/redux-thunk](https://github.com/reduxjs/redux-thunk)** <br />
 Dispatch functions, which are called and given `dispatch` and `getState` as parameters. This acts as a loophole for AJAX calls and other async behavior.
 
 **Best for**: getting started, simple async and complex synchronous logic.
@@ -686,7 +683,7 @@ Makes integration and unit testing of sagas a breeze
 ## Routing
 
 **[supasate/connected-react-router](https://github.com/supasate/connected-react-router)**
-Synchronize React Router 4 state with your Redux store.
+Synchronize React Router v4+ state with your Redux store.
 
 **[faceyspacey/redux-first-router](https://github.com/faceyspacey/redux-first-router)** <br />
 Seamless Redux-first routing. Think of your app in states, not routes, not components, while keeping the address bar in sync. Everything is state. Connect your components and just dispatch flux standard actions.

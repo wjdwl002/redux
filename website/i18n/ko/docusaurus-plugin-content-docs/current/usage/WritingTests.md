@@ -1,11 +1,8 @@
 ---
 id: writing-tests
 title: Writing Tests
-hide_title: true
-description: 'Recipes > Writing Tests: recommended practices and setup for testing Redux apps'
+description: 'Usage > Writing Tests: recommended practices and setup for testing Redux apps'
 ---
-
-&nbsp;
 
 # Writing Tests
 
@@ -22,7 +19,7 @@ The guiding principles for testing Redux logic closely follow that of React Test
 
 > [The more your tests resemble the way your software is used, the more confidence they can give you.](https://twitter.com/kentcdodds/status/977018512689455106) - Kent C. Dodds
 
-Because most of the Redux code you write are functions, and many of them are pure, they are easy to test without mocking. However, you should consider whether each piece of your Redux code needs it's own dedicated tests. In the majority of scenarios, the end-user does not know, and does not care whether Redux is used within the application at all. As such, the Redux code can be treated as an implementation detail of the app, without requiring explicit tests for the Redux code in many circumstances.
+Because most of the Redux code you write are functions, and many of them are pure, they are easy to test without mocking. However, you should consider whether each piece of your Redux code needs its own dedicated tests. In the majority of scenarios, the end-user does not know, and does not care whether Redux is used within the application at all. As such, the Redux code can be treated as an implementation detail of the app, without requiring explicit tests for the Redux code in many circumstances.
 
 The general advice for testing an app using Redux is as follows:
 
@@ -84,7 +81,7 @@ In Redux, action creators are functions which return plain objects. Our recommen
 
 The return value of action creators is considered an implementation detail within your application, and when following an integration testing style, do not need explicit tests.
 
-Similarly for thunks using [Redux Thunk](https://github.com/gaearon/redux-thunk), our recommendation is not to write them manually, but instead use [`createAsyncThunk`](https://redux-toolkit.js.org/api/createAsyncThunk) from [`@reduxjs/toolkit`](https://redux-toolkit.js.org/introduction/getting-started). The thunk handles dispatching the appropriate `pending`, `fulfilled` and `rejected` action types for you based on the lifecycle of the thunk.
+Similarly for thunks using [Redux Thunk](https://github.com/reduxjs/redux-thunk), our recommendation is not to write them manually, but instead use [`createAsyncThunk`](https://redux-toolkit.js.org/api/createAsyncThunk) from [`@reduxjs/toolkit`](https://redux-toolkit.js.org/introduction/getting-started). The thunk handles dispatching the appropriate `pending`, `fulfilled` and `rejected` action types for you based on the lifecycle of the thunk.
 
 We consider thunk behavior to be an implementation detail of the application, and recommend that it be covered by testing the group of components (or whole app) using it, rather than testing the thunk in isolation.
 
@@ -105,7 +102,7 @@ Because reducers are pure functions, testing them should be straightforward. Cal
 #### Example
 
 ```js
-import { createReducer } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = [
   {
@@ -358,7 +355,7 @@ Middleware functions wrap behavior of `dispatch` calls in Redux, so to test this
 
 #### Example
 
-First, we'll need a middleware function. This is similar to the real [redux-thunk](https://github.com/gaearon/redux-thunk/blob/master/src/index.js).
+First, we'll need a middleware function. This is similar to the real [redux-thunk](https://github.com/reduxjs/redux-thunk/blob/master/src/index.ts).
 
 ```js
 const thunk =
@@ -373,7 +370,7 @@ const thunk =
   }
 ```
 
-We need to create a fake `getState`, `dispatch`, and `next` functions. We use `jest.fn()` to create stubs, but with other test frameworks you would likely use [Sinon](https://sinonjs.org/).
+We need to create fake `getState`, `dispatch`, and `next` functions. We use `jest.fn()` to create stubs, but with other test frameworks you would likely use [Sinon](https://sinonjs.org/).
 
 The invoke function runs our middleware in the same way Redux does.
 

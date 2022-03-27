@@ -2,10 +2,7 @@
 id: prior-art
 title: 기존 기술
 description: '소개 > 기존 기술: Redux의 디자인에 끼친 영향'
-hide_title: true
 ---
-
-&nbsp;
 
 # 기존 기술
 
@@ -27,7 +24,7 @@ Flux와 또 다른 중요한 차이점은 **Redux는 당신이 결코 데이터�
 
 ### Elm
 
-[Elm](http://elm-lang.org/)은 [Evan Czaplicki](https://twitter.com/czaplic)이 Haskell에서 영감을 받아 만든 함수형 프로그래밍 언어입니다. Elm은 업데이트가 `(state, action) => state` 시그니처를 따르도록 하는 [“모델 뷰 업데이트” 아키텍처](https://github.com/evancz/elm-architecture-tutorial/)을 강제합니다. 엄밀히 말해 Elm의 업데이터(updater)와 Redux의 리듀서(reducer)는 같습니다.
+[Elm](https://elm-lang.org/)은 [Evan Czaplicki](https://twitter.com/czaplic)이 Haskell에서 영감을 받아 만든 함수형 프로그래밍 언어입니다. Elm은 업데이트가 `(state, action) => state` 시그니처를 따르도록 하는 [“모델 뷰 업데이트” 아키텍처](https://github.com/evancz/elm-architecture-tutorial/)을 강제합니다. 엄밀히 말해 Elm의 업데이터(updater)와 Redux의 리듀서(reducer)는 같습니다.
 
 하지만 Redux와 달리 Elm은 언어입니다. 따라서 강제된 순수성, 정적 타입, 뛰어난 불변성과 (`case` 표현식을 활용한) 패턴 매칭 등 다양한 장점을 누릴 수 있습니다. Elm을 사용할 계획이 없더라도 Elm의 아키텍처를 공부하거나 가지고 놀아보기를 권합니다. [비슷한 아이디어를 구현해둔 흥미로운 자바스크립트 라이브러리 플레이그라운드](https://github.com/paldepind/noname-functional-frontend-framework)도 있습니다. Redux가 어디서 영감을 받았는 지 찾을 수 있습니다. Elm의 정적 타입에 가까워질 수 있는 한 가지 방법은 [Flow와 같은 점진적인 타입(gradual typing) 솔루션](https://github.com/rackt/redux/issues/290)을 사용하는 것입니다.
 

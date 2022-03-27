@@ -2,7 +2,6 @@
 id: initializing-state
 title: 상태 초기화하기
 description: '리듀서 구조 잡기 > 상태 초기화하기: How Redux state is initialized'
-hide_title: true
 ---
 
 &nbsp;

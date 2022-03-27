@@ -1,10 +1,8 @@
 ---
 id: immutable-data
 title: Immutable Data
-hide_title: true
+sidebar_label: Immutable Data
 ---
-
-&nbsp;
 
 # Redux FAQ: Immutable Data
 
@@ -45,8 +43,9 @@ In particular, immutability in the context of a Web app enables sophisticated ch
 
 ## Why is immutability required by Redux?
 
-- Both Redux and React-Redux employ [shallow equality checking](#shallow-and-deep-equality-checking). In particular: - Redux's `combineReducers` utility [shallowly checks for reference changes](#how-redux-uses-shallow-checking) caused by the reducers that it calls. - React-Redux's `connect` method generates components that [shallowly check reference changes to the root state](#how-react-redux-uses-shallow-checking), and the return values from the `mapStateToProps` function to see if the wrapped components actually need to re-render.
-  Such [shallow checking requires immutability](#redux-shallow-checking-requires-immutability) to function correctly.
+- Both Redux and React-Redux employ [shallow equality checking](#how-do-shallow-and-deep-equality-checking-differ). In particular:
+  - Redux's `combineReducers` utility [shallowly checks for reference changes](#how-does-redux-use-shallow-equality-checking) caused by the reducers that it calls.
+  - React-Redux's `connect` method generates components that [shallowly check reference changes to the root state](#how-does-react-redux-use-shallow-equality-checking), and the return values from the `mapStateToProps` function to see if the wrapped components actually need to re-render. Such [shallow checking requires immutability](#why-will-shallow-equality-checking-not-work-with-mutable-objects) to function correctly.
 - Immutable data management ultimately makes data handling safer.
 - Time-travel debugging requires that reducers be pure functions with no side effects, so that you can correctly jump between different states.
 
@@ -54,7 +53,7 @@ In particular, immutability in the context of a Web app enables sophisticated ch
 
 **Documentation**
 
-- [Recipes: Prerequisite Reducer Concepts](../usage/structuring-reducers/PrerequisiteConcepts.md)
+- [Using Redux: Prerequisite Reducer Concepts](../usage/structuring-reducers/PrerequisiteConcepts.md)
 
 **Discussions**
 
@@ -276,7 +275,7 @@ The store will still be updated with the new values for the root state, but beca
 
 **Documentation**
 
-- [Recipes: Immutable Update Patterns](../usage/structuring-reducers/ImmutableUpdatePatterns.md)
+- [Using Redux: Immutable Update Patterns](../usage/structuring-reducers/ImmutableUpdatePatterns.md)
 - [Troubleshooting: Never mutate reducer arguments](../usage/Troubleshooting.md#never-mutate-reducer-arguments)
 
 ### Why does a reducer mutating the state prevent React-Redux from re-rendering a wrapped component?

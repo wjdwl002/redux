@@ -2,7 +2,6 @@
 id: part-2-app-structure
 title: 'Redux 핵심, Part 2: Redux App Structure'
 sidebar_label: 'Redux App Structure'
-hide_title: true
 description: 'The official Redux 핵심 튜토리얼: learn the structure of a typical React + Redux app'
 ---
 

@@ -2,7 +2,6 @@
 id: getting-started
 title: Redux 시작하기
 description: '소개 > 시작하기: Redux를 배우고 사용하기 위한 자료'
-hide_title: true
 ---
 
 &nbsp;

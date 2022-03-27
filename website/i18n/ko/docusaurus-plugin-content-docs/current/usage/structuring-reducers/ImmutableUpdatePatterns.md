@@ -2,7 +2,6 @@
 id: immutable-update-patterns
 title: 불변 업데이트 패턴
 description: '리듀서 구조 잡기 > 불변 업데이트 패턴: How to correctly update state immutably, with examples of common mistakes'
-hide_title: true
 ---
 
 &nbsp;

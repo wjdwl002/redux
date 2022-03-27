@@ -1,10 +1,7 @@
 ---
 id: server-rendering
 title: Server Rendering
-hide_title: true
 ---
-
-&nbsp;
 
 # Server Rendering
 
@@ -127,7 +124,7 @@ function renderFullPage(html, preloadedState) {
         <div id="root">${html}</div>
         <script>
           // WARNING: See the following for security issues around embedding JSON in HTML:
-          // https://redux.js.org/usage/server-rendering/#security-considerations
+          // https://redux.js.org/usage/server-rendering#security-considerations
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
             /</g,
             '\\u003c'
@@ -156,14 +153,11 @@ import { Provider } from 'react-redux'
 import App from './containers/App'
 import counterApp from './reducers'
 
-// Grab the state from a global variable injected into the server-generated HTML
-const preloadedState = window.__PRELOADED_STATE__
+// Create Redux store with state injected by the server
+const store = createStore(counterApp, window.__PRELOADED_STATE__)
 
 // Allow the passed state to be garbage-collected
 delete window.__PRELOADED_STATE__
-
-// Create Redux store with initial state
-const store = createStore(counterApp, preloadedState)
 
 hydrate(
   <Provider store={store}>
@@ -181,6 +175,12 @@ And that's it! That is all we need to do to implement server side rendering.
 
 But the result is pretty vanilla. It essentially renders a static view from dynamic code. What we need to do next is build an initial state dynamically to allow that rendered view to be dynamic.
 
+:::info
+
+We recommend passing `window.__PRELOADED_STATE__` directly to `createStore` and avoid creating additional references to the preloaded state (e.g. `const preloadedState = window.__PRELOADED_STATE__`) so that it can be garbage collected.
+
+:::
+
 ## Preparing the Initial State
 
 Because the client side executes ongoing code, it can start with an empty initial state and obtain any necessary state on demand and over time. On the server side, rendering is synchronous and we only get one shot to render our view. We need to be able to compile our initial state during the request, which will have to react to input and obtain external state (such as that from an API or database).
@@ -189,7 +189,7 @@ Because the client side executes ongoing code, it can start with an empty initia
 
 The only input for server side code is the request made when loading up a page in your app in your browser. You may choose to configure the server during its boot (such as when you are running in a development vs. production environment), but that configuration is static.
 
-The request contains information about the URL requested, including any query parameters, which will be useful when using something like [React Router](https://github.com/ReactTraining/react-router). It can also contain headers with inputs like cookies or authorization, or POST body data. Let's see how we can set the initial counter state based on a query parameter.
+The request contains information about the URL requested, including any query parameters, which will be useful when using something like [React Router](https://github.com/remix-run/react-router). It can also contain headers with inputs like cookies or authorization, or POST body data. Let's see how we can set the initial counter state based on a query parameter.
 
 #### `server.js`
 
@@ -303,4 +303,4 @@ Furthermore, you can add additional layers of security by sanitizing your state 
 
 You may want to read [Redux 기반 Part 6: Async Logic and Data Fetching](../tutorials/fundamentals/part-6-async-logic.md) to learn more about expressing asynchronous flow in Redux with async primitives such as Promises and thunks. Keep in mind that anything you learn there can also be applied to universal rendering.
 
-If you use something like [React Router](https://github.com/ReactTraining/react-router), you might also want to express your data fetching dependencies as static `fetchData()` methods on your route handler components. They may return [thunks](../tutorials/fundamentals/part-6-async-logic.md), so that your `handleRender` function can match the route to the route handler component classes, dispatch `fetchData()` result for each of them, and render only after the Promises have resolved. This way the specific API calls required for different routes are colocated with the route handler component definitions. You can also use the same technique on the client side to prevent the router from switching the page until its data has been loaded.
+If you use something like [React Router](https://github.com/remix-run/react-router), you might also want to express your data fetching dependencies as static `fetchData()` methods on your route handler components. They may return [thunks](../tutorials/fundamentals/part-6-async-logic.md), so that your `handleRender` function can match the route to the route handler component classes, dispatch `fetchData()` result for each of them, and render only after the Promises have resolved. This way the specific API calls required for different routes are colocated with the route handler component definitions. You can also use the same technique on the client side to prevent the router from switching the page until its data has been loaded.

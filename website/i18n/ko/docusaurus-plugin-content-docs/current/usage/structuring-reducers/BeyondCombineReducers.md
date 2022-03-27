@@ -2,7 +2,6 @@
 id: beyond-combinereducers
 title: combineReducers 더 알아보기
 description: '리듀서 구조 잡기 > combineReducers 더 알아보기: Examples of reducer logic for other use cases not handled by combineReducers'
-hide_title: true
 ---
 
 &nbsp;

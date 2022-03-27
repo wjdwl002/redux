@@ -2,7 +2,6 @@
 id: prerequisite-concepts
 title: 사전에 요구되는 개념들
 description: '리듀서 구조 잡기 > 사전에 요구되는 개념들: Key concepts to understand when using Redux'
-hide_title: true
 ---
 
 &nbsp;
@@ -44,8 +43,8 @@ hide_title: true
 - [리덕스 도큐먼트: 실행취소 구현하기](../ImplementingUndoHistory.md)
 - [리덕스 도큐먼트: `combineReducers`](../../api/combineReducers.md)
 - [고차 리듀서의 힘](http://slides.com/omnidan/hor#/)
-- [스택 오버플로우: 초기 상태 저장과 `combineReducers`](http://stackoverflow.com/questions/33749759/read-stores-initial-state-in-redux-reducer)
-- [스택 오버플로우: 상태 키 이름과 `combineReducers`](http://stackoverflow.com/questions/35667775/state-in-redux-react-app-has-a-property-with-the-name-of-the-reducer)
+- [스택 오버플로우: 초기 상태 저장과 `combineReducers`](https://stackoverflow.com/questions/33749759/read-stores-initial-state-in-redux-reducer)
+- [스택 오버플로우: 상태 키 이름과 `combineReducers`](https://stackoverflow.com/questions/35667775/state-in-redux-react-app-has-a-property-with-the-name-of-the-reducer)
 
 #### 순수함수와 사이드이펙트
 

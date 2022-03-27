@@ -2,10 +2,7 @@
 id: examples
 title: 예제
 description: '소개 > 예제: Redux 인터렉티브 예제'
-hide_title: true
 ---
-
-&nbsp;
 
 # 예제
 

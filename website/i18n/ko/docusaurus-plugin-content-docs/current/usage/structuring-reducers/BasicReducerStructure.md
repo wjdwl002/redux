@@ -2,10 +2,7 @@
 id: basic-reducer-structure
 title: 기본 리듀서 구조
 description: '리듀서 구조 잡기 > 기본 리듀서 구조: Overview of how reducer functions work with Redux state'
-hide_title: true
 ---
-
-&nbsp;
 
 # 기본 리듀서 구조와 상태의 형태
 

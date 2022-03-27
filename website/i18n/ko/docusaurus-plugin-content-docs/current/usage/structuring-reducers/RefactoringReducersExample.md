@@ -2,7 +2,6 @@
 id: refactoring-reducer-example
 title: 리듀서 리팩토링하기 예제
 description: '리듀서 구조 잡기 > 리듀서 리팩토링하기: Examples of ways to refactor reducer logic'
-hide_title: true
 ---
 
 &nbsp;

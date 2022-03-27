@@ -1,10 +1,8 @@
 ---
 id: performance
 title: Performance
-hide_title: true
+sidebar_label: Performance
 ---
-
-&nbsp;
 
 # Redux FAQ: Performance
 
@@ -44,7 +42,7 @@ As for architecture, anecdotal evidence is that Redux works well for varying pro
 
 **Documentation**
 
-- [Recipes: Structuring Reducers - Normalizing State Shape](../usage/structuring-reducers/NormalizingStateShape.md)
+- [Using Redux: Structuring Reducers - Normalizing State Shape](../usage/structuring-reducers/NormalizingStateShape.md)
 
 **Articles**
 
@@ -105,8 +103,8 @@ However, you _do_ need to create a copied and updated object for each level of n
 
 **Documentation**
 
-- [Recipes: Structuring Reducers - Prerequisite Concepts](../usage/structuring-reducers/PrerequisiteConcepts.md)
-- [Recipes: Structuring Reducers - Immutable Update Patterns](../usage/structuring-reducers/ImmutableUpdatePatterns.md)
+- [Using Redux: Structuring Reducers - Prerequisite Concepts](../usage/structuring-reducers/PrerequisiteConcepts.md)
+- [Using Redux: Structuring Reducers - Immutable Update Patterns](../usage/structuring-reducers/ImmutableUpdatePatterns.md)
 
 **Discussions**
 

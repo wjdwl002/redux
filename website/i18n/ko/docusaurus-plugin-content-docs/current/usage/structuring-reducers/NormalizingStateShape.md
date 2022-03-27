@@ -2,7 +2,6 @@
 id: normalizing-state-shape
 title: 상태 정규화하기
 description: '리듀서 구조 잡기 > 상태 정규화하기: Why and how to store data items for lookup based on ID'
-hide_title: true
 ---
 
 &nbsp;

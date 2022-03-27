@@ -1,16 +1,14 @@
 ---
 id: configuring-your-store
 title: Configuring Your Store
-hide_title: true
+sidebar_label: Configuring Your Store
 ---
-
-&nbsp;
 
 # Configuring Your Store
 
 In the ["Redux 기반" 튜토리얼](../tutorials/fundamentals/part-1-overview.md), we introduced the fundamental Redux concepts by building an example Todo list app. As part of that, we talked about [how to create and configure a Redux store](../tutorials/fundamentals/part-4-store.md).
 
-We will now explore how to customise the store to add extra functionality. We'll start with the source code from ["Redux 기반" part 5: UI and React](../tutorials/fundamentals/part-5-ui-and-react.md). You can view the source from this stage of the tutorial in [the example app repository on Github](https://github.com/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions), or [in your browser via CodeSandbox](https://codesandbox.io/s/github/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions/).
+We will now explore how to customise the store to add extra functionality. We'll start with the source code from ["Redux Fundamentals" part 5: UI and React](../tutorials/fundamentals/part-5-ui-and-react.md). You can view the source from this stage of the tutorial in [the example app repository on Github](https://github.com/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions), or [in your browser via CodeSandbox](https://codesandbox.io/s/github/reduxjs/redux-fundamentals-example-app/tree/checkpoint-5-uiAllActions/).
 
 ## Creating the store
 
@@ -74,24 +72,21 @@ export default logger
 ```js
 const round = number => Math.round(number * 100) / 100
 
-const monitorReducerEnhancer = createStore => (
-  reducer,
-  initialState,
-  enhancer
-) => {
-  const monitoredReducer = (state, action) => {
-    const start = performance.now()
-    const newState = reducer(state, action)
-    const end = performance.now()
-    const diff = round(end - start)
+const monitorReducerEnhancer =
+  createStore => (reducer, initialState, enhancer) => {
+    const monitoredReducer = (state, action) => {
+      const start = performance.now()
+      const newState = reducer(state, action)
+      const end = performance.now()
+      const diff = round(end - start)
 
-    console.log('reducer process time:', diff)
+      console.log('reducer process time:', diff)
 
-    return newState
+      return newState
+    }
+
+    return createStore(monitoredReducer, initialState, enhancer)
   }
-
-  return createStore(monitoredReducer, initialState, enhancer)
-}
 
 export default monitorReducerEnhancer
 ```
@@ -206,7 +201,7 @@ This also makes our `createStore` function easier to reason about - each step is
 
 Another common feature which you may wish to add to your app is the `redux-devtools-extension` integration.
 
-The extension is a suite of tools which give you absolute control over your Redux store - it allows you to inspect and replay actions, explore your state at different times, dispatch actions directly to the store, and much more. [Click here to read more about the available features.](https://github.com/zalmoxisus/redux-devtools-extension)
+The extension is a suite of tools which give you absolute control over your Redux store - it allows you to inspect and replay actions, explore your state at different times, dispatch actions directly to the store, and much more. [Click here to read more about the available features.](https://github.com/reduxjs/redux-devtools/tree/main/extension)
 
 There are several ways to integrate the extension, but we will use the most convenient option.
 

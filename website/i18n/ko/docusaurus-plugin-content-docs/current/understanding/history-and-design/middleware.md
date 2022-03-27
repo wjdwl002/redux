@@ -2,7 +2,6 @@
 id: middleware
 title: Middleware
 description: '역사와 설계 > Middleware: How middleware enable adding additional capabilities to the Redux store'
-hide_title: true
 ---
 
 &nbsp;
