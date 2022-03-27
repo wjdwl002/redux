@@ -5,8 +5,6 @@ sidebar_label: 'Async Logic and Data Fetching'
 description: 'The official Redux 기반 튜토리얼: learn how to use async logic with Redux'
 ---
 
-&nbsp;
-
 # Redux 기반, Part 6: Async Logic and Data Fetching
 
 :::tip What You'll Learn

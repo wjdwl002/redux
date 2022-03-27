@@ -5,8 +5,6 @@ sidebar_label: 'Async Logic and Data Fetching'
 description: 'The official Redux 핵심 튜토리얼: learn how async logic works in Redux apps'
 ---
 
-&nbsp;
-
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 # Redux 핵심, Part 5: Async Logic and Data Fetching

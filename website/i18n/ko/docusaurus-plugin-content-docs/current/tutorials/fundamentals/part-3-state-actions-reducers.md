@@ -5,8 +5,6 @@ sidebar_label: 'State, Actions, and Reducers'
 description: 'The official Redux 기반 튜토리얼: learn how reducers update state in response to actions'
 ---
 
-&nbsp;
-
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 # Redux 기반, Part 3: State, Actions, and Reducers

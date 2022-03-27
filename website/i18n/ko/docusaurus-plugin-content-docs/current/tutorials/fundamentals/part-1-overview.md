@@ -5,8 +5,6 @@ sidebar_label: 'Redux Overview'
 description: 'The official Fundamentals tutorial for Redux: learn the fundamentals of using Redux'
 ---
 
-&nbsp;
-
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 # Redux 기반, Part 1: Redux Overview

@@ -4,8 +4,6 @@ title: 사전에 요구되는 개념들
 description: '리듀서 구조 잡기 > 사전에 요구되는 개념들: Key concepts to understand when using Redux'
 ---
 
-&nbsp;
-
 # 사전에 요구되는 개념들
 
 ["Redux 기반" Part 3: State, Actions, and Reducers](../../tutorials/fundamentals/part-3-state-actions-reducers.md)에서 설명한 것처럼 리덕스의 리듀서는 함수입니다:

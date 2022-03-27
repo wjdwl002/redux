@@ -25,3 +25,14 @@ The [**Quick Start** page](./quick-start.md) briefly shows the basics of setting
 ** [Redux 핵심 튜토리얼](./essentials/part-1-overview-concepts)부터 시작하기를 권장합니다 **. 여러분이 Redux를 사용해서 실제 애플리케이션을 작성하기 위해 알아야 할 요점들을 포함하고 있기 때문입니다.
 
 :::
+
+## Additional Resources
+
+### Learn Modern Redux Livestream
+
+Redux maintainer Mark Erikson appeared on the "Learn with Jason" show to explain how we recommend using Redux today. The show includes a live-coded example app that shows how to use Redux Toolkit and React-Redux hooks with Typescript, as well as the new RTK Query data fetching APIs:
+
+<LiteYouTubeEmbed
+    id="9zySeP5vH9c"
+    title="Learn Modern Redux - Redux Toolkit, React-Redux Hooks, and RTK Query"
+/>

@@ -4,8 +4,6 @@ title: combineReducers 사용하기
 description: '리듀서 구조 잡기 > combineReducers 사용하기: Explanations of how combineReducers works in practice'
 ---
 
-&nbsp;
-
 # `combineReducers`사용하기
 
 ## 핵심 개념

@@ -3,8 +3,6 @@ id: faq
 title: FAQ 색인
 ---
 
-&nbsp;
-
 # Redux FAQ
 
 ## 목차

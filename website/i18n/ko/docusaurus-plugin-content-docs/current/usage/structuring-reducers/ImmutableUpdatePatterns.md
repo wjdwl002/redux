@@ -4,8 +4,6 @@ title: 불변 업데이트 패턴
 description: '리듀서 구조 잡기 > 불변 업데이트 패턴: How to correctly update state immutably, with examples of common mistakes'
 ---
 
-&nbsp;
-
 # 불변 업데이트 패턴
 
 [사전에 요구되는 개념들#불변객체관리](PrerequisiteConcepts.md#immutable-data-management)에서 소개된 글들은 객체의 필드를 업데이트하거나 배열의 끝에 항목을 추가한다던지하는, 불변객체를 관리하는 기본적인 방법들의 좋은 예를 제공합니다. 하지만 가끔 리듀서가 복잡한 작업을 수행하기 위해 여러 기본적인 것들을 조합해서 사용해야 할 수 있습니다. 여기서는 일반적으로 구현해야 하는 작업의 예를 보여줍니다.

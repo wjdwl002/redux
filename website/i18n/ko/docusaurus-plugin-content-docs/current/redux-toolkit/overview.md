@@ -4,8 +4,6 @@ title: 'Redux Toolkit: 개요'
 description: 'Redux Toolkit은 Redux 로직 작성을 위해 권장하는 방법입니다'
 ---
 
-&nbsp;
-
 ## Redux Toolkit이 뭐죠?
 
 **[Redux Toolkit](https://redux-toolkit.js.org)**은 효율적인 Redux 개발을 위한 저희의 견해를 반영한, 이것만으로도 작동하는 도구 모음입니다. Redux Toolkit은 Redux 로직을 작성하기 위한 표준 방식이 되도록 만들어졌고, 사용하기를 강력히 추천드립니다.

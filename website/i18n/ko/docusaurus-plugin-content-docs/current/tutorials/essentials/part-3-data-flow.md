@@ -5,8 +5,6 @@ sidebar_label: 'Basic Redux Data Flow'
 description: 'The official Redux 핵심 튜토리얼: learn how data flows in a React + Redux app'
 ---
 
-&nbsp;
-
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
 # Redux 핵심, Part 3: Basic Redux Data Flow

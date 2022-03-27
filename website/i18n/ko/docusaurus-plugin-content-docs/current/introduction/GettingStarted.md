@@ -4,7 +4,8 @@ title: Redux 시작하기
 description: '소개 > 시작하기: Redux를 배우고 사용하기 위한 자료'
 ---
 
-&nbsp;
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 # Redux 시작하기
 

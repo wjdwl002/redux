@@ -3,8 +3,6 @@ id: troubleshooting
 title: 문제해결
 ---
 
-&nbsp;
-
 # 문제해결
 
 여기는 일반적인 문제들과 그 해결책들을 공유하는 곳입니다.

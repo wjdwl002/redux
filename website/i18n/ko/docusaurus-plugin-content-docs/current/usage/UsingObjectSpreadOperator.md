@@ -3,8 +3,6 @@ id: using-object-spread-operator
 title: 객체 확산 연산자 사용하기
 ---
 
-&nbsp;
-
 # 객체 확산 연산자 사용하기
 
 Redux 의 핵심 규칙 중 하나가 절대 state를 직접 변경하지 않는 것이기 때문에 새로운 값이 추가되거나 업데이트 된 객체를 복사하기 위해서 [`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)을 자주 사용하게 될 것입니다. 예를 들면, `todoApp` 에서 아래의 `Object.assign()`은 `visibilityFilter` 프로퍼티가 업데이트 된 새로운 `state` 객체를 리턴하기 위해 쓰였습니다.
