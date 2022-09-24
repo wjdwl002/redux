@@ -4,9 +4,9 @@ title: Core Concepts
 description: "Introduction > Core Concepts: A quick overview of Redux's key idea, reducer functions"
 ---
 
-# Core Concepts
+# 핵심 Concepts
 
-Imagine your app’s state is described as a plain object. For example, the state of a todo app might look like this:
+여러분 앱의 state가 평범한 object 형태로 정의되어있다고 생각해보세요. 예를들어, 투두 앱의 상태는 이런식으로 만들어질것입니다:
 
 ```js
 {
@@ -21,7 +21,7 @@ Imagine your app’s state is described as a plain object. For example, the stat
 }
 ```
 
-This object is like a “model” except that there are no setters. This is so that different parts of the code can’t change the state arbitrarily, causing hard-to-reproduce bugs.
+이 object는 setter가 없다는 것을 제외하고는 "model" 이랑 비슷합니다. 이렇게 되면 다른 부분의 코드에서는 이 state를 임의적으로 변경할 수 없고, 이는 재생산이 어렵다는 버그를 만듭니다.
 
 To change something in the state, you need to dispatch an action. An action is a plain JavaScript object (notice how we don’t introduce any magic?) that describes what happened. Here are a few example actions:
 
