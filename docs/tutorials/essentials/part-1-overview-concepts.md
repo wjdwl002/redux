@@ -7,15 +7,15 @@ description: 'The official Essentials tutorial for Redux: learn how to use Redux
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-:::tip What You'll Learn
+:::tip 배울 내용
 
-- What Redux is and why you might want to use it
-- Key Redux terms and concepts
-- How data flows through a Redux app
-
+- 리덕스가 무엇이고 왜 사용하는지
+- 핵심 리덕스 용어와 개념
+- 리덕스 앱에서 데이터가 어떻게 흘러가는지
+  
 :::
 
-## Introduction
+## 소개
 
 Welcome to the Redux Essentials tutorial! **This tutorial will introduce you to Redux and teach you how to use it the right way, using our latest recommended tools and best practices**. By the time you finish, you should be able to start building your own Redux applications using the tools and patterns you've learned here.
 
