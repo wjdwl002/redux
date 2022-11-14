@@ -1,109 +1,104 @@
 ---
 id: part-1-overview-concepts
-title: 'Redux 핵심, Part 1: Redux Overview and Concepts'
-sidebar_label: 'Redux Overview and Concepts'
-description: 'The official Essentials tutorial for Redux: learn how to use Redux, the right way'
+title: 'Redux 핵심, 파트 1: Redux 개요 및 개념'
+sidebar_label: 'Redux 개요 및 개념'
+description: 'Redux 공식 핵심 튜토리얼: Redux를 올바른 방향으로 사용하는 방법 배우기'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-# Redux 핵심, Part 1: Redux Overview and Concepts
+::: 팁 배울 내용
 
-:::tip What You'll Learn
+- 리덕스가 무엇이고 왜 사용하는지
+- 핵심 리덕스 용어와 개념
+- 리덕스 앱에서 데이터가 어떻게 흘러가는지
+  
+:::
 
-- What Redux is and why you might want to use it
-- Key Redux terms and concepts
-- How data flows through a Redux app
+## 소개
+
+Redux 핵심 튜토리얼에 오신 것을 환영합니다! **이 튜토리얼은 Redux를 소개하고, 최신 추천 툴과 최선의 방법으로 Redux를 올바르게 사용하는 방법에 대해 가르칩니다.** 이 강의를 끝낼 때 쯤이면, 여러분은 여기서 배운 툴들과 패턴으로 여러분만의 Redux 애플리케이션을 만들 수 있게 될거에요.
+
+이 튜토리얼 파트 1에서, 우리는 Redux를 사용하기 위해 알아야할 핵심 개념과 용어들을 살펴볼거고, [파트 2: Redux 앱 구조](./part-2-app-structure.md)에서는 각각의 조각이 어떻게 서로 끼워맞춰지는지 조사해볼거에요.
+
+[파트 3: 기본 Redux 데이터 흐름](./part-3-data-flow.md)에서부터는 이 지식을 사용해서 실세계의 기능들을 가진 작은 소셜 미디어 피드 앱을 만들어서 이 조각들이 실제적으로 어떻게 동작하는지 보고, Redux 사용에 있어서 중요한 패턴과 가이드라인들에 대해 이야기 해볼것입니다.
+### 튜토리얼
+
+이 페이지는 Redux를 _어떻게_ 올바르게 사용하는지 보여주는데 초점을 맞추고 Redux 앱을 빌드하는 방법에 대해 이해하기 위한 정도로 개념을 설명합니다. 
+
+초심자가 이해할 수 있게 설명하려고 노력하긴 했지만, 이 강의를 보기전에 알고 있을거라고 가정한 몇가지 사항들이 있습니다:
+
+:::중요 선행 지식
+
+- [HTML & CSS](https://internetingishard.com/)에 익숙할 것.
+- [ES6 문법 및 기능](https://www.taniarascia.com/es6-syntax-and-feature-overview/)에 익숙할것
+- React 용어들에 대한 지식: [JSX](https://reactjs.org/docs/introducing-jsx.html), [상태](https://reactjs.org/docs/state-and-lifecycle.html), [함수 컴포넌트, 프롭스](https://reactjs.org/docs/components-and-props.html), [훅](https://reactjs.org/docs/hooks-intro.html)
+- [자바스크립트 비동기처리](https://javascript.info/promise-basics) 와 [AJAX 요청](https://javascript.info/fetch)에 대한 지식
 
 :::
 
-## Introduction
+**만약 위의 토픽들에 익숙하지 않다면, 이것들을 조금 익힐 시간을 먼저 가진 뒤 다시 돌아와서 Redux를 배우는 것을 추천드려요**. 준비될때까지 기다릴게요!
 
-Welcome to the Redux 핵심 튜토리얼! **This tutorial will introduce you to Redux and teach you how to use it the right way, using our latest recommended tools and best practices**. By the time you finish, you should be able to start building your own Redux applications using the tools and patterns you've learned here.
+우선, 브라우저에 React와 Redux 개발자도구 확장프로그램을 설치해주세요:
 
-In Part 1 of this tutorial, we'll cover the key concepts and terms you need to know to use Redux, and in [Part 2: Redux App Structure](./part-2-app-structure.md) we'll examine a basic React + Redux app to see how the pieces fit together.
+- React 개발자도구 확장프로그램:
+  - [크롬 React 개발자도구 확장프로그램](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+  - [파이어폭스 React 개발자도구 확장프로그램](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+- Redux 개발자도구 확장프로그램:
+  - [크롬 Redux 개발자도구 확장프로그램](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+  - [파이어폭스 Redux 개발자도구 확장프로그램](https://addons.mozilla.org/en-US/firefox/addon/reduxdevtools/)
 
-Starting in [Part 3: Basic Redux Data Flow](./part-3-data-flow.md), we'll use that knowledge to build a small social media feed app with some real-world features, see how those pieces actually work in practice, and talk about some important patterns and guidelines for using Redux.
+## Redux는 무엇인가요?
 
-### How to Read This Tutorial
+우선 이 "Redux"가 무엇인지 이해하는게 도움이 될것입니다. 이것은 어떤 일을 할까요? 무슨 문제를 해결하는데 도움을 줄까요? 왜 이것을 사용할까요?
 
-This page will focus on showing you _how_ to use Redux the right way, and explain just enough of the concepts so that you can understand how to build Redux apps correctly.
+**Redux "액션"이라고 불리는 이벤트를 이용해, 애플리케이션 상태를 관리하고 업데이트하는 패턴이자 라이브러리입니다.** 이것은 전체 애플리케이션에 걸쳐 사용할 수 있고, 오직 예측가능한 방식으로만 상태가 업데이트 될수 있는 규칙들을 가진 중앙 집중식 스토어로 기능합니다.
+### Redux를 왜 사용해야하나요?
 
-We've tried to keep these explanations beginner-friendly, but we do need to make some assumptions about what you know already:
+Redux는 "전역"상태(애플리케이션의 여러 부분에서 사용될 필요가 있는 상태)를 관리하는데 도움을 줍니다.
 
-:::important Prerequisites
+**Redux가 제공하는 패턴과 도구들은 상태가 언제, 어디서, 왜, 어떻게 업데이트되고 있는지와 그 변경사항이 발생할때 애플리케이션 로직이 어떻게 대응할지 대해 쉽게 이해할 수 있게합니다.** Redux는 개발자가 예측가능하고 검증가능한 코드를 작성하도록하며, 이는 애플리케이션이 예상대로 동작할 것이라는 확신을  갖게합니다.
+### Redux를 언제 사용해야하나요?
 
-- Familiarity with [HTML & CSS](https://internetingishard.com/).
-- Familiarity with [ES6 syntax and features](https://www.taniarascia.com/es6-syntax-and-feature-overview/)
-- Knowledge of React terminology: [JSX](https://reactjs.org/docs/introducing-jsx.html), [State](https://reactjs.org/docs/state-and-lifecycle.html), [Function Components, Props](https://reactjs.org/docs/components-and-props.html), and [Hooks](https://reactjs.org/docs/hooks-intro.html)
-- Knowledge of [asynchronous JavaScript](https://javascript.info/promise-basics) and [making AJAX requests](https://javascript.info/fetch)
+Redux는 공유 상태 관리를 도와주지만, 다른 여느 도구들처럼 장단점이 있습니다. 배워야할 개념이 더 많아지고, 작성할 코드가 더 많아진다는 것입니다. 또한 Redux는 여러분의 코드에 몇몇 간접적인 영향을 주고, 특정한 제약사항을 따르라고 요구합니다. 이는 단기 및 장기 생산성 사이에서의 트레이드오프입니다.
 
-:::
+Redux는 이럴때 더 유용해요:
 
-**If you're not already comfortable with those topics, we encourage you to take some time to become comfortable with them first, and then come back to learn about Redux**. We'll be here when you're ready!
+- 애플리케이션의 여러곳에서 사용되는 상태가 많이 있을 때
+- 애플리케이션의 상태가 시간에 따라 자주 업데이트 될 때
+- 상태를 업데이트하는 로직이 복잡할 때
+- 앱이 중간 정도나 큰 사이즈의 코드베이스를 가지고, 많은 사람들이 함께 작업할 때
 
-You should make sure that you have the React and Redux DevTools extensions installed in your browser:
+**모든 애플리케이션이 Redux가 필요한 것은 아닙니다. 여러분이 빌드하려고 하는 앱이 어떤 종류인지 한번 생각해보고, 어떤 도구가 당신이 작업중인 문제사항을 해결하는데에 가장 최적의 도움을 줄지 결정해보세요.**
 
-- React DevTools Extension:
-  - [React DevTools Extension for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-  - [React DevTools Extension for Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
-- Redux DevTools Extension:
-  - [Redux DevTools Extension for Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
-  - [Redux DevTools Extension for Firefox](https://addons.mozilla.org/en-US/firefox/addon/reduxdevtools/)
+:::정보 더 알고싶으신가요?
 
-## What is Redux?
+만약 Redux가 당신의 앱에 대해 좋은 선택인지 잘 모르겠다면, 이 자료들을 참고해보세요:
 
-It helps to understand what this "Redux" thing is in the first place. What does it do? What problems does it help me solve? Why would I want to use it?
-
-**Redux is a pattern and library for managing and updating application state, using events called "actions".** It serves as a centralized store for state that needs to be used across your entire application, with rules ensuring that the state can only be updated in a predictable fashion.
-
-### Why Should I Use Redux?
-
-Redux helps you manage "global" state - state that is needed across many parts of your application.
-
-**The patterns and tools provided by Redux make it easier to understand when, where, why, and how the state in your application is being updated, and how your application logic will behave when those changes occur**. Redux guides you towards writing code that is predictable and testable, which helps give you confidence that your application will work as expected.
-
-### When Should I Use Redux?
-
-Redux helps you deal with shared state management, but like any tool, it has tradeoffs. There are more concepts to learn, and more code to write. It also adds some indirection to your code, and asks you to follow certain restrictions. It's a trade-off between short term and long term productivity.
-
-Redux is more useful when:
-
-- You have large amounts of application state that are needed in many places in the app
-- The app state is updated frequently over time
-- The logic to update that state may be complex
-- The app has a medium or large-sized codebase, and might be worked on by many people
-
-**Not all apps need Redux. Take some time to think about the kind of app you're building, and decide what tools would be best to help solve the problems you're working on.**
-
-:::info Want to Know More?
-
-If you're not sure whether Redux is a good choice for your app, these resources give some more guidance:
-
-- **[When (and when not) to reach for Redux](https://changelog.com/posts/when-and-when-not-to-reach-for-redux)**
-- **[The Tao of Redux, Part 1 - Implementation and Intent](https://blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-1/)**
-- **[Redux FAQ: When should I use Redux?](../../faq/General.md#when-should-i-use-redux)**
-- **[You Might Not Need Redux](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)**
+- **[Redux를 사용해야할(혹은 사용하지 말아야할) 때](https://changelog.com/posts/when-and-when-not-to-reach-for-redux)**
+- **[Redux의 도, 파트 1 - 구현과 의도](https://blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-1/)**
+- **[Redux 자주 묻는 질문들: 언제 Redux를 사용해야 하나요?](../../faq/General.md#when-should-i-use-redux)**
+- **[당신은 Redux가 필요하지 않을지도 모른다](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)**
 
 :::
 
-### Redux Libraries and Tools
+### Redux 라이브러리와 도구들
 
-Redux is a small standalone JS library. However, it is commonly used with several other packages:
+Redux 작은 독립적인 JS 라이브러입니다. 하지만 대체로는 다른 몇몇 패키지들과 함께 사용됩니다:
 
 #### React-Redux
 
-Redux can integrate with any UI framework, and is most frequently used with React. [**React-Redux**](https://react-redux.js.org/) is our official package that lets your React components interact with a Redux store by reading pieces of state and dispatching actions to update the store.
+Redux는 어떤 UI 프레임워크와도 통합될 수 있는데, React와 가장 자주 함께 사용됩니다. [**React-Redux**](https://react-redux.js.org/)는  공식 패키지로, 상태 조각을 읽고 스토어를 업데이트하기 위해 액션을 디스패치 함으로써 여러분의 React 컴포넌트가 Redux 스토어와 상호작용할 수 있게 합니다. 
 
 #### Redux Toolkit
 
-[**Redux Toolkit**](https://redux-toolkit.js.org) is our recommended approach for writing Redux logic. It contains packages and functions that we think are essential for building a Redux app. Redux Toolkit builds in our suggested best practices, simplifies most Redux tasks, prevents common mistakes, and makes it easier to write Redux applications.
+[**Redux Toolkit**](https://redux-toolkit.js.org)는 우리가 Redux 로직 작성을 위해 추천하는 접근법입니다. 이는 우리가 Redux 앱 제작에 필요하다고 생각한 패키지들과 함수들을 포함하고 있습니다. Redux Toolkit은 우리가 제한하는 최적의 방식으로 빌드되고, Redux의 많은 작업을 단순화하고, 흔한 실수들을 방지하고, Redux 애플리케이션을 더욱 쉽게 만들 수 있도록 합니다.
 
-#### Redux DevTools Extension
+#### Redux 개발자도구 확장프로그램
 
-The [**Redux DevTools Extension**](https://github.com/zalmoxisus/redux-devtools-extension) shows a history of the changes to the state in your Redux store over time. This allows you to debug your applications effectively, including using powerful techniques like "time-travel debugging".
+[**Redux 개발자도구 확장프로그램**](https://github.com/reduxjs/redux-devtools/tree/main/extension)은 Redux 저장소 내 상태들의 시간에 따른 변경사항 기록을 보여줍니다. 이는 "시간역행 디버깅"이라는 강력한 기술을 사용해 애플리케이션 디버깅을 더욱 효율적으로 할 수 있도록 합니다.
 
-## Redux Terms and Concepts
+## Redux 용어와 개념
 
 Before we dive into some actual code, let's talk about some of the terms and concepts you'll need to know to use Redux.
 

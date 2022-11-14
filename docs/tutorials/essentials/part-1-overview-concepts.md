@@ -1,23 +1,25 @@
 ---
 id: part-1-overview-concepts
-title: 'Redux Essentials, Part 1: Redux Overview and Concepts'
+title: 'Redux 핵심, Part 1: Redux Overview and Concepts'
 sidebar_label: 'Redux Overview and Concepts'
 description: 'The official Essentials tutorial for Redux: learn how to use Redux, the right way'
 ---
 
 import { DetailedExplanation } from '../../components/DetailedExplanation'
 
-:::tip 배울 내용
+# Redux 핵심, Part 1: Redux Overview and Concepts
 
-- 리덕스가 무엇이고 왜 사용하는지
-- 핵심 리덕스 용어와 개념
-- 리덕스 앱에서 데이터가 어떻게 흘러가는지
-  
+:::tip What You'll Learn
+
+- What Redux is and why you might want to use it
+- Key Redux terms and concepts
+- How data flows through a Redux app
+
 :::
 
-## 소개
+## Introduction
 
-Welcome to the Redux Essentials tutorial! **This tutorial will introduce you to Redux and teach you how to use it the right way, using our latest recommended tools and best practices**. By the time you finish, you should be able to start building your own Redux applications using the tools and patterns you've learned here.
+Welcome to the Redux 핵심 튜토리얼! **This tutorial will introduce you to Redux and teach you how to use it the right way, using our latest recommended tools and best practices**. By the time you finish, you should be able to start building your own Redux applications using the tools and patterns you've learned here.
 
 In Part 1 of this tutorial, we'll cover the key concepts and terms you need to know to use Redux, and in [Part 2: Redux App Structure](./part-2-app-structure.md) we'll examine a basic React + Redux app to see how the pieces fit together.
 
@@ -99,7 +101,7 @@ Redux can integrate with any UI framework, and is most frequently used with Reac
 
 #### Redux DevTools Extension
 
-The [**Redux DevTools Extension**](https://github.com/reduxjs/redux-devtools/tree/main/extension) shows a history of the changes to the state in your Redux store over time. This allows you to debug your applications effectively, including using powerful techniques like "time-travel debugging".
+The [**Redux DevTools Extension**](https://github.com/zalmoxisus/redux-devtools-extension) shows a history of the changes to the state in your Redux store over time. This allows you to debug your applications effectively, including using powerful techniques like "time-travel debugging".
 
 ## Redux Terms and Concepts
 
