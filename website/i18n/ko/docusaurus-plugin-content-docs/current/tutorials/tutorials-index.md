@@ -13,7 +13,7 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 ## Redux 공식 튜토리얼
 
-[**시작하기* 페이지](./quick-start.md)는 Redux Toolkit + React 애플리케이션 설정의 기본사항을 간단히 보여주고, [**타입스크립트 시작하기** 페이지](./typescript.md)는 타입스크립트를 이용한 Redux Toolkit과 React을 설정하는 방법을 알려줍니다.
+[**시작하기** 페이지](./quick-start.md)는 Redux Toolkit + React 애플리케이션 설정의 기본사항을 간단히 보여주고, [**타입스크립트 시작하기** 페이지](./typescript.md)는 타입스크립트를 이용한 Redux Toolkit과 React을 설정하는 방법을 알려줍니다.
 
 두 종류의 튜토리얼이 있습니다:
 
