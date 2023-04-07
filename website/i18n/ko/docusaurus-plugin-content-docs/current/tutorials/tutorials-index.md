@@ -28,7 +28,7 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 ## 추가 자료
 
-### 모던 Redux 라이브스트림 배우기
+### 모던 Redux 배우기 라이브스트림 
 
 아래 "Learn with Jason" 비디오에서 Redux 메인테이너 Mark Erikson은 우리가 오늘날 Redux를 사용자들이 어떻게 사용하길 원하는지에 대해 설명합니다. 이 비디오에는 새로 나온 RTK 쿼리 데이터 패치 API들에 대한 내용 뿐만 아니라 라이브코드 타입스크립트로 Redux Toolkit과 React-Redux 훅을 사용하는 예제를 포함합니다:
 
