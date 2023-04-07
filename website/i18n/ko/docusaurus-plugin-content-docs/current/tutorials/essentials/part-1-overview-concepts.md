@@ -100,23 +100,23 @@ Redux는 어떤 UI 프레임워크와도 통합될 수 있는데, React와 가�
 
 ## Redux 용어와 개념
 
-Before we dive into some actual code, let's talk about some of the terms and concepts you'll need to know to use Redux.
+실제 코드로 들어가기 전에, Redux를 사용하기 위해 알아야하는 용어들과 개념들에 대해 이야기 해봅시다.
 
-### State Management
+### 상태 관리
 
-Let's start by looking at a small React counter component. It tracks a number in component state, and increments the number when a button is clicked:
+작은 React 카운터 컴포넌트를 보는걸로 한번 시작해봅시다. 이것은 컴포넌트 상태의 숫자를 추적하고 버튼이 클릭되었을 때 증가시킵니다.
 
 ```jsx
 function Counter() {
-  // State: a counter value
+  // 상태: 카운터 값
   const [counter, setCounter] = useState(0)
 
-  // Action: code that causes an update to the state when something happens
+  // 액션: 어떤 일이 일어날 때 업데이트를 발생시키는 코드
   const increment = () => {
     setCounter(prevCounter => prevCounter + 1)
   }
 
-  // View: the UI definition
+  // 뷰: UI 정의
   return (
     <div>
       Value: {counter} <button onClick={increment}>Increment</button>
@@ -125,28 +125,28 @@ function Counter() {
 }
 ```
 
-It is a self-contained app with the following parts:
+이것은 아래의 몇몇 부분들로 이루어진 하나의 독립적 앱입니다:
 
-- The **state**, the source of truth that drives our app;
-- The **view**, a declarative description of the UI based on the current state
-- The **actions**, the events that occur in the app based on user input, and trigger updates in the state
+- **상태**, 앱을 이끄는 정보의 근원;
+- **뷰**, 현재 상태에 기반한 UI의 선언적 묘사
+- **액션**, 사용자의 입력에 의해 발생하고, 상태 업데이트를 유발하는 이벤트
 
-This is a small example of **"one-way data flow"**:
+이것이 **"단방향 데이터 흐름"**의 간단한 예시입니다:
 
-- State describes the condition of the app at a specific point in time
-- The UI is rendered based on that state
-- When something happens (such as a user clicking a button), the state is updated based on what occurred
-- The UI re-renders based on the new state
+- 상태(State)는 특정한 시점에 앱의 상태를 말합니다
+- UI는 상태에 기반하여 렌더링됩니다
+- 어떤 일이 발생하면(버튼을 클릭한다던지), 상태는 이에 따라 업데이트됩니다
+- 새로운 상태에 따라 UI가 재렌더링됩니다
 
-![One-way data flow](/img/tutorials/essentials/one-way-data-flow.png)
+![단방향 데이터 흐름](/img/tutorials/essentials/one-way-data-flow.png)
 
-However, the simplicity can break down when we have **multiple components that need to share and use the same state**, especially if those components are located in different parts of the application. Sometimes this can be solved by ["lifting state up"](https://reactjs.org/docs/lifting-state-up.html) to parent components, but that doesn't always help.
+하지만 **다수의 컴포넌트가 같은 상태를 공유하고 사용해야하는 상황**, 특히 여러 컴포넌트가 애플리케이션의 다양한 부분에 위치해있는 경우에서는 이렇게 단순하지 않습니다. 어떤 경우에는 부모 컴포넌트로 ["상태를 끌어올리는"](https://reactjs.org/docs/lifting-state-up.html) 방법으로 이 문제를 해결할 수 있지만, 항상 도움이 되는 것은 아닙니다.
 
-One way to solve this is to extract the shared state from the components, and put it into a centralized location outside the component tree. With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
+이 문제를 해결하는 방법은 컴포넌트에서 공유되는 상태를 추출한뒤 컴포넌트 트리 외부에 있는 중앙집중적인 공간에 넣는 것입니다. 이렇게 하면, 우리의 컴포넌트 트리는 큰 "뷰" 가 되고, 상태 트리에 있는 어떤 컴포넌트던지 이 상태에 접근하고 액션을 유발할 수 있습니다!
 
-By defining and separating the concepts involved in state management and enforcing rules that maintain independence between views and states, we give our code more structure and maintainability.
+상태 관리와 관련된 개념을 정의 및 분리하고, 뷰와 상태 사이의 독립성을 유지하는 규칙을 유지함으로써, 우리의 코드는 좀더 구조적이고 유지가 쉬워집니다.
 
-This is the basic idea behind Redux: a single centralized place to contain the global state in your application, and specific patterns to follow when updating that state to make the code predictable.
+이것이 Redux의 기본 개념입니다: 애플리케이션의 전역 상태를 담는 하나의 중앙집중 장소와, 코드를 예측가능하게 하기 위해 따르는 상태 업데이트에 대한 구체적인 규칙.
 
 ### Immutability
 
